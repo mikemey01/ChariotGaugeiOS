@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE05FFB01849433700764A43 /* CICGaugeBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = CE05FFAF1849433700764A43 /* CICGaugeBuilder.m */; };
 		CE2E850B1847B01000C51A49 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2E850A1847B01000C51A49 /* Foundation.framework */; };
 		CE2E850D1847B01000C51A49 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2E850C1847B01000C51A49 /* CoreGraphics.framework */; };
 		CE2E850F1847B01000C51A49 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2E850E1847B01000C51A49 /* UIKit.framework */; };
@@ -34,6 +35,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CE05FFAE1849433700764A43 /* CICGaugeBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICGaugeBuilder.h; sourceTree = "<group>"; };
+		CE05FFAF1849433700764A43 /* CICGaugeBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICGaugeBuilder.m; sourceTree = "<group>"; };
 		CE2E85071847B01000C51A49 /* ChariotGauge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChariotGauge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE2E850A1847B01000C51A49 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CE2E850C1847B01000C51A49 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -117,6 +120,8 @@
 				CE2E851C1847B01000C51A49 /* Main.storyboard */,
 				CE2E851F1847B01000C51A49 /* CICViewController.h */,
 				CE2E85201847B01000C51A49 /* CICViewController.m */,
+				CE05FFAE1849433700764A43 /* CICGaugeBuilder.h */,
+				CE05FFAF1849433700764A43 /* CICGaugeBuilder.m */,
 				CE2E85221847B01000C51A49 /* Images.xcassets */,
 				CE2E85111847B01000C51A49 /* Supporting Files */,
 			);
@@ -253,6 +258,7 @@
 				CE2E851B1847B01000C51A49 /* CICAppDelegate.m in Sources */,
 				CE2E85171847B01000C51A49 /* main.m in Sources */,
 				CE2E85211847B01000C51A49 /* CICViewController.m in Sources */,
+				CE05FFB01849433700764A43 /* CICGaugeBuilder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,6 +467,7 @@
 				CE2E853B1847B01000C51A49 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CE2E853C1847B01000C51A49 /* Build configuration list for PBXNativeTarget "ChariotGaugeTests" */ = {
 			isa = XCConfigurationList;
@@ -469,6 +476,7 @@
 				CE2E853E1847B01000C51A49 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
