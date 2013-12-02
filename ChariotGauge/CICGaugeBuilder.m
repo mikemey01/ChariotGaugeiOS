@@ -40,9 +40,9 @@
     
     innerFrame = [self drawInnerRim:(context)];
     
-    [self drawTickArc:(context)];
-    
     [self drawInnerShadow:(context) withFrame:innerFrame];
+    
+    [self drawTickArc:(context)];
     
     [self drawTicksOnArc:(context)];
     

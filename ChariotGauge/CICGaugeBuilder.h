@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface CICGaugeBuilder : UIView{
-    CGFloat lineWidth;
-    int tickLineLength;
+    CGFloat lineWidth; //width of the circles
+    int tickLineLength; //Tick lengths.
     
     struct angleRanges{
         float startRange;
