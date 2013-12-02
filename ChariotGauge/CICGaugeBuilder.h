@@ -10,6 +10,12 @@
 
 @interface CICGaugeBuilder : UIView{
     CGFloat lineWidth;
+    int tickLineLength;
+    
+    struct angleRanges{
+        float startRange;
+        float endRange;
+    } angle_Range;
 }
 
 -(void)drawOuterRim:(CGContextRef)context;
@@ -20,5 +26,6 @@
 -(void)drawTickArc:(CGContextRef)context;
 -(void)initializeGauge;
 -(void)drawInnerShadow:(CGContextRef)context withFrame:(CGRect)rect;
+-(void)drawTicksOnArc:(CGContextRef)context;
 
 @end
