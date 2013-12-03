@@ -11,13 +11,13 @@
 #import <QuartzCore/QuartzCore.h>
 
 #define   DEGREES_TO_RADIANS(degrees)  ((M_PI * degrees)/ 180)
-#define   DIAMETER  self.frame.size.width//fmin(self.frame.size.width, self.frame.size.height)
-
-#define RADIUS (DIAMETER/2) - 50
-#define METER_END_LIMIT 50.f
-#define CIRCLE_STROKE_PATH_WIDTH 39.f
+#define   DIAMETER  self.frame.size.width // TODO: needs work
+#define   TICK_ARC_RADIUS (DIAMETER/2) - 50
 
 @implementation CICGaugeBuilder
+
+@synthesize minGaugeNumber, maxGaugeNumber, gaugeLabel, incrementPerLargeTick, gaugeType;
+@synthesize tickStartAngleDegrees, tickDistance;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -35,7 +35,6 @@
     [self initializeGauge];
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    
     [self drawOuterRim:(context)];
     
     innerFrame = [self drawInnerRim:(context)];
@@ -50,37 +49,37 @@
 
 - (void)drawTicksOnArc:(CGContextRef)context
 {
-    NSInteger numberOfParts = METER_END_LIMIT;
+    gaugeRange = maxGaugeNumber - minGaugeNumber;
     int angleRange = 0;
     
-    for(int loopIndex = 0; loopIndex <= numberOfParts; loopIndex++){
+    while(angleRange <= gaugeRange){
         
         //Setup the lenth of the tick depending on if it's a major or minor tick.
-        //TODO: set the "% 5" to be the major tick increment
-        if(angleRange % 5 == 0){
+        if(angleRange % incrementPerLargeTick == 0){
             self->tickLineLength = 10; //Major tick
         }else{
             self->tickLineLength = 5; //Minor tick
         }
         
-        //setup the range.
-        //TODO: needs to be configurable
-        angle_Range.startRange = -45; //This sets up where the angle begins. must be used in conjunction with the end range!
-        angle_Range.endRange   = 360 - (270.f * angleRange)/METER_END_LIMIT; //Adjust the 360 - (xxx.f) to change the total degree range.
+        //setup the range for this tick.
+        angle_Range.startRange = 0; //This sets up where the angle begins. must be used in conjunction with the end range!
+        angle_Range.endRange   = tickStartAngleDegrees+(tickDistance * angleRange)/gaugeRange; //0 degress is East. xxx+(yyy.f * angleRange)/gaugeRange.
+                                                                                               //x = degrees clock wise to start. yyy = how far to go.
         
         double actualLineAngle = angle_Range.endRange - angle_Range.startRange;
         float startAngle = actualLineAngle - 0.25; //Width of the ticks
-        float endAngle = actualLineAngle + 0.25; //widht of the ticks.
+        float endAngle = actualLineAngle + 0.25; //width of the ticks.
         
         startAngle =  DEGREES_TO_RADIANS(startAngle);
         endAngle = DEGREES_TO_RADIANS(endAngle);
         UIBezierPath *aPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(DIAMETER/2, DIAMETER/2-20)
-                                                             radius:(RADIUS+tickLineLength/2) //Sets the radius based on the tick length;
+                                                             radius:(TICK_ARC_RADIUS+tickLineLength/2) //Sets the radius based on the tick length;
                                                          startAngle:startAngle
                                                            endAngle:endAngle
                                                           clockwise:YES];
 
         
+        //Draw the ticks.
         CAShapeLayer *shapeLayer = [[CAShapeLayer alloc] init];
         [shapeLayer setFrame: self.frame];
         [shapeLayer setPath: [aPath CGPath]];
@@ -91,8 +90,8 @@
         [self.layer addSublayer:shapeLayer];
         [aPath closePath];
         
-        //TODO: Set the "+1.0f" to instead be what the minor tick increment is.
-        angleRange = angleRange + 1.0f; //Loop through each degree, set a major or minor tick.
+        //Increments based on the assumption there are 4 minor ticks plus one major. each increment is set in a property.
+        angleRange = angleRange + incrementPerLargeTick/5; //Loop through each degree, set a major or minor tick.
     }
 }
 
@@ -175,7 +174,7 @@
     
     //controls the look of the arc NOT placement.
     UIBezierPath *aPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(0, 0)
-                                                         radius:DIAMETER/2 - 50 //Controls the size of the tick arc
+                                                         radius:TICK_ARC_RADIUS //Controls the size of the tick arc
                                                      startAngle:0
                                                        endAngle:DEGREES_TO_RADIANS(360)
                                                       clockwise:YES];
@@ -229,6 +228,14 @@
 - (void)initializeGauge
 {
     lineWidth = 1;
+    self.minGaugeNumber = 0;
+    self.maxGaugeNumber = 100;
+    self.gaugeType = 2;
+    self.gaugeLabel = @"Boost/Vac";
+    self.incrementPerLargeTick = 10;
+    self.tickStartAngleDegrees = 135;
+    self.tickDistance = 270;
+    
 }
 
 @end
