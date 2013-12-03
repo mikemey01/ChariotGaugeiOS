@@ -13,7 +13,6 @@
     int tickLineLength; //Tick lengths.
     
     
-    
     //Min number on the gauge
     int minGaugeNumber;
     
