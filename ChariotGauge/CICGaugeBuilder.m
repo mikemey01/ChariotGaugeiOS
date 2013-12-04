@@ -17,7 +17,7 @@
 @implementation CICGaugeBuilder
 
 @synthesize minGaugeNumber, maxGaugeNumber, gaugeLabel, incrementPerLargeTick, gaugeType;
-@synthesize tickStartAngleDegrees, tickDistance;
+@synthesize tickStartAngleDegrees, tickDistance, menuItemsFont;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -44,6 +44,8 @@
     [self drawTickArc:(context)];
     
     [self drawTicksOnArc:(context)];
+    
+    [self createMenuRingWithFrame:innerFrame withContext:(context)];
     
 }
 
@@ -77,6 +79,8 @@
                                                          startAngle:startAngle
                                                            endAngle:endAngle
                                                           clockwise:YES];
+        
+        
 
         
         //Draw the ticks.
@@ -90,10 +94,90 @@
         [self.layer addSublayer:shapeLayer];
         [aPath closePath];
         
+        
         //Increments based on the assumption there are 4 minor ticks plus one major. each increment is set in a property.
         angleRange = angleRange + incrementPerLargeTick/5; //Loop through each degree, set a major or minor tick.
     }
 }
+
+
+
+
+
+
+
+- (void) drawStringAtContext:(CGContextRef)context string:(NSString*)text atAngle:(float)angle withRadius:(float)radius
+{
+    CGSize textSize = [text sizeWithFont:self.menuItemsFont];
+    
+    float perimeter = 2 * M_PI * radius;
+    float textAngle = textSize.width / perimeter * -2 * M_PI;
+    
+    angle += textAngle / 2;
+    
+    for (int index = 0; index < [text length]; index++)
+    {
+        NSRange range = {index, 1};
+        NSString* letter = [text substringWithRange:range];
+        char* c = (char*)[letter UTF8String];
+        CGSize charSize = [letter sizeWithFont:self.menuItemsFont];
+        
+        NSLog(@"Char %@ with size: %f x %f", letter, charSize.width, charSize.height);
+        
+        float x = radius * cos(angle);
+        float y = radius * sin(angle);
+        
+        float letterAngle = (charSize.width / perimeter * 2 * M_PI);
+        
+        CGContextSaveGState(context);
+        CGContextTranslateCTM(context, x, y);
+        CGContextRotateCTM(context, (angle + 0.5 * M_PI));
+        
+        CGContextScaleCTM(context, 1.0, -1.0);
+        
+        CGContextShowTextAtPoint(context, 0, 0, c, strlen(c));
+        CGContextRestoreGState(context);
+        
+        angle += letterAngle;
+    }
+}
+
+- (void) createMenuRingWithFrame:(CGRect)frame withContext:(CGContextRef)context
+{
+    NSArray* sections = [[NSArray alloc] initWithObjects:@"settings", @"test", @"number", @"Fancy", @"text", @"more", nil];
+    
+    CGPoint centerPoint = CGPointMake(DIAMETER / 2, DIAMETER / 2);
+    char* fontName = (char*)[self.menuItemsFont.fontName UTF8String];
+    
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    
+    CGContextSelectFont(context, fontName, 18, kCGEncodingMacRoman);
+    
+    CGContextSetTextMatrix(context, CGAffineTransformIdentity);
+    
+    CGContextSaveGState(context);
+    CGContextTranslateCTM(context, centerPoint.x, centerPoint.y);
+    
+    float angleStep = 2 * M_PI / [sections count];
+    float angle = DEGREES_TO_RADIANS(0);
+    
+    
+    for (NSString* text in sections)
+    {
+        [self drawStringAtContext:context string:text atAngle:angle withRadius:TICK_ARC_RADIUS];
+        angle += angleStep;
+    }
+    
+    CGContextRestoreGState(context);
+    
+    CGColorSpaceRelease(colorSpace);
+    
+}
+
+
+
+
+
 
 - (void)drawOuterRim:(CGContextRef)context
 {
@@ -235,6 +319,8 @@
     self.incrementPerLargeTick = 10;
     self.tickStartAngleDegrees = 135;
     self.tickDistance = 270;
+    
+    self.menuItemsFont = [UIFont fontWithName:@"Helvetica" size:14];
     
 }
 

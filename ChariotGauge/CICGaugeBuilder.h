@@ -37,6 +37,9 @@
     //distance in degrees to travel around arc.
     float tickDistance;
     
+    //TODO: update
+    UIFont *menuItemsFont;
+    
     
     
     struct angleRanges{
@@ -52,6 +55,7 @@
 @property (nonatomic, assign) int gaugeType;
 @property (nonatomic, assign) float tickStartAngleDegrees;
 @property (nonatomic, assign) float tickDistance;
+@property (nonatomic, retain) UIFont *menuItemsFont;
 
 
 -(void)drawOuterRim:(CGContextRef)context;
@@ -63,5 +67,8 @@
 -(void)initializeGauge;
 -(void)drawInnerShadow:(CGContextRef)context withFrame:(CGRect)rect;
 -(void)drawTicksOnArc:(CGContextRef)context;
+
+-(void) drawStringAtContext:(CGContextRef) context string:(NSString*) text atAngle:(float) angle withRadius:(float) radius;
+-(void) createMenuRingWithFrame:(CGRect)frame withContext:(CGContextRef)context;
 
 @end
