@@ -49,10 +49,10 @@
 
 - (void)drawTicksOnArc:(CGContextRef)context
 {
-    gaugeRange = maxGaugeNumber - minGaugeNumber;
-    int angleRange = 0;
+    gaugeRange = maxGaugeNumber - minGaugeNumber; //The range of the config numbers
+    int angleRange = 0; //should ALWAYS start at 0 - forces the ticks to start at self.tickStartAngleDegrees
     
-    while(self.minGaugeNumber <= self.maxGaugeNumber){
+    while(self.minGaugeNumber <= self.maxGaugeNumber){ //traverse the range of config'd numbers
         
         //Setup the lenth of the tick depending on if it's a major or minor tick.
         if(angleRange % incrementPerLargeTick == 0){
@@ -64,8 +64,7 @@
         //setup the range for this tick.
         angle_Range.startRange = 0; //This sets up where the angle begins. must be used in conjunction with the end range!
         angle_Range.endRange   = tickStartAngleDegrees+(tickDistance * angleRange)/gaugeRange; //0 degress is East. xxx+(yyy.f * angleRange)/gaugeRange.
-                                                                                               //x = degrees clock wise to start. yyy = how far to go.
-        NSLog(@"%d", gaugeRange);
+                                                                                               //x = degrees clock wise to start. y = how far to go
         
         float actualLineAngle = angle_Range.endRange - angle_Range.startRange;
         float startAngle = actualLineAngle - 0.25f; //Width of the ticks
@@ -92,8 +91,8 @@
         
         //Draw numbers on major ticks
         if(tickLineLength == 10){
-            NSString * drawNumber = [NSString stringWithFormat:@"%d",abs(self.minGaugeNumber)];
-            [self drawCurvedText:drawNumber atAngle:DEGREES_TO_RADIANS(actualLineAngle) withContext:context];
+            NSString * drawNumber = [NSString stringWithFormat:@"%d",abs(self.minGaugeNumber)]; //cast decimal to string
+            [self drawCurvedText:drawNumber atAngle:DEGREES_TO_RADIANS(actualLineAngle) withContext:context]; //draw the number at the major ticks.
         }
         
         //Increments based on the assumption there are 4 minor ticks plus one major. each increment is set in a property.
