@@ -52,7 +52,7 @@
     gaugeRange = maxGaugeNumber - minGaugeNumber;
     int angleRange = 0;
     
-    while(angleRange <= gaugeRange){
+    while(self.minGaugeNumber <= self.maxGaugeNumber){
         
         //Setup the lenth of the tick depending on if it's a major or minor tick.
         if(angleRange % incrementPerLargeTick == 0){
@@ -65,6 +65,7 @@
         angle_Range.startRange = 0; //This sets up where the angle begins. must be used in conjunction with the end range!
         angle_Range.endRange   = tickStartAngleDegrees+(tickDistance * angleRange)/gaugeRange; //0 degress is East. xxx+(yyy.f * angleRange)/gaugeRange.
                                                                                                //x = degrees clock wise to start. yyy = how far to go.
+        NSLog(@"%d", gaugeRange);
         
         float actualLineAngle = angle_Range.endRange - angle_Range.startRange;
         float startAngle = actualLineAngle - 0.25f; //Width of the ticks
@@ -91,12 +92,13 @@
         
         //Draw numbers on major ticks
         if(tickLineLength == 10){
-            NSString * drawNumber = [NSString stringWithFormat:@"%d",angleRange];
+            NSString * drawNumber = [NSString stringWithFormat:@"%d",abs(self.minGaugeNumber)];
             [self drawCurvedText:drawNumber atAngle:DEGREES_TO_RADIANS(actualLineAngle) withContext:context];
         }
         
         //Increments based on the assumption there are 4 minor ticks plus one major. each increment is set in a property.
         angleRange = angleRange + incrementPerLargeTick/5; //Loop through each degree, set a major or minor tick.
+        self.minGaugeNumber = self.minGaugeNumber + incrementPerLargeTick/5;
     }
 }
 
