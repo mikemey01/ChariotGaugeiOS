@@ -45,8 +45,6 @@
     
     [self drawTicksOnArc:(context)];
     
-    [self createMenuRingWithFrame:innerFrame withContext:(context)];
-    
 }
 
 - (void)drawTicksOnArc:(CGContextRef)context
@@ -58,9 +56,9 @@
         
         //Setup the lenth of the tick depending on if it's a major or minor tick.
         if(angleRange % incrementPerLargeTick == 0){
-            self->tickLineLength = 10; //Major tick
+            tickLineLength = 10; //Major tick
         }else{
-            self->tickLineLength = 5; //Minor tick
+            tickLineLength = 5; //Minor tick
         }
         
         //setup the range for this tick.
@@ -68,9 +66,9 @@
         angle_Range.endRange   = tickStartAngleDegrees+(tickDistance * angleRange)/gaugeRange; //0 degress is East. xxx+(yyy.f * angleRange)/gaugeRange.
                                                                                                //x = degrees clock wise to start. yyy = how far to go.
         
-        double actualLineAngle = angle_Range.endRange - angle_Range.startRange;
-        float startAngle = actualLineAngle - 0.25; //Width of the ticks
-        float endAngle = actualLineAngle + 0.25; //width of the ticks.
+        float actualLineAngle = angle_Range.endRange - angle_Range.startRange;
+        float startAngle = actualLineAngle - 0.25f; //Width of the ticks
+        float endAngle = actualLineAngle + 0.25f; //width of the ticks.
         
         startAngle =  DEGREES_TO_RADIANS(startAngle);
         endAngle = DEGREES_TO_RADIANS(endAngle);
@@ -79,10 +77,7 @@
                                                          startAngle:startAngle
                                                            endAngle:endAngle
                                                           clockwise:YES];
-        
-        
 
-        
         //Draw the ticks.
         CAShapeLayer *shapeLayer = [[CAShapeLayer alloc] init];
         [shapeLayer setFrame: self.frame];
@@ -94,40 +89,58 @@
         [self.layer addSublayer:shapeLayer];
         [aPath closePath];
         
+        //Draw numbers on major ticks
+        if(tickLineLength == 10){
+            NSString * drawNumber = [NSString stringWithFormat:@"%d",angleRange];
+            [self drawCurvedText:drawNumber atAngle:DEGREES_TO_RADIANS(actualLineAngle) withContext:context];
+        }
         
         //Increments based on the assumption there are 4 minor ticks plus one major. each increment is set in a property.
         angleRange = angleRange + incrementPerLargeTick/5; //Loop through each degree, set a major or minor tick.
     }
 }
 
-
-
-
-
-
+- (void) drawCurvedText:(NSString *)text atAngle:(float)angle withContext:(CGContextRef)context
+{
+    CGPoint centerPoint = CGPointMake(DIAMETER / 2, DIAMETER / 2);
+    char* fontName = (char*)[self.menuItemsFont.fontName UTF8String];
+    
+    CGContextSelectFont(context, fontName, 18, kCGEncodingMacRoman);
+    
+    CGContextSetTextMatrix(context, CGAffineTransformIdentity);
+    
+    CGContextSaveGState(context);
+    CGContextTranslateCTM(context, centerPoint.x, centerPoint.y);
+    
+    [self drawStringAtContext:context string:text atAngle:angle withRadius:TICK_ARC_RADIUS+12];
+    
+    CGContextRestoreGState(context);
+}
 
 - (void) drawStringAtContext:(CGContextRef)context string:(NSString*)text atAngle:(float)angle withRadius:(float)radius
 {
-    CGSize textSize = [text sizeWithFont:self.menuItemsFont];
+    CGSize textSize = [text sizeWithAttributes:@{self.menuItemsFont:[UIFont systemFontOfSize:14.0f]}];
     
     float perimeter = 2 * M_PI * radius;
     float textAngle = textSize.width / perimeter * -2 * M_PI;
     
-    angle += textAngle / 2;
+    angle += (textAngle / 2);
+    angle += DEGREES_TO_RADIANS(-.75);
+    
     
     for (int index = 0; index < [text length]; index++)
     {
         NSRange range = {index, 1};
         NSString* letter = [text substringWithRange:range];
         char* c = (char*)[letter UTF8String];
-        CGSize charSize = [letter sizeWithFont:self.menuItemsFont];
-        
-        NSLog(@"Char %@ with size: %f x %f", letter, charSize.width, charSize.height);
+        CGSize charSize = [letter sizeWithAttributes:@{self.menuItemsFont:[UIFont systemFontOfSize:14.0f]}];
+        charSize.width += 2;
         
         float x = radius * cos(angle);
         float y = radius * sin(angle);
         
-        float letterAngle = (charSize.width / perimeter * 2 * M_PI);
+        float letterAngle = (charSize.width / perimeter * 2 * M_PI)
+        ;
         
         CGContextSaveGState(context);
         CGContextTranslateCTM(context, x, y);
@@ -141,43 +154,6 @@
         angle += letterAngle;
     }
 }
-
-- (void) createMenuRingWithFrame:(CGRect)frame withContext:(CGContextRef)context
-{
-    NSArray* sections = [[NSArray alloc] initWithObjects:@"settings", @"test", @"number", @"Fancy", @"text", @"more", nil];
-    
-    CGPoint centerPoint = CGPointMake(DIAMETER / 2, DIAMETER / 2);
-    char* fontName = (char*)[self.menuItemsFont.fontName UTF8String];
-    
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    
-    CGContextSelectFont(context, fontName, 18, kCGEncodingMacRoman);
-    
-    CGContextSetTextMatrix(context, CGAffineTransformIdentity);
-    
-    CGContextSaveGState(context);
-    CGContextTranslateCTM(context, centerPoint.x, centerPoint.y);
-    
-    float angleStep = 2 * M_PI / [sections count];
-    float angle = DEGREES_TO_RADIANS(0);
-    
-    
-    for (NSString* text in sections)
-    {
-        [self drawStringAtContext:context string:text atAngle:angle withRadius:TICK_ARC_RADIUS];
-        angle += angleStep;
-    }
-    
-    CGContextRestoreGState(context);
-    
-    CGColorSpaceRelease(colorSpace);
-    
-}
-
-
-
-
-
 
 - (void)drawOuterRim:(CGContextRef)context
 {
@@ -249,7 +225,6 @@
     
     CGContextRestoreGState(context);
 }
-
 
 - (void)drawTickArc:(CGContextRef)context
 {
