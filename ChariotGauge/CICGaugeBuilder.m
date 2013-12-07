@@ -288,12 +288,12 @@
 - (void)initializeGauge
 {
     lineWidth = 1;
-    self.minGaugeNumber = 0;
-    self.maxGaugeNumber = 100;
+    self.minGaugeNumber = -30;
+    self.maxGaugeNumber = 25;
     self.gaugeType = 2;
     self.gaugeLabel = @"Boost/Vac";
-    self.incrementPerLargeTick = 10;
-    self.tickStartAngleDegrees = 135;
+    self.incrementPerLargeTick = 5;
+    self.tickStartAngleDegrees = 124;
     self.tickDistance = 270;
     
     self.menuItemsFont = [UIFont fontWithName:@"Helvetica" size:14];
