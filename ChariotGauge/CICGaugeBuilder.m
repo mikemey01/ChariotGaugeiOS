@@ -16,8 +16,11 @@
 
 @implementation CICGaugeBuilder
 
-@synthesize minGaugeNumber, maxGaugeNumber, gaugeLabel, incrementPerLargeTick, gaugeType;
-@synthesize tickStartAngleDegrees, tickDistance, menuItemsFont;
+//synthesize gauge props
+@synthesize minGaugeNumber, maxGaugeNumber, gaugeLabel, incrementPerLargeTick, gaugeType, tickStartAngleDegrees, tickDistance, menuItemsFont;
+
+//synthesize needle props
+@synthesize needleLength, needleWidth, needleTintColor;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -45,6 +48,36 @@
     
     [self drawTicksOnArc:(context)];
     
+}
+
+- (void)drawLayer:(CALayer*)layer inContext:(CGContextRef)ctx {
+	CGContextSaveGState(ctx);
+    
+	CATransform3D transform = layer.transform;
+	
+	layer.transform = CATransform3DIdentity;
+	
+	CGContextSetFillColorWithColor(ctx, self.needleTintColor.CGColor);
+	CGContextSetStrokeColorWithColor(ctx, self.needleTintColor.CGColor);
+	CGContextSetLineWidth(ctx, self.needleWidth);
+	
+	CGFloat centerX = layer.frame.size.width / 2.0;
+	CGFloat centerY = layer.frame.size.height / 2.0;
+	
+	CGFloat ellipseRadius = self.needleWidth * 2.0;
+	
+	CGContextFillEllipseInRect(ctx, CGRectMake(centerX - ellipseRadius, centerY - ellipseRadius, ellipseRadius * 2.0, ellipseRadius * 2.0));
+	
+	CGFloat endX = (1 + self.needleLength) * centerX;
+	
+	CGContextBeginPath(ctx);
+	CGContextMoveToPoint(ctx, centerX, centerY);
+	CGContextAddLineToPoint(ctx, endX, centerY);
+	CGContextStrokePath(ctx);
+    
+	layer.transform = transform;
+	
+	CGContextRestoreGState(ctx);
 }
 
 - (void)drawTicksOnArc:(CGContextRef)context
@@ -287,6 +320,7 @@
 
 - (void)initializeGauge
 {
+    //Gauge init
     lineWidth = 1;
     self.minGaugeNumber = -30;
     self.maxGaugeNumber = 25;
@@ -295,9 +329,21 @@
     self.incrementPerLargeTick = 5;
     self.tickStartAngleDegrees = 124;
     self.tickDistance = 270;
-    
     self.menuItemsFont = [UIFont fontWithName:@"Helvetica" size:14];
     
+    //needle init
+    self.needleTintColor = [UIColor orangeColor];
+	self.needleWidth = 2.0;
+	self.needleLength = 0.8;
+    
+	needleLayer = [CALayer layer];
+	needleLayer.bounds = self.bounds;
+	needleLayer.position = CGPointMake(self.bounds.size.width / 2.0, self.bounds.size.height / 2.0);
+	needleLayer.needsDisplayOnBoundsChange = YES;
+	
+	[self.layer addSublayer:needleLayer];
+	
+	[needleLayer setNeedsDisplay];
 }
 
 /*Setup dealloc here*/

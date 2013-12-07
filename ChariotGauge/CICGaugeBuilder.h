@@ -12,6 +12,7 @@
     CGFloat lineWidth; //width of the circles
     int tickLineLength; //Tick lengths.
     
+        /*gauge stuff*/
     
     //Min number on the gauge
     int minGaugeNumber;
@@ -41,6 +42,20 @@
     UIFont *menuItemsFont;
     
     
+        /*Needle stuff*/
+    
+    //Needle Length
+    float needleLength;
+    
+    //Needle Width
+    float needleWidth;
+    
+    //Needle tint
+    UIColor *needleTintColor;
+    
+    //Needle layer
+    CALayer *needleLayer;
+    
     
     struct angleRanges{
         float startRange;
@@ -48,6 +63,7 @@
     } angle_Range;
 }
 
+//gauge props
 @property (nonatomic, assign) int minGaugeNumber;
 @property (nonatomic, assign) int maxGaugeNumber;
 @property (nonatomic, assign) int incrementPerLargeTick;
@@ -57,18 +73,25 @@
 @property (nonatomic, assign) float tickDistance;
 @property (nonatomic, retain) UIFont *menuItemsFont;
 
+//Needle props
+@property (nonatomic, assign) float needleLength;
+@property (nonatomic, assign) float needleWidth;
+@property (nonatomic, retain) UIColor *needleTintColor;
 
+
+//gauge functions
 -(void)drawOuterRim:(CGContextRef)context;
 -(CGRect)drawInnerRim:(CGContextRef)context;
 -(void)drawRect:(CGRect)rect;
 -(void)fillGradient:(CGRect)rect withContext:(CGContextRef)context;
-
 -(void)drawTickArc:(CGContextRef)context;
 -(void)initializeGauge;
 -(void)drawInnerShadow:(CGContextRef)context withFrame:(CGRect)rect;
 -(void)drawTicksOnArc:(CGContextRef)context;
-
 -(void) drawStringAtContext:(CGContextRef) context string:(NSString*) text atAngle:(float) angle withRadius:(float) radius;
 -(void) drawCurvedText:(NSString *)text atAngle:(float)angle withContext:(CGContextRef)context;
+
+//needle functions
+
 
 @end
