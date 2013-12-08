@@ -92,6 +92,6 @@
 -(void) drawCurvedText:(NSString *)text atAngle:(float)angle withContext:(CGContextRef)context;
 
 //needle functions
-
-
+-(void)drawLayer:(CALayer*)layer inContext:(CGContextRef)ctx;
+-(void)setValue:(float)val;
 @end

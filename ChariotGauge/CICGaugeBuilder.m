@@ -48,6 +48,23 @@
     
     [self drawTicksOnArc:(context)];
     
+//    CALayer *newLayer = [[CALayer alloc] init];
+//    
+//    [self drawLayer:(newLayer) inContext:(context)];
+//    
+//    [self setValue:(50.0f)];
+    
+}
+
+- (void)setValue:(float)val {
+	if (val > self.maxGaugeNumber)
+		val = self.maxGaugeNumber;
+	if (val < self.minGaugeNumber)
+		val = self.minGaugeNumber;
+	
+	CGFloat angle = self.tickStartAngleDegrees + tickDistance * val / (self.maxGaugeNumber - self.minGaugeNumber) - tickDistance * (self.minGaugeNumber / (self.maxGaugeNumber - self.minGaugeNumber));
+    
+	needleLayer.transform = CATransform3DMakeRotation(angle, 0, 0, 1);
 }
 
 - (void)drawLayer:(CALayer*)layer inContext:(CGContextRef)ctx {
@@ -344,6 +361,7 @@
 	[self.layer addSublayer:needleLayer];
 	
 	[needleLayer setNeedsDisplay];
+                                                                    /*ENDED HERE*/
 }
 
 /*Setup dealloc here*/
