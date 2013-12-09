@@ -48,11 +48,12 @@
     
     [self drawTicksOnArc:(context)];
     
-//    CALayer *newLayer = [[CALayer alloc] init];
-//    
-//    [self drawLayer:(newLayer) inContext:(context)];
-//    
-//    [self setValue:(50.0f)];
+    CALayer *newLayer = [[CALayer alloc] init];
+    
+    [self drawNeedle:(newLayer) inContext:(context)];
+    
+    [self setValue:(0.0f)];
+    [self setNeedsDisplay];
     
 }
 
@@ -67,34 +68,35 @@
 	needleLayer.transform = CATransform3DMakeRotation(angle, 0, 0, 1);
 }
 
-- (void)drawLayer:(CALayer*)layer inContext:(CGContextRef)ctx {
-	CGContextSaveGState(ctx);
+- (void)drawNeedle:(CALayer *)layer inContext:(CGContextRef)context
+{
+	CGContextSaveGState(context);
     
 	CATransform3D transform = layer.transform;
 	
 	layer.transform = CATransform3DIdentity;
 	
-	CGContextSetFillColorWithColor(ctx, self.needleTintColor.CGColor);
-	CGContextSetStrokeColorWithColor(ctx, self.needleTintColor.CGColor);
-	CGContextSetLineWidth(ctx, self.needleWidth);
+	CGContextSetFillColorWithColor(context, self.needleTintColor.CGColor);
+	CGContextSetStrokeColorWithColor(context, self.needleTintColor.CGColor);
+	CGContextSetLineWidth(context, self.needleWidth);
 	
-	CGFloat centerX = layer.frame.size.width / 2.0;
-	CGFloat centerY = layer.frame.size.height / 2.0;
+	CGFloat centerX = DIAMETER/2;
+	CGFloat centerY = DIAMETER/2;
 	
 	CGFloat ellipseRadius = self.needleWidth * 2.0;
 	
-	CGContextFillEllipseInRect(ctx, CGRectMake(centerX - ellipseRadius, centerY - ellipseRadius, ellipseRadius * 2.0, ellipseRadius * 2.0));
+	CGContextFillEllipseInRect(context, CGRectMake(centerX - ellipseRadius, centerY - ellipseRadius, ellipseRadius * 2.0, ellipseRadius * 2.0));
 	
 	CGFloat endX = (1 + self.needleLength) * centerX;
 	
-	CGContextBeginPath(ctx);
-	CGContextMoveToPoint(ctx, centerX, centerY);
-	CGContextAddLineToPoint(ctx, endX, centerY);
-	CGContextStrokePath(ctx);
+	CGContextBeginPath(context);
+	CGContextMoveToPoint(context, centerX, centerY);
+	CGContextAddLineToPoint(context, endX, centerY);
+	CGContextStrokePath(context);
     
 	layer.transform = transform;
 	
-	CGContextRestoreGState(ctx);
+	CGContextRestoreGState(context);
 }
 
 - (void)drawTicksOnArc:(CGContextRef)context
@@ -339,29 +341,29 @@
 {
     //Gauge init
     lineWidth = 1;
-    self.minGaugeNumber = -30;
-    self.maxGaugeNumber = 25;
+    self.minGaugeNumber = 0;
+    self.maxGaugeNumber = 100;
     self.gaugeType = 2;
     self.gaugeLabel = @"Boost/Vac";
-    self.incrementPerLargeTick = 5;
-    self.tickStartAngleDegrees = 124;
+    self.incrementPerLargeTick = 10;
+    self.tickStartAngleDegrees = 135;
     self.tickDistance = 270;
     self.menuItemsFont = [UIFont fontWithName:@"Helvetica" size:14];
     
     //needle init
     self.needleTintColor = [UIColor orangeColor];
-	self.needleWidth = 2.0;
-	self.needleLength = 0.8;
+	self.needleWidth = 5.0;
+	self.needleLength = 0.7;
     
 	needleLayer = [CALayer layer];
 	needleLayer.bounds = self.bounds;
-	needleLayer.position = CGPointMake(self.bounds.size.width / 2.0, self.bounds.size.height / 2.0);
+	needleLayer.position = CGPointMake(DIAMETER / 2.0, DIAMETER / 2.0);
 	needleLayer.needsDisplayOnBoundsChange = YES;
 	
-	[self.layer addSublayer:needleLayer];
+	[self.layer addSublayer:needleLayer]; //possible issue with the self.layer call, explicitely define this variable as preNeedleLayer or something.
 	
 	[needleLayer setNeedsDisplay];
-                                                                    /*ENDED HERE*/
+    
 }
 
 /*Setup dealloc here*/

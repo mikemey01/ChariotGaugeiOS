@@ -93,5 +93,6 @@
 
 //needle functions
 -(void)drawLayer:(CALayer*)layer inContext:(CGContextRef)ctx;
+-(void)drawNeedle:(CALayer *)layer inContext:(CGContextRef)context;
 -(void)setValue:(float)val;
 @end
