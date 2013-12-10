@@ -89,17 +89,22 @@
     
 }
 
-- (void)setValue:(float)val {
+- (void)setValue:(float)val
+{
 	if (val > self.maxGaugeNumber)
 		val = self.maxGaugeNumber;
 	if (val < self.minGaugeNumber)
 		val = self.minGaugeNumber;
+    
+    int gaugeRangeLocal = self.maxGaugeNumber - self.minGaugeNumber;
 	
-	CGFloat angle = self.tickStartAngleDegrees + tickDistance * val / (self.maxGaugeNumber - self.minGaugeNumber) - tickDistance * (self.minGaugeNumber / (self.maxGaugeNumber - self.minGaugeNumber));
+	CGFloat angle = self.tickStartAngleDegrees + tickDistance * val / (gaugeRangeLocal) - tickDistance * (self.minGaugeNumber / (gaugeRangeLocal));
+    
+    NSLog(@"%f", angle);
+    NSLog(@"%i", gaugeRangeLocal);
     
 	needleLayer.transform = CATransform3DMakeRotation(DEGREES_TO_RADIANS(angle), 0.0f, 0.0f, 1.0f);
 }
-
 
 
 - (void)drawTicksOnArc:(CGContextRef)context
@@ -285,7 +290,7 @@
 - (void)drawTickArc:(CGContextRef)context
 {
     [[UIColor grayColor] setStroke];
-    [[UIColor redColor] setFill]; //unused for now.
+    [[UIColor darkGrayColor] setFill]; //Controls the color of the numbers.
     
     //controls the look of the arc NOT placement.
     UIBezierPath *aPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(0, 0)
@@ -344,11 +349,11 @@
 {
     //Gauge init
     lineWidth = 1;
-    self.minGaugeNumber = 0;
-    self.maxGaugeNumber = 100;
+    self.minGaugeNumber = -30;
+    self.maxGaugeNumber = 25;
     self.gaugeType = 2;
     self.gaugeLabel = @"Boost/Vac";
-    self.incrementPerLargeTick = 10;
+    self.incrementPerLargeTick = 5;
     self.tickStartAngleDegrees = 135;
     self.tickDistance = 270;
     self.menuItemsFont = [UIFont fontWithName:@"Helvetica" size:14];
@@ -369,7 +374,7 @@
 	[needleLayer setNeedsDisplay];
     
     //initialize the gauge to the lowest value.
-    self.value = self.minGaugeNumber;
+    self.value = 3;
     
 }
 
