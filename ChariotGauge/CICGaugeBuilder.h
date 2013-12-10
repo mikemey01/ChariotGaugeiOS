@@ -7,6 +7,28 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
+
+@interface NeedleBuilder : NSObject {
+    
+    //Needle Length
+    float needleLength;
+    
+    //Needle Width
+    float needleWidth;
+    
+    //Needle tint
+    UIColor *needleColor;
+}
+
+//Needle props
+@property (nonatomic, assign) float needleLength;
+@property (nonatomic, assign) float needleWidth;
+@property (nonatomic, retain) UIColor *needleColor;
+
+- (void)drawLayer:(CALayer*)layer inContext:(CGContextRef)ctx;
+
+@end
 
 @interface CICGaugeBuilder : UIView{
     CGFloat lineWidth; //width of the circles
@@ -44,17 +66,14 @@
     
         /*Needle stuff*/
     
-    //Needle Length
-    float needleLength;
-    
-    //Needle Width
-    float needleWidth;
-    
-    //Needle tint
-    UIColor *needleTintColor;
+    //Needle value
+    float value;
     
     //Needle layer
     CALayer *needleLayer;
+    
+    //Needle object
+    NeedleBuilder *needleBuilder_;
     
     
     struct angleRanges{
@@ -72,11 +91,8 @@
 @property (nonatomic, assign) float tickStartAngleDegrees;
 @property (nonatomic, assign) float tickDistance;
 @property (nonatomic, retain) UIFont *menuItemsFont;
-
-//Needle props
-@property (nonatomic, assign) float needleLength;
-@property (nonatomic, assign) float needleWidth;
-@property (nonatomic, retain) UIColor *needleTintColor;
+@property (nonatomic, readonly) NeedleBuilder *needleBuilder;
+@property (nonatomic, assign) float value;
 
 
 //gauge functions
@@ -88,11 +104,9 @@
 -(void)initializeGauge;
 -(void)drawInnerShadow:(CGContextRef)context withFrame:(CGRect)rect;
 -(void)drawTicksOnArc:(CGContextRef)context;
--(void) drawStringAtContext:(CGContextRef) context string:(NSString*) text atAngle:(float) angle withRadius:(float) radius;
--(void) drawCurvedText:(NSString *)text atAngle:(float)angle withContext:(CGContextRef)context;
+-(void)drawStringAtContext:(CGContextRef) context string:(NSString*) text atAngle:(float) angle withRadius:(float) radius;
+-(void)drawCurvedText:(NSString *)text atAngle:(float)angle withContext:(CGContextRef)context;
 
 //needle functions
--(void)drawLayer:(CALayer*)layer inContext:(CGContextRef)ctx;
--(void)drawNeedle:(CALayer *)layer inContext:(CGContextRef)context;
 -(void)setValue:(float)val;
 @end

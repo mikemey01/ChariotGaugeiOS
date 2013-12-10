@@ -12,15 +12,53 @@
 
 #define   DEGREES_TO_RADIANS(degrees)  ((M_PI * degrees)/ 180)
 #define   DIAMETER  self.frame.size.width // TODO: needs work
+#define   DIAMETER_LAYER layer.frame.size.width //TODO: needs work
 #define   TICK_ARC_RADIUS (DIAMETER/2) - 50
+
+@implementation NeedleBuilder
+
+//synthesize needle props
+@synthesize needleLength, needleWidth, needleColor;
+
+
+- (void)drawLayer:(CALayer*)layer inContext:(CGContextRef)context
+{
+	CGContextSaveGState(context);
+    
+	CATransform3D transform = layer.transform;
+	
+	layer.transform = CATransform3DIdentity;
+	
+	CGContextSetFillColorWithColor(context, self.needleColor.CGColor);
+	CGContextSetStrokeColorWithColor(context, self.needleColor.CGColor);
+	CGContextSetLineWidth(context, self.needleWidth);
+	
+	CGFloat centerX = layer.frame.size.width / 2.0;
+	CGFloat centerY = layer.frame.size.height / 2.0;
+	
+	CGFloat ellipseRadius = self.needleWidth * 2.0;
+	
+	CGContextFillEllipseInRect(context, CGRectMake(centerX - ellipseRadius, centerY - ellipseRadius, ellipseRadius * 2.0, ellipseRadius * 2.0));
+	
+	CGFloat endX = (1 + self.needleLength) * centerX;
+	
+	CGContextBeginPath(context);
+	CGContextMoveToPoint(context, centerX, centerY);
+	CGContextAddLineToPoint(context, endX, centerY);
+	CGContextStrokePath(context);
+    
+	layer.transform = transform;
+	
+	CGContextRestoreGState(context);
+}
+
+@end
 
 @implementation CICGaugeBuilder
 
 //synthesize gauge props
 @synthesize minGaugeNumber, maxGaugeNumber, gaugeLabel, incrementPerLargeTick, gaugeType, tickStartAngleDegrees, tickDistance, menuItemsFont;
-
-//synthesize needle props
-@synthesize needleLength, needleWidth, needleTintColor;
+@synthesize needleBuilder = needleBuilder_;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -48,12 +86,6 @@
     
     [self drawTicksOnArc:(context)];
     
-    CALayer *newLayer = [[CALayer alloc] init];
-    
-    [self drawNeedle:(newLayer) inContext:(context)];
-    
-    [self setValue:(0.0f)];
-    [self setNeedsDisplay];
     
 }
 
@@ -65,39 +97,10 @@
 	
 	CGFloat angle = self.tickStartAngleDegrees + tickDistance * val / (self.maxGaugeNumber - self.minGaugeNumber) - tickDistance * (self.minGaugeNumber / (self.maxGaugeNumber - self.minGaugeNumber));
     
-	needleLayer.transform = CATransform3DMakeRotation(angle, 0, 0, 1);
+	needleLayer.transform = CATransform3DMakeRotation(DEGREES_TO_RADIANS(angle), 0.0f, 0.0f, 1.0f);
 }
 
-- (void)drawNeedle:(CALayer *)layer inContext:(CGContextRef)context
-{
-	CGContextSaveGState(context);
-    
-	CATransform3D transform = layer.transform;
-	
-	layer.transform = CATransform3DIdentity;
-	
-	CGContextSetFillColorWithColor(context, self.needleTintColor.CGColor);
-	CGContextSetStrokeColorWithColor(context, self.needleTintColor.CGColor);
-	CGContextSetLineWidth(context, self.needleWidth);
-	
-	CGFloat centerX = DIAMETER/2;
-	CGFloat centerY = DIAMETER/2;
-	
-	CGFloat ellipseRadius = self.needleWidth * 2.0;
-	
-	CGContextFillEllipseInRect(context, CGRectMake(centerX - ellipseRadius, centerY - ellipseRadius, ellipseRadius * 2.0, ellipseRadius * 2.0));
-	
-	CGFloat endX = (1 + self.needleLength) * centerX;
-	
-	CGContextBeginPath(context);
-	CGContextMoveToPoint(context, centerX, centerY);
-	CGContextAddLineToPoint(context, endX, centerY);
-	CGContextStrokePath(context);
-    
-	layer.transform = transform;
-	
-	CGContextRestoreGState(context);
-}
+
 
 - (void)drawTicksOnArc:(CGContextRef)context
 {
@@ -351,18 +354,22 @@
     self.menuItemsFont = [UIFont fontWithName:@"Helvetica" size:14];
     
     //needle init
-    self.needleTintColor = [UIColor orangeColor];
-	self.needleWidth = 5.0;
-	self.needleLength = 0.7;
+    needleBuilder_ = [[NeedleBuilder alloc] init];
+	self.needleBuilder.needleColor = [UIColor orangeColor];
+	self.needleBuilder.needleWidth = 6.0;
+	self.needleBuilder.needleLength = 0.65;
     
+    //needle layer init
 	needleLayer = [CALayer layer];
 	needleLayer.bounds = self.bounds;
-	needleLayer.position = CGPointMake(DIAMETER / 2.0, DIAMETER / 2.0);
+	needleLayer.position = CGPointMake(self.bounds.size.width / 2.0, self.bounds.size.width / 2.0);
 	needleLayer.needsDisplayOnBoundsChange = YES;
-	
-	[self.layer addSublayer:needleLayer]; //possible issue with the self.layer call, explicitely define this variable as preNeedleLayer or something.
-	
+	needleLayer.delegate = self.needleBuilder;
+	[self.layer addSublayer:needleLayer];
 	[needleLayer setNeedsDisplay];
+    
+    //initialize the gauge to the lowest value.
+    self.value = self.minGaugeNumber;
     
 }
 
