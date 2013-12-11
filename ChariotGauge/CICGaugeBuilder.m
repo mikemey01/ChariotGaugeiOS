@@ -2,7 +2,7 @@
 //  CICGaugeBuilder.m
 //  ChariotGauge
 //
-//  Created by Mike on 11/29/13.
+//  Created by Mike Meyer on 11/29/13.
 //  Copyright (c) 2013 Chariot Instruments. All rights reserved.
 //
 
