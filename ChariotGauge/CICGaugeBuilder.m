@@ -57,7 +57,7 @@
 @implementation CICGaugeBuilder
 
 //synthesize gauge props
-@synthesize minGaugeNumber, maxGaugeNumber, gaugeLabel, incrementPerLargeTick, gaugeType, tickStartAngleDegrees, tickDistance, menuItemsFont;
+@synthesize minGaugeNumber, maxGaugeNumber, gaugeLabel, incrementPerLargeTick, gaugeType, tickStartAngleDegrees, tickDistance, menuItemsFont, value;
 @synthesize needleBuilder = needleBuilder_;
 
 - (id)initWithFrame:(CGRect)frame
@@ -91,18 +91,19 @@
 
 - (void)setValue:(float)val
 {
+    //Make sure the passed in value is within the bounds of the current gauge.
 	if (val > self.maxGaugeNumber)
 		val = self.maxGaugeNumber;
 	if (val < self.minGaugeNumber)
 		val = self.minGaugeNumber;
     
+    //Get the range of the current gauge.
     int gaugeRangeLocal = self.maxGaugeNumber - self.minGaugeNumber;
-	
-	CGFloat angle = self.tickStartAngleDegrees + tickDistance * val / (gaugeRangeLocal) - tickDistance * (self.minGaugeNumber / (gaugeRangeLocal));
     
-    NSLog(@"%f", angle);
-    NSLog(@"%i", gaugeRangeLocal);
+    //Calculate the angle value in degrees
+    CGFloat angle = self.tickStartAngleDegrees + (self.tickDistance * ((val-self.minGaugeNumber) / gaugeRangeLocal));
     
+    //Transform the layer to the correct angle along the z-plane.
 	needleLayer.transform = CATransform3DMakeRotation(DEGREES_TO_RADIANS(angle), 0.0f, 0.0f, 1.0f);
 }
 
@@ -374,7 +375,7 @@
 	[needleLayer setNeedsDisplay];
     
     //initialize the gauge to the lowest value.
-    self.value = 3;
+    self.value = self.minGaugeNumber;
     
 }
 
