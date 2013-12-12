@@ -25,32 +25,71 @@
 {
 	CGContextSaveGState(context);
     
+        /* draw needle circle */
+    
+    //draw shadow on circle
+    CGContextSetShadow(context, CGSizeMake(2.0f, 2.0f), 2.0f);
+    
 	CATransform3D transform = layer.transform;
-	
 	layer.transform = CATransform3DIdentity;
 	
+    //Setup needle circle options
 	CGContextSetFillColorWithColor(context, self.needleColor.CGColor);
 	CGContextSetStrokeColorWithColor(context, self.needleColor.CGColor);
 	CGContextSetLineWidth(context, self.needleWidth);
+    CGFloat ellipseRadius = floor(self.needleWidth * 2.5);
 	
+    //Get center coordinates
 	CGFloat centerX = layer.frame.size.width / 2.0;
 	CGFloat centerY = layer.frame.size.height / 2.0;
 	
-	CGFloat ellipseRadius = self.needleWidth * 2.0;
-	
+    //Fill the needle circle
 	CGContextFillEllipseInRect(context, CGRectMake(centerX - ellipseRadius, centerY - ellipseRadius, ellipseRadius * 2.0, ellipseRadius * 2.0));
-	
-	CGFloat endX = (1 + self.needleLength) * centerX;
-	
-	CGContextBeginPath(context);
-	CGContextMoveToPoint(context, centerX, centerY);
-	CGContextAddLineToPoint(context, endX, centerY);
-	CGContextStrokePath(context);
     
+    CGContextRestoreGState(context);
+    CGContextSaveGState(context);
+    
+    
+        /* draw needle */
+    
+    //draw shadow
+    CGContextSetShadow(context, CGSizeMake(2.0f, 2.0f), 2.0f);
+    
+    //controls the size of the hand.
+    CGRect rect = CGRectMake(centerX, centerY, DIAMETER_LAYER/2-48, DIAMETER_LAYER/2-48);
+    
+    //controls the shape (mirrored)
+    CGContextBeginPath(context);
+    CGContextMoveToPoint   (context, CGRectGetMinX(rect)+12, CGRectGetMinY(rect)+6);
+    CGContextAddLineToPoint(context, CGRectGetMinX(rect)+25, CGRectGetMinY(rect)+12);
+    CGContextAddLineToPoint(context, CGRectGetMaxX(rect), CGRectGetMinY(rect)+1.5);
+    CGContextAddLineToPoint(context, CGRectGetMaxX(rect), CGRectGetMinY(rect)-1.5);
+    CGContextAddLineToPoint(context, CGRectGetMinX(rect)+25, CGRectGetMinY(rect)-12);
+    CGContextAddLineToPoint(context, CGRectGetMinX(rect)+12, CGRectGetMinY(rect)-6);
+    CGContextClosePath(context);
+    
+    //Set the color and fill
+    CGContextSetFillColorWithColor(context, [UIColor orangeColor].CGColor);
+    CGContextFillPath(context);
+    
+    CGContextRestoreGState(context);
+    CGContextSaveGState(context);
+
+        /* draw screw */
+    
+    CGRect needleScrew = CGRectMake(centerX - ellipseRadius + 10.0, centerY - ellipseRadius + 10.0, ellipseRadius-5.0, ellipseRadius-5.0);
+    CGContextSetRGBFillColor(context, 0.0, 0.0, 0.0, 1.0);
+    CGContextSetRGBStrokeColor(context, 110.0/255.0, 110.0/255.0, 110.0/255.0, 1.0);
+    CGContextFillEllipseInRect(context, needleScrew);
+    
+
 	layer.transform = transform;
-	
 	CGContextRestoreGState(context);
+    
+    
+    
 }
+
 
 @end
 
@@ -106,7 +145,6 @@
     //Transform the layer to the correct angle along the z-plane.
 	needleLayer.transform = CATransform3DMakeRotation(DEGREES_TO_RADIANS(angle), 0.0f, 0.0f, 1.0f);
 }
-
 
 - (void)drawTicksOnArc:(CGContextRef)context
 {
@@ -350,11 +388,11 @@
 {
     //Gauge init
     lineWidth = 1;
-    self.minGaugeNumber = -30;
-    self.maxGaugeNumber = 25;
+    self.minGaugeNumber = 0;
+    self.maxGaugeNumber = 100;
     self.gaugeType = 2;
     self.gaugeLabel = @"Boost/Vac";
-    self.incrementPerLargeTick = 5;
+    self.incrementPerLargeTick = 10;
     self.tickStartAngleDegrees = 135;
     self.tickDistance = 270;
     self.menuItemsFont = [UIFont fontWithName:@"Helvetica" size:14];
@@ -375,10 +413,9 @@
 	[needleLayer setNeedsDisplay];
     
     //initialize the gauge to the lowest value.
-    self.value = self.minGaugeNumber;
+    self.value = 50;
     
 }
 
-/*Setup dealloc here*/
 
 @end
