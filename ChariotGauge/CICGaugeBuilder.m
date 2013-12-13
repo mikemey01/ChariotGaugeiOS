@@ -52,6 +52,7 @@
     
         /* draw needle */
     
+    
     //draw shadow
     CGContextSetShadow(context, CGSizeMake(2.0f, 2.0f), 2.0f);
     
