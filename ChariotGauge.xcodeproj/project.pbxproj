@@ -22,6 +22,7 @@
 		CE2E852C1847B01000C51A49 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2E850E1847B01000C51A49 /* UIKit.framework */; };
 		CE2E85341847B01000C51A49 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE2E85321847B01000C51A49 /* InfoPlist.strings */; };
 		CE2E85361847B01000C51A49 /* ChariotGaugeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2E85351847B01000C51A49 /* ChariotGaugeTests.m */; };
+		CEF89B62185C051000093836 /* CICBoostGaugeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF89B61185C051000093836 /* CICBoostGaugeViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,8 @@
 		CE2E85311847B01000C51A49 /* ChariotGaugeTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ChariotGaugeTests-Info.plist"; sourceTree = "<group>"; };
 		CE2E85331847B01000C51A49 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CE2E85351847B01000C51A49 /* ChariotGaugeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChariotGaugeTests.m; sourceTree = "<group>"; };
+		CEF89B60185C051000093836 /* CICBoostGaugeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICBoostGaugeViewController.h; sourceTree = "<group>"; };
+		CEF89B61185C051000093836 /* CICBoostGaugeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICBoostGaugeViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +121,8 @@
 				CE2E85191847B01000C51A49 /* CICAppDelegate.h */,
 				CE2E851A1847B01000C51A49 /* CICAppDelegate.m */,
 				CE2E851C1847B01000C51A49 /* Main.storyboard */,
+				CEF89B60185C051000093836 /* CICBoostGaugeViewController.h */,
+				CEF89B61185C051000093836 /* CICBoostGaugeViewController.m */,
 				CE2E851F1847B01000C51A49 /* CICViewController.h */,
 				CE2E85201847B01000C51A49 /* CICViewController.m */,
 				CE05FFAE1849433700764A43 /* CICGaugeBuilder.h */,
@@ -255,6 +260,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEF89B62185C051000093836 /* CICBoostGaugeViewController.m in Sources */,
 				CE2E851B1847B01000C51A49 /* CICAppDelegate.m in Sources */,
 				CE2E85171847B01000C51A49 /* main.m in Sources */,
 				CE2E85211847B01000C51A49 /* CICViewController.m in Sources */,
