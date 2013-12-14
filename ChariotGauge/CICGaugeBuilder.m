@@ -12,6 +12,7 @@
 
 #define   DEGREES_TO_RADIANS(degrees)  ((M_PI * degrees)/ 180)
 #define   DIAMETER  self.frame.size.width // TODO: needs work
+#define   DIAMETER_HEIGHT self.frame.size.height
 #define   DIAMETER_LAYER layer.frame.size.width //TODO: needs work
 #define   TICK_ARC_RADIUS (DIAMETER/2) - 50
 
@@ -154,9 +155,10 @@
 
 - (void)drawTicksOnArc:(CGContextRef)context
 {
+    NSLog(@"%f", DIAMETER/2);
     gaugeRange = maxGaugeNumber - minGaugeNumber; //The range of the config numbers
     int angleRange = 0; //should ALWAYS start at 0 - forces the ticks to start at self.tickStartAngleDegrees
-    
+
     while(self.minGaugeNumber <= self.maxGaugeNumber){ //traverse the range of config'd numbers
         
         //Setup the lenth of the tick depending on if it's a major or minor tick.
@@ -177,7 +179,7 @@
         
         startAngle =  DEGREES_TO_RADIANS(startAngle);
         endAngle = DEGREES_TO_RADIANS(endAngle);
-        UIBezierPath *aPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(DIAMETER/2, DIAMETER/2-20)
+        UIBezierPath *aPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(DIAMETER/2, DIAMETER/2)
                                                              radius:(TICK_ARC_RADIUS+tickLineLength/2) //Sets the radius based on the tick length;
                                                          startAngle:startAngle
                                                            endAngle:endAngle
@@ -185,14 +187,14 @@
 
         //Draw the ticks.
         CAShapeLayer *shapeLayer = [[CAShapeLayer alloc] init];
-        [shapeLayer setFrame: self.frame];
         [shapeLayer setPath: [aPath CGPath]];
         shapeLayer.lineWidth = tickLineLength; //sets the tick length;
         [shapeLayer setStrokeColor:[[UIColor grayColor] CGColor]];
         [shapeLayer setFillColor:[[UIColor clearColor] CGColor]];
-        [shapeLayer setMasksToBounds:YES];
+        [shapeLayer setMasksToBounds:NO];
         [self.layer addSublayer:shapeLayer];
         [aPath closePath];
+        
         
         //Draw numbers on major ticks
         if(tickLineLength == 10){
@@ -338,7 +340,7 @@
     [[UIColor darkGrayColor] setFill]; //Controls the color of the numbers.
     
     //controls the look of the arc NOT placement.
-    UIBezierPath *aPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(0, 0)
+    UIBezierPath *aPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(DIAMETER/2, DIAMETER/2)
                                                          radius:TICK_ARC_RADIUS //Controls the size of the tick arc
                                                      startAngle:0
                                                        endAngle:DEGREES_TO_RADIANS(360)
@@ -351,7 +353,7 @@
     aPath.lineWidth = lineWidth;
     
     //controls the placement of the arc.
-    CGContextTranslateCTM(context, DIAMETER/2, DIAMETER/2);
+    //CGContextTranslateCTM(context, DIAMETER/2, DIAMETER/2);
     
     //draws the arc.
     [aPath stroke];
@@ -419,7 +421,7 @@
 	[needleLayer setNeedsDisplay];
     
     //initialize the gauge to the lowest value.
-    self.value = 50;
+    self.value = self.minGaugeNumber;
     
 }
 
