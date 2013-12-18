@@ -31,6 +31,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.boostGauge initializeGauge]; //NECESSARY
     self.boostGauge.minGaugeNumber = -30;
     self.boostGauge.maxGaugeNumber = 25;
     self.boostGauge.gaugeLabel = @"Boost/Vac";
@@ -39,15 +40,13 @@
     self.boostGauge.tickDistance = 270;
     self.boostGauge.menuItemsFont = [UIFont fontWithName:@"Helvetica" size:14];
     self.boostGauge.lineWidth = 1;
-    self.boostGauge.value = 10;
-    
-    NSLog(@"%f", self.boostGauge.value);
+    self.boostGauge.value = self.boostGauge.minGaugeNumber;
     
 }
 
 - (void)viewDidUnload
 {
-    //self.boostGauge = nil;
+    self.boostGauge = nil;
 }
 
 - (void)didReceiveMemoryWarning

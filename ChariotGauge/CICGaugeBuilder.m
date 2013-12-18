@@ -118,7 +118,6 @@
 {
     CGRect innerFrame;
     
-    //[self initializeGauge];
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     [self drawOuterRim:(context)];
@@ -150,11 +149,12 @@
     
     //Transform the layer to the correct angle along the z-plane.
 	needleLayer.transform = CATransform3DMakeRotation(DEGREES_TO_RADIANS(angle), 0.0f, 0.0f, 1.0f);
+    
+    [needleLayer setNeedsDisplay];
 }
 
 - (void)drawTicksOnArc:(CGContextRef)context
 {
-    NSLog(@"%f", DIAMETER/2);
     gaugeRange = maxGaugeNumber - minGaugeNumber; //The range of the config numbers
     int angleRange = 0; //should ALWAYS start at 0 - forces the ticks to start at self.tickStartAngleDegrees
     
