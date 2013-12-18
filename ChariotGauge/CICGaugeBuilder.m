@@ -109,7 +109,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self initializeGauge];
+        
     }
     return self;
 }

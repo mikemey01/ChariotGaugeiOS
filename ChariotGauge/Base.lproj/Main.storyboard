@@ -1,13 +1,44 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Ut1-rf-dv2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="8sk-Dn-HgG">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
+        <!--View Controller - Chariot Gauge-->
+        <scene sceneID="uSn-fI-Zw1">
+            <objects>
+                <viewController id="f5Q-SH-udO" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bvY-Cr-KgJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="A2F-9L-v45"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="XkH-AC-Xvp">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ck1-OJ-GiT">
+                                <rect key="frame" x="137" y="153" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Ut1-rf-dv2" kind="push" id="GKG-99-8xj"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Chariot Gauge" id="ieH-eP-YRq"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kXo-Oq-oUk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-63" y="103"/>
+        </scene>
         <!--Boost Gauge View Controller-->
         <scene sceneID="SWP-ML-A3k">
             <objects>
-                <viewController storyboardIdentifier="effYou" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Ut1-rf-dv2" customClass="CICBoostGaugeViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="effYou" id="Ut1-rf-dv2" customClass="CICBoostGaugeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="m9X-XM-waF"/>
                         <viewControllerLayoutGuide type="bottom" id="WTj-eP-WJJ"/>
@@ -17,20 +48,39 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h9E-JY-Ic5" customClass="CICGaugeBuilder">
-                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <rect key="frame" x="0.0" y="65" width="320" height="503"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="JHR-bT-Wbo"/>
                     <connections>
-                        <outlet property="boostGauge" destination="h9E-JY-Ic5" id="Eip-pc-ihF"/>
+                        <outlet property="gaugeView" destination="h9E-JY-Ic5" id="HpH-sl-hqm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vnH-rP-huU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-175" y="103"/>
+            <point key="canvasLocation" x="351" y="103"/>
+        </scene>
+        <!--Navigation Controller - Chariot Gauge-->
+        <scene sceneID="61J-oY-vUI">
+            <objects>
+                <navigationController title="Chariot Gauge" automaticallyAdjustsScrollViewInsets="NO" id="8sk-Dn-HgG" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zlz-iD-84l">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="f5Q-SH-udO" kind="relationship" relationship="rootViewController" id="yU3-nq-Lgb"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IK2-0w-PGg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-589" y="103"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

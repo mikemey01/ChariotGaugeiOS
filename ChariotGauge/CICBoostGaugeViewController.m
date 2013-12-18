@@ -17,7 +17,7 @@
 
 @implementation CICBoostGaugeViewController
 
-@synthesize boostGauge;
+@synthesize gaugeView;
 
 //- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 //{
@@ -31,22 +31,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.boostGauge initializeGauge]; //NECESSARY
-    self.boostGauge.minGaugeNumber = -30;
-    self.boostGauge.maxGaugeNumber = 25;
-    self.boostGauge.gaugeLabel = @"Boost/Vac";
-    self.boostGauge.incrementPerLargeTick = 5;
-    self.boostGauge.tickStartAngleDegrees = 135;
-    self.boostGauge.tickDistance = 270;
-    self.boostGauge.menuItemsFont = [UIFont fontWithName:@"Helvetica" size:14];
-    self.boostGauge.lineWidth = 1;
-    self.boostGauge.value = self.boostGauge.minGaugeNumber;
+    [self.gaugeView initializeGauge]; //NECESSARY
+    self.gaugeView.minGaugeNumber = -30;
+    self.gaugeView.maxGaugeNumber = 25;
+    self.gaugeView.gaugeLabel = @"Boost/Vac";
+    self.gaugeView.incrementPerLargeTick = 5;
+    self.gaugeView.tickStartAngleDegrees = 135;
+    self.gaugeView.tickDistance = 270;
+    self.gaugeView.menuItemsFont = [UIFont fontWithName:@"Helvetica" size:14];
+    self.gaugeView.lineWidth = 1;
+    self.gaugeView.value = self.gaugeView.minGaugeNumber;
     
 }
 
 - (void)viewDidUnload
 {
-    self.boostGauge = nil;
+    self.gaugeView = nil;
 }
 
 - (void)didReceiveMemoryWarning

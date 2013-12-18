@@ -12,10 +12,10 @@
 @class CICGaugeBuilder;
 
 @interface CICBoostGaugeViewController : UIViewController{
-    CICGaugeBuilder *boostGauge;
+    CICGaugeBuilder *gaugeView;
 }
 
-@property (nonatomic, retain) IBOutlet CICGaugeBuilder *boostGauge;
+@property (nonatomic, retain) IBOutlet CICGaugeBuilder *gaugeView;
 
 
 @end
