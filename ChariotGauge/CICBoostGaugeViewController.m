@@ -18,35 +18,39 @@
 
 @synthesize boostGauge;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+//- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+//{
+//    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+//    if (self) {
+//        // Custom initialization
+//    }
+//    return self;
+//}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.boostGauge.minGaugeNumber = -30;
     self.boostGauge.maxGaugeNumber = 25;
-    self.boostGauge.gaugeType = 2;
     self.boostGauge.gaugeLabel = @"Boost/Vac";
-    self.boostGauge.incrementPerLargeTick = 10;
+    self.boostGauge.incrementPerLargeTick = 5;
     self.boostGauge.tickStartAngleDegrees = 135;
     self.boostGauge.tickDistance = 270;
     self.boostGauge.menuItemsFont = [UIFont fontWithName:@"Helvetica" size:14];
+    self.boostGauge.value = 10;
+    
+    [self.boostGauge setNeedsDisplay];
+    
 }
 
 - (void)viewDidUnload
 {
-    self.boostGauge = nil;
+    //self.boostGauge = nil;
 }
 
 - (void)didReceiveMemoryWarning
 {
+    
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }

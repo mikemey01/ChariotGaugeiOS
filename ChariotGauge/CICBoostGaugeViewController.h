@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CICGaugeBuilder.h"
 
 @class CICGaugeBuilder;
 
@@ -14,6 +15,7 @@
     CICGaugeBuilder *boostGauge;
 }
 
-@property(nonatomic, retain) CICGaugeBuilder *boostGauge;
+@property (nonatomic, retain) IBOutlet CICGaugeBuilder *boostGauge;
+
 
 @end

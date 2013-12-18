@@ -11,7 +11,7 @@
 
 @implementation CICAppDelegate
 
-@synthesize viewController, window;
+@synthesize window, viewController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

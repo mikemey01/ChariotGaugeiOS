@@ -109,8 +109,8 @@
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
+    if (self = [super initWithFrame:frame]) {
+        [self initializeGauge];
     }
     return self;
 }
@@ -119,7 +119,6 @@
 {
     CGRect innerFrame;
     
-    [self initializeGauge];
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     [self drawOuterRim:(context)];
@@ -336,32 +335,12 @@
 
 - (void)drawTickArc:(CGContextRef)context
 {
-    [[UIColor grayColor] setStroke];
-    [[UIColor darkGrayColor] setFill]; //Controls the color of the numbers.
+    CGRect tickArcRect = CGRectMake(50.0, 50.0, DIAMETER-100.0, DIAMETER-100.0);
+    tickArcRect = CGRectInset(tickArcRect, lineWidth * 0.75, lineWidth * 0.75);
     
-    //controls the look of the arc NOT placement.
-    UIBezierPath *aPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(DIAMETER/2, DIAMETER/2)
-                                                         radius:TICK_ARC_RADIUS //Controls the size of the tick arc
-                                                     startAngle:0
-                                                       endAngle:DEGREES_TO_RADIANS(360)
-                                                      clockwise:YES];
-    
-    // If you have content to draw after the shape,
-    // save the current state before changing the transform.
-    CGContextSaveGState(context);
-    
-    aPath.lineWidth = lineWidth;
-    
-    //controls the placement of the arc.
-    //CGContextTranslateCTM(context, DIAMETER/2, DIAMETER/2);
-    
-    //draws the arc.
-    [aPath stroke];
-    
-    // Restore the graphics state before drawing any other content.
-    CGContextRestoreGState(context);
-    [aPath closePath];
-    
+    CGContextSetRGBStrokeColor(context, 110.0/255.0, 110.0/255.0, 110.0/255.0, 1.0);
+    CGContextSetLineWidth(context, 0.75);
+    CGContextStrokeEllipseInRect(context, tickArcRect);
 }
 
 - (void)fillGradient:(CGRect)rect withContext:(CGContextRef)context
@@ -391,6 +370,7 @@
     CGContextAddEllipseInRect(context, rect);
     CGContextDrawPath(context, kCGPathStroke);
 }
+
 
 - (void)initializeGauge
 {

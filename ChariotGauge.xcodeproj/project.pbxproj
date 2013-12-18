@@ -15,7 +15,6 @@
 		CE2E85171847B01000C51A49 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2E85161847B01000C51A49 /* main.m */; };
 		CE2E851B1847B01000C51A49 /* CICAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2E851A1847B01000C51A49 /* CICAppDelegate.m */; };
 		CE2E851E1847B01000C51A49 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE2E851C1847B01000C51A49 /* Main.storyboard */; };
-		CE2E85211847B01000C51A49 /* CICViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2E85201847B01000C51A49 /* CICViewController.m */; };
 		CE2E85231847B01000C51A49 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE2E85221847B01000C51A49 /* Images.xcassets */; };
 		CE2E852A1847B01000C51A49 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2E85291847B01000C51A49 /* XCTest.framework */; };
 		CE2E852B1847B01000C51A49 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2E850A1847B01000C51A49 /* Foundation.framework */; };
@@ -49,8 +48,6 @@
 		CE2E85191847B01000C51A49 /* CICAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CICAppDelegate.h; sourceTree = "<group>"; };
 		CE2E851A1847B01000C51A49 /* CICAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CICAppDelegate.m; sourceTree = "<group>"; };
 		CE2E851D1847B01000C51A49 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		CE2E851F1847B01000C51A49 /* CICViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CICViewController.h; sourceTree = "<group>"; };
-		CE2E85201847B01000C51A49 /* CICViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CICViewController.m; sourceTree = "<group>"; };
 		CE2E85221847B01000C51A49 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		CE2E85281847B01000C51A49 /* ChariotGaugeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChariotGaugeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE2E85291847B01000C51A49 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -123,8 +120,6 @@
 				CE2E851C1847B01000C51A49 /* Main.storyboard */,
 				CEF89B60185C051000093836 /* CICBoostGaugeViewController.h */,
 				CEF89B61185C051000093836 /* CICBoostGaugeViewController.m */,
-				CE2E851F1847B01000C51A49 /* CICViewController.h */,
-				CE2E85201847B01000C51A49 /* CICViewController.m */,
 				CE05FFAE1849433700764A43 /* CICGaugeBuilder.h */,
 				CE05FFAF1849433700764A43 /* CICGaugeBuilder.m */,
 				CE2E85221847B01000C51A49 /* Images.xcassets */,
@@ -263,7 +258,6 @@
 				CEF89B62185C051000093836 /* CICBoostGaugeViewController.m in Sources */,
 				CE2E851B1847B01000C51A49 /* CICAppDelegate.m in Sources */,
 				CE2E85171847B01000C51A49 /* main.m in Sources */,
-				CE2E85211847B01000C51A49 /* CICViewController.m in Sources */,
 				CE05FFB01849433700764A43 /* CICGaugeBuilder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
