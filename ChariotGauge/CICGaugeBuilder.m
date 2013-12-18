@@ -26,7 +26,7 @@
 {
 	CGContextSaveGState(context);
     
-        /* draw needle circle */
+    /* draw needle circle */
     
     //draw shadow on circle
     CGContextSetShadow(context, CGSizeMake(2.0f, 2.0f), 2.0f);
@@ -51,7 +51,7 @@
     CGContextSaveGState(context);
     
     
-        /* draw needle */
+    /* draw needle */
     
     
     //draw shadow
@@ -76,15 +76,15 @@
     
     CGContextRestoreGState(context);
     CGContextSaveGState(context);
-
-        /* draw screw */
+    
+    /* draw screw */
     
     CGRect needleScrew = CGRectMake(centerX - ellipseRadius + 10.0, centerY - ellipseRadius + 10.0, ellipseRadius-5.0, ellipseRadius-5.0);
     CGContextSetRGBFillColor(context, 0.0, 0.0, 0.0, 1.0);
     CGContextSetRGBStrokeColor(context, 110.0/255.0, 110.0/255.0, 110.0/255.0, 1.0);
     CGContextFillEllipseInRect(context, needleScrew);
     
-
+    
 	layer.transform = transform;
 	CGContextRestoreGState(context);
     
@@ -98,18 +98,17 @@
 
 
 
-
-
 @implementation CICGaugeBuilder
 
 //synthesize gauge props
 @synthesize minGaugeNumber, maxGaugeNumber, gaugeLabel, incrementPerLargeTick, gaugeType, tickStartAngleDegrees, tickDistance, menuItemsFont, value;
 @synthesize needleBuilder = needleBuilder_;
+@synthesize lineWidth, needleLayer;
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
-    if (self = [super initWithFrame:frame]) {
+    if (self) {
         [self initializeGauge];
     }
     return self;
@@ -119,6 +118,7 @@
 {
     CGRect innerFrame;
     
+    //[self initializeGauge];
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     [self drawOuterRim:(context)];
@@ -157,7 +157,7 @@
     NSLog(@"%f", DIAMETER/2);
     gaugeRange = maxGaugeNumber - minGaugeNumber; //The range of the config numbers
     int angleRange = 0; //should ALWAYS start at 0 - forces the ticks to start at self.tickStartAngleDegrees
-
+    
     while(self.minGaugeNumber <= self.maxGaugeNumber){ //traverse the range of config'd numbers
         
         //Setup the lenth of the tick depending on if it's a major or minor tick.
@@ -170,7 +170,7 @@
         //setup the range for this tick.
         angle_Range.startRange = 0; //This sets up where the angle begins. must be used in conjunction with the end range!
         angle_Range.endRange   = tickStartAngleDegrees+(tickDistance * angleRange)/gaugeRange; //0 degress is East. xxx+(yyy.f * angleRange)/gaugeRange.
-                                                                                               //x = degrees clock wise to start. y = how far to go
+        //x = degrees clock wise to start. y = how far to go
         
         float actualLineAngle = angle_Range.endRange - angle_Range.startRange;
         float startAngle = actualLineAngle - 0.25f; //Width of the ticks
@@ -183,7 +183,7 @@
                                                          startAngle:startAngle
                                                            endAngle:endAngle
                                                           clockwise:YES];
-
+        
         //Draw the ticks.
         CAShapeLayer *shapeLayer = [[CAShapeLayer alloc] init];
         [shapeLayer setPath: [aPath CGPath]];
@@ -335,12 +335,32 @@
 
 - (void)drawTickArc:(CGContextRef)context
 {
-    CGRect tickArcRect = CGRectMake(50.0, 50.0, DIAMETER-100.0, DIAMETER-100.0);
-    tickArcRect = CGRectInset(tickArcRect, lineWidth * 0.75, lineWidth * 0.75);
+    [[UIColor grayColor] setStroke];
+    [[UIColor darkGrayColor] setFill]; //Controls the color of the numbers.
     
-    CGContextSetRGBStrokeColor(context, 110.0/255.0, 110.0/255.0, 110.0/255.0, 1.0);
-    CGContextSetLineWidth(context, 0.75);
-    CGContextStrokeEllipseInRect(context, tickArcRect);
+    //controls the look of the arc NOT placement.
+    UIBezierPath *aPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(DIAMETER/2, DIAMETER/2)
+                                                         radius:TICK_ARC_RADIUS //Controls the size of the tick arc
+                                                     startAngle:0
+                                                       endAngle:DEGREES_TO_RADIANS(360)
+                                                      clockwise:YES];
+    
+    // If you have content to draw after the shape,
+    // save the current state before changing the transform.
+    CGContextSaveGState(context);
+    
+    aPath.lineWidth = lineWidth;
+    
+    //controls the placement of the arc.
+    //CGContextTranslateCTM(context, DIAMETER/2, DIAMETER/2);
+    
+    //draws the arc.
+    [aPath stroke];
+    
+    // Restore the graphics state before drawing any other content.
+    CGContextRestoreGState(context);
+    [aPath closePath];
+    
 }
 
 - (void)fillGradient:(CGRect)rect withContext:(CGContextRef)context
@@ -370,7 +390,6 @@
     CGContextAddEllipseInRect(context, rect);
     CGContextDrawPath(context, kCGPathStroke);
 }
-
 
 - (void)initializeGauge
 {

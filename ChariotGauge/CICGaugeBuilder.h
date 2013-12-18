@@ -93,6 +93,8 @@
 @property (nonatomic, retain) UIFont *menuItemsFont;
 @property (nonatomic, readonly) NeedleBuilder *needleBuilder;
 @property (nonatomic, assign) float value;
+@property (nonatomic, retain) CALayer *needleLayer;
+@property (nonatomic, assign) CGFloat lineWidth;
 
 
 //gauge functions

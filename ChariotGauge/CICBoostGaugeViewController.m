@@ -8,6 +8,7 @@
 
 #import "CICBoostGaugeViewController.h"
 #import "CICGaugeBuilder.h"
+#import "CICAppDelegate.h"
 
 
 @interface CICBoostGaugeViewController ()
@@ -37,9 +38,10 @@
     self.boostGauge.tickStartAngleDegrees = 135;
     self.boostGauge.tickDistance = 270;
     self.boostGauge.menuItemsFont = [UIFont fontWithName:@"Helvetica" size:14];
+    self.boostGauge.lineWidth = 1;
     self.boostGauge.value = 10;
     
-    [self.boostGauge setNeedsDisplay];
+    NSLog(@"%f", self.boostGauge.value);
     
 }
 

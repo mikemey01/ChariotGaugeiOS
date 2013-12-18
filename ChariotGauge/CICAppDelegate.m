@@ -8,6 +8,7 @@
 
 #import "CICAppDelegate.h"
 #import "CICBoostGaugeViewController.h"
+#import "CICGaugeBuilder.h"
 
 @implementation CICAppDelegate
 
@@ -18,6 +19,7 @@
     // Override point for customization after application launch.
     [self.window addSubview:viewController.view];
     [self.window makeKeyAndVisible];
+    
     return YES;
 }
 

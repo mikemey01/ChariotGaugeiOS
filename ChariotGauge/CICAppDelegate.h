@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class CICBoostGaugeViewController;
+@class CICGaugeBuilder;
 
 @interface CICAppDelegate : UIResponder <UIApplicationDelegate>{
     UIWindow *window;
