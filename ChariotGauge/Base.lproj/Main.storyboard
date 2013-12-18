@@ -17,9 +17,9 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ck1-OJ-GiT">
-                                <rect key="frame" x="137" y="153" width="46" height="30"/>
+                                <rect key="frame" x="137" y="269" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button">
+                                <state key="normal" title="Gauge">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -35,7 +35,7 @@
             </objects>
             <point key="canvasLocation" x="-63" y="103"/>
         </scene>
-        <!--Boost Gauge View Controller-->
+        <!--Boost Gauge View Controller - Gauge-->
         <scene sceneID="SWP-ML-A3k">
             <objects>
                 <viewController storyboardIdentifier="effYou" id="Ut1-rf-dv2" customClass="CICBoostGaugeViewController" sceneMemberID="viewController">
@@ -55,7 +55,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="JHR-bT-Wbo"/>
+                    <navigationItem key="navigationItem" title="Gauge" id="JHR-bT-Wbo"/>
                     <connections>
                         <outlet property="gaugeView" destination="h9E-JY-Ic5" id="HpH-sl-hqm"/>
                     </connections>
