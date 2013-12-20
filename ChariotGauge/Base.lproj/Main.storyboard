@@ -35,10 +35,10 @@
             </objects>
             <point key="canvasLocation" x="-63" y="103"/>
         </scene>
-        <!--Boost Gauge View Controller - Gauge-->
+        <!--Single Gauge View Controller - Gauge-->
         <scene sceneID="SWP-ML-A3k">
             <objects>
-                <viewController storyboardIdentifier="effYou" id="Ut1-rf-dv2" customClass="CICBoostGaugeViewController" sceneMemberID="viewController">
+                <viewController id="Ut1-rf-dv2" customClass="CICSingleGaugeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="m9X-XM-waF"/>
                         <viewControllerLayoutGuide type="bottom" id="WTj-eP-WJJ"/>
