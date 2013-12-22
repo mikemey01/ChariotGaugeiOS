@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
-        <!--View Controller - Chariot Gauge-->
+        <!--Home Screen View Controller - Chariot Gauge-->
         <scene sceneID="uSn-fI-Zw1">
             <objects>
-                <viewController id="f5Q-SH-udO" sceneMemberID="viewController">
+                <viewController id="f5Q-SH-udO" customClass="CICHomeScreenViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bvY-Cr-KgJ"/>
                         <viewControllerLayoutGuide type="bottom" id="A2F-9L-v45"/>
@@ -62,7 +62,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vnH-rP-huU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="351" y="103"/>
+            <point key="canvasLocation" x="435" y="103"/>
         </scene>
         <!--Navigation Controller - Chariot Gauge-->
         <scene sceneID="61J-oY-vUI">

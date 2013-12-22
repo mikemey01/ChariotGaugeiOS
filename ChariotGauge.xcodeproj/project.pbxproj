@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE02A77318674E40005EF446 /* CICHomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE02A77218674E40005EF446 /* CICHomeScreenViewController.m */; };
 		CE05FFB01849433700764A43 /* CICGaugeBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = CE05FFAF1849433700764A43 /* CICGaugeBuilder.m */; };
 		CE2E850B1847B01000C51A49 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2E850A1847B01000C51A49 /* Foundation.framework */; };
 		CE2E850D1847B01000C51A49 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2E850C1847B01000C51A49 /* CoreGraphics.framework */; };
@@ -35,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CE02A77118674E3F005EF446 /* CICHomeScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CICHomeScreenViewController.h; path = ../CICHomeScreenViewController.h; sourceTree = "<group>"; };
+		CE02A77218674E40005EF446 /* CICHomeScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CICHomeScreenViewController.m; path = ../CICHomeScreenViewController.m; sourceTree = "<group>"; };
 		CE05FFAE1849433700764A43 /* CICGaugeBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICGaugeBuilder.h; sourceTree = "<group>"; };
 		CE05FFAF1849433700764A43 /* CICGaugeBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICGaugeBuilder.m; sourceTree = "<group>"; };
 		CE2E85071847B01000C51A49 /* ChariotGauge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChariotGauge.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,6 +123,8 @@
 				CE2E851C1847B01000C51A49 /* Main.storyboard */,
 				CE30D3821863FF57005475C1 /* CICSingleGaugeViewController.h */,
 				CE30D3831863FF57005475C1 /* CICSingleGaugeViewController.m */,
+				CE02A77118674E3F005EF446 /* CICHomeScreenViewController.h */,
+				CE02A77218674E40005EF446 /* CICHomeScreenViewController.m */,
 				CE05FFAE1849433700764A43 /* CICGaugeBuilder.h */,
 				CE05FFAF1849433700764A43 /* CICGaugeBuilder.m */,
 				CE2E85221847B01000C51A49 /* Images.xcassets */,
@@ -257,6 +262,7 @@
 			files = (
 				CE30D3841863FF57005475C1 /* CICSingleGaugeViewController.m in Sources */,
 				CE2E851B1847B01000C51A49 /* CICAppDelegate.m in Sources */,
+				CE02A77318674E40005EF446 /* CICHomeScreenViewController.m in Sources */,
 				CE2E85171847B01000C51A49 /* main.m in Sources */,
 				CE05FFB01849433700764A43 /* CICGaugeBuilder.m in Sources */,
 			);
