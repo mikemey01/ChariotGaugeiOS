@@ -7,8 +7,8 @@
 //
 
 #import "CICAppDelegate.h"
-#import "CICBoostGaugeViewController.h"
 #import "CICGaugeBuilder.h"
+#import "CICSingleGaugeViewController.h"
 
 @implementation CICAppDelegate
 

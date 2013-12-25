@@ -8,15 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@class CICBoostGaugeViewController;
+@class CICSingleGaugeViewController;
 @class CICGaugeBuilder;
 
 @interface CICAppDelegate : UIResponder <UIApplicationDelegate>{
     UIWindow *window;
-    CICBoostGaugeViewController *viewController;
+    CICSingleGaugeViewController *viewController;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) IBOutlet CICBoostGaugeViewController *viewController;
+@property (nonatomic, retain) IBOutlet CICSingleGaugeViewController *viewController;
 
 @end

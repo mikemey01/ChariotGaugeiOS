@@ -16,14 +16,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ck1-OJ-GiT">
-                                <rect key="frame" x="137" y="269" width="46" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gCL-Kd-5Ak">
+                                <rect key="frame" x="128" y="255" width="64" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Gauge">
+                                <state key="normal" image="147.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Ut1-rf-dv2" kind="push" id="GKG-99-8xj"/>
+                                    <action selector="buttonPress:" destination="f5Q-SH-udO" eventType="touchUpInside" id="RIy-i2-iCC"/>
+                                    <segue destination="Ut1-rf-dv2" kind="push" id="ykF-WJ-iat"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -55,7 +56,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Gauge" id="JHR-bT-Wbo"/>
+                    <navigationItem key="navigationItem" title="Gauge" id="JHR-bT-Wbo">
+                        <barButtonItem key="backBarButtonItem" title="lkdslkd" id="4VY-rJ-w9Z"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="gaugeView" destination="h9E-JY-Ic5" id="HpH-sl-hqm"/>
                     </connections>
@@ -83,6 +86,9 @@
             <point key="canvasLocation" x="-589" y="103"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="147.png" width="96" height="96"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

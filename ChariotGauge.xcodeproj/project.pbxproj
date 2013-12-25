@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CE02A77318674E40005EF446 /* CICHomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE02A77218674E40005EF446 /* CICHomeScreenViewController.m */; };
 		CE05FFB01849433700764A43 /* CICGaugeBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = CE05FFAF1849433700764A43 /* CICGaugeBuilder.m */; };
+		CE0C780C1867B2E0006C6C1C /* bluetooth_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = CE0C780B1867B2E0006C6C1C /* bluetooth_logo.png */; };
+		CE0C78101867B44C006C6C1C /* CICHomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0C780F1867B44C006C6C1C /* CICHomeScreenViewController.m */; };
+		CE0C78121867B4DD006C6C1C /* boost_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = CE0C78111867B4DD006C6C1C /* boost_logo.png */; };
+		CE2DDBA1186AA60B00C7B5F4 /* bluetooth.png in Resources */ = {isa = PBXBuildFile; fileRef = CE2DDBA0186AA60B00C7B5F4 /* bluetooth.png */; };
+		CE2DDBA3186AA69100C7B5F4 /* 147.png in Resources */ = {isa = PBXBuildFile; fileRef = CE2DDBA2186AA69100C7B5F4 /* 147.png */; };
 		CE2E850B1847B01000C51A49 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2E850A1847B01000C51A49 /* Foundation.framework */; };
 		CE2E850D1847B01000C51A49 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2E850C1847B01000C51A49 /* CoreGraphics.framework */; };
 		CE2E850F1847B01000C51A49 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2E850E1847B01000C51A49 /* UIKit.framework */; };
@@ -36,10 +40,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		CE02A77118674E3F005EF446 /* CICHomeScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CICHomeScreenViewController.h; path = ../CICHomeScreenViewController.h; sourceTree = "<group>"; };
-		CE02A77218674E40005EF446 /* CICHomeScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CICHomeScreenViewController.m; path = ../CICHomeScreenViewController.m; sourceTree = "<group>"; };
 		CE05FFAE1849433700764A43 /* CICGaugeBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICGaugeBuilder.h; sourceTree = "<group>"; };
 		CE05FFAF1849433700764A43 /* CICGaugeBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICGaugeBuilder.m; sourceTree = "<group>"; };
+		CE0C780B1867B2E0006C6C1C /* bluetooth_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bluetooth_logo.png; path = "../../../../Documents/Chariot Gauge/ChariotGauge Media/Project Sensor/Trent - Icon Set/Resized/bluetooth_logo.png"; sourceTree = "<group>"; };
+		CE0C780E1867B44C006C6C1C /* CICHomeScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICHomeScreenViewController.h; sourceTree = "<group>"; };
+		CE0C780F1867B44C006C6C1C /* CICHomeScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICHomeScreenViewController.m; sourceTree = "<group>"; };
+		CE0C78111867B4DD006C6C1C /* boost_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = boost_logo.png; path = "../../../../Documents/Chariot Gauge/ChariotGauge Media/Project Sensor/Trent - Icon Set/Resized/boost_logo.png"; sourceTree = "<group>"; };
+		CE2DDBA0186AA60B00C7B5F4 /* bluetooth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bluetooth.png; path = "../../../../Documents/Chariot Gauge/ChariotGauge Media/Project Sensor/Trent - Icon Set/EGB ICONS/bluetooth.png"; sourceTree = "<group>"; };
+		CE2DDBA2186AA69100C7B5F4 /* 147.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 147.png; path = "../../../../Documents/Chariot Gauge/ChariotGauge Media/Project Sensor/Trent - Icon Set/EGB ICONS/147.png"; sourceTree = "<group>"; };
 		CE2E85071847B01000C51A49 /* ChariotGauge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChariotGauge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE2E850A1847B01000C51A49 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CE2E850C1847B01000C51A49 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -85,6 +93,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CE0C780D1867B3F8006C6C1C /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				CE0C78111867B4DD006C6C1C /* boost_logo.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		CE2E84FE1847B01000C51A49 = {
 			isa = PBXGroup;
 			children = (
@@ -121,13 +137,16 @@
 				CE2E85191847B01000C51A49 /* CICAppDelegate.h */,
 				CE2E851A1847B01000C51A49 /* CICAppDelegate.m */,
 				CE2E851C1847B01000C51A49 /* Main.storyboard */,
+				CE2DDBA0186AA60B00C7B5F4 /* bluetooth.png */,
+				CE2DDBA2186AA69100C7B5F4 /* 147.png */,
+				CE0C780E1867B44C006C6C1C /* CICHomeScreenViewController.h */,
+				CE0C780F1867B44C006C6C1C /* CICHomeScreenViewController.m */,
 				CE30D3821863FF57005475C1 /* CICSingleGaugeViewController.h */,
 				CE30D3831863FF57005475C1 /* CICSingleGaugeViewController.m */,
-				CE02A77118674E3F005EF446 /* CICHomeScreenViewController.h */,
-				CE02A77218674E40005EF446 /* CICHomeScreenViewController.m */,
 				CE05FFAE1849433700764A43 /* CICGaugeBuilder.h */,
 				CE05FFAF1849433700764A43 /* CICGaugeBuilder.m */,
 				CE2E85221847B01000C51A49 /* Images.xcassets */,
+				CE0C780D1867B3F8006C6C1C /* Images */,
 				CE2E85111847B01000C51A49 /* Supporting Files */,
 			);
 			path = ChariotGauge;
@@ -137,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				CE2E85121847B01000C51A49 /* ChariotGauge-Info.plist */,
+				CE0C780B1867B2E0006C6C1C /* bluetooth_logo.png */,
 				CE2E85131847B01000C51A49 /* InfoPlist.strings */,
 				CE2E85161847B01000C51A49 /* main.m */,
 				CE2E85181847B01000C51A49 /* ChariotGauge-Prefix.pch */,
@@ -239,7 +259,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE2DDBA1186AA60B00C7B5F4 /* bluetooth.png in Resources */,
+				CE2DDBA3186AA69100C7B5F4 /* 147.png in Resources */,
 				CE2E85231847B01000C51A49 /* Images.xcassets in Resources */,
+				CE0C78121867B4DD006C6C1C /* boost_logo.png in Resources */,
+				CE0C780C1867B2E0006C6C1C /* bluetooth_logo.png in Resources */,
 				CE2E85151847B01000C51A49 /* InfoPlist.strings in Resources */,
 				CE2E851E1847B01000C51A49 /* Main.storyboard in Resources */,
 			);
@@ -262,7 +286,7 @@
 			files = (
 				CE30D3841863FF57005475C1 /* CICSingleGaugeViewController.m in Sources */,
 				CE2E851B1847B01000C51A49 /* CICAppDelegate.m in Sources */,
-				CE02A77318674E40005EF446 /* CICHomeScreenViewController.m in Sources */,
+				CE0C78101867B44C006C6C1C /* CICHomeScreenViewController.m in Sources */,
 				CE2E85171847B01000C51A49 /* main.m in Sources */,
 				CE05FFB01849433700764A43 /* CICGaugeBuilder.m in Sources */,
 			);

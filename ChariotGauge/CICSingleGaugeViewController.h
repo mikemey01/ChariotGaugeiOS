@@ -17,5 +17,5 @@
 
 @property (nonatomic, retain) IBOutlet CICGaugeBuilder *gaugeView;
 
-
+-(IBAction)buttonPress:(id)sender;
 @end

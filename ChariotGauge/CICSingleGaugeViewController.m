@@ -45,6 +45,11 @@
     
 }
 
+-(IBAction)buttonPress:(id)sender
+{
+    NSLog(@"testing");
+}
+
 - (void)viewDidUnload
 {
     self.gaugeView = nil;

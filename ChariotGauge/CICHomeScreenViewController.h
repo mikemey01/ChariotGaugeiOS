@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CICHomeScreenViewController : UIViewController
+@interface CICHomeScreenViewController : UIViewController{
+    
+}
+
+-(IBAction)buttonPress:(id)sender;
 
 @end

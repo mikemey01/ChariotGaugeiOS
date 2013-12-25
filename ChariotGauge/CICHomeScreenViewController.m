@@ -23,6 +23,11 @@
     return self;
 }
 
+-(IBAction)buttonPress:(id)sender
+{
+    NSLog(@"test Home screen");
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
