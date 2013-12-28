@@ -19,6 +19,7 @@
     // Override point for customization after application launch.
     [self.window addSubview:viewController.view];
     [self.window makeKeyAndVisible];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor lightGrayColor]];
     
     return YES;
 }
