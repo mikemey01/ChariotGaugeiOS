@@ -12,7 +12,9 @@
 
 }
 
-
--(IBAction)buttonPress:(id)sender;
+-(IBAction)widebandButtonPress:(id)sender;
+-(IBAction)boostButtonPress:(id)sender;
+-(IBAction)oilButtonPress:(id)sender;
+-(IBAction)tempButtonPress:(id)sender;
 
 @end

@@ -23,9 +23,25 @@
     return self;
 }
 
--(IBAction)buttonPress:(id)sender
+
+-(IBAction)widebandButtonPress:(id)sender
 {
-    NSLog(@"test Home screen");
+    NSLog(@"wideband button press");
+}
+
+-(IBAction)boostButtonPress:(id)sender
+{
+    NSLog(@"boost button pressed");
+}
+
+-(IBAction)oilButtonPress:(id)sender
+{
+    
+}
+
+-(IBAction)tempButtonPress:(id)sender
+{
+    
 }
 
 - (void)viewDidLoad
