@@ -9,8 +9,19 @@
 #import <UIKit/UIKit.h>
 
 @interface CICHomeScreenViewController : UIViewController{
-
+    
 }
+
+typedef enum {
+    wideband,
+    boost,
+    oil,
+    temp,
+    dual,
+    quad
+} GaugeType;
+
+@property GaugeType gaugeType;
 
 -(IBAction)widebandButtonPress:(id)sender;
 -(IBAction)boostButtonPress:(id)sender;

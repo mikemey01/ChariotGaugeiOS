@@ -24,7 +24,7 @@
                                 </state>
                                 <connections>
                                     <action selector="boostButtonPress:" destination="f5Q-SH-udO" eventType="touchUpInside" id="aVu-TX-6Jj"/>
-                                    <segue destination="Ut1-rf-dv2" kind="push" id="r31-vz-lfd"/>
+                                    <segue destination="Ut1-rf-dv2" kind="push" identifier="boostSegue" id="r31-vz-lfd"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="paE-FK-US7">
@@ -52,7 +52,7 @@
                                 </state>
                                 <connections>
                                     <action selector="widebandButtonPress:" destination="f5Q-SH-udO" eventType="touchUpInside" id="Ciw-so-V4z"/>
-                                    <segue destination="Ut1-rf-dv2" kind="push" id="bRT-1E-FaX"/>
+                                    <segue destination="Ut1-rf-dv2" kind="push" identifier="widebandSegue" id="bRT-1E-FaX"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rle-EW-vRG">
@@ -63,7 +63,7 @@
                                 </state>
                                 <connections>
                                     <action selector="oilButtonPress:" destination="f5Q-SH-udO" eventType="touchUpInside" id="TLs-iv-CxU"/>
-                                    <segue destination="Ut1-rf-dv2" kind="push" id="Grz-D6-Kjz"/>
+                                    <segue destination="Ut1-rf-dv2" kind="push" identifier="oilSegue" id="Grz-D6-Kjz"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ypw-zT-RRd">
@@ -74,7 +74,7 @@
                                 </state>
                                 <connections>
                                     <action selector="tempButtonPress:" destination="f5Q-SH-udO" eventType="touchUpInside" id="GOQ-jc-YUL"/>
-                                    <segue destination="Ut1-rf-dv2" kind="push" id="Egc-0G-KXw"/>
+                                    <segue destination="Ut1-rf-dv2" kind="push" identifier="tempSegue" id="Egc-0G-KXw"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3ZI-BM-nfz">
@@ -83,6 +83,9 @@
                                 <state key="normal" image="custom_multi_logo.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="dualButtonPress:" destination="f5Q-SH-udO" eventType="touchUpInside" id="vw0-vk-OqM"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S1h-EX-L3S">
                                 <rect key="frame" x="206" y="452" width="48" height="48"/>
@@ -90,6 +93,9 @@
                                 <state key="normal" image="four_gauges.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="quadButtonPress:" destination="f5Q-SH-udO" eventType="touchUpInside" id="p6k-93-w7r"/>
+                                </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Connect" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6aB-Zo-Am5">
                                 <rect key="frame" x="55" y="146" width="67" height="21"/>
@@ -190,7 +196,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vnH-rP-huU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="435" y="103"/>
+            <point key="canvasLocation" x="451" y="103"/>
         </scene>
         <!--Navigation Controller - Chariot Gauge-->
         <scene sceneID="61J-oY-vUI">
@@ -235,6 +241,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="r31-vz-lfd"/>
+        <segue reference="Grz-D6-Kjz"/>
     </inferredMetricsTieBreakers>
 </document>

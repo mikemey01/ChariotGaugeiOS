@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CICGaugeBuilder.h"
+#import "CICHomeScreenViewController.h"
 
 @class CICGaugeBuilder;
 
@@ -15,7 +16,11 @@
     CICGaugeBuilder *gaugeView;
 }
 
+@property GaugeType gaugeType;
 @property (nonatomic, retain) IBOutlet CICGaugeBuilder *gaugeView;
 
--(IBAction)buttonPress:(id)sender;
+-(void)createWidebandGauge;
+-(void)createBoostGauge;
+-(void)createOilGauge;
+-(void)createTempGauge;
 @end

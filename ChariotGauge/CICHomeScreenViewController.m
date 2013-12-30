@@ -7,12 +7,15 @@
 //
 
 #import "CICHomeScreenViewController.h"
+#import "CICSingleGaugeViewController.h"
 
 @interface CICHomeScreenViewController ()
 
 @end
 
 @implementation CICHomeScreenViewController
+
+@synthesize gaugeType;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -23,25 +26,52 @@
     return self;
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+    CICSingleGaugeViewController *gaugeController = (CICSingleGaugeViewController *)segue.destinationViewController;
+    
+    //TODO: Need to add handling for multi-gauge displays.
+    
+    if([segue.identifier isEqualToString:@"widebandSegue"]){
+        gaugeController.gaugeType = wideband;
+    }else if([segue.identifier isEqualToString:@"boostSegue"]){
+        gaugeController.gaugeType = boost;
+    }else if([segue.identifier isEqualToString:@"oilSegue"]){
+        gaugeController.gaugeType = oil;
+    }else if([segue.identifier isEqualToString:@"tempSegue"]){
+        gaugeController.gaugeType = temp;
+    }
+}
+
 
 -(IBAction)widebandButtonPress:(id)sender
 {
-    NSLog(@"wideband button press");
+    gaugeType = wideband;
 }
 
 -(IBAction)boostButtonPress:(id)sender
 {
-    NSLog(@"boost button pressed");
+    gaugeType = boost;
 }
 
 -(IBAction)oilButtonPress:(id)sender
 {
-    
+    gaugeType = oil;
 }
 
 -(IBAction)tempButtonPress:(id)sender
 {
-    
+    gaugeType = temp;
+}
+
+-(IBAction)dualButtonPress:(id)sender
+{
+    gaugeType = dual;
+}
+
+-(IBAction)quadButtonPress:(id)sender
+{
+    gaugeType = quad;
 }
 
 - (void)viewDidLoad
