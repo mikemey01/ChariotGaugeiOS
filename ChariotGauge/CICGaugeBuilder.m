@@ -130,6 +130,10 @@
     
     [self drawTicksOnArc:(context)];
     
+    //TEST AREA
+    [self drawCurvedText:@"test string" atAngle:DEGREES_TO_RADIANS(90.0f) withContext:context forTickArc:NO];
+    //TEST AREA
+    
     
 }
 
@@ -198,7 +202,7 @@
         //Draw numbers on major ticks
         if(tickLineLength == 10){
             NSString * drawNumber = [NSString stringWithFormat:@"%d",abs(self.minGaugeNumber)]; //cast decimal to string
-            [self drawCurvedText:drawNumber atAngle:DEGREES_TO_RADIANS(actualLineAngle) withContext:context]; //draw the number at the major ticks.
+            [self drawCurvedText:drawNumber atAngle:DEGREES_TO_RADIANS(actualLineAngle) withContext:context forTickArc:YES]; //draw the number at the major ticks.
         }
         
         //Increments based on the assumption there are 4 minor ticks plus one major. each increment is set in a property.
@@ -207,7 +211,7 @@
     }
 }
 
-- (void) drawCurvedText:(NSString *)text atAngle:(float)angle withContext:(CGContextRef)context
+- (void) drawCurvedText:(NSString *)text atAngle:(float)angle withContext:(CGContextRef)context forTickArc:(BOOL)isForTickArc
 {
     CGPoint centerPoint = CGPointMake(DIAMETER / 2, DIAMETER / 2);
     char* fontName = (char*)[self.menuItemsFont.fontName UTF8String];
@@ -219,7 +223,11 @@
     CGContextSaveGState(context);
     CGContextTranslateCTM(context, centerPoint.x, centerPoint.y);
     
-    [self drawStringAtContext:context string:text atAngle:angle withRadius:TICK_ARC_RADIUS+12];
+    if(isForTickArc){
+        [self drawStringAtContext:context string:text atAngle:angle withRadius:TICK_ARC_RADIUS+12];
+    }else{
+        [self drawInvertedString:context string:text atAngle:angle withRadius:TICK_ARC_RADIUS-30];
+    }
     
     CGContextRestoreGState(context);
 }
@@ -248,6 +256,43 @@
         
         float letterAngle = (charSize.width / perimeter * 2 * M_PI)
         ;
+        
+        CGContextSaveGState(context);
+        CGContextTranslateCTM(context, x, y);
+        CGContextRotateCTM(context, (angle + 0.5 * M_PI));
+        
+        CGContextScaleCTM(context, 1.0, -1.0);
+        
+        CGContextShowTextAtPoint(context, 0, 0, c, strlen(c));
+        CGContextRestoreGState(context);
+        
+        angle += letterAngle;
+    }
+}
+
+- (void) drawInvertedString:(CGContextRef)context string:(NSString*)text atAngle:(float)angle withRadius:(float)radius
+{
+    CGSize textSize = [text sizeWithAttributes:@{self.menuItemsFont:[UIFont systemFontOfSize:14.0f]}];
+    
+    float perimeter = 2 * M_PI * radius;
+    float textAngle = textSize.width / perimeter * -2 * M_PI;
+    
+    angle += (textAngle / 2);
+    //angle += DEGREES_TO_RADIANS(-.75);
+    
+    
+    for (int index = 0; index < [text length]; index++)
+    {
+        NSRange range = {index, 1};
+        NSString* letter = [text substringWithRange:range];
+        char* c = (char*)[letter UTF8String];
+        CGSize charSize = [letter sizeWithAttributes:@{self.menuItemsFont:[UIFont systemFontOfSize:14.0f]}];
+        charSize.width += 2;
+        
+        float x = radius * cos(angle);
+        float y = radius * sin(angle);
+        
+        float letterAngle = (charSize.width / perimeter * 2 * M_PI);
         
         CGContextSaveGState(context);
         CGContextTranslateCTM(context, x, y);

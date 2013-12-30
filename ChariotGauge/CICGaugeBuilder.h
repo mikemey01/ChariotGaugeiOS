@@ -107,6 +107,7 @@
 -(void)drawInnerShadow:(CGContextRef)context withFrame:(CGRect)rect;
 -(void)drawTicksOnArc:(CGContextRef)context;
 -(void)drawStringAtContext:(CGContextRef) context string:(NSString*) text atAngle:(float) angle withRadius:(float) radius;
+- (void)drawInvertedString:(CGContextRef)context string:(NSString*)text atAngle:(float)angle withRadius:(float)radius;
 -(void)drawCurvedText:(NSString *)text atAngle:(float)angle withContext:(CGContextRef)context;
 
 //needle functions
