@@ -31,6 +31,18 @@
 	// Do any additional setup after loading the view.
 }
 
+//Handles portrait only mode.
+- (BOOL)shouldAutorotate
+{
+    return NO;
+}
+
+- (NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
+}
+//End handling portrait only mode.
+
 -(void)createFirstGauge{
     
 }

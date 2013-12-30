@@ -19,8 +19,7 @@
     // Override point for customization after application launch.
     [self.window addSubview:viewController.view];
     [self.window makeKeyAndVisible];
-    //self.window.rootViewController = self.viewController;
-    
+
     return YES;
 }
 

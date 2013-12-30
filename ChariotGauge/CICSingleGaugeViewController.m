@@ -41,6 +41,18 @@
     
 }
 
+//Handles portrait only mode.
+- (BOOL)shouldAutorotate
+{
+    return NO;
+}
+
+- (NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
+}
+//End handling portrait only mode.
+
 
 -(void)createWidebandGauge
 {
