@@ -7,7 +7,25 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CICGaugeBuilder.h"
 
-@interface CICQuadGaugeViewController : UIViewController
+@class CICGaugeBuilder;
+
+@interface CICQuadGaugeViewController : UIViewController{
+    CICGaugeBuilder *firstGauge;
+    CICGaugeBuilder *secondGauge;
+    CICGaugeBuilder *thirdGauge;
+    CICGaugeBuilder *fourthGauge;
+}
+
+@property (nonatomic, retain) IBOutlet CICGaugeBuilder *firstGauge;
+@property (nonatomic, retain) IBOutlet CICGaugeBuilder *secondGauge;
+@property (nonatomic, retain) IBOutlet CICGaugeBuilder *thirdGauge;
+@property (nonatomic, retain) IBOutlet CICGaugeBuilder *fourthGauge;
+
+-(void)createFirstGauge;
+-(void)createSecondGauge;
+-(void)createThirdGauge;
+-(void)createFourthGauge;
 
 @end

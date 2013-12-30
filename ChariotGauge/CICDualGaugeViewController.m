@@ -27,6 +27,19 @@
     return self;
 }
 
+//Handles forcing landscape mode.
+- (BOOL)shouldAutorotate
+{
+    return NO;
+}
+
+- (NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskLandscapeRight;
+}
+//End handling landscape mode.
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

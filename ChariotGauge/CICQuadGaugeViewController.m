@@ -14,6 +14,8 @@
 
 @implementation CICQuadGaugeViewController
 
+@synthesize firstGauge, secondGauge, thirdGauge, fourthGauge;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -27,6 +29,22 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+}
+
+-(void)createFirstGauge{
+    
+}
+
+-(void)createSecondGauge{
+    
+}
+
+-(void)createThirdGauge{
+    
+}
+
+-(void)createFourthGauge{
+    
 }
 
 - (void)didReceiveMemoryWarning

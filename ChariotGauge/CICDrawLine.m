@@ -26,13 +26,6 @@
     [super drawRect:rect];
     
     CGContextRef context = UIGraphicsGetCurrentContext();
-//    
-//    CGContextSaveGState(context);
-//    
-//    [[UIColor lightGrayColor] setFill];
-//    UIRectFill((CGRect){0,10,rect.size.width,1});
-//    
-//    CGContextRestoreGState(context);
     
     CGFloat colors[16] = { 0,0, 0, 0,
         0, 0, 0, .5,

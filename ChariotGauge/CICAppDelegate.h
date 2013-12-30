@@ -8,15 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@class CICSingleGaugeViewController;
+@class CICHomeScreenViewController;
 @class CICGaugeBuilder;
 
 @interface CICAppDelegate : UIResponder <UIApplicationDelegate>{
     UIWindow *window;
-    CICSingleGaugeViewController *viewController;
+    CICHomeScreenViewController *viewController;
+    UINavigationController *navigationController;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) IBOutlet CICSingleGaugeViewController *viewController;
+@property (nonatomic, retain) IBOutlet CICHomeScreenViewController *viewController;
+@property (nonatomic, retain) UINavigationController *navigationController;
 
 @end

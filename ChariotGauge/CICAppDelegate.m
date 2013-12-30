@@ -12,16 +12,27 @@
 
 @implementation CICAppDelegate
 
-@synthesize window, viewController;
+@synthesize window, viewController, navigationController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
     [self.window addSubview:viewController.view];
     [self.window makeKeyAndVisible];
-    //[[UINavigationBar appearance] setBarTintColor:[UIColor lightGrayColor]];
+    //self.window.rootViewController = self.viewController;
     
     return YES;
+}
+
+- (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window{
+    NSUInteger orientations = UIInterfaceOrientationMaskAllButUpsideDown;
+    
+    if(self.window.rootViewController){
+        UIViewController *presentedViewController = [[(UINavigationController *)self.window.rootViewController viewControllers] lastObject];
+        orientations = [presentedViewController supportedInterfaceOrientations];
+    }
+    
+    return orientations;
 }
 
 

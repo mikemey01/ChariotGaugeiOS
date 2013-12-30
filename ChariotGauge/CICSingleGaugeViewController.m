@@ -41,6 +41,7 @@
     
 }
 
+
 -(void)createWidebandGauge
 {
     [self.gaugeView initializeGauge]; //NECESSARY
