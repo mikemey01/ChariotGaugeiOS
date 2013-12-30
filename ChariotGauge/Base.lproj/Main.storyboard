@@ -85,6 +85,7 @@
                                 </state>
                                 <connections>
                                     <action selector="dualButtonPress:" destination="f5Q-SH-udO" eventType="touchUpInside" id="vw0-vk-OqM"/>
+                                    <segue destination="hQh-5e-VRS" kind="push" id="psI-BY-8sG"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S1h-EX-L3S">
@@ -167,6 +168,43 @@
             </objects>
             <point key="canvasLocation" x="-63" y="103"/>
         </scene>
+        <!--Dual Gauge View Controller - Dual Gauge-->
+        <scene sceneID="Qx7-LH-1rL">
+            <objects>
+                <viewController id="hQh-5e-VRS" customClass="CICDualGaugeViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eAz-zY-WeM"/>
+                        <viewControllerLayoutGuide type="bottom" id="VXK-39-K0j"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="NK2-ax-80d">
+                        <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b1e-vc-YvO" customClass="CICGaugeBuilder">
+                                <rect key="frame" x="0.0" y="64" width="299" height="256"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hOD-Tg-XgS" customClass="CICGaugeBuilder">
+                                <rect key="frame" x="302" y="64" width="266" height="256"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Dual Gauge" id="kFT-t3-x3l"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <connections>
+                        <outlet property="firstGauge" destination="b1e-vc-YvO" id="Q5t-zY-HeF"/>
+                        <outlet property="secondGauge" destination="hOD-Tg-XgS" id="B1W-z6-ngC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mcJ-8R-1dL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="846" y="199"/>
+        </scene>
         <!--Single Gauge View Controller - Gauge-->
         <scene sceneID="SWP-ML-A3k">
             <objects>
@@ -196,7 +234,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vnH-rP-huU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="451" y="103"/>
+            <point key="canvasLocation" x="479" y="-311"/>
         </scene>
         <!--Navigation Controller - Chariot Gauge-->
         <scene sceneID="61J-oY-vUI">
