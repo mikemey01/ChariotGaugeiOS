@@ -96,6 +96,7 @@
                                 </state>
                                 <connections>
                                     <action selector="quadButtonPress:" destination="f5Q-SH-udO" eventType="touchUpInside" id="p6k-93-w7r"/>
+                                    <segue destination="evd-nH-Cvr" kind="push" id="MJZ-P5-bee"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Connect" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6aB-Zo-Am5">
@@ -168,6 +169,32 @@
             </objects>
             <point key="canvasLocation" x="-63" y="103"/>
         </scene>
+        <!--Quad Gauge View Controller-->
+        <scene sceneID="iS9-my-lkq">
+            <objects>
+                <viewController id="evd-nH-Cvr" customClass="CICQuadGaugeViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zwH-hK-im7"/>
+                        <viewControllerLayoutGuide type="bottom" id="2D9-Dl-WiH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fKb-Mi-quc">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nka-Xb-pdk">
+                                <rect key="frame" x="0.0" y="318" width="320" height="250"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="nwe-Ix-rd7"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pdb-iM-wgY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="479" y="467"/>
+        </scene>
         <!--Dual Gauge View Controller - Dual Gauge-->
         <scene sceneID="Qx7-LH-1rL">
             <objects>
@@ -203,7 +230,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mcJ-8R-1dL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="846" y="217"/>
+            <point key="canvasLocation" x="848" y="227"/>
         </scene>
         <!--Single Gauge View Controller - Gauge-->
         <scene sceneID="SWP-ML-A3k">

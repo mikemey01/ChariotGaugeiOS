@@ -25,6 +25,7 @@
 		CE2E85361847B01000C51A49 /* ChariotGaugeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2E85351847B01000C51A49 /* ChariotGaugeTests.m */; };
 		CE30D3841863FF57005475C1 /* CICSingleGaugeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE30D3831863FF57005475C1 /* CICSingleGaugeViewController.m */; };
 		CE34F40A18710A3700C1F12B /* CICDualGaugeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE34F40918710A3700C1F12B /* CICDualGaugeViewController.m */; };
+		CE34F40D1872227F00C1F12B /* CICQuadGaugeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE34F40C1872227F00C1F12B /* CICQuadGaugeViewController.m */; };
 		CE58A005186F4A2F001348DA /* bluetooth_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = CE58A000186F4A2F001348DA /* bluetooth_logo.png */; };
 		CE58A006186F4A2F001348DA /* custom_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = CE58A001186F4A2F001348DA /* custom_logo.png */; };
 		CE58A007186F4A2F001348DA /* oil_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = CE58A002186F4A2F001348DA /* oil_logo.png */; };
@@ -72,6 +73,8 @@
 		CE30D3831863FF57005475C1 /* CICSingleGaugeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICSingleGaugeViewController.m; sourceTree = "<group>"; };
 		CE34F40818710A3700C1F12B /* CICDualGaugeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICDualGaugeViewController.h; sourceTree = "<group>"; };
 		CE34F40918710A3700C1F12B /* CICDualGaugeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICDualGaugeViewController.m; sourceTree = "<group>"; };
+		CE34F40B1872227F00C1F12B /* CICQuadGaugeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICQuadGaugeViewController.h; sourceTree = "<group>"; };
+		CE34F40C1872227F00C1F12B /* CICQuadGaugeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICQuadGaugeViewController.m; sourceTree = "<group>"; };
 		CE58A000186F4A2F001348DA /* bluetooth_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bluetooth_logo.png; path = "../../../../Documents/Chariot Gauge/ChariotGauge Media/Project Sensor/Trent - Icon Set/Resized/bluetooth_logo.png"; sourceTree = "<group>"; };
 		CE58A001186F4A2F001348DA /* custom_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = custom_logo.png; path = "../../../../Documents/Chariot Gauge/ChariotGauge Media/Project Sensor/Trent - Icon Set/Resized/custom_logo.png"; sourceTree = "<group>"; };
 		CE58A002186F4A2F001348DA /* oil_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = oil_logo.png; path = "../../../../Documents/Chariot Gauge/ChariotGauge Media/Project Sensor/Trent - Icon Set/Resized/oil_logo.png"; sourceTree = "<group>"; };
@@ -164,6 +167,8 @@
 				CE30D3831863FF57005475C1 /* CICSingleGaugeViewController.m */,
 				CE34F40818710A3700C1F12B /* CICDualGaugeViewController.h */,
 				CE34F40918710A3700C1F12B /* CICDualGaugeViewController.m */,
+				CE34F40B1872227F00C1F12B /* CICQuadGaugeViewController.h */,
+				CE34F40C1872227F00C1F12B /* CICQuadGaugeViewController.m */,
 				CE58A010186F8E3F001348DA /* CICDrawLine.h */,
 				CE58A011186F8E3F001348DA /* CICDrawLine.m */,
 				CE05FFAE1849433700764A43 /* CICGaugeBuilder.h */,
@@ -311,6 +316,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE30D3841863FF57005475C1 /* CICSingleGaugeViewController.m in Sources */,
+				CE34F40D1872227F00C1F12B /* CICQuadGaugeViewController.m in Sources */,
 				CE34F40A18710A3700C1F12B /* CICDualGaugeViewController.m in Sources */,
 				CE58A012186F8E3F001348DA /* CICDrawLine.m in Sources */,
 				CE2E851B1847B01000C51A49 /* CICAppDelegate.m in Sources */,
