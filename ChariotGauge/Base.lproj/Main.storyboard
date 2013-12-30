@@ -203,7 +203,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mcJ-8R-1dL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="846" y="199"/>
+            <point key="canvasLocation" x="846" y="217"/>
         </scene>
         <!--Single Gauge View Controller - Gauge-->
         <scene sceneID="SWP-ML-A3k">
