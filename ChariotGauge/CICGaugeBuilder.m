@@ -221,9 +221,9 @@
     CGContextTranslateCTM(context, centerPoint.x, centerPoint.y);
     
     if(isForTickArc){
-        [self drawStringAtContext:context string:text atAngle:angle withRadius:TICK_ARC_RADIUS+12];
+        [self drawStringAtContext:context string:text atAngle:angle withRadius:TICK_ARC_RADIUS+12]; //number arc
     }else{
-        [self drawInvertedString:context string:text atAngle:angle withRadius:TICK_ARC_RADIUS-30];
+        [self drawInvertedString:context string:text atAngle:angle withRadius:TICK_ARC_RADIUS-30]; //gauge name arc
     }
     
     CGContextRestoreGState(context);
@@ -273,6 +273,7 @@
     float perimeter = 2 * M_PI * radius;
     float textAngle = textSize.width / 2;
     
+    //Controls start angle
     angle += DEGREES_TO_RADIANS(textAngle+15.0f); //TODO: Needs work adjusting to the correct angle, hack for now.
     
     for (int index = 0; index < [text length]; index++)
@@ -285,12 +286,14 @@
         float x = radius * cos(angle);
         float y = radius * sin(angle);
         
+        //Controls the spacing of the characters (-3.0)
         float letterAngle = (charSize.width / perimeter * -3.0 * M_PI);
         
         CGContextSaveGState(context);
         CGContextTranslateCTM(context, x, y);
         CGContextRotateCTM(context, (angle + 0.5f * M_PI));
         
+        //Flips the text upside down
         CGContextScaleCTM(context, -1.0, 1.0);
         
         CGContextShowTextAtPoint(context, 0, 0, c, strlen(c));
@@ -436,7 +439,7 @@
     self.minGaugeNumber = 0;
     self.maxGaugeNumber = 100;
     self.gaugeType = 2;
-    self.gaugeLabel = @"Boost/Vac";
+    self.gaugeLabel = @"temp";
     self.incrementPerLargeTick = 10;
     self.tickStartAngleDegrees = 135;
     self.tickDistance = 270;
