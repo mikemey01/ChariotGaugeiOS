@@ -59,7 +59,7 @@
     [self.gaugeView initializeGauge]; //NECESSARY
     self.gaugeView.minGaugeNumber = 5;
     self.gaugeView.maxGaugeNumber = 25;
-    self.gaugeView.gaugeLabel = @"Boost/Vac";
+    self.gaugeView.gaugeLabel = @"Gasoline Wideband O2 (AFR)";
     self.gaugeView.incrementPerLargeTick = 5;
     self.gaugeView.tickStartAngleDegrees = 180;
     self.gaugeView.tickDistance = 180;
@@ -73,7 +73,7 @@
     [self.gaugeView initializeGauge]; //NECESSARY
     self.gaugeView.minGaugeNumber = -30;
     self.gaugeView.maxGaugeNumber = 25;
-    self.gaugeView.gaugeLabel = @"Boost/Vac";
+    self.gaugeView.gaugeLabel = @"Boost/Vac (PSI/inHG)";
     self.gaugeView.incrementPerLargeTick = 5;
     self.gaugeView.tickStartAngleDegrees = 135;
     self.gaugeView.tickDistance = 270;
@@ -87,7 +87,7 @@
     [self.gaugeView initializeGauge]; //NECESSARY
     self.gaugeView.minGaugeNumber = 0;
     self.gaugeView.maxGaugeNumber = 100;
-    self.gaugeView.gaugeLabel = @"Boost/Vac";
+    self.gaugeView.gaugeLabel = @"Oil Pressure (PSI)";
     self.gaugeView.incrementPerLargeTick = 10;
     self.gaugeView.tickStartAngleDegrees = 135;
     self.gaugeView.tickDistance = 270;
@@ -101,7 +101,7 @@
     [self.gaugeView initializeGauge]; //NECESSARY
     self.gaugeView.minGaugeNumber = -35;
     self.gaugeView.maxGaugeNumber = 105;
-    self.gaugeView.gaugeLabel = @"Boost/Vac";
+    self.gaugeView.gaugeLabel = @"Temperature (F)";
     self.gaugeView.incrementPerLargeTick = 20;
     self.gaugeView.tickStartAngleDegrees = 135;
     self.gaugeView.tickDistance = 270;

@@ -130,10 +130,7 @@
     
     [self drawTicksOnArc:(context)];
     
-    //TEST AREA
-    [self drawCurvedText:@"Wideband" atAngle:DEGREES_TO_RADIANS(90.0f) withContext:context forTickArc:NO];
-    //TEST AREA
-    
+    [self drawCurvedText:self.gaugeLabel atAngle:DEGREES_TO_RADIANS(90.0f) withContext:context forTickArc:NO];
     
 }
 
@@ -276,7 +273,7 @@
     float perimeter = 2 * M_PI * radius;
     float textAngle = textSize.width / 2;
     
-    angle += DEGREES_TO_RADIANS(textAngle);
+    angle += DEGREES_TO_RADIANS(textAngle+15.0f); //TODO: Needs work adjusting to the correct angle, hack for now.
     
     for (int index = 0; index < [text length]; index++)
     {
