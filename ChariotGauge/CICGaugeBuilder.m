@@ -131,7 +131,7 @@
     [self drawTicksOnArc:(context)];
     
     //TEST AREA
-    [self drawCurvedText:@"test string" atAngle:DEGREES_TO_RADIANS(90.0f) withContext:context forTickArc:NO];
+    [self drawCurvedText:@"Wideband" atAngle:DEGREES_TO_RADIANS(90.0f) withContext:context forTickArc:NO];
     //TEST AREA
     
     
@@ -254,8 +254,7 @@
         float x = radius * cos(angle);
         float y = radius * sin(angle);
         
-        float letterAngle = (charSize.width / perimeter * 2 * M_PI)
-        ;
+        float letterAngle = (charSize.width / perimeter * 2 * M_PI);
         
         CGContextSaveGState(context);
         CGContextTranslateCTM(context, x, y);
@@ -275,30 +274,27 @@
     CGSize textSize = [text sizeWithAttributes:@{self.menuItemsFont:[UIFont systemFontOfSize:14.0f]}];
     
     float perimeter = 2 * M_PI * radius;
-    float textAngle = textSize.width / perimeter * -2 * M_PI;
+    float textAngle = textSize.width / 2;
     
-    angle += (textAngle / 2);
-    //angle += DEGREES_TO_RADIANS(-.75);
-    
+    angle += DEGREES_TO_RADIANS(textAngle);
     
     for (int index = 0; index < [text length]; index++)
     {
         NSRange range = {index, 1};
         NSString* letter = [text substringWithRange:range];
-        char* c = (char*)[letter UTF8String];
+        char* c = (char*)[letter cStringUsingEncoding:NSASCIIStringEncoding];
         CGSize charSize = [letter sizeWithAttributes:@{self.menuItemsFont:[UIFont systemFontOfSize:14.0f]}];
-        charSize.width += 2;
         
         float x = radius * cos(angle);
         float y = radius * sin(angle);
         
-        float letterAngle = (charSize.width / perimeter * 2 * M_PI);
+        float letterAngle = (charSize.width / perimeter * -3.0 * M_PI);
         
         CGContextSaveGState(context);
         CGContextTranslateCTM(context, x, y);
-        CGContextRotateCTM(context, (angle + 0.5 * M_PI));
+        CGContextRotateCTM(context, (angle + 0.5f * M_PI));
         
-        CGContextScaleCTM(context, 1.0, -1.0);
+        CGContextScaleCTM(context, -1.0, 1.0);
         
         CGContextShowTextAtPoint(context, 0, 0, c, strlen(c));
         CGContextRestoreGState(context);
