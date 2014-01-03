@@ -130,6 +130,8 @@
     
     [self drawTicksOnArc:(context)];
     
+    [self drawGaugeText:gaugeLabel];
+    
     //[self drawCurvedText:self.gaugeLabel atAngle:DEGREES_TO_RADIANS(90.0f) withContext:context forTickArc:NO];
     
 }
@@ -208,17 +210,30 @@
     }
 }
 
+-(void)drawGaugeText:(NSString*) text
+{
+    CGRect textBox = CGRectMake(DIAMETER, DIAMETER/2, DIAMETER, DIAMETER-120);
+    CGFloat fontHeight = gaugeLabelFont.pointSize;
+    CGFloat yOffset = (textBox.size.height - fontHeight) / 2.0;
+    
+    CGRect textRect = CGRectMake(0, yOffset, textBox.size.width, fontHeight);
+    
+    [text drawInRect:textRect withFont:gaugeLabelFont lineBreakMode:UILineBreakModeClip alignment:UITextAlignmentCenter];
+}
+
 - (void) drawCurvedText:(NSString *)text atAngle:(float)angle withContext:(CGContextRef)context forTickArc:(BOOL)isForTickArc
 {
     CGPoint centerPoint = CGPointMake(DIAMETER / 2, DIAMETER / 2);
     char* fontName = (char*)[self.menuItemsFont.fontName UTF8String];
-    char* fontNameGaugeLabel = (char*)[self.gaugeLabelFont.fontName UTF8String];
     
     if(isForTickArc){
         CGContextSelectFont(context, fontName, 18, kCGEncodingMacRoman);
-    }else{
+    }
+    /* gaugeLabel arc deprecated for now
+    else{
         CGContextSelectFont(context, fontNameGaugeLabel, 18, kCGEncodingMacRoman);
     }
+     */
     
     
     CGContextSetTextMatrix(context, CGAffineTransformIdentity);
@@ -228,9 +243,12 @@
     
     if(isForTickArc){
         [self drawStringAtContext:context string:text atAngle:angle withRadius:TICK_ARC_RADIUS+12]; //number arc
-    }else{
-        [self drawInvertedString:context string:text atAngle:angle withRadius:TICK_ARC_RADIUS-17]; //gauge name arc
     }
+    /*  gaugeLabel text arc deprecated for now
+     else{
+        [self drawInvertedString:context string:text atAngle:angle withRadius:TICK_ARC_RADIUS-17]; //gauge name arc
+    } 
+     */
     
     CGContextRestoreGState(context);
 }
@@ -272,6 +290,7 @@
     }
 }
 
+/* gaugeLabel text arc deprecated for now
 - (void) drawInvertedString:(CGContextRef)context string:(NSString*)text atAngle:(float)angle withRadius:(float)radius
 {
     CGSize textSize = [text sizeWithAttributes:@{self.gaugeLabelFont:[UIFont systemFontOfSize:16.0f]}];
@@ -308,6 +327,7 @@
         angle += letterAngle;
     }
 }
+ */
 
 - (void)drawOuterRim:(CGContextRef)context
 {
@@ -450,7 +470,7 @@
     self.tickStartAngleDegrees = 135;
     self.tickDistance = 270;
     self.menuItemsFont = [UIFont fontWithName:@"Futura" size:14];
-    self.gaugeLabelFont = [UIFont fontWithName:@"Futura" size:12];
+    self.gaugeLabelFont = [UIFont fontWithName:@"Helvetica" size:14]; //TODO: not working correctly
     
     //needle init
     needleBuilder_ = [[NeedleBuilder alloc] init];

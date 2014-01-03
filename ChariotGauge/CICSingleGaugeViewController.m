@@ -37,8 +37,6 @@
         [self createBoostGauge];
     }
     
-    
-    
 }
 
 //Handles portrait only mode.
@@ -56,56 +54,52 @@
 
 -(void)createWidebandGauge
 {
-    [self.gaugeView initializeGauge]; //NECESSARY
+    [self.gaugeView initializeGauge]; 
     self.gaugeView.minGaugeNumber = 5;
     self.gaugeView.maxGaugeNumber = 25;
-    self.gaugeView.gaugeLabel = @"Gasoline Wideband (AFR)";
+    self.gaugeView.gaugeLabel = @"Gasoline Wideband \n(AFR)";
     self.gaugeView.incrementPerLargeTick = 5;
     self.gaugeView.tickStartAngleDegrees = 180;
     self.gaugeView.tickDistance = 180;
-    self.gaugeView.menuItemsFont = [UIFont fontWithName:@"Futura" size:14];
     self.gaugeView.lineWidth = 1;
     self.gaugeView.value = self.gaugeView.minGaugeNumber;
 }
 
 -(void)createBoostGauge
 {
-    [self.gaugeView initializeGauge]; //NECESSARY
+    [self.gaugeView initializeGauge];
     self.gaugeView.minGaugeNumber = -30;
     self.gaugeView.maxGaugeNumber = 25;
-    self.gaugeView.gaugeLabel = @"Boost/Vac (PSI/inHG)";
+    self.gaugeView.gaugeLabel = @"Boost/Vac \n(PSI/inHG)";
     self.gaugeView.incrementPerLargeTick = 5;
     self.gaugeView.tickStartAngleDegrees = 135;
     self.gaugeView.tickDistance = 270;
-    self.gaugeView.menuItemsFont = [UIFont fontWithName:@"Futura" size:14];
     self.gaugeView.lineWidth = 1;
     self.gaugeView.value = self.gaugeView.minGaugeNumber;
 }
 
 -(void)createOilGauge
 {
-    [self.gaugeView initializeGauge]; //NECESSARY
+    [self.gaugeView initializeGauge];
     self.gaugeView.minGaugeNumber = 0;
     self.gaugeView.maxGaugeNumber = 100;
-    self.gaugeView.gaugeLabel = @"Oil Pressure (PSI)";
+    self.gaugeView.gaugeLabel = @"Oil Pressure \n(PSI)";
     self.gaugeView.incrementPerLargeTick = 10;
     self.gaugeView.tickStartAngleDegrees = 135;
     self.gaugeView.tickDistance = 270;
-    self.gaugeView.menuItemsFont = [UIFont fontWithName:@"Futura" size:14];
     self.gaugeView.lineWidth = 1;
     self.gaugeView.value = self.gaugeView.minGaugeNumber;
 }
 
 -(void)createTempGauge
 {
-    [self.gaugeView initializeGauge]; //NECESSARY
+    [self.gaugeView initializeGauge];
     self.gaugeView.minGaugeNumber = -35;
     self.gaugeView.maxGaugeNumber = 105;
-    self.gaugeView.gaugeLabel = @"Temperature (F)";
+    self.gaugeView.gaugeLabel = @"Temperature \n(ºF)";
     self.gaugeView.incrementPerLargeTick = 20;
     self.gaugeView.tickStartAngleDegrees = 135;
     self.gaugeView.tickDistance = 270;
-    self.gaugeView.menuItemsFont = [UIFont fontWithName:@"Futura" size:14];
     self.gaugeView.lineWidth = 1;
     self.gaugeView.value = self.gaugeView.minGaugeNumber;
 }

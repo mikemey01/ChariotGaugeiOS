@@ -47,22 +47,20 @@
     [self.firstGauge initializeGauge]; //NECESSARY
     self.firstGauge.minGaugeNumber = -30;
     self.firstGauge.maxGaugeNumber = 25;
-    self.firstGauge.gaugeLabel = @"Boost/Vac";
+    self.firstGauge.gaugeLabel = @"Boost/Vac \n(PSI)";
     self.firstGauge.incrementPerLargeTick = 5;
     self.firstGauge.tickStartAngleDegrees = 135;
     self.firstGauge.tickDistance = 270;
-    self.firstGauge.menuItemsFont = [UIFont fontWithName:@"Futura" size:14];
     self.firstGauge.lineWidth = 1;
     self.firstGauge.value = self.firstGauge.minGaugeNumber;
     
     [self.secondGauge initializeGauge]; //NECESSARY
     self.secondGauge.minGaugeNumber = 5;
     self.secondGauge.maxGaugeNumber = 25;
-    self.secondGauge.gaugeLabel = @"Gasoline Wideband (AFR)";
+    self.secondGauge.gaugeLabel = @"Gasoline Wideband \n(AFR)";
     self.secondGauge.incrementPerLargeTick = 5;
     self.secondGauge.tickStartAngleDegrees = 180;
     self.secondGauge.tickDistance = 180;
-    self.secondGauge.menuItemsFont = [UIFont fontWithName:@"Futura" size:14];
     self.secondGauge.lineWidth = 1;
     self.secondGauge.value = self.secondGauge.minGaugeNumber;
 }
