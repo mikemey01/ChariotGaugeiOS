@@ -13,7 +13,7 @@
 #define   DEGREES_TO_RADIANS(degrees)  ((M_PI * degrees)/ 180)
 #define   DIAMETER  MIN(self.frame.size.width, self.frame.size.height)
 #define   DIAMETER_HEIGHT self.frame.size.height
-#define   DIAMETER_LAYER layer.frame.size.width //TODO: needs work
+#define   DIAMETER_LAYER MIN(layer.frame.size.height, layer.frame.size.width) //TODO: needs work
 #define   TICK_ARC_RADIUS (DIAMETER/2) - 50
 
 @implementation NeedleBuilder
@@ -87,9 +87,7 @@
     
 	layer.transform = transform;
 	CGContextRestoreGState(context);
-    
-    
-    
+
 }
 
 
@@ -101,7 +99,8 @@
 @implementation CICGaugeBuilder
 
 //synthesize gauge props
-@synthesize minGaugeNumber, maxGaugeNumber, gaugeLabel, incrementPerLargeTick, gaugeType, tickStartAngleDegrees, tickDistance, menuItemsFont, value;
+@synthesize minGaugeNumber, maxGaugeNumber, gaugeLabel, incrementPerLargeTick, gaugeType, tickStartAngleDegrees,
+            tickDistance, menuItemsFont, value, gaugeLabelFont;
 @synthesize needleBuilder = needleBuilder_;
 @synthesize lineWidth, needleLayer;
 
@@ -212,11 +211,11 @@
 
 -(void)drawGaugeText:(NSString*) text
 {
-    CGRect textBox = CGRectMake(DIAMETER, DIAMETER/2, DIAMETER, DIAMETER-120);
+    CGRect textBox = CGRectMake(DIAMETER, DIAMETER, DIAMETER, DIAMETER-100);
     CGFloat fontHeight = gaugeLabelFont.pointSize;
     CGFloat yOffset = (textBox.size.height - fontHeight) / 2.0;
     
-    CGRect textRect = CGRectMake(0, yOffset, textBox.size.width, fontHeight);
+    CGRect textRect = CGRectMake(0, yOffset, DIAMETER, fontHeight+20);
     
     [text drawInRect:textRect withFont:gaugeLabelFont lineBreakMode:UILineBreakModeClip alignment:UITextAlignmentCenter];
 }
@@ -229,11 +228,6 @@
     if(isForTickArc){
         CGContextSelectFont(context, fontName, 18, kCGEncodingMacRoman);
     }
-    /* gaugeLabel arc deprecated for now
-    else{
-        CGContextSelectFont(context, fontNameGaugeLabel, 18, kCGEncodingMacRoman);
-    }
-     */
     
     
     CGContextSetTextMatrix(context, CGAffineTransformIdentity);
@@ -244,11 +238,6 @@
     if(isForTickArc){
         [self drawStringAtContext:context string:text atAngle:angle withRadius:TICK_ARC_RADIUS+12]; //number arc
     }
-    /*  gaugeLabel text arc deprecated for now
-     else{
-        [self drawInvertedString:context string:text atAngle:angle withRadius:TICK_ARC_RADIUS-17]; //gauge name arc
-    } 
-     */
     
     CGContextRestoreGState(context);
 }
@@ -289,45 +278,6 @@
         angle += letterAngle;
     }
 }
-
-/* gaugeLabel text arc deprecated for now
-- (void) drawInvertedString:(CGContextRef)context string:(NSString*)text atAngle:(float)angle withRadius:(float)radius
-{
-    CGSize textSize = [text sizeWithAttributes:@{self.gaugeLabelFont:[UIFont systemFontOfSize:16.0f]}];
-    
-    float perimeter = 2 * M_PI * radius;
-    float textAngle = textSize.width / 2;
-    
-    //Controls start angle
-    angle += DEGREES_TO_RADIANS(textAngle+15.0f); //TODO: Needs work adjusting to the correct angle, hack for now.
-    
-    for (int index = 0; index < [text length]; index++)
-    {
-        NSRange range = {index, 1};
-        NSString* letter = [text substringWithRange:range];
-        char* c = (char*)[letter cStringUsingEncoding:NSASCIIStringEncoding];
-        CGSize charSize = [letter sizeWithAttributes:@{self.gaugeLabelFont:[UIFont systemFontOfSize:16.0f]}];
-        
-        float x = radius * cos(angle);
-        float y = radius * sin(angle);
-        
-        //Controls the spacing of the characters (-3.0)
-        float letterAngle = (charSize.width / perimeter * -3.0 * M_PI);
-        
-        CGContextSaveGState(context);
-        CGContextTranslateCTM(context, x, y);
-        CGContextRotateCTM(context, (angle + 0.5f * M_PI));
-        
-        //Flips the text upside down
-        CGContextScaleCTM(context, -1.0, 1.0);
-        
-        CGContextShowTextAtPoint(context, 0, 0, c, strlen(c));
-        CGContextRestoreGState(context);
-        
-        angle += letterAngle;
-    }
-}
- */
 
 - (void)drawOuterRim:(CGContextRef)context
 {
