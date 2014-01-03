@@ -59,11 +59,11 @@
     [self.gaugeView initializeGauge]; //NECESSARY
     self.gaugeView.minGaugeNumber = 5;
     self.gaugeView.maxGaugeNumber = 25;
-    self.gaugeView.gaugeLabel = @"Gasoline Wideband O2 (AFR)";
+    self.gaugeView.gaugeLabel = @"Gasoline Wideband (AFR)";
     self.gaugeView.incrementPerLargeTick = 5;
     self.gaugeView.tickStartAngleDegrees = 180;
     self.gaugeView.tickDistance = 180;
-    self.gaugeView.menuItemsFont = [UIFont fontWithName:@"Helvetica" size:14];
+    self.gaugeView.menuItemsFont = [UIFont fontWithName:@"Futura" size:14];
     self.gaugeView.lineWidth = 1;
     self.gaugeView.value = self.gaugeView.minGaugeNumber;
 }
@@ -77,7 +77,7 @@
     self.gaugeView.incrementPerLargeTick = 5;
     self.gaugeView.tickStartAngleDegrees = 135;
     self.gaugeView.tickDistance = 270;
-    self.gaugeView.menuItemsFont = [UIFont fontWithName:@"Helvetica" size:14];
+    self.gaugeView.menuItemsFont = [UIFont fontWithName:@"Futura" size:14];
     self.gaugeView.lineWidth = 1;
     self.gaugeView.value = self.gaugeView.minGaugeNumber;
 }
@@ -91,7 +91,7 @@
     self.gaugeView.incrementPerLargeTick = 10;
     self.gaugeView.tickStartAngleDegrees = 135;
     self.gaugeView.tickDistance = 270;
-    self.gaugeView.menuItemsFont = [UIFont fontWithName:@"Helvetica" size:14];
+    self.gaugeView.menuItemsFont = [UIFont fontWithName:@"Futura" size:14];
     self.gaugeView.lineWidth = 1;
     self.gaugeView.value = self.gaugeView.minGaugeNumber;
 }
@@ -105,7 +105,7 @@
     self.gaugeView.incrementPerLargeTick = 20;
     self.gaugeView.tickStartAngleDegrees = 135;
     self.gaugeView.tickDistance = 270;
-    self.gaugeView.menuItemsFont = [UIFont fontWithName:@"Helvetica" size:14];
+    self.gaugeView.menuItemsFont = [UIFont fontWithName:@"Futura" size:14];
     self.gaugeView.lineWidth = 1;
     self.gaugeView.value = self.gaugeView.minGaugeNumber;
 }

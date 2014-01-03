@@ -130,7 +130,7 @@
     
     [self drawTicksOnArc:(context)];
     
-    [self drawCurvedText:self.gaugeLabel atAngle:DEGREES_TO_RADIANS(90.0f) withContext:context forTickArc:NO];
+    //[self drawCurvedText:self.gaugeLabel atAngle:DEGREES_TO_RADIANS(90.0f) withContext:context forTickArc:NO];
     
 }
 
@@ -212,8 +212,14 @@
 {
     CGPoint centerPoint = CGPointMake(DIAMETER / 2, DIAMETER / 2);
     char* fontName = (char*)[self.menuItemsFont.fontName UTF8String];
+    char* fontNameGaugeLabel = (char*)[self.gaugeLabelFont.fontName UTF8String];
     
-    CGContextSelectFont(context, fontName, 18, kCGEncodingMacRoman);
+    if(isForTickArc){
+        CGContextSelectFont(context, fontName, 18, kCGEncodingMacRoman);
+    }else{
+        CGContextSelectFont(context, fontNameGaugeLabel, 18, kCGEncodingMacRoman);
+    }
+    
     
     CGContextSetTextMatrix(context, CGAffineTransformIdentity);
     
@@ -223,7 +229,7 @@
     if(isForTickArc){
         [self drawStringAtContext:context string:text atAngle:angle withRadius:TICK_ARC_RADIUS+12]; //number arc
     }else{
-        [self drawInvertedString:context string:text atAngle:angle withRadius:TICK_ARC_RADIUS-30]; //gauge name arc
+        [self drawInvertedString:context string:text atAngle:angle withRadius:TICK_ARC_RADIUS-17]; //gauge name arc
     }
     
     CGContextRestoreGState(context);
@@ -251,7 +257,7 @@
         float x = radius * cos(angle);
         float y = radius * sin(angle);
         
-        float letterAngle = (charSize.width / perimeter * 2 * M_PI);
+        float letterAngle = (charSize.width / perimeter * 2.25 * M_PI);
         
         CGContextSaveGState(context);
         CGContextTranslateCTM(context, x, y);
@@ -268,7 +274,7 @@
 
 - (void) drawInvertedString:(CGContextRef)context string:(NSString*)text atAngle:(float)angle withRadius:(float)radius
 {
-    CGSize textSize = [text sizeWithAttributes:@{self.menuItemsFont:[UIFont systemFontOfSize:14.0f]}];
+    CGSize textSize = [text sizeWithAttributes:@{self.gaugeLabelFont:[UIFont systemFontOfSize:16.0f]}];
     
     float perimeter = 2 * M_PI * radius;
     float textAngle = textSize.width / 2;
@@ -281,7 +287,7 @@
         NSRange range = {index, 1};
         NSString* letter = [text substringWithRange:range];
         char* c = (char*)[letter cStringUsingEncoding:NSASCIIStringEncoding];
-        CGSize charSize = [letter sizeWithAttributes:@{self.menuItemsFont:[UIFont systemFontOfSize:14.0f]}];
+        CGSize charSize = [letter sizeWithAttributes:@{self.gaugeLabelFont:[UIFont systemFontOfSize:16.0f]}];
         
         float x = radius * cos(angle);
         float y = radius * sin(angle);
@@ -443,7 +449,8 @@
     self.incrementPerLargeTick = 10;
     self.tickStartAngleDegrees = 135;
     self.tickDistance = 270;
-    self.menuItemsFont = [UIFont fontWithName:@"Helvetica" size:14];
+    self.menuItemsFont = [UIFont fontWithName:@"Futura" size:14];
+    self.gaugeLabelFont = [UIFont fontWithName:@"Futura" size:12];
     
     //needle init
     needleBuilder_ = [[NeedleBuilder alloc] init];

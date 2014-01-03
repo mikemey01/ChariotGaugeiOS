@@ -62,6 +62,7 @@
     
     //TODO: update
     UIFont *menuItemsFont;
+    UIFont *gaugeLabelFont;
     
     
         /*Needle stuff*/
@@ -91,6 +92,7 @@
 @property (nonatomic, assign) float tickStartAngleDegrees;
 @property (nonatomic, assign) float tickDistance;
 @property (nonatomic, retain) UIFont *menuItemsFont;
+@property (nonatomic, retain) UIFont *gaugeLabelFont;
 @property (nonatomic, readonly) NeedleBuilder *needleBuilder;
 @property (nonatomic, assign) float value;
 @property (nonatomic, retain) CALayer *needleLayer;
