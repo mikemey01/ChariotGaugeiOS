@@ -57,7 +57,7 @@
     [self.secondGauge initializeGauge]; //NECESSARY
     self.secondGauge.minGaugeNumber = 5;
     self.secondGauge.maxGaugeNumber = 25;
-    self.secondGauge.gaugeLabel = @"Gasoline Wideband \n(AFR)";
+    self.secondGauge.gaugeLabel = @"Gas Wideband \n(AFR)";
     self.secondGauge.incrementPerLargeTick = 5;
     self.secondGauge.tickStartAngleDegrees = 180;
     self.secondGauge.tickDistance = 180;

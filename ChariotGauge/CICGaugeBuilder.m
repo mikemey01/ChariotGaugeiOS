@@ -431,7 +431,7 @@
     //needle layer init
 	needleLayer = [CALayer layer];
 	needleLayer.bounds = self.bounds;
-	needleLayer.position = CGPointMake(self.bounds.size.width / 2.0, self.bounds.size.width / 2.0);
+	needleLayer.position = CGPointMake(MIN(self.bounds.size.width, self.bounds.size.height) / 2.0, MIN(self.bounds.size.width, self.bounds.size.height) / 2.0);
 	needleLayer.needsDisplayOnBoundsChange = YES;
 	needleLayer.delegate = self.needleBuilder;
 	[self.layer addSublayer:needleLayer];

@@ -57,7 +57,7 @@
     [self.gaugeView initializeGauge]; 
     self.gaugeView.minGaugeNumber = 5;
     self.gaugeView.maxGaugeNumber = 25;
-    self.gaugeView.gaugeLabel = @"Gasoline Wideband \n(AFR)";
+    self.gaugeView.gaugeLabel = @"Gas Wideband \n(AFR)";
     self.gaugeView.incrementPerLargeTick = 5;
     self.gaugeView.tickStartAngleDegrees = 180;
     self.gaugeView.tickDistance = 180;
