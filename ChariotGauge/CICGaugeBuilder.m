@@ -11,7 +11,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 #define   DEGREES_TO_RADIANS(degrees)  ((M_PI * degrees)/ 180)
-#define   DIAMETER  self.frame.size.width // TODO: needs work
+#define   DIAMETER  MIN(self.frame.size.width, self.frame.size.height)
 #define   DIAMETER_HEIGHT self.frame.size.height
 #define   DIAMETER_LAYER layer.frame.size.width //TODO: needs work
 #define   TICK_ARC_RADIUS (DIAMETER/2) - 50
