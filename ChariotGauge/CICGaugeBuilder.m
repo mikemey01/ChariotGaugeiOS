@@ -93,6 +93,24 @@
 
 @end
 
+@implementation DigitalBuilder
+
+@synthesize digitalValue;
+
+- (void)drawLayer:(CALayer*)layer inContext:(CGContextRef)context
+{
+    CATextLayer *label = [[CATextLayer alloc] init];
+    [label setFont:@"Helvetica-Bold"];
+    [label setFontSize:20];
+    [label setFrame:CGRectMake(0, DIAMETER_LAYER/2, DIAMETER_LAYER, 50)];
+    [label setString:self.digitalValue];
+    [label setAlignmentMode:kCAAlignmentCenter];
+    [label setForegroundColor:[[UIColor blackColor] CGColor]];
+    [layer addSublayer:label];
+}
+
+@end
+
 
 
 
@@ -100,9 +118,11 @@
 
 //synthesize gauge props
 @synthesize minGaugeNumber, maxGaugeNumber, gaugeLabel, incrementPerLargeTick, gaugeType, tickStartAngleDegrees,
-            tickDistance, menuItemsFont, value, gaugeLabelFont;
+            tickDistance, menuItemsFont, value, gaugeLabelFont, digitalGaugeValue;
 @synthesize needleBuilder = needleBuilder_;
 @synthesize lineWidth, needleLayer;
+@synthesize digitalBuilder = digitalBuilder_;
+@synthesize digitalLayer;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -135,6 +155,7 @@
     
 }
 
+
 - (void)setValue:(float)val
 {
     //Make sure the passed in value is within the bounds of the current gauge.
@@ -152,7 +173,10 @@
     //Transform the layer to the correct angle along the z-plane.
 	needleLayer.transform = CATransform3DMakeRotation(DEGREES_TO_RADIANS(angle), 0.0f, 0.0f, 1.0f);
     
+    self.digitalBuilder.digitalValue = [NSString stringWithFormat:@"%f", val];
+    
     [needleLayer setNeedsDisplay];
+    [digitalLayer setNeedsDisplay];
 }
 
 - (void)drawTicksOnArc:(CGContextRef)context
@@ -421,6 +445,7 @@
     self.tickDistance = 270;
     self.menuItemsFont = [UIFont fontWithName:@"Futura" size:14];
     self.gaugeLabelFont = [UIFont fontWithName:@"Helvetica" size:14]; //TODO: not working correctly
+    self.digitalGaugeValue = [NSString stringWithFormat:@"%i", self.minGaugeNumber];
     
     //needle init
     needleBuilder_ = [[NeedleBuilder alloc] init];
@@ -439,6 +464,20 @@
     
     //initialize the gauge to the lowest value.
     self.value = self.minGaugeNumber;
+    
+    //digital gauge init
+    digitalBuilder_ = [[DigitalBuilder alloc]init];
+    self.digitalBuilder.digitalValue = @"00.0";
+    
+    //digital gauge layer init
+    digitalLayer = [CALayer layer];
+    digitalLayer.bounds = self.bounds;
+    digitalLayer.position = CGPointMake(MIN(self.bounds.size.width, self.bounds.size.height) / 2.0, MIN(self.bounds.size.width, self.bounds.size.height) / 2.0);
+    digitalLayer.needsDisplayOnBoundsChange = YES;
+    digitalLayer.delegate = self.digitalBuilder;
+    [self.layer addSublayer:digitalLayer];
+    [digitalLayer setNeedsDisplay];
+    
     
 }
 

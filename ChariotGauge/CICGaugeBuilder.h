@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 
-@interface NeedleBuilder : NSObject {
+@interface NeedleBuilder : NSObject{
     
     //Needle Length
     float needleLength;
@@ -29,6 +29,19 @@
 - (void)drawLayer:(CALayer*)layer inContext:(CGContextRef)ctx;
 
 @end
+
+
+@interface DigitalBuilder : NSObject{
+    NSString *digitalValue;
+}
+
+@property (nonatomic, retain) NSString *digitalValue;
+
+- (void)drawLayer:(CALayer*)layer inContext:(CGContextRef)context;
+
+@end
+
+
 
 @interface CICGaugeBuilder : UIView{
     CGFloat lineWidth; //width of the circles
@@ -76,6 +89,12 @@
     //Needle object
     NeedleBuilder *needleBuilder_;
     
+    //gauge value for digital (as string)
+    NSString *digitalGaugeValue;
+    
+    DigitalBuilder *digitalBuilder_;
+    CATextLayer *digitalLayer;
+    
     
     struct angleRanges{
         float startRange;
@@ -97,6 +116,9 @@
 @property (nonatomic, assign) float value;
 @property (nonatomic, retain) CALayer *needleLayer;
 @property (nonatomic, assign) CGFloat lineWidth;
+@property (nonatomic, retain) NSString *digitalGaugeValue;
+@property (nonatomic, readonly) DigitalBuilder *digitalBuilder;
+@property (nonatomic, retain)   CATextLayer *digitalLayer;
 
 
 //gauge functions
@@ -114,4 +136,5 @@
 
 //needle functions
 -(void)setValue:(float)val;
+
 @end
