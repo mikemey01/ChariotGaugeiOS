@@ -100,10 +100,10 @@
 
 - (void)drawLayer:(CALayer*)layer inContext:(CGContextRef)context
 {
+    //Handles the navbar size.
     float yPlacement = DIAMETER_LAYER;
-    
     if (layer.frame.size.width < layer.frame.size.height) {
-        yPlacement = layer.frame.size.width + 65 + self.digitalFont.pointSize;
+        yPlacement = layer.frame.size.width + 90;
     }
     
     CATextLayer *label = [[CATextLayer alloc] init];
@@ -475,11 +475,10 @@
     self.value = self.minGaugeNumber;
     
     //digital gauge init
-    
     digitalBuilder_ = [[DigitalBuilder alloc]init];
     self.digitalBuilder.digitalValue = @"00.0";
     self.digitalBuilder.gaugeWidth = DIAMETER;
-    self.digitalBuilder.digitalFont = [UIFont fontWithName:@"Helvetica" size:30];
+    self.digitalBuilder.digitalFont = [UIFont fontWithName:@"Helvetica" size:10];
     
     //digital gauge layer init
     digitalLayer = [CALayer layer];
