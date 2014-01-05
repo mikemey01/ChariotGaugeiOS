@@ -95,19 +95,27 @@
 
 @implementation DigitalBuilder
 
-@synthesize digitalValue;
+@synthesize digitalValue, gaugeWidth, digitalFont;
+
 
 - (void)drawLayer:(CALayer*)layer inContext:(CGContextRef)context
 {
+    float yPlacement = DIAMETER_LAYER;
+    
+    if (layer.frame.size.width < layer.frame.size.height) {
+        yPlacement = layer.frame.size.width + 65 + self.digitalFont.pointSize;
+    }
+    
     CATextLayer *label = [[CATextLayer alloc] init];
-    [label setFont:@"Helvetica-Bold"];
-    [label setFontSize:20];
-    [label setFrame:CGRectMake(0, DIAMETER_LAYER/2, DIAMETER_LAYER, 50)];
+    [label setFont:CFBridgingRetain(self.digitalFont.fontName)];
+    [label setFontSize:self.digitalFont.pointSize];
+    [label setFrame:CGRectMake(0, yPlacement, layer.frame.size.width, self.digitalFont.pointSize)];
     [label setString:self.digitalValue];
     [label setAlignmentMode:kCAAlignmentCenter];
     [label setForegroundColor:[[UIColor blackColor] CGColor]];
     [layer addSublayer:label];
 }
+
 
 @end
 
@@ -173,7 +181,7 @@
     //Transform the layer to the correct angle along the z-plane.
 	needleLayer.transform = CATransform3DMakeRotation(DEGREES_TO_RADIANS(angle), 0.0f, 0.0f, 1.0f);
     
-    self.digitalBuilder.digitalValue = [NSString stringWithFormat:@"%f", val];
+    self.digitalBuilder.digitalValue = [NSString stringWithFormat:@"%.1f", val];
     
     [needleLayer setNeedsDisplay];
     [digitalLayer setNeedsDisplay];
@@ -250,7 +258,7 @@
     char* fontName = (char*)[self.menuItemsFont.fontName UTF8String];
     
     if(isForTickArc){
-        CGContextSelectFont(context, fontName, 18, kCGEncodingMacRoman);
+        CGContextSelectFont(context, fontName, 18, kCGEncodingMacRoman); //controls the font.
     }
     
     
@@ -434,6 +442,7 @@
 
 - (void)initializeGauge
 {
+    
     //Gauge init
     lineWidth = 1;
     self.minGaugeNumber = 0;
@@ -466,13 +475,16 @@
     self.value = self.minGaugeNumber;
     
     //digital gauge init
+    
     digitalBuilder_ = [[DigitalBuilder alloc]init];
     self.digitalBuilder.digitalValue = @"00.0";
+    self.digitalBuilder.gaugeWidth = DIAMETER;
+    self.digitalBuilder.digitalFont = [UIFont fontWithName:@"Helvetica" size:30];
     
     //digital gauge layer init
     digitalLayer = [CALayer layer];
     digitalLayer.bounds = self.bounds;
-    digitalLayer.position = CGPointMake(MIN(self.bounds.size.width, self.bounds.size.height) / 2.0, MIN(self.bounds.size.width, self.bounds.size.height) / 2.0);
+    digitalLayer.position = CGPointMake(DIAMETER / 2.0, DIAMETER / 2.0);
     digitalLayer.needsDisplayOnBoundsChange = YES;
     digitalLayer.delegate = self.digitalBuilder;
     [self.layer addSublayer:digitalLayer];

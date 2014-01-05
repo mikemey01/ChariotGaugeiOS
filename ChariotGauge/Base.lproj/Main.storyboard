@@ -208,12 +208,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b1e-vc-YvO" customClass="CICGaugeBuilder">
-                                <rect key="frame" x="0.0" y="64" width="284" height="256"/>
+                                <rect key="frame" x="0.0" y="65" width="284" height="256"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hOD-Tg-XgS" customClass="CICGaugeBuilder">
-                                <rect key="frame" x="286" y="64" width="282" height="256"/>
+                            <view clipsSubviews="YES" contentMode="center" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hOD-Tg-XgS" customClass="CICGaugeBuilder">
+                                <rect key="frame" x="286" y="65" width="282" height="255"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
