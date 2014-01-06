@@ -41,8 +41,8 @@
     CGFloat ellipseRadius = floor(self.needleWidth * 2.5);
 	
     //Get center coordinates
-	CGFloat centerX = layer.frame.size.width / 2.0-self.gaugeX;
-	CGFloat centerY = layer.frame.size.height / 2.0;
+	CGFloat centerX = (layer.bounds.size.width) / 2.0;
+	CGFloat centerY = (layer.bounds.size.height) / 2.0;
     
 	
     //Fill the needle circle
@@ -87,6 +87,7 @@
     
     
 	layer.transform = transform;
+    //layer.position = CGPointMake(layer.frame.size.width/2.0f, layer.frame.size.height/2.0f);
 	CGContextRestoreGState(context);
 
 }
@@ -96,21 +97,21 @@
 
 @implementation DigitalBuilder
 
-@synthesize digitalValue, gaugeWidth, digitalFont;
+@synthesize digitalValue, gaugeWidth, viewWidth, gaugeX, digitalFont;
 
 
 - (void)drawLayer:(CALayer*)layer inContext:(CGContextRef)context
 {
     //Handles the navbar size.
-    float yPlacement = DIAMETER_LAYER;
+    float yPlacement = self.gaugeWidth+10;
     if (layer.frame.size.width < layer.frame.size.height) {
-        yPlacement = layer.frame.size.width + 90;
+        yPlacement = self.gaugeWidth + 90;
     }
     
     CATextLayer *label = [[CATextLayer alloc] init];
     [label setFont:CFBridgingRetain(self.digitalFont.fontName)];
     [label setFontSize:self.digitalFont.pointSize];
-    [label setFrame:CGRectMake(0, yPlacement, layer.frame.size.width, self.digitalFont.pointSize)];
+    [label setFrame:CGRectMake(0+(self.gaugeX*2), yPlacement, self.gaugeWidth, self.digitalFont.pointSize)];
     [label setString:self.digitalValue];
     [label setAlignmentMode:kCAAlignmentCenter];
     [label setForegroundColor:[[UIColor blackColor] CGColor]];
@@ -180,7 +181,7 @@
     CGFloat angle = self.tickStartAngleDegrees + (self.tickDistance * ((val-self.minGaugeNumber) / gaugeRangeLocal));
     
     //Transform the layer to the correct angle along the z-plane.
-	needleLayer.transform = CATransform3DMakeRotation(DEGREES_TO_RADIANS(90.0f), 0.0f, 0.0f, 1.0f);
+	needleLayer.transform = CATransform3DMakeRotation(DEGREES_TO_RADIANS(angle), 0.0f, 0.0f, 1.0f);
     
     self.digitalBuilder.digitalValue = [NSString stringWithFormat:@"%.1f", val];
     
@@ -213,7 +214,7 @@
         
         startAngle =  DEGREES_TO_RADIANS(startAngle);
         endAngle = DEGREES_TO_RADIANS(endAngle);
-        UIBezierPath *aPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(self.viewWidth/2+self.gaugeX, self.viewWidth/2)
+        UIBezierPath *aPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(self.gaugeWidth/2+self.gaugeX, self.gaugeWidth/2)
                                                              radius:(TICK_ARC_RADIUS+tickLineLength/2) //Sets the radius based on the tick length;
                                                          startAngle:startAngle
                                                            endAngle:endAngle
@@ -244,7 +245,7 @@
 
 -(void)drawGaugeText:(NSString*) text
 {
-    CGRect textBox = CGRectMake(self.gaugeX*2, self.viewWidth, self.viewWidth, self.viewWidth-100);
+    CGRect textBox = CGRectMake(self.gaugeX, self.gaugeWidth, self.viewWidth, self.gaugeWidth-100);
     CGFloat fontHeight = gaugeLabelFont.pointSize;
     CGFloat yOffset = (textBox.size.height - fontHeight) / 2.0;
     
@@ -255,7 +256,7 @@
 
 - (void) drawCurvedText:(NSString *)text atAngle:(float)angle withContext:(CGContextRef)context forTickArc:(BOOL)isForTickArc
 {
-    CGPoint centerPoint = CGPointMake(self.viewWidth / 2 +self.gaugeX, self.viewWidth / 2);
+    CGPoint centerPoint = CGPointMake(self.gaugeWidth / 2 +self.gaugeX, self.gaugeWidth / 2);
     char* fontName = (char*)[self.menuItemsFont.fontName UTF8String];
     
     if(isForTickArc){
@@ -314,7 +315,7 @@
 
 - (void)drawOuterRim:(CGContextRef)context
 {
-    CGRect borderRect = CGRectMake(self.gaugeX+0.5, 0.5, self.viewWidth-1.0, self.viewWidth-1.0);
+    CGRect borderRect = CGRectMake(self.gaugeX+0.5, 0.5, self.gaugeWidth-1.0, self.gaugeWidth-1.0);
     borderRect = CGRectInset(borderRect, lineWidth * 0.75, lineWidth * 0.75);
     
     CGContextSetRGBStrokeColor(context, 110.0/255.0, 110.0/255.0, 110.0/255.0, 1.0);
@@ -326,7 +327,7 @@
 
 - (CGRect)drawInnerRim:(CGContextRef)context
 {
-    CGRect innerRect = CGRectMake(self.gaugeX+7.5, 7.5, self.viewWidth-15, self.viewWidth-15);
+    CGRect innerRect = CGRectMake(self.gaugeX+7.5, 7.5, self.gaugeWidth-15, self.gaugeWidth-15);
     innerRect = CGRectInset(innerRect, lineWidth * 0.75, lineWidth * 0.75);
     CGContextSetRGBStrokeColor(context, 110.0/255.0, 110.0/255.0, 110.0/255.0, 1.0);
     CGContextSetRGBFillColor(context, 250.0/255.0, 250.0/255.0, 242.0/255.0, 1.0);
@@ -350,7 +351,7 @@
     
     
     //Create the CGRect and set its location
-    CGRect shadowBoxRect = CGRectMake(self.gaugeX+7.5, 7.5, self.viewWidth-15, self.viewWidth-15);
+    CGRect shadowBoxRect = CGRectMake(self.gaugeX+7.5, 7.5, self.gaugeWidth-15, self.gaugeWidth-15);
     
     //Create the bezier path using the CGRect as a ref.
     UIBezierPath* bPath = [UIBezierPath bezierPathWithOvalInRect: shadowBoxRect];
@@ -389,7 +390,7 @@
     [[UIColor darkGrayColor] setFill]; //Controls the color of the numbers.
     
     //controls the look of the arc NOT placement.
-    UIBezierPath *aPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(self.viewWidth/2+self.gaugeX, self.viewWidth/2)
+    UIBezierPath *aPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(self.gaugeWidth/2+self.gaugeX, self.gaugeWidth/2)
                                                          radius:TICK_ARC_RADIUS //Controls the size of the tick arc
                                                      startAngle:0
                                                        endAngle:DEGREES_TO_RADIANS(360)
@@ -446,7 +447,14 @@
     gaugeWidth = MIN(self.frame.size.width, self.frame.size.height);
     viewWidth = MIN(self.frame.size.width, self.frame.size.height);
     
+    CGFloat digitalFontSize = 30.0f;
     
+    //Adjust the size of the gauge if needed.
+    if (self.frame.size.height < self.frame.size.width) {
+        self.gaugeWidth = self.gaugeWidth - digitalFontSize;
+    }
+    
+    self.gaugeX = (self.viewWidth - self.gaugeWidth)/2.0;
     
     //Gauge init
     lineWidth = 1;
@@ -470,7 +478,7 @@
     //needle layer init
 	needleLayer = [CALayer layer];
 	needleLayer.bounds = self.bounds;
-	needleLayer.position = CGPointMake(MIN(self.bounds.size.width, self.bounds.size.height) / 2.0, MIN(self.bounds.size.width, self.bounds.size.height) / 2.0);
+	needleLayer.position = CGPointMake(self.gaugeWidth / 2.0+self.gaugeX, self.gaugeWidth / 2.0);
 	needleLayer.needsDisplayOnBoundsChange = YES;
 	needleLayer.delegate = self.needleBuilder;
 	[self.layer addSublayer:needleLayer];
@@ -482,29 +490,24 @@
     //digital gauge init
     digitalBuilder_ = [[DigitalBuilder alloc]init];
     self.digitalBuilder.digitalValue = @"00.0";
-    self.digitalBuilder.gaugeWidth = self.viewWidth;
-    self.digitalBuilder.digitalFont = [UIFont fontWithName:@"Helvetica" size:30];
+    self.digitalBuilder.digitalFont = [UIFont fontWithName:@"Helvetica" size:digitalFontSize];
     
     //digital gauge layer init
     digitalLayer = [CALayer layer];
     digitalLayer.bounds = self.bounds;
-    digitalLayer.position = CGPointMake(self.viewWidth / 2.0, self.viewWidth / 2.0);
+    digitalLayer.position = CGPointMake(self.gaugeWidth / 2.0+self.gaugeX, self.gaugeWidth / 2.0);
     digitalLayer.needsDisplayOnBoundsChange = YES;
     digitalLayer.delegate = self.digitalBuilder;
     [self.layer addSublayer:digitalLayer];
     [digitalLayer setNeedsDisplay];
     
-    //Adjust the size of the gauge if needed.
-    if (self.frame.size.height < self.frame.size.width) {
-        self.gaugeWidth = self.gaugeWidth - self.digitalBuilder.digitalFont.pointSize;
-    }
     
-    self.gaugeX = (self.viewWidth - self.gaugeWidth)/2.0;
     self.needleBuilder.gaugeX = self.gaugeX;
     self.needleBuilder.gaugeWidth = self.gaugeWidth;
     self.needleBuilder.viewWidth = self.viewWidth;
-    
-    NSLog(@"%f", self.gaugeWidth);
+    self.digitalBuilder.gaugeX = self.gaugeX;
+    self.digitalBuilder.gaugeWidth = self.gaugeWidth;
+    self.digitalBuilder.viewWidth = self.viewWidth;
     
 }
 

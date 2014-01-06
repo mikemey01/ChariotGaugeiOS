@@ -42,11 +42,15 @@
 @interface DigitalBuilder : NSObject{
     NSString *digitalValue;
     float gaugeWidth;
+    float viewWidth;
+    float gaugeX;
     UIFont *digitalFont;
 }
 
 @property (nonatomic, retain) NSString *digitalValue;
 @property (nonatomic, assign) float gaugeWidth;
+@property (nonatomic, assign) float viewWidth;
+@property (nonatomic, assign) float gaugeX;
 @property (nonatomic, retain) UIFont *digitalFont;
 
 - (void)drawLayer:(CALayer*)layer inContext:(CGContextRef)context;
