@@ -19,12 +19,20 @@
     
     //Needle tint
     UIColor *needleColor;
+    
+    //Offset for smaller gauges
+    float gaugeWidth;
+    float viewWidth;
+    float gaugeX;
 }
 
 //Needle props
 @property (nonatomic, assign) float needleLength;
 @property (nonatomic, assign) float needleWidth;
 @property (nonatomic, retain) UIColor *needleColor;
+@property (nonatomic, assign) float gaugeX;
+@property (nonatomic, assign) float gaugeWidth;
+@property (nonatomic, assign) float viewWidth;
 
 - (void)drawLayer:(CALayer*)layer inContext:(CGContextRef)ctx;
 
@@ -77,10 +85,15 @@
     //distance in degrees to travel around arc.
     float tickDistance;
     
+    //gauge and view width for placement of the gauge on the view.
+    float gaugeWidth;
+    float viewWidth;
+    float gaugeX;
+    float gaugeY;
+    
     //TODO: update
     UIFont *menuItemsFont;
     UIFont *gaugeLabelFont;
-    
     
         /*Needle stuff*/
     
@@ -92,6 +105,8 @@
     
     //Needle object
     NeedleBuilder *needleBuilder_;
+    
+        /*digital stuff*/
     
     //gauge value for digital (as string)
     NSString *digitalGaugeValue;
@@ -123,6 +138,10 @@
 @property (nonatomic, retain) NSString *digitalGaugeValue;
 @property (nonatomic, readonly) DigitalBuilder *digitalBuilder;
 @property (nonatomic, retain)   CATextLayer *digitalLayer;
+@property (nonatomic, assign) float gaugeWidth;
+@property (nonatomic, assign) float viewWidth;
+@property (nonatomic, assign) float gaugeX;
+@property (nonatomic, assign) float gaugeY;
 
 
 //gauge functions

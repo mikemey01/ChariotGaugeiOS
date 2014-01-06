@@ -19,7 +19,7 @@
 @implementation NeedleBuilder
 
 //synthesize needle props
-@synthesize needleLength, needleWidth, needleColor;
+@synthesize needleLength, needleWidth, needleColor, gaugeX, viewWidth, gaugeWidth;
 
 
 - (void)drawLayer:(CALayer*)layer inContext:(CGContextRef)context
@@ -41,8 +41,9 @@
     CGFloat ellipseRadius = floor(self.needleWidth * 2.5);
 	
     //Get center coordinates
-	CGFloat centerX = layer.frame.size.width / 2.0;
+	CGFloat centerX = layer.frame.size.width / 2.0-self.gaugeX;
 	CGFloat centerY = layer.frame.size.height / 2.0;
+    
 	
     //Fill the needle circle
 	CGContextFillEllipseInRect(context, CGRectMake(centerX - ellipseRadius, centerY - ellipseRadius, ellipseRadius * 2.0, ellipseRadius * 2.0));
@@ -126,7 +127,7 @@
 
 //synthesize gauge props
 @synthesize minGaugeNumber, maxGaugeNumber, gaugeLabel, incrementPerLargeTick, gaugeType, tickStartAngleDegrees,
-            tickDistance, menuItemsFont, value, gaugeLabelFont, digitalGaugeValue;
+            tickDistance, menuItemsFont, value, gaugeLabelFont, digitalGaugeValue, gaugeWidth, viewWidth, gaugeX, gaugeY;
 @synthesize needleBuilder = needleBuilder_;
 @synthesize lineWidth, needleLayer;
 @synthesize digitalBuilder = digitalBuilder_;
@@ -179,7 +180,7 @@
     CGFloat angle = self.tickStartAngleDegrees + (self.tickDistance * ((val-self.minGaugeNumber) / gaugeRangeLocal));
     
     //Transform the layer to the correct angle along the z-plane.
-	needleLayer.transform = CATransform3DMakeRotation(DEGREES_TO_RADIANS(angle), 0.0f, 0.0f, 1.0f);
+	needleLayer.transform = CATransform3DMakeRotation(DEGREES_TO_RADIANS(90.0f), 0.0f, 0.0f, 1.0f);
     
     self.digitalBuilder.digitalValue = [NSString stringWithFormat:@"%.1f", val];
     
@@ -212,7 +213,7 @@
         
         startAngle =  DEGREES_TO_RADIANS(startAngle);
         endAngle = DEGREES_TO_RADIANS(endAngle);
-        UIBezierPath *aPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(DIAMETER/2, DIAMETER/2)
+        UIBezierPath *aPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(self.viewWidth/2+self.gaugeX, self.viewWidth/2)
                                                              radius:(TICK_ARC_RADIUS+tickLineLength/2) //Sets the radius based on the tick length;
                                                          startAngle:startAngle
                                                            endAngle:endAngle
@@ -243,18 +244,18 @@
 
 -(void)drawGaugeText:(NSString*) text
 {
-    CGRect textBox = CGRectMake(DIAMETER, DIAMETER, DIAMETER, DIAMETER-100);
+    CGRect textBox = CGRectMake(self.gaugeX*2, self.viewWidth, self.viewWidth, self.viewWidth-100);
     CGFloat fontHeight = gaugeLabelFont.pointSize;
     CGFloat yOffset = (textBox.size.height - fontHeight) / 2.0;
     
-    CGRect textRect = CGRectMake(0, yOffset, DIAMETER, fontHeight+20);
+    CGRect textRect = CGRectMake(0, yOffset, self.viewWidth, fontHeight+20);
     
     [text drawInRect:textRect withFont:gaugeLabelFont lineBreakMode:UILineBreakModeClip alignment:UITextAlignmentCenter];
 }
 
 - (void) drawCurvedText:(NSString *)text atAngle:(float)angle withContext:(CGContextRef)context forTickArc:(BOOL)isForTickArc
 {
-    CGPoint centerPoint = CGPointMake(DIAMETER / 2, DIAMETER / 2);
+    CGPoint centerPoint = CGPointMake(self.viewWidth / 2 +self.gaugeX, self.viewWidth / 2);
     char* fontName = (char*)[self.menuItemsFont.fontName UTF8String];
     
     if(isForTickArc){
@@ -313,7 +314,7 @@
 
 - (void)drawOuterRim:(CGContextRef)context
 {
-    CGRect borderRect = CGRectMake(0.5, 0.5, DIAMETER-1.0, DIAMETER-1.0);
+    CGRect borderRect = CGRectMake(self.gaugeX+0.5, 0.5, self.viewWidth-1.0, self.viewWidth-1.0);
     borderRect = CGRectInset(borderRect, lineWidth * 0.75, lineWidth * 0.75);
     
     CGContextSetRGBStrokeColor(context, 110.0/255.0, 110.0/255.0, 110.0/255.0, 1.0);
@@ -325,7 +326,7 @@
 
 - (CGRect)drawInnerRim:(CGContextRef)context
 {
-    CGRect innerRect = CGRectMake(7.5, 7.5, DIAMETER-15, DIAMETER-15);
+    CGRect innerRect = CGRectMake(self.gaugeX+7.5, 7.5, self.viewWidth-15, self.viewWidth-15);
     innerRect = CGRectInset(innerRect, lineWidth * 0.75, lineWidth * 0.75);
     CGContextSetRGBStrokeColor(context, 110.0/255.0, 110.0/255.0, 110.0/255.0, 1.0);
     CGContextSetRGBFillColor(context, 250.0/255.0, 250.0/255.0, 242.0/255.0, 1.0);
@@ -349,7 +350,7 @@
     
     
     //Create the CGRect and set its location
-    CGRect shadowBoxRect = CGRectMake(7.5, 7.5, DIAMETER-15, DIAMETER-15);
+    CGRect shadowBoxRect = CGRectMake(self.gaugeX+7.5, 7.5, self.viewWidth-15, self.viewWidth-15);
     
     //Create the bezier path using the CGRect as a ref.
     UIBezierPath* bPath = [UIBezierPath bezierPathWithOvalInRect: shadowBoxRect];
@@ -388,7 +389,7 @@
     [[UIColor darkGrayColor] setFill]; //Controls the color of the numbers.
     
     //controls the look of the arc NOT placement.
-    UIBezierPath *aPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(DIAMETER/2, DIAMETER/2)
+    UIBezierPath *aPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(self.viewWidth/2+self.gaugeX, self.viewWidth/2)
                                                          radius:TICK_ARC_RADIUS //Controls the size of the tick arc
                                                      startAngle:0
                                                        endAngle:DEGREES_TO_RADIANS(360)
@@ -442,6 +443,10 @@
 
 - (void)initializeGauge
 {
+    gaugeWidth = MIN(self.frame.size.width, self.frame.size.height);
+    viewWidth = MIN(self.frame.size.width, self.frame.size.height);
+    
+    
     
     //Gauge init
     lineWidth = 1;
@@ -477,18 +482,29 @@
     //digital gauge init
     digitalBuilder_ = [[DigitalBuilder alloc]init];
     self.digitalBuilder.digitalValue = @"00.0";
-    self.digitalBuilder.gaugeWidth = DIAMETER;
-    self.digitalBuilder.digitalFont = [UIFont fontWithName:@"Helvetica" size:10];
+    self.digitalBuilder.gaugeWidth = self.viewWidth;
+    self.digitalBuilder.digitalFont = [UIFont fontWithName:@"Helvetica" size:30];
     
     //digital gauge layer init
     digitalLayer = [CALayer layer];
     digitalLayer.bounds = self.bounds;
-    digitalLayer.position = CGPointMake(DIAMETER / 2.0, DIAMETER / 2.0);
+    digitalLayer.position = CGPointMake(self.viewWidth / 2.0, self.viewWidth / 2.0);
     digitalLayer.needsDisplayOnBoundsChange = YES;
     digitalLayer.delegate = self.digitalBuilder;
     [self.layer addSublayer:digitalLayer];
     [digitalLayer setNeedsDisplay];
     
+    //Adjust the size of the gauge if needed.
+    if (self.frame.size.height < self.frame.size.width) {
+        self.gaugeWidth = self.gaugeWidth - self.digitalBuilder.digitalFont.pointSize;
+    }
+    
+    self.gaugeX = (self.viewWidth - self.gaugeWidth)/2.0;
+    self.needleBuilder.gaugeX = self.gaugeX;
+    self.needleBuilder.gaugeWidth = self.gaugeWidth;
+    self.needleBuilder.viewWidth = self.viewWidth;
+    
+    NSLog(@"%f", self.gaugeWidth);
     
 }
 
