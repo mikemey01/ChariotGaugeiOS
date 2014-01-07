@@ -260,7 +260,7 @@
     char* fontName = (char*)[self.menuItemsFont.fontName UTF8String];
     
     if(isForTickArc){
-        CGContextSelectFont(context, fontName, 18, kCGEncodingMacRoman); //controls the font.
+        CGContextSelectFont(context, fontName, self.menuItemsFont.pointSize, kCGEncodingMacRoman); //controls the font.
     }
     
     
@@ -490,7 +490,7 @@
     //digital gauge init
     digitalBuilder_ = [[DigitalBuilder alloc]init];
     self.digitalBuilder.digitalValue = @"00.0";
-    self.digitalBuilder.digitalFont = [UIFont fontWithName:@"Helvetica" size:digitalFontSize];
+    self.digitalBuilder.digitalFont = [UIFont fontWithName:@"LetsgoDigital-Regular" size:digitalFontSize];
     
     //digital gauge layer init
     digitalLayer = [CALayer layer];
@@ -508,6 +508,9 @@
     self.digitalBuilder.gaugeX = self.gaugeX;
     self.digitalBuilder.gaugeWidth = self.gaugeWidth;
     self.digitalBuilder.viewWidth = self.viewWidth;
+    
+    
+    for ( NSString *familyName in [UIFont familyNames] ) { NSLog(@"Family %@", familyName); NSLog(@"Names = %@", [UIFont fontNamesForFamilyName:familyName]); }
     
 }
 

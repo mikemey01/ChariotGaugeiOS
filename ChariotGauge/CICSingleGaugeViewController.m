@@ -64,6 +64,7 @@
     self.gaugeView.tickDistance = 180;
     self.gaugeView.lineWidth = 1;
     self.gaugeView.value = self.gaugeView.minGaugeNumber;
+    self.gaugeView.menuItemsFont = [UIFont fontWithName:@"Futura" size:18];
 }
 
 -(void)createBoostGauge
@@ -77,6 +78,7 @@
     self.gaugeView.tickDistance = 270;
     self.gaugeView.lineWidth = 1;
     self.gaugeView.value = self.gaugeView.minGaugeNumber;
+    self.gaugeView.menuItemsFont = [UIFont fontWithName:@"Futura" size:18];
 }
 
 -(void)createOilGauge
@@ -90,6 +92,7 @@
     self.gaugeView.tickDistance = 270;
     self.gaugeView.lineWidth = 1;
     self.gaugeView.value = self.gaugeView.minGaugeNumber;
+    self.gaugeView.menuItemsFont = [UIFont fontWithName:@"Futura" size:18];
 }
 
 -(void)createTempGauge
@@ -103,6 +106,7 @@
     self.gaugeView.tickDistance = 270;
     self.gaugeView.lineWidth = 1;
     self.gaugeView.value = self.gaugeView.minGaugeNumber;
+    self.gaugeView.menuItemsFont = [UIFont fontWithName:@"Futura" size:18];
 }
 
 - (void)viewDidUnload

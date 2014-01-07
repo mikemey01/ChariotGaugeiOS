@@ -26,6 +26,7 @@
 		CE30D3841863FF57005475C1 /* CICSingleGaugeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE30D3831863FF57005475C1 /* CICSingleGaugeViewController.m */; };
 		CE34F40A18710A3700C1F12B /* CICDualGaugeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE34F40918710A3700C1F12B /* CICDualGaugeViewController.m */; };
 		CE34F40D1872227F00C1F12B /* CICQuadGaugeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE34F40C1872227F00C1F12B /* CICQuadGaugeViewController.m */; };
+		CE4F05B8187BB9D0000BFC0B /* LetsGoDigital.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE4F05B7187BB9D0000BFC0B /* LetsGoDigital.ttf */; };
 		CE58A005186F4A2F001348DA /* bluetooth_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = CE58A000186F4A2F001348DA /* bluetooth_logo.png */; };
 		CE58A006186F4A2F001348DA /* custom_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = CE58A001186F4A2F001348DA /* custom_logo.png */; };
 		CE58A007186F4A2F001348DA /* oil_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = CE58A002186F4A2F001348DA /* oil_logo.png */; };
@@ -76,6 +77,7 @@
 		CE34F40918710A3700C1F12B /* CICDualGaugeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICDualGaugeViewController.m; sourceTree = "<group>"; };
 		CE34F40B1872227F00C1F12B /* CICQuadGaugeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICQuadGaugeViewController.h; sourceTree = "<group>"; };
 		CE34F40C1872227F00C1F12B /* CICQuadGaugeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICQuadGaugeViewController.m; sourceTree = "<group>"; };
+		CE4F05B7187BB9D0000BFC0B /* LetsGoDigital.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = LetsGoDigital.ttf; path = "../../../Eclipse/Eclipse Dev/ChariotGauge/assets/fonts/LetsGoDigital.ttf"; sourceTree = "<group>"; };
 		CE58A000186F4A2F001348DA /* bluetooth_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bluetooth_logo.png; path = "../../../../Documents/Chariot Gauge/ChariotGauge Media/Project Sensor/Trent - Icon Set/Resized/bluetooth_logo.png"; sourceTree = "<group>"; };
 		CE58A001186F4A2F001348DA /* custom_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = custom_logo.png; path = "../../../../Documents/Chariot Gauge/ChariotGauge Media/Project Sensor/Trent - Icon Set/Resized/custom_logo.png"; sourceTree = "<group>"; };
 		CE58A002186F4A2F001348DA /* oil_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = oil_logo.png; path = "../../../../Documents/Chariot Gauge/ChariotGauge Media/Project Sensor/Trent - Icon Set/Resized/oil_logo.png"; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 		CE2E85111847B01000C51A49 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				CE4F05B7187BB9D0000BFC0B /* LetsGoDigital.ttf */,
 				CE2E85121847B01000C51A49 /* ChariotGauge-Info.plist */,
 				CE2E85131847B01000C51A49 /* InfoPlist.strings */,
 				CE2E85161847B01000C51A49 /* main.m */,
@@ -292,6 +295,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE2E85231847B01000C51A49 /* Images.xcassets in Resources */,
+				CE4F05B8187BB9D0000BFC0B /* LetsGoDigital.ttf in Resources */,
 				CE58A006186F4A2F001348DA /* custom_logo.png in Resources */,
 				CE0C78121867B4DD006C6C1C /* boost_logo.png in Resources */,
 				CE58A009186F4A2F001348DA /* wideband_logo.png in Resources */,
