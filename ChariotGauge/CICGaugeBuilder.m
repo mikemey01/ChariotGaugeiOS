@@ -509,9 +509,7 @@
     self.digitalBuilder.gaugeWidth = self.gaugeWidth;
     self.digitalBuilder.viewWidth = self.viewWidth;
     
-    
-    for ( NSString *familyName in [UIFont familyNames] ) { NSLog(@"Family %@", familyName); NSLog(@"Names = %@", [UIFont fontNamesForFamilyName:familyName]); }
-    
+
 }
 
 
