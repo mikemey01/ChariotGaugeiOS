@@ -27,10 +27,7 @@
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
-	<array>
-		<string></string>
-		<string>armv7</string>
-	</array>
+	<array/>
 	<key>UIAppFonts</key>
 	<array>
 		<string>LetsGoDigital.ttf</string>
