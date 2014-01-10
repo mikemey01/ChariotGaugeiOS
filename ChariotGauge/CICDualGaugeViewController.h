@@ -14,10 +14,14 @@
 @interface CICDualGaugeViewController : UIViewController{
     CICGaugeBuilder *firstGauge;
     CICGaugeBuilder *secondGauge;
+    UIView *firstGaugeView;
 }
 
 @property (nonatomic, retain) IBOutlet CICGaugeBuilder *firstGauge;
 @property (nonatomic, retain) IBOutlet CICGaugeBuilder *secondGauge;
+@property (nonatomic, retain) IBOutlet UIView *firstGaugeView;
+
+-(void)adjustViewSize;
 
 
 @end

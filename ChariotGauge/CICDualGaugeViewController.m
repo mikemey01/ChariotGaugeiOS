@@ -16,7 +16,7 @@
 
 @implementation CICDualGaugeViewController
 
-@synthesize firstGauge, secondGauge;
+@synthesize firstGauge, secondGauge, firstGaugeView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,11 +27,6 @@
     return self;
 }
 
-//Handles forcing landscape mode.
-- (BOOL)shouldAutorotate
-{
-    return NO;
-}
 
 - (NSUInteger)supportedInterfaceOrientations
 {
@@ -43,6 +38,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    //Handles forcing landscape orientation NEEDS WORK
+    UIViewController *mVC = [[UIViewController alloc] init];
+    [self presentModalViewController:mVC animated:NO];
+    if (![mVC isBeingDismissed])
+        [self dismissModalViewControllerAnimated:YES];
+    
+    [self adjustViewSize];
 	
     [self.firstGauge initializeGauge]; //NECESSARY
     self.firstGauge.minGaugeNumber = -30;
@@ -63,6 +66,12 @@
     self.secondGauge.tickDistance = 180;
     self.secondGauge.lineWidth = 1;
     self.secondGauge.value = self.secondGauge.minGaugeNumber;
+}
+
+-(void)adjustViewSize
+{
+    CGRect frame = self.firstGaugeView.frame;
+    frame.size = self.view.frame.size;
 }
 
 - (void)didReceiveMemoryWarning

@@ -272,17 +272,17 @@
                         <viewControllerLayoutGuide type="top" id="lti-zz-Y1w"/>
                         <viewControllerLayoutGuide type="bottom" id="FOS-09-aSe"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="NK2-ax-80d">
+                    <view key="view" autoresizesSubviews="NO" contentMode="scaleToFill" id="NK2-ax-80d">
                         <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b1e-vc-YvO" customClass="CICGaugeBuilder">
-                                <rect key="frame" x="0.0" y="58" width="291" height="263"/>
+                            <view autoresizesSubviews="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b1e-vc-YvO" customClass="CICGaugeBuilder">
+                                <rect key="frame" x="0.0" y="58" width="246" height="263"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                             <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hOD-Tg-XgS" customClass="CICGaugeBuilder">
-                                <rect key="frame" x="282" y="58" width="286" height="262"/>
+                                <rect key="frame" x="223" y="59" width="251" height="262"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
@@ -294,6 +294,7 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <outlet property="firstGauge" destination="b1e-vc-YvO" id="Q5t-zY-HeF"/>
+                        <outlet property="firstGaugeView" destination="b1e-vc-YvO" id="Ifz-cv-xIv"/>
                         <outlet property="secondGauge" destination="hOD-Tg-XgS" id="B1W-z6-ngC"/>
                     </connections>
                 </viewController>
@@ -375,6 +376,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Grz-D6-Kjz"/>
+        <segue reference="r31-vz-lfd"/>
     </inferredMetricsTieBreakers>
 </document>

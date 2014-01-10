@@ -19,6 +19,8 @@
     // Override point for customization after application launch.
     [self.window addSubview:viewController.view];
     [self.window makeKeyAndVisible];
+    
+    [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
 
     return YES;
 }
@@ -33,6 +35,12 @@
     
     return orientations;
 }
+
+- (BOOL)shouldAutoRotate
+{
+    return YES;
+}
+
 
 
 @end
