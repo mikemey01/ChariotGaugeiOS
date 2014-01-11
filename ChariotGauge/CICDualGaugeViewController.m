@@ -70,9 +70,13 @@
 
 -(void)adjustViewSize
 {
-    CGRect frame = self.firstGaugeView.frame;
-    frame.size = self.view.frame.size;
+    CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
+    NSLog(@"%f", screenRect.size.width); //4s size: 300
+    NSLog(@"%f", screenRect.size.height); //4s size: 480
+    
+    //firstGauge.frame.size = screenRect.size;
 }
+
 
 - (void)didReceiveMemoryWarning
 {
