@@ -44,6 +44,9 @@
                                 <state key="normal" image="bluetooth_logo.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="connectButtonPress:" destination="f5Q-SH-udO" eventType="touchUpInside" id="jl5-ef-o3T"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ds6-L6-M4i">
                                 <rect key="frame" x="206" y="90" width="48" height="48"/>

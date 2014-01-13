@@ -7,7 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
+@import CoreBluetooth;
 
-@interface CICBluetoothHandler : NSObject
+@interface CICBluetoothHandler : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate>{
+    BOOL connectPressed;
+}
+
+@property (nonatomic, strong) CBCentralManager *centralManager;
+@property (nonatomic, strong) CBPeripheral *peripheral;
+@property (nonatomic, strong) NSString   *connected;
+@property (nonatomic, assign) BOOL connectPressed;
+
+-(void)startScan;
+-(void)stopScan;
+-(void)disconnectBluetooth;
+
 
 @end

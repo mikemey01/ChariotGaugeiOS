@@ -86,10 +86,17 @@
     gaugeType = quad;
 }
 
+-(IBAction)connectButtonPress:(id)sender
+{
+    [bluetooth startScan];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
+    //Instatiate bluetooth handler.
+    bluetooth = [[CICBluetoothHandler alloc] init];
 }
 
 - (void)didReceiveMemoryWarning

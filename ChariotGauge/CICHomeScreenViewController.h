@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CICBluetoothHandler.h"
 
 @interface CICHomeScreenViewController : UIViewController{
-    
+    CICBluetoothHandler *bluetooth;
 }
 
 typedef enum {
@@ -27,5 +28,6 @@ typedef enum {
 -(IBAction)boostButtonPress:(id)sender;
 -(IBAction)oilButtonPress:(id)sender;
 -(IBAction)tempButtonPress:(id)sender;
+-(IBAction)connectButtonPress:(id)sender;
 
 @end
