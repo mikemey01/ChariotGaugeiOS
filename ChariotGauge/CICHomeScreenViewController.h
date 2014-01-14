@@ -23,6 +23,8 @@ typedef enum {
 } GaugeType;
 
 @property GaugeType gaugeType;
+@property (nonatomic, assign) BOOL connectPressed;
+@property (nonatomic, assign) BOOL connect;
 
 -(IBAction)widebandButtonPress:(id)sender;
 -(IBAction)boostButtonPress:(id)sender;

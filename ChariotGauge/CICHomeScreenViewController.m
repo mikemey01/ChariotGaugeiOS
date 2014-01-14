@@ -88,12 +88,19 @@
 
 -(IBAction)connectButtonPress:(id)sender
 {
-    [bluetooth startScan];
+    if(self.connect){
+        [bluetooth startScan];
+    }else{
+        [bluetooth disconnectBluetooth];
+    }
+    self.connect = (!self.connect);
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.connect = YES;
     
     //Instatiate bluetooth handler.
     bluetooth = [[CICBluetoothHandler alloc] init];
