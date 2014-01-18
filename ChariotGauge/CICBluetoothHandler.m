@@ -20,7 +20,6 @@
     //Make sure we're not already connected.
     if(self.peripheral.state != CBPeripheralStateConnected){
         NSLog(@"starting scan/connect.");
-        // Create centreal object
         CBCentralManager *centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil options:nil];
         [centralManager scanForPeripheralsWithServices:nil options:nil];
         self.centralManager = centralManager;
@@ -36,13 +35,6 @@
 
 -(void)disconnectBluetooth
 {
-//    if(self.peripheral.state == CBPeripheralStateConnected){
-//        [self stopScan];
-//        NSLog(@"Disconnecting");
-//    }else{
-//        NSLog(@"Not Connected, can't disconnect");
-//    }
-    // See if we are subscribed to a characteristic on the peripheral
     NSLog(@"disconnecting.");
     [self stopScan];
     if (self.peripheral.services != nil) {
@@ -58,13 +50,12 @@
         }
     }
     [self.centralManager cancelPeripheralConnection:self.peripheral];
-    //self.centralManager = nil;
     
 }
 
 - (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
     NSLog(@"Failed to connect %@", error.localizedDescription);
-    //[self cleanup];
+    [self disconnectBluetooth];
 }
 
 
@@ -77,8 +68,8 @@
 	NSString *localName = [advertisementData objectForKey:CBAdvertisementDataLocalNameKey];
 	if (![localName isEqual:@""]) { //if a device is found -- connect.
         [self.centralManager stopScan];
-		self.peripheral = peripheral;
 		peripheral.delegate = self;
+        self.peripheral = peripheral;
 		[self.centralManager connectPeripheral:peripheral options:nil];
         NSLog(@"peripheral name: %@", localName);
 	}
