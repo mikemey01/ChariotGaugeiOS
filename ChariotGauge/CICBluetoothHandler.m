@@ -125,6 +125,7 @@
 {
     
     NSLog(@"stupid shit: %@", characteristic.value);
+    
     NSLog(@"Error: %@", error);
 
 //    NSData *_data = characteristic.value;
