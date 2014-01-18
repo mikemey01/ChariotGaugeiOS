@@ -58,9 +58,7 @@
         }
     }
     [self.centralManager cancelPeripheralConnection:self.peripheral];
-    self.characteristic = nil;
-    self.peripheral = nil;
-    self.centralManager = nil;
+    //self.centralManager = nil;
     
 }
 
@@ -80,7 +78,7 @@
 	if (![localName isEqual:@""]) { //if a device is found -- connect.
         [self.centralManager stopScan];
 		self.peripheral = peripheral;
-		self.peripheral.delegate = self;
+		peripheral.delegate = self;
 		[self.centralManager connectPeripheral:peripheral options:nil];
         NSLog(@"peripheral name: %@", localName);
 	}
@@ -111,13 +109,12 @@
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error
 {
     NSLog(@"Error: %@", error);
-    //for (CBCharacteristic *aChar in service.characteristics)
-    //{
+    for (CBCharacteristic *aChar in service.characteristics)
+    {
         NSLog(@" characteristic present: %@", service.characteristics[0]);
-        self.characteristic = service.characteristics[0];
-        [self.peripheral setNotifyValue:YES forCharacteristic:self.characteristic];
-        [self.peripheral readValueForCharacteristic:self.characteristic];
-    //}
+        [self.peripheral setNotifyValue:YES forCharacteristic:aChar];
+        [self.peripheral readValueForCharacteristic:aChar];
+    }
 }
 
 // Invoked when you retrieve a specified characteristic's value, or when the peripheral device notifies your app that the characteristic's value has changed.
