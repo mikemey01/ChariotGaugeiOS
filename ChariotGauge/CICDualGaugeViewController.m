@@ -28,11 +28,11 @@
 }
 
 
+//Force landscape right for dual gauge.
 - (NSUInteger)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskLandscapeRight;
 }
-//End handling landscape mode.
 
 
 - (void)viewDidLoad

@@ -116,7 +116,7 @@
                                 </state>
                                 <connections>
                                     <action selector="dualButtonPress:" destination="f5Q-SH-udO" eventType="touchUpInside" id="vw0-vk-OqM"/>
-                                    <segue destination="hQh-5e-VRS" kind="push" id="psI-BY-8sG"/>
+                                    <segue destination="hQh-5e-VRS" kind="push" identifier="dualSegue" id="psI-BY-8sG"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S1h-EX-L3S">
@@ -131,7 +131,7 @@
                                 </state>
                                 <connections>
                                     <action selector="quadButtonPress:" destination="f5Q-SH-udO" eventType="touchUpInside" id="p6k-93-w7r"/>
-                                    <segue destination="evd-nH-Cvr" kind="push" id="MJZ-P5-bee"/>
+                                    <segue destination="evd-nH-Cvr" kind="push" identifier="quadSegue" id="MJZ-P5-bee"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Connect" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6aB-Zo-Am5">
@@ -384,6 +384,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="r31-vz-lfd"/>
+        <segue reference="Grz-D6-Kjz"/>
     </inferredMetricsTieBreakers>
 </document>

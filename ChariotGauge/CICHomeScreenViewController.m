@@ -40,6 +40,12 @@
         gaugeController.gaugeType = oil;
     }else if([segue.identifier isEqualToString:@"tempSegue"]){
         gaugeController.gaugeType = temp;
+    }else if([segue.identifier isEqualToString:@"dualSegue"]){
+        gaugeController.gaugeType = dual;
+    }else if([segue.identifier isEqualToString:@"quadSegue"]){
+        gaugeController.gaugeType = quad;
+    }else{
+        gaugeController.gaugeType = boost;
     }
 }
 
