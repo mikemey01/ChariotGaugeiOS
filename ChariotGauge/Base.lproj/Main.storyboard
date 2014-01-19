@@ -215,6 +215,8 @@
                             <constraint firstItem="S27-hk-JoM" firstAttribute="top" secondItem="6mG-7d-tmg" secondAttribute="bottom" constant="5" id="MLo-h6-9Iw"/>
                             <constraint firstItem="0po-W0-UI3" firstAttribute="top" secondItem="rle-EW-vRG" secondAttribute="bottom" constant="5" id="Mf3-NM-TUV"/>
                             <constraint firstItem="Ypw-zT-RRd" firstAttribute="centerX" secondItem="S1h-EX-L3S" secondAttribute="centerX" id="OcJ-oG-35c"/>
+                            <constraint firstItem="6mG-7d-tmg" firstAttribute="top" secondItem="R13-mh-yx4" secondAttribute="bottom" constant="12" id="P0H-C0-srH"/>
+                            <constraint firstItem="XTG-EA-e19" firstAttribute="bottom" secondItem="S27-hk-JoM" secondAttribute="bottom" id="Qox-LI-T5m"/>
                             <constraint firstItem="7u0-Ph-RUU" firstAttribute="centerX" secondItem="3ZI-BM-nfz" secondAttribute="centerX" id="Uom-ug-9ic"/>
                             <constraint firstItem="Ypw-zT-RRd" firstAttribute="top" secondItem="XTG-EA-e19" secondAttribute="bottom" constant="30" id="Vd3-oT-AJN"/>
                             <constraint firstItem="XTG-EA-e19" firstAttribute="top" secondItem="Uk9-9V-h3o" secondAttribute="bottom" constant="5" id="Vnw-cn-yYf"/>
@@ -231,7 +233,6 @@
                             <constraint firstItem="Ypw-zT-RRd" firstAttribute="centerX" secondItem="Ds6-L6-M4i" secondAttribute="centerX" id="ouy-zL-hyN"/>
                             <constraint firstItem="7u0-Ph-RUU" firstAttribute="centerX" secondItem="paE-FK-US7" secondAttribute="centerX" id="ruq-qE-FRG"/>
                             <constraint firstItem="S1h-EX-L3S" firstAttribute="top" secondItem="7dr-b8-xw4" secondAttribute="bottom" constant="30" id="rw1-wc-0k9"/>
-                            <constraint firstItem="R13-mh-yx4" firstAttribute="top" secondItem="Lom-cP-URM" secondAttribute="bottom" constant="15" id="uqK-dz-L7F"/>
                             <constraint firstItem="Ypw-zT-RRd" firstAttribute="centerX" secondItem="7dr-b8-xw4" secondAttribute="centerX" id="xKU-oP-U1J"/>
                         </constraints>
                     </view>
