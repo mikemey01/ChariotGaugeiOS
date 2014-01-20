@@ -24,6 +24,7 @@
 -(void)startScan;
 -(void)stopScan;
 -(void)disconnectBluetooth;
+-(void)parseValue:(CBCharacteristic *)characteristic;
 
 
 @end

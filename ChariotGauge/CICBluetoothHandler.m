@@ -35,21 +35,25 @@
 
 -(void)disconnectBluetooth
 {
-    NSLog(@"disconnecting.");
-    [self stopScan];
-    if (self.peripheral.services != nil) {
-        for (CBService *service in self.peripheral.services) {
-            if (service.characteristics != nil) {
-                for (CBCharacteristic *characteristic in service.characteristics) {
-                    if (characteristic.isNotifying) {
-                        [self.peripheral setNotifyValue:NO forCharacteristic:characteristic];
-                        return;
+    if(self.peripheral.state == CBPeripheralStateConnected){
+        NSLog(@"disconnecting.");
+        [self stopScan];
+        if (self.peripheral.services != nil) {
+            for (CBService *service in self.peripheral.services) {
+                if (service.characteristics != nil) {
+                    for (CBCharacteristic *characteristic in service.characteristics) {
+                        if (characteristic.isNotifying) {
+                            [self.peripheral setNotifyValue:NO forCharacteristic:characteristic];
+                            return;
+                        }
                     }
                 }
             }
         }
+        [self.centralManager cancelPeripheralConnection:self.peripheral];
+    }else{
+        NSLog(@"Not connected.");
     }
-    [self.centralManager cancelPeripheralConnection:self.peripheral];
     
 }
 
@@ -62,7 +66,7 @@
 /*
  CBCentralManagerDelegate - This is called with the CBPeripheral class as its main input parameter.
  This contains most of the information there is to know about a BLE peripheral.
- */
+*/
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
 {
 	NSString *localName = [advertisementData objectForKey:CBAdvertisementDataLocalNameKey];
@@ -78,7 +82,6 @@
 // method called whenever we have successfully connected to the BLE peripheral
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral
 {
-    //self.connected = [NSString stringWithFormat:@"Connected: %@", peripheral.state == CBPeripheralStateConnected ? @"YES" : @"NO"];
     NSLog(@" connected status: connected: YES");
     
 	[peripheral setDelegate:self];
@@ -88,21 +91,26 @@
 // CBPeripheralDelegate - Invoked when you discover the peripheral's available services.
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error
 {
-    NSLog(@"Error: %@", error);
-	//for (CBService *service in peripheral.services) {
-		[peripheral discoverCharacteristics:nil forService:peripheral.services[0]];
-	//}
+    if(error != nil){
+        NSLog(@"error in didDiscoverServices: %@", error);
+    }
     
-    NSLog(@"peripheral services: %@", peripheral.services);
+	for (CBService *service in peripheral.services) {
+		[peripheral discoverCharacteristics:nil forService:service];
+        NSLog(@"Services present on periph: %@", service);
+	}
 }
 
 // Invoked when you discover the characteristics of a specified service.
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error
 {
-    NSLog(@"Error: %@", error);
+    if(error != nil){
+        NSLog(@"Error in didDisconverCharForService: %@", error);
+    }
+    
     for (CBCharacteristic *aChar in service.characteristics)
     {
-        NSLog(@" characteristic present: %@", service.characteristics[0]);
+        NSLog(@" characteristic present: %@", aChar);
         [self.peripheral setNotifyValue:YES forCharacteristic:aChar];
         [self.peripheral readValueForCharacteristic:aChar];
     }
@@ -112,28 +120,13 @@
 - (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
 {
     
-    NSLog(@"stupid shit: %@", characteristic.value);
+    [self parseValue:characteristic];
     
-    NSLog(@"Error: %@", error);
+}
 
-//    NSData *_data = characteristic.value;
-//    NSMutableString *_string = [NSMutableString stringWithString:@""];
-//    for (int i = 0; i < _data.length; i++) {
-//        unsigned char _byte;
-//        [_data getBytes:&_byte range:NSMakeRange(i, 1)];
-////        if(_byte != 44){
-////            [_string appendFormat:@"%c", _byte];
-////        }else{
-////            [_string appendFormat:@"%c", 77];
-////        }
-//        if (_byte >= 32 && _byte < 127) {
-//            [_string appendFormat:@"%c", _byte];
-//        } else {
-//            [_string appendFormat:@"[%d]", _byte];
-//        }
-//    }
-//    NSLog(@"%@", _string);
-    
+- (void)parseValue:(CBCharacteristic *)characteristic
+{
+    NSLog(@"value: %@", characteristic.value);
 }
 
 // method called whenever the device state changes.
