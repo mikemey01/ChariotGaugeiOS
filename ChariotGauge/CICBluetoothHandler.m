@@ -16,6 +16,7 @@
 {
     //Set flag that the connect button has been pressed.
     self.connectPressed = YES;
+    stringConcat = [NSMutableString stringWithString:@""];
     
     //Make sure we're not already connected.
     if(self.peripheral.state != CBPeripheralStateConnected){
@@ -126,21 +127,17 @@
 
 - (void)parseValue:(CBCharacteristic *)characteristic
 {
-    stringValue = [[NSString alloc] initWithData:characteristic.value encoding:NSUTF8StringEncoding];
-    
     NSData *_data = characteristic.value;
-    //stringValue = [[NSString alloc] initWithData:_data.length encoding:NSUTF8StringEncoding];
-    //Output the byte and string value next to each other!!
-    unsigned char _byte;
-    [_data getBytes:&_byte range:NSMakeRange(_data.length-1, 1)];
-    if(_byte == 10){
-        [stringConcat appendString:stringValue];
-        NSLog(@"Value1: %@", stringValue);
-        [stringConcat setString:@""];
-    }else{
-        [stringConcat appendString:stringValue];
+    for (int i = 0; i < _data.length; i++) {
+        unsigned char _byte;
+        [_data getBytes:&_byte range:NSMakeRange(i, 1)];
+        if (_byte > 13 && _byte < 127) {
+            [stringConcat appendFormat:@"%c", _byte];
+        }else if(_byte == 10){
+            NSLog(@"val1: %@", stringConcat);
+            stringConcat = [NSMutableString stringWithString:@""];
+        }
     }
-
 }
 
 // method called whenever the device state changes.
