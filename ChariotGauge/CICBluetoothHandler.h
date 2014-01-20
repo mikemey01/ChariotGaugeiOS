@@ -11,15 +11,16 @@
 
 @interface CICBluetoothHandler : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate>{
     BOOL connectPressed;
+    NSString *stringValue;
+    NSMutableString *stringConcat;
 }
 
 @property (nonatomic, strong) CBCentralManager *centralManager;
 @property (nonatomic, strong) CBPeripheral *peripheral;
-//@property (nonatomic, strong) CBCharacteristic *characteristic;
 @property (nonatomic, strong) NSString   *connected;
 @property (nonatomic, assign) BOOL connectPressed;
 
-@property (nonatomic, assign) NSMutableString *stringConcat;
+@property (nonatomic, retain) NSMutableString *stringConcat;
 
 -(void)startScan;
 -(void)stopScan;

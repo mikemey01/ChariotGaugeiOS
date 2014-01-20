@@ -10,7 +10,7 @@
 
 @implementation CICBluetoothHandler
 
-@synthesize connectPressed;
+@synthesize connectPressed, stringConcat;
 
 -(void)startScan
 {
@@ -126,7 +126,21 @@
 
 - (void)parseValue:(CBCharacteristic *)characteristic
 {
-    NSLog(@"value: %@", characteristic.value);
+    stringValue = [[NSString alloc] initWithData:characteristic.value encoding:NSUTF8StringEncoding];
+    
+    NSData *_data = characteristic.value;
+    //stringValue = [[NSString alloc] initWithData:_data.length encoding:NSUTF8StringEncoding];
+    //Output the byte and string value next to each other!!
+    unsigned char _byte;
+    [_data getBytes:&_byte range:NSMakeRange(_data.length-1, 1)];
+    if(_byte == 10){
+        [stringConcat appendString:stringValue];
+        NSLog(@"Value1: %@", stringValue);
+        [stringConcat setString:@""];
+    }else{
+        [stringConcat appendString:stringValue];
+    }
+
 }
 
 // method called whenever the device state changes.
