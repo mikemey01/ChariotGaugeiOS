@@ -45,16 +45,18 @@
                     for (CBCharacteristic *characteristic in service.characteristics) {
                         if (characteristic.isNotifying) {
                             [self.peripheral setNotifyValue:NO forCharacteristic:characteristic];
-                            return;
+                            //return;
                         }
                     }
                 }
             }
         }
-        [self.centralManager cancelPeripheralConnection:self.peripheral];
     }else{
         NSLog(@"Not connected.");
     }
+    [self.centralManager cancelPeripheralConnection:self.peripheral];
+    self.centralManager = nil;
+    self.peripheral = nil;
     
 }
 
