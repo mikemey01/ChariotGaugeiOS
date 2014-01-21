@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "CICGaugeBuilder.h"
+#import "CICHomeScreenViewController.h"
+#import "CICBluetoothHandler.h"
 
 @class CICGaugeBuilder;
 
@@ -17,6 +19,8 @@
     UIView *firstGaugeView;
 }
 
+@property (nonatomic, retain) CICBluetoothHandler *bluetooth;
+@property GaugeType gaugeType;
 @property (nonatomic, retain) IBOutlet CICGaugeBuilder *firstGauge;
 @property (nonatomic, retain) IBOutlet CICGaugeBuilder *secondGauge;
 @property (nonatomic, retain) IBOutlet UIView *firstGaugeView;

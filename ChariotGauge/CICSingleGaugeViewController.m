@@ -10,6 +10,7 @@
 #import "CICSingleGaugeViewController.h"
 #import "CICGaugeBuilder.h"
 #import "CICAppDelegate.h"
+#import "CICBluetoothHandler.h"
 
 
 @interface CICSingleGaugeViewController ()
@@ -18,7 +19,7 @@
 
 @implementation CICSingleGaugeViewController
 
-@synthesize gaugeView, gaugeType;
+@synthesize gaugeView, gaugeType, bluetooth;
 
 
 - (void)viewDidLoad

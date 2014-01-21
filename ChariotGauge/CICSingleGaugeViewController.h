@@ -9,15 +9,18 @@
 #import <UIKit/UIKit.h>
 #import "CICGaugeBuilder.h"
 #import "CICHomeScreenViewController.h"
+#import "CICBluetoothHandler.h"
 
 @class CICGaugeBuilder;
 
 @interface CICSingleGaugeViewController : UIViewController{
     CICGaugeBuilder *gaugeView;
+    CICBluetoothHandler *bluetooth;
 }
 
 @property GaugeType gaugeType;
 @property (nonatomic, retain) IBOutlet CICGaugeBuilder *gaugeView;
+@property (nonatomic, retain) CICBluetoothHandler *bluetooth;
 
 -(void)createWidebandGauge;
 -(void)createBoostGauge;

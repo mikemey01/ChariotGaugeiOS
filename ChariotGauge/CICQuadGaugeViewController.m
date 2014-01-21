@@ -14,7 +14,7 @@
 
 @implementation CICQuadGaugeViewController
 
-@synthesize firstGauge, secondGauge, thirdGauge, fourthGauge;
+@synthesize firstGauge, secondGauge, thirdGauge, fourthGauge, gaugeType, bluetooth;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

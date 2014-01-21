@@ -25,6 +25,7 @@ typedef enum {
 @property GaugeType gaugeType;
 @property (nonatomic, assign) BOOL connectPressed;
 @property (nonatomic, assign) BOOL connect;
+@property (nonatomic, retain) CICBluetoothHandler *bluetooth;
 
 -(IBAction)widebandButtonPress:(id)sender;
 -(IBAction)boostButtonPress:(id)sender;

@@ -8,6 +8,8 @@
 
 #import "CICHomeScreenViewController.h"
 #import "CICSingleGaugeViewController.h"
+#import "CICDualGaugeViewController.h"
+#import "CICQuadGaugeViewController.h"
 
 @interface CICHomeScreenViewController ()
 
@@ -15,7 +17,7 @@
 
 @implementation CICHomeScreenViewController
 
-@synthesize gaugeType;
+@synthesize gaugeType, bluetooth;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -26,26 +28,32 @@
     return self;
 }
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    
-    CICSingleGaugeViewController *gaugeController = (CICSingleGaugeViewController *)segue.destinationViewController;
-    
-    //TODO: Need to add handling for multi-gauge displays.
-    
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
     if([segue.identifier isEqualToString:@"widebandSegue"]){
+        CICSingleGaugeViewController *gaugeController = (CICSingleGaugeViewController *)segue.destinationViewController;
         gaugeController.gaugeType = wideband;
+        gaugeController.bluetooth = self.bluetooth;
     }else if([segue.identifier isEqualToString:@"boostSegue"]){
+        CICSingleGaugeViewController *gaugeController = (CICSingleGaugeViewController *)segue.destinationViewController;
         gaugeController.gaugeType = boost;
+        gaugeController.bluetooth = self.bluetooth;
     }else if([segue.identifier isEqualToString:@"oilSegue"]){
+        CICSingleGaugeViewController *gaugeController = (CICSingleGaugeViewController *)segue.destinationViewController;
         gaugeController.gaugeType = oil;
+        gaugeController.bluetooth = self.bluetooth;
     }else if([segue.identifier isEqualToString:@"tempSegue"]){
+        CICSingleGaugeViewController *gaugeController = (CICSingleGaugeViewController *)segue.destinationViewController;
         gaugeController.gaugeType = temp;
+        gaugeController.bluetooth = self.bluetooth;
     }else if([segue.identifier isEqualToString:@"dualSegue"]){
+        CICDualGaugeViewController *gaugeController = (CICDualGaugeViewController *)segue.destinationViewController;
         gaugeController.gaugeType = dual;
+        gaugeController.bluetooth = self.bluetooth;
     }else if([segue.identifier isEqualToString:@"quadSegue"]){
+        CICQuadGaugeViewController *gaugeController = (CICQuadGaugeViewController *)segue.destinationViewController;
         gaugeController.gaugeType = quad;
-    }else{
-        gaugeController.gaugeType = boost;
+        gaugeController.bluetooth = self.bluetooth;
     }
 }
 
@@ -95,9 +103,9 @@
 -(IBAction)connectButtonPress:(id)sender
 {
     if(self.connect){
-        [bluetooth startScan];
+        [self.bluetooth startScan];
     }else{
-        [bluetooth disconnectBluetooth];
+        [self.bluetooth disconnectBluetooth];
     }
     self.connect = (!self.connect);
 }
@@ -109,7 +117,7 @@
     self.connect = YES;
     
     //Instatiate bluetooth handler.
-    bluetooth = [[CICBluetoothHandler alloc] init];
+    self.bluetooth = [[CICBluetoothHandler alloc] init];
 }
 
 - (void)didReceiveMemoryWarning
