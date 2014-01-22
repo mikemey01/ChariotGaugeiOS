@@ -10,7 +10,7 @@
 
 @implementation CICBluetoothHandler
 
-@synthesize connectPressed, stringConcat;
+@synthesize connectPressed, stringConcat, btDelegate;
 
 -(void)startScan
 {
@@ -133,7 +133,8 @@
         if (_byte > 13 && _byte < 127) {
             [stringConcat appendFormat:@"%c", _byte];
         }else if(_byte == 10){
-            NSLog(@"val1: %@", stringConcat);
+            [[self btDelegate] getLatestData:stringConcat];
+            //NSLog(@"testing..%@", stringConcat);
             stringConcat = [NSMutableString stringWithString:@""];
         }
     }

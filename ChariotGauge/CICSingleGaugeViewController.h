@@ -11,9 +11,9 @@
 #import "CICHomeScreenViewController.h"
 #import "CICBluetoothHandler.h"
 
-@class CICGaugeBuilder;
+@class CICGaugeBuilder, CICSingleGaugeViewController;
 
-@interface CICSingleGaugeViewController : UIViewController{
+@interface CICSingleGaugeViewController : UIViewController <BluetoothDelegate>{
     CICGaugeBuilder *gaugeView;
     CICBluetoothHandler *bluetooth;
 }

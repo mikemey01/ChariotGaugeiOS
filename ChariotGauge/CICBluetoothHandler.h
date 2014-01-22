@@ -9,10 +9,17 @@
 #import <Foundation/Foundation.h>
 @import CoreBluetooth;
 
+@protocol BluetoothDelegate <NSObject>
+@required
+- (void) getLatestData: (NSMutableString *)newData;
+@end
+
 @interface CICBluetoothHandler : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate>{
     BOOL connectPressed;
     NSString *stringValue;
     NSMutableString *stringConcat;
+    
+    id <BluetoothDelegate> btDelegate;
 }
 
 @property (nonatomic, strong) CBCentralManager *centralManager;
@@ -21,6 +28,8 @@
 @property (nonatomic, assign) BOOL connectPressed;
 
 @property (nonatomic, retain) NSMutableString *stringConcat;
+
+@property (nonatomic, retain) id btDelegate;
 
 -(void)startScan;
 -(void)stopScan;

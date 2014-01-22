@@ -12,7 +12,6 @@
 #import "CICAppDelegate.h"
 #import "CICBluetoothHandler.h"
 
-
 @interface CICSingleGaugeViewController ()
 
 @end
@@ -26,6 +25,8 @@
 {
     [super viewDidLoad];
     
+    [self.bluetooth setBtDelegate:self];
+    
     if(gaugeType==0){
         [self createWidebandGauge];
     }else if(gaugeType==1){
@@ -38,6 +39,11 @@
         [self createBoostGauge];
     }
     
+}
+
+-(void) getLatestData:(NSMutableString *)newData
+{
+    NSLog(@"latest data: %@", newData);
 }
 
 
