@@ -16,6 +16,9 @@
 @interface CICSingleGaugeViewController : UIViewController <BluetoothDelegate>{
     CICGaugeBuilder *gaugeView;
     CICBluetoothHandler *bluetooth;
+    NSArray *newArray;
+    NSString *currentStringValue;
+    NSInteger currentIntergerValue;
 }
 
 @property GaugeType gaugeType;
@@ -26,4 +29,10 @@
 -(void)createBoostGauge;
 -(void)createOilGauge;
 -(void)createTempGauge;
+
+-(void) setGaugeValue:(NSArray *)array;
+-(void) calculateWideband:(NSInteger)val;
+-(void) calculateBoost:(NSInteger)val;
+-(void) calculateOil:(NSInteger)val;
+-(void) calculateTemp:(NSInteger)val;
 @end

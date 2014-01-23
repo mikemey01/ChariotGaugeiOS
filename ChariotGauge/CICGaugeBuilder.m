@@ -168,11 +168,14 @@
 
 - (void)setValue:(float)val
 {
+    NSLog(@"output from setval: %f", val);
     //Make sure the passed in value is within the bounds of the current gauge.
-	if (val > self.maxGaugeNumber)
-		val = self.maxGaugeNumber;
-	if (val < self.minGaugeNumber)
-		val = self.minGaugeNumber;
+//	if (val > self.maxGaugeNumber)
+//		val = self.maxGaugeNumber;
+//	if (val < self.minGaugeNumber)
+//		val = self.minGaugeNumber;
+    
+    
     
     //Get the range of the current gauge.
     int gaugeRangeLocal = self.maxGaugeNumber - self.minGaugeNumber;
@@ -183,10 +186,10 @@
     //Transform the layer to the correct angle along the z-plane.
 	needleLayer.transform = CATransform3DMakeRotation(DEGREES_TO_RADIANS(angle), 0.0f, 0.0f, 1.0f);
     
-    self.digitalBuilder.digitalValue = [NSString stringWithFormat:@"%.1f", val];
+    //self.digitalBuilder.digitalValue = [NSString stringWithFormat:@"%.1f", val];
     
     [needleLayer setNeedsDisplay];
-    [digitalLayer setNeedsDisplay];
+    //[digitalLayer setNeedsDisplay];
 }
 
 - (void)drawTicksOnArc:(CGContextRef)context
