@@ -110,12 +110,14 @@
     
     CATextLayer *label = [[CATextLayer alloc] init];
     [label setFont:CFBridgingRetain(self.digitalFont.fontName)];
-    [label setFontSize:self.digitalFont.pointSize];
-    [label setFrame:CGRectMake(0+(self.gaugeX*2), yPlacement, self.gaugeWidth, self.digitalFont.pointSize)];
+    [label setFontSize:(int)self.digitalFont.pointSize];
+    [label setFrame:CGRectIntegral(CGRectMake((int)0+(self.gaugeX*2), (int)yPlacement, (int)self.gaugeWidth, (int)self.digitalFont.pointSize))];
     [label setString:self.digitalValue];
     [label setAlignmentMode:kCAAlignmentCenter];
     [label setForegroundColor:[[UIColor blackColor] CGColor]];
     [layer addSublayer:label];
+    
+    //[loadingText setFrame:CGRectIntegral(loadingText.frame)];
 }
 
 
@@ -496,7 +498,7 @@
     //digital gauge layer init
     digitalLayer = [CALayer layer];
     digitalLayer.bounds = self.bounds;
-    digitalLayer.position = CGPointMake(self.gaugeWidth / 2.0+self.gaugeX, self.gaugeWidth / 2.0);
+    digitalLayer.position = CGPointMake((int)self.gaugeWidth / 2.0+self.gaugeX, (int)self.gaugeWidth / 2.0);
     digitalLayer.needsDisplayOnBoundsChange = YES;
     digitalLayer.delegate = self.digitalBuilder;
     [self.layer addSublayer:digitalLayer];
