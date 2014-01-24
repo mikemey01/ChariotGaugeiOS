@@ -168,14 +168,11 @@
 
 - (void)setValue:(float)val
 {
-    NSLog(@"output from setval: %f", val);
     //Make sure the passed in value is within the bounds of the current gauge.
-//	if (val > self.maxGaugeNumber)
-//		val = self.maxGaugeNumber;
-//	if (val < self.minGaugeNumber)
-//		val = self.minGaugeNumber;
-    
-    
+	if (val > self.maxGaugeNumber)
+		val = self.maxGaugeNumber;
+	if (val < self.minGaugeNumber)
+		val = self.minGaugeNumber;
     
     //Get the range of the current gauge.
     int gaugeRangeLocal = self.maxGaugeNumber - self.minGaugeNumber;
@@ -186,7 +183,7 @@
     //Transform the layer to the correct angle along the z-plane.
 	needleLayer.transform = CATransform3DMakeRotation(DEGREES_TO_RADIANS(angle), 0.0f, 0.0f, 1.0f);
     
-    //self.digitalBuilder.digitalValue = [NSString stringWithFormat:@"%.1f", val];
+    self.digitalBuilder.digitalValue = [NSString stringWithFormat:@"%.1f", val];
     
     [needleLayer setNeedsDisplay];
     //[digitalLayer setNeedsDisplay];
@@ -196,8 +193,9 @@
 {
     gaugeRange = maxGaugeNumber - minGaugeNumber; //The range of the config numbers
     int angleRange = 0; //should ALWAYS start at 0 - forces the ticks to start at self.tickStartAngleDegrees
+    float gaugeIncrement = self.minGaugeNumber;
     
-    while(self.minGaugeNumber <= self.maxGaugeNumber){ //traverse the range of config'd numbers
+    while(gaugeIncrement <= self.maxGaugeNumber){ //traverse the range of config'd numbers
         
         //Setup the lenth of the tick depending on if it's a major or minor tick.
         if(angleRange % incrementPerLargeTick == 0){
@@ -236,13 +234,13 @@
         
         //Draw numbers on major ticks
         if(tickLineLength == 10){
-            NSString * drawNumber = [NSString stringWithFormat:@"%d",abs(self.minGaugeNumber)]; //cast decimal to string
+            NSString * drawNumber = [NSString stringWithFormat:@"%d",abs(gaugeIncrement)]; //cast decimal to string
             [self drawCurvedText:drawNumber atAngle:DEGREES_TO_RADIANS(actualLineAngle) withContext:context forTickArc:YES]; //draw the number at the major ticks.
         }
         
         //Increments based on the assumption there are 4 minor ticks plus one major. each increment is set in a property.
         angleRange = angleRange + incrementPerLargeTick/5; //Loop through each degree, set a major or minor tick.
-        self.minGaugeNumber = self.minGaugeNumber + incrementPerLargeTick/5;
+        gaugeIncrement += incrementPerLargeTick/5;
     }
 }
 

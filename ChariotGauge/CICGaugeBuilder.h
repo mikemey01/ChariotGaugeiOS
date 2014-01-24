@@ -66,10 +66,10 @@
         /*gauge stuff*/
     
     //Min number on the gauge
-    int minGaugeNumber;
+    float minGaugeNumber;
     
     //Max number on the gauge
-    int maxGaugeNumber;
+    float maxGaugeNumber;
     
     //Gauge range based on min/max numbers
     int gaugeRange;
@@ -126,8 +126,8 @@
 }
 
 //gauge props
-@property (nonatomic, assign) int minGaugeNumber;
-@property (nonatomic, assign) int maxGaugeNumber;
+@property (nonatomic, assign) float minGaugeNumber;
+@property (nonatomic, assign) float maxGaugeNumber;
 @property (nonatomic, assign) int incrementPerLargeTick;
 @property (nonatomic, retain) NSString *gaugeLabel;
 @property (nonatomic, assign) int gaugeType;
