@@ -11,6 +11,7 @@
 #import "CICGaugeBuilder.h"
 #import "CICAppDelegate.h"
 #import "CICBluetoothHandler.h"
+#import "CICCalculateData.h"
 
 #define ATMOSPHERIC 101.325
 #define PSI_TO_INHG 2.03625437
@@ -44,6 +45,8 @@
     
     [self.bluetooth setBtDelegate:self];
     
+    calcData = [[CICCalculateData alloc] init];
+    
 }
 
 -(void) getLatestData:(NSMutableString *)newData
@@ -60,13 +63,13 @@
         currentIntergerValue = [currentStringValue integerValue];
         
         if(gaugeType==0){
-            [self calculateWideband:currentIntergerValue];
+            [self calculateWideband:(float)currentIntergerValue];
         }else if(gaugeType==1){
-            [self calculateBoost:currentIntergerValue];
+            self.gaugeView.value = [calcData calculateBoost:currentIntergerValue];
         }else if(gaugeType==2){
-            [self calculateOil:currentIntergerValue];
+            [self calculateOil:(float)currentIntergerValue];
         }else if(gaugeType==3){
-            [self calculateTemp:currentIntergerValue];
+            [self calculateTemp:(float)currentIntergerValue];
         }
     }
 }
@@ -76,25 +79,25 @@
     
 }
 
--(void) calculateBoost:(NSInteger)val
-{
-    
-    float vOut;
-    float kpa=0;
-    float psi=0;
-    
-    vOut = (val*5.00)/1024;
-    kpa = ((vOut/5.00)+.04)/.004;
-    psi = (kpa - ATMOSPHERIC) * KPA_TO_PSI;
-    
-    if(psi < 0){
-        psi = psi * PSI_TO_INHG;
-    }
-    
-    [self.gaugeView setValue:psi];
-    //NSLog(@"calcBoost: %f", psi);
-    //self.gaugeView.value = 5;
-}
+//-(void) calculateBoost:(NSInteger)val
+//{
+//    
+//    float vOut;
+//    float kpa=0;
+//    float psi=0;
+//    
+//    vOut = (val*5.00)/1024;
+//    kpa = ((vOut/5.00)+.04)/.004;
+//    psi = (kpa - ATMOSPHERIC) * KPA_TO_PSI;
+//    
+//    if(psi < 0){
+//        psi = psi * PSI_TO_INHG;
+//    }
+//    
+//    [self.gaugeView setValue:psi];
+//    //NSLog(@"calcBoost: %f", psi);
+//    //self.gaugeView.value = 5;
+//}
 
 -(void) calculateOil:(NSInteger)val
 {

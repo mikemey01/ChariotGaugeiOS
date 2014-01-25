@@ -10,6 +10,7 @@
 #import "CICGaugeBuilder.h"
 #import "CICHomeScreenViewController.h"
 #import "CICBluetoothHandler.h"
+#import "CICCalculateData.h"
 
 @class CICGaugeBuilder, CICSingleGaugeViewController;
 
@@ -19,6 +20,7 @@
     NSArray *newArray;
     NSString *currentStringValue;
     NSInteger currentIntergerValue;
+    CICCalculateData *calcData;
 }
 
 @property GaugeType gaugeType;
