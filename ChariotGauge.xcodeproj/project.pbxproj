@@ -10,6 +10,7 @@
 		CE05FFB01849433700764A43 /* CICGaugeBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = CE05FFAF1849433700764A43 /* CICGaugeBuilder.m */; };
 		CE0C78101867B44C006C6C1C /* CICHomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0C780F1867B44C006C6C1C /* CICHomeScreenViewController.m */; };
 		CE0C78121867B4DD006C6C1C /* boost_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = CE0C78111867B4DD006C6C1C /* boost_logo.png */; };
+		CE166EE518934BAB0063CB51 /* CICCalculateData.m in Sources */ = {isa = PBXBuildFile; fileRef = CE166EE418934BAB0063CB51 /* CICCalculateData.m */; };
 		CE2E850B1847B01000C51A49 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2E850A1847B01000C51A49 /* Foundation.framework */; };
 		CE2E850D1847B01000C51A49 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2E850C1847B01000C51A49 /* CoreGraphics.framework */; };
 		CE2E850F1847B01000C51A49 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2E850E1847B01000C51A49 /* UIKit.framework */; };
@@ -55,6 +56,8 @@
 		CE0C780E1867B44C006C6C1C /* CICHomeScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICHomeScreenViewController.h; sourceTree = "<group>"; };
 		CE0C780F1867B44C006C6C1C /* CICHomeScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICHomeScreenViewController.m; sourceTree = "<group>"; };
 		CE0C78111867B4DD006C6C1C /* boost_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = boost_logo.png; path = "../../../../Documents/Chariot Gauge/ChariotGauge Media/Project Sensor/Trent - Icon Set/Resized/boost_logo.png"; sourceTree = "<group>"; };
+		CE166EE318934BAB0063CB51 /* CICCalculateData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICCalculateData.h; sourceTree = "<group>"; };
+		CE166EE418934BAB0063CB51 /* CICCalculateData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICCalculateData.m; sourceTree = "<group>"; };
 		CE2E85071847B01000C51A49 /* ChariotGauge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChariotGauge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE2E850A1847B01000C51A49 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CE2E850C1847B01000C51A49 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -181,6 +184,8 @@
 				CE34F40C1872227F00C1F12B /* CICQuadGaugeViewController.m */,
 				CED082F91878BAD2007FD05A /* CICDigitalGaugeBuilder.h */,
 				CED082FA1878BAD2007FD05A /* CICDigitalGaugeBuilder.m */,
+				CE166EE318934BAB0063CB51 /* CICCalculateData.h */,
+				CE166EE418934BAB0063CB51 /* CICCalculateData.m */,
 				CE58A010186F8E3F001348DA /* CICDrawLine.h */,
 				CE58A011186F8E3F001348DA /* CICDrawLine.m */,
 				CE05FFAE1849433700764A43 /* CICGaugeBuilder.h */,
@@ -337,6 +342,7 @@
 				CE34F40A18710A3700C1F12B /* CICDualGaugeViewController.m in Sources */,
 				CE3DA0F7188348CD006650D9 /* CICBluetoothHandler.m in Sources */,
 				CE58A012186F8E3F001348DA /* CICDrawLine.m in Sources */,
+				CE166EE518934BAB0063CB51 /* CICCalculateData.m in Sources */,
 				CE2E851B1847B01000C51A49 /* CICAppDelegate.m in Sources */,
 				CE0C78101867B44C006C6C1C /* CICHomeScreenViewController.m in Sources */,
 				CE2E85171847B01000C51A49 /* main.m in Sources */,
