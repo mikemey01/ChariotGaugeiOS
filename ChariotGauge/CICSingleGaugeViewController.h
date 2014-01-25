@@ -33,8 +33,4 @@
 -(void)createTempGauge;
 
 -(void) setGaugeValue:(NSArray *)array;
--(void) calculateWideband:(NSInteger)val;
--(void) calculateBoost:(NSInteger)val;
--(void) calculateOil:(NSInteger)val;
--(void) calculateTemp:(NSInteger)val;
 @end

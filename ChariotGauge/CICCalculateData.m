@@ -15,7 +15,16 @@
 
 @implementation CICCalculateData
 
--(float) calculateBoost:(NSInteger)val
+@synthesize sensorMaxValue;
+
+/* Calc functions */
+
+-(float) calcWideBand:(float)val
+{
+    return val;
+}
+
+-(float) calcBoost:(float)val
 {
     
     float vOut;
@@ -30,7 +39,25 @@
         psi = psi * PSI_TO_INHG;
     }
     
+    if(psi > self.sensorMaxValue){
+        self.sensorMaxValue = psi;
+    }
+    
     return psi;
 }
+
+-(float) calcOil:(float)val
+{
+    return val;
+}
+
+-(float) calcTemp:(float)val
+{
+    return val;
+}
+
+/* Helper Functions */
+
+
 
 @end

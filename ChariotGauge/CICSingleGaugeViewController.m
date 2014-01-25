@@ -63,50 +63,15 @@
         currentIntergerValue = [currentStringValue integerValue];
         
         if(gaugeType==0){
-            [self calculateWideband:(float)currentIntergerValue];
+            self.gaugeView.value = [calcData calcWideBand:currentIntergerValue];
         }else if(gaugeType==1){
-            self.gaugeView.value = [calcData calculateBoost:currentIntergerValue];
+            self.gaugeView.value = [calcData calcBoost:currentIntergerValue];
         }else if(gaugeType==2){
-            [self calculateOil:(float)currentIntergerValue];
+            self.gaugeView.value = [calcData calcOil:currentIntergerValue];
         }else if(gaugeType==3){
-            [self calculateTemp:(float)currentIntergerValue];
+            self.gaugeView.value = [calcData calcTemp:currentIntergerValue];
         }
     }
-}
-
--(void) calculateWideband:(NSInteger)val
-{
-    
-}
-
-//-(void) calculateBoost:(NSInteger)val
-//{
-//    
-//    float vOut;
-//    float kpa=0;
-//    float psi=0;
-//    
-//    vOut = (val*5.00)/1024;
-//    kpa = ((vOut/5.00)+.04)/.004;
-//    psi = (kpa - ATMOSPHERIC) * KPA_TO_PSI;
-//    
-//    if(psi < 0){
-//        psi = psi * PSI_TO_INHG;
-//    }
-//    
-//    [self.gaugeView setValue:psi];
-//    //NSLog(@"calcBoost: %f", psi);
-//    //self.gaugeView.value = 5;
-//}
-
--(void) calculateOil:(NSInteger)val
-{
-    
-}
-
--(void) calculateTemp:(NSInteger)val
-{
-    
 }
 
 
@@ -135,6 +100,7 @@
     self.gaugeView.lineWidth = 1;
     self.gaugeView.value = self.gaugeView.minGaugeNumber;
     self.gaugeView.menuItemsFont = [UIFont fontWithName:@"Futura" size:18];
+    calcData.sensorMaxValue = self.gaugeView.minGaugeNumber;
 }
 
 -(void)createBoostGauge
@@ -149,6 +115,7 @@
     self.gaugeView.lineWidth = 1;
     self.gaugeView.value = self.gaugeView.minGaugeNumber;
     self.gaugeView.menuItemsFont = [UIFont fontWithName:@"Futura" size:18];
+    calcData.sensorMaxValue = self.gaugeView.minGaugeNumber;
 }
 
 -(void)createOilGauge
@@ -163,6 +130,7 @@
     self.gaugeView.lineWidth = 1;
     self.gaugeView.value = self.gaugeView.minGaugeNumber;
     self.gaugeView.menuItemsFont = [UIFont fontWithName:@"Futura" size:18];
+    calcData.sensorMaxValue = self.gaugeView.minGaugeNumber;
 }
 
 -(void)createTempGauge
@@ -177,6 +145,7 @@
     self.gaugeView.lineWidth = 1;
     self.gaugeView.value = self.gaugeView.minGaugeNumber;
     self.gaugeView.menuItemsFont = [UIFont fontWithName:@"Futura" size:18];
+    calcData.sensorMaxValue = self.gaugeView.minGaugeNumber;
 }
 
 - (void)viewDidUnload

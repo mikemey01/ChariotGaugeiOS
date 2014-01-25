@@ -8,8 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
-@interface CICCalculateData : NSObject
+@interface CICCalculateData : NSObject{
+    
+    float sensorMaxValue;
+}
 
--(float) calculateBoost:(NSInteger)val;
+@property (nonatomic, assign) float sensorMaxValue;
+
+-(float) calcWideBand:(float)val;
+-(float) calcBoost:(float)val;
+-(float) calcOil:(float)val;
+-(float) calcTemp:(float)val;
 
 @end
