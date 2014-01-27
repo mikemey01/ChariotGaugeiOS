@@ -130,6 +130,7 @@
     
     //Instatiate bluetooth handler.
     self.bluetooth = [[CICBluetoothHandler alloc] init];
+    
 }
 
 - (void)didReceiveMemoryWarning

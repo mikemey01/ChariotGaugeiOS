@@ -60,6 +60,7 @@
                                 </state>
                                 <connections>
                                     <action selector="settingsButtonPress:" destination="f5Q-SH-udO" eventType="touchUpInside" id="3iV-LT-rWw"/>
+                                    <segue destination="YR7-Xx-ToI" kind="push" id="jCG-wD-L1t"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6mG-7d-tmg">
@@ -346,6 +347,35 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vnH-rP-huU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="479" y="-311"/>
+        </scene>
+        <!--App Settings View Controller - Settings-->
+        <scene sceneID="EiT-YW-2bU">
+            <objects>
+                <tableViewController id="YR7-Xx-ToI" customClass="IASKAppSettingsViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Qre-09-A4b">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Ur3-lO-rFf">
+                                <rect key="frame" x="0.0" y="119" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ur3-lO-rFf" id="59E-RF-42C">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="YR7-Xx-ToI" id="2cU-GN-N89"/>
+                            <outlet property="delegate" destination="YR7-Xx-ToI" id="79l-yR-9v9"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Settings" id="kde-B2-cqu"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yMV-y6-maU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="972" y="-419"/>
         </scene>
         <!--Navigation Controller - Chariot Gauge-->
         <scene sceneID="61J-oY-vUI">

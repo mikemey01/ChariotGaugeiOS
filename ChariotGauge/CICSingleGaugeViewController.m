@@ -47,6 +47,10 @@
     
     calcData = [[CICCalculateData alloc] init];
     
+    //TEST AREA//
+    NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
+    NSLog(@"test: %@",[standardDefaults stringForKey:@"name_preference"]);
+    
 }
 
 -(void) getLatestData:(NSMutableString *)newData

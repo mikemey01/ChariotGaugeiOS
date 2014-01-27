@@ -16,13 +16,13 @@
 			<key>AutocorrectionType</key>
 			<string>No</string>
 			<key>DefaultValue</key>
-			<string></string>
+			<string>100</string>
 			<key>IsSecure</key>
 			<false/>
 			<key>Key</key>
 			<string>name_preference</string>
 			<key>KeyboardType</key>
-			<string>Alphabet</string>
+			<string>NumberPad</string>
 			<key>Title</key>
 			<string>Name</string>
 			<key>Type</key>
