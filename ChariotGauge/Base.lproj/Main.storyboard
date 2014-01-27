@@ -58,6 +58,9 @@
                                 <state key="normal" image="settings_logo.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="settingsButtonPress:" destination="f5Q-SH-udO" eventType="touchUpInside" id="3iV-LT-rWw"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6mG-7d-tmg">
                                 <rect key="frame" x="64" y="213" width="48" height="48"/>
@@ -237,6 +240,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Chariot Gauge" id="ieH-eP-YRq" colorLabel="IBBuiltInLabel-Blue"/>
+                    <connections>
+                        <outlet property="connectLabel" destination="6aB-Zo-Am5" id="CFB-xf-hej"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kXo-Oq-oUk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

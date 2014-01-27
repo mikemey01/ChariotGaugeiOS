@@ -11,6 +11,7 @@
 
 @interface CICHomeScreenViewController : UIViewController{
     CICBluetoothHandler *bluetooth;
+    UILabel *connectLabel;
 }
 
 typedef enum {
@@ -26,11 +27,13 @@ typedef enum {
 @property (nonatomic, assign) BOOL connectPressed;
 @property (nonatomic, assign) BOOL connect;
 @property (nonatomic, retain) CICBluetoothHandler *bluetooth;
+@property (nonatomic, retain) IBOutlet UILabel *connectLabel;
 
 -(IBAction)widebandButtonPress:(id)sender;
 -(IBAction)boostButtonPress:(id)sender;
 -(IBAction)oilButtonPress:(id)sender;
 -(IBAction)tempButtonPress:(id)sender;
 -(IBAction)connectButtonPress:(id)sender;
+-(IBAction)settingsButtonPress:(id)sender;
 
 @end

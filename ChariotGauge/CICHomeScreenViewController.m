@@ -17,7 +17,7 @@
 
 @implementation CICHomeScreenViewController
 
-@synthesize gaugeType, bluetooth;
+@synthesize gaugeType, bluetooth, connectLabel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -103,11 +103,22 @@
 -(IBAction)connectButtonPress:(id)sender
 {
     if(self.connect){
+        connectLabel.text = @"Connecting..";
         [self.bluetooth startScan];
+        //TODO: Use delegate to push central manager's state to handle connect label's text.
+            connectLabel.text = @"Connected!";
+        //}
     }else{
+        connectLabel.text = @"Disconnecting..";
         [self.bluetooth disconnectBluetooth];
+        connectLabel.text = @"Connect";
     }
     self.connect = (!self.connect);
+}
+
+-(IBAction)settingsButtonPress:(id)sender
+{
+    
 }
 
 - (void)viewDidLoad
@@ -115,6 +126,7 @@
     [super viewDidLoad];
     
     self.connect = YES;
+    connectLabel.text = @"Connect";
     
     //Instatiate bluetooth handler.
     self.bluetooth = [[CICBluetoothHandler alloc] init];
