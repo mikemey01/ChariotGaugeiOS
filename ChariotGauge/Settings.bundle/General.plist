@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PreferenceSpecifiers</key>
+	<array>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>General Settings</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>Show Analog Gauge</string>
+			<key>Key</key>
+			<string>general_show_analog</string>
+			<key>DefaultValue</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>Show Digital Gauge</string>
+			<key>Key</key>
+			<string>general_show_digital</string>
+			<key>DefaultValue</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>Show Volt Meter</string>
+			<key>Key</key>
+			<string>general_show_volts</string>
+			<key>DefaultValue</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>Night Mode</string>
+			<key>Key</key>
+			<string>general_night_mode</string>
+			<key>DefaultValue</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Gauge Resolution</string>
+			<key>Key</key>
+			<string>general_gauge_resolution</string>
+			<key>DefaultValue</key>
+			<string>Tenths</string>
+			<key>Titles</key>
+			<array>
+				<string>Tenths</string>
+				<string>Hundredths</string>
+			</array>
+			<key>Values</key>
+			<array>
+				<string>Tenths</string>
+				<string>Hundredths</string>
+			</array>
+		</dict>
+	</array>
+</dict>
+</plist>
