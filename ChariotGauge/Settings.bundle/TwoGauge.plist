@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PreferenceSpecifiers</key>
+	<array>
+		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Select Gauge One</string>
+			<key>Key</key>
+			<string>twogauge_gauge_one</string>
+			<key>DefaultValue</key>
+			<string>Boost</string>
+			<key>Titles</key>
+			<array>
+				<string>Boost</string>
+				<string>Wideband</string>
+				<string>Oil</string>
+				<string>Temperature</string>
+			</array>
+			<key>Values</key>
+			<array>
+				<string>Boost</string>
+				<string>Wideband</string>
+				<string>Oil</string>
+				<string>Temperature</string>
+			</array>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Select Gauge Two</string>
+			<key>Key</key>
+			<string>twogauge_gauge_two</string>
+			<key>DefaultValue</key>
+			<string>Wideband</string>
+			<key>Titles</key>
+			<array>
+				<string>Boost</string>
+				<string>Wideband</string>
+				<string>Oil</string>
+				<string>Temperature</string>
+			</array>
+			<key>Values</key>
+			<array>
+				<string>Boost</string>
+				<string>Wideband</string>
+				<string>Oil</string>
+				<string>Temperature</string>
+			</array>
+		</dict>
+	</array>
+</dict>
+</plist>

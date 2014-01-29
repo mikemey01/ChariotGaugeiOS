@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PreferenceSpecifiers</key>
+	<array>
+		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Celsius Or Fahrenheit</string>
+			<key>Key</key>
+			<string>temperature_celsius_fahrenheit</string>
+			<key>DefaultValue</key>
+			<string>Celsius</string>
+			<key>Titles</key>
+			<array>
+				<string>Celsius</string>
+				<string>Fahrenheit</string>
+			</array>
+			<key>Values</key>
+			<array>
+				<string>Celsius</string>
+				<string>Fahrenheit</string>
+			</array>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+			<key>Title</key>
+			<string>Temperature Calibration</string>
+			<key>File</key>
+			<string>TemperatureCalibration</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+			<key>Title</key>
+			<string>Bias Resistor</string>
+			<key>Key</key>
+			<string>temperature_bias_resistor</string>
+			<key>DefaultValue</key>
+			<string>2000</string>
+			<key>KeyboardType</key>
+			<string>NumbersAndPunctuation</string>
+		</dict>
+	</array>
+</dict>
+</plist>

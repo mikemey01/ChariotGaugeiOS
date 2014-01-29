@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PreferenceSpecifiers</key>
+	<array>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>Temperature Values</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+			<key>Title</key>
+			<string>Temp One (ºC)</string>
+			<key>Key</key>
+			<string>temperature_temperature_one</string>
+			<key>DefaultValue</key>
+			<string>-18.0</string>
+			<key>KeyboardType</key>
+			<string>NumbersAndPunctuation</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+			<key>Title</key>
+			<string>Temp Two (ºC)</string>
+			<key>Key</key>
+			<string>temperature_temperature_two</string>
+			<key>DefaultValue</key>
+			<string>4.0</string>
+			<key>KeyboardType</key>
+			<string>NumbersAndPunctuation</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+			<key>Title</key>
+			<string>Temp Three (ºC)</string>
+			<key>Key</key>
+			<string>temperature_temperature_three</string>
+			<key>DefaultValue</key>
+			<string>99.0</string>
+			<key>KeyboardType</key>
+			<string>NumbersAndPunctuation</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>Ohm Values</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+			<key>Title</key>
+			<string>Ohms One</string>
+			<key>Key</key>
+			<string>temperature_ohms_one</string>
+			<key>DefaultValue</key>
+			<string>25000</string>
+			<key>KeyboardType</key>
+			<string>NumbersAndPunctuation</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+			<key>Title</key>
+			<string>Ohms Two</string>
+			<key>Key</key>
+			<string>temperature_ohms_two</string>
+			<key>DefaultValue</key>
+			<string>7500</string>
+			<key>KeyboardType</key>
+			<string>NumbersAndPunctuation</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+			<key>Title</key>
+			<string>Ohms Three</string>
+			<key>Key</key>
+			<string>temperature_ohms_three</string>
+			<key>DefaultValue</key>
+			<string>185</string>
+			<key>KeyboardType</key>
+			<string>NumbersAndPunctuation</string>
+		</dict>
+	</array>
+</dict>
+</plist>

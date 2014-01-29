@@ -14,7 +14,7 @@
 			<key>DefaultValue</key>
 			<string>General Settings</string>
 			<key>Key</key>
-			<string>genereal_settings_child</string>
+			<string>generel_settings_child</string>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 			<key>Title</key>
@@ -22,8 +22,52 @@
 			<key>File</key>
 			<string>General</string>
 		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+			<key>Title</key>
+			<string>Boost Settings</string>
+			<key>File</key>
+			<string>Boost</string>
+			<key>Key</key>
+			<string>boost_settings_child</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+			<key>Title</key>
+			<string>Wideband Settings</string>
+			<key>File</key>
+			<string>Wideband</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+			<key>Title</key>
+			<string>Oil Settings</string>
+			<key>File</key>
+			<string>Oil</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+			<key>Title</key>
+			<string>Temperature Settings</string>
+			<key>File</key>
+			<string>Temperature</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+			<key>Title</key>
+			<string>Two Gauge Setup</string>
+			<key>File</key>
+			<string>TwoGauge</string>
+		</dict>
 	</array>
 	<key>StringsTable</key>
 	<string>Root</string>
+	<key>Title</key>
+	<string></string>
 </dict>
 </plist>
