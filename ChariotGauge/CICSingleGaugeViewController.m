@@ -49,7 +49,7 @@
     
     //TEST AREA//
     NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
-    NSLog(@"test: %@",[standardDefaults stringForKey:@"name_preference"]);
+    NSLog(@"test: %@",[standardDefaults stringForKey:@"twogauge_gauge_two"]);
     
 }
 
