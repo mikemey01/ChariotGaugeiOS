@@ -21,7 +21,23 @@
 
 -(float) calcWideBand:(float)val
 {
-    return val;
+    float vOut;
+    float vPercentage;
+    float o2=0;
+    
+    vOut = (val*wbVoltRange)/1024;
+    vPercentage = vOut / wbVoltRange;
+    o2 = wbLowAFR + (wbAFRRange * vPercentage);
+    
+    if([widebandUnits isEqualToString:@"Lambda"]){
+        o2 = o2/wbStoich;
+    }
+    
+    if(o2 > self.sensorMaxValue){
+        self.sensorMaxValue = o2;
+    }
+    
+    return o2;
 }
 
 -(float) calcBoost:(float)val
@@ -34,15 +50,22 @@
     kpa = ((vOut/5.00)+.04)/.004;
     psi = (kpa - ATMOSPHERIC) * KPA_TO_PSI;
     
-    if(psi < 0){
-        psi = psi * PSI_TO_INHG;
+    if([pressureUnits isEqualToString:@"KPA"]){
+        if(kpa > self.sensorMaxValue){
+            self.sensorMaxValue = kpa;
+        }
+        return kpa;
+    }else{
+        if(psi < 0){
+            psi = psi * PSI_TO_INHG;
+        }
+        
+        if(psi > self.sensorMaxValue){
+            self.sensorMaxValue = psi;
+        }
+        
+        return psi;
     }
-    
-    if(psi > self.sensorMaxValue){
-        self.sensorMaxValue = psi;
-    }
-    
-    return psi;
 }
 
 -(float) calcOil:(float)val
@@ -56,6 +79,52 @@
 }
 
 /* Helper Functions */
+
+-(void) initStoich
+{
+    if([widebandFuelType isEqualToString:@"Gasoline"]){
+        wbStoich = 14.7f;
+    }else if([widebandFuelType isEqualToString:@"Propane"]){
+        wbStoich = 15.67f;
+    }else if([widebandFuelType isEqualToString:@"Methanol"]){
+        wbStoich = 6.47f;
+    }else if([widebandFuelType isEqualToString:@"Diesel"]){
+        wbStoich = 14.6f;
+    }else if([widebandFuelType isEqualToString:@"Ethanol"]){
+        wbStoich = 9.0f;
+    }else if([widebandFuelType isEqualToString:@"E85"]){
+        wbStoich = 9.76f;
+    }else{
+        wbStoich = 14.7f;
+    }
+}
+
+/* Prefs Init */
+
+-(void) initPrefs
+{
+    NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
+    
+    //Wideband setup:
+    widebandUnits = [standardDefaults stringForKey:@"wideband_afr_lambda"];
+    widebandFuelType = [standardDefaults stringForKey:@"wideband_fuel_type"];
+    wbLowVolts = (CGFloat)[[standardDefaults stringForKey:@"wideband_low_voltage"] floatValue];
+    wbHighVolts = (CGFloat)[[standardDefaults stringForKey:@"wideband_high_voltage"] floatValue];
+    wbLowAFR = (CGFloat)[[standardDefaults stringForKey:@"wideband_low_afr"] floatValue];
+    wbHighAFR = (CGFloat)[[standardDefaults stringForKey:@"wideband_high_afr"] floatValue];
+    wbVoltRange = wbHighVolts - wbLowVolts;
+    wbAFRRange = wbHighAFR - wbLowAFR;
+    [self initStoich];
+    
+    //Boost setup:
+    pressureUnits = [standardDefaults stringForKey:@"boost_psi_kpa"];
+    
+    //Oil setup:
+    
+    //Temp setup:
+    temperatureUnits = [standardDefaults stringForKey:@"temperature_celsius_fahrenheit"];
+    
+}
 
 
 

@@ -11,6 +11,19 @@
 @interface CICCalculateData : NSObject{
     
     float sensorMaxValue;
+    
+    //Prefs vars
+    NSString *pressureUnits;
+    NSString *widebandUnits;
+    NSString *widebandFuelType;
+    NSString *temperatureUnits;
+    CGFloat wbLowVolts;
+    CGFloat wbHighVolts;
+    CGFloat wbLowAFR;
+    CGFloat wbHighAFR;
+    CGFloat wbVoltRange;
+    CGFloat wbAFRRange;
+    CGFloat wbStoich;
 }
 
 @property (nonatomic, assign) float sensorMaxValue;
@@ -19,5 +32,7 @@
 -(float) calcBoost:(float)val;
 -(float) calcOil:(float)val;
 -(float) calcTemp:(float)val;
+-(void) initStoich;
+-(void) initPrefs;
 
 @end

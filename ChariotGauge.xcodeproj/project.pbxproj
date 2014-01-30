@@ -52,7 +52,6 @@
 		CE9CB89E1896147D00F24822 /* IASKSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9CB88E1896147D00F24822 /* IASKSlider.m */; };
 		CE9CB89F1896147D00F24822 /* IASKSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9CB8901896147D00F24822 /* IASKSwitch.m */; };
 		CE9CB8A01896147D00F24822 /* IASKTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9CB8921896147D00F24822 /* IASKTextField.m */; };
-		CE9CB8A3189614A100F24822 /* CICSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9CB8A2189614A100F24822 /* CICSettingsViewController.m */; };
 		CED082FB1878BAD2007FD05A /* CICDigitalGaugeBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = CED082FA1878BAD2007FD05A /* CICDigitalGaugeBuilder.m */; };
 /* End PBXBuildFile section */
 
@@ -139,8 +138,6 @@
 		CE9CB8901896147D00F24822 /* IASKSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IASKSwitch.m; sourceTree = "<group>"; };
 		CE9CB8911896147D00F24822 /* IASKTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IASKTextField.h; sourceTree = "<group>"; };
 		CE9CB8921896147D00F24822 /* IASKTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IASKTextField.m; sourceTree = "<group>"; };
-		CE9CB8A1189614A100F24822 /* CICSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICSettingsViewController.h; sourceTree = "<group>"; };
-		CE9CB8A2189614A100F24822 /* CICSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICSettingsViewController.m; sourceTree = "<group>"; };
 		CED082F91878BAD2007FD05A /* CICDigitalGaugeBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICDigitalGaugeBuilder.h; sourceTree = "<group>"; };
 		CED082FA1878BAD2007FD05A /* CICDigitalGaugeBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICDigitalGaugeBuilder.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -225,8 +222,6 @@
 				CE2E851C1847B01000C51A49 /* Main.storyboard */,
 				CE0C780E1867B44C006C6C1C /* CICHomeScreenViewController.h */,
 				CE0C780F1867B44C006C6C1C /* CICHomeScreenViewController.m */,
-				CE9CB8A1189614A100F24822 /* CICSettingsViewController.h */,
-				CE9CB8A2189614A100F24822 /* CICSettingsViewController.m */,
 				CE30D3821863FF57005475C1 /* CICSingleGaugeViewController.h */,
 				CE30D3831863FF57005475C1 /* CICSingleGaugeViewController.m */,
 				CE34F40818710A3700C1F12B /* CICDualGaugeViewController.h */,
@@ -451,7 +446,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE30D3841863FF57005475C1 /* CICSingleGaugeViewController.m in Sources */,
-				CE9CB8A3189614A100F24822 /* CICSettingsViewController.m in Sources */,
 				CE9CB89D1896147D00F24822 /* IASKPSTitleValueSpecifierViewCell.m in Sources */,
 				CE9CB89B1896147D00F24822 /* IASKPSSliderSpecifierViewCell.m in Sources */,
 				CE9CB8951896147D00F24822 /* IASKSpecifierValuesViewController.m in Sources */,
