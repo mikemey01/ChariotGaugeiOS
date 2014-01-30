@@ -196,6 +196,11 @@
     gaugeRange = maxGaugeNumber - minGaugeNumber; //The range of the config numbers
     int angleRange = 0; //should ALWAYS start at 0 - forces the ticks to start at self.tickStartAngleDegrees
     float gaugeIncrement = self.minGaugeNumber;
+    int ticksBetweenMajor = 5;
+    
+    if(incrementPerLargeTick < 5){
+        ticksBetweenMajor = 1;
+    }
     
     while(gaugeIncrement <= self.maxGaugeNumber){ //traverse the range of config'd numbers
         
@@ -240,9 +245,9 @@
             [self drawCurvedText:drawNumber atAngle:DEGREES_TO_RADIANS(actualLineAngle) withContext:context forTickArc:YES]; //draw the number at the major ticks.
         }
         
-        //Increments based on the assumption there are 4 minor ticks plus one major. each increment is set in a property.
-        angleRange = angleRange + incrementPerLargeTick/5; //Loop through each degree, set a major or minor tick.
-        gaugeIncrement += incrementPerLargeTick/5;
+        //Increments based on the assumption there are 4 minor ticks plus one major unless incrementPerLargeTick is less than 5.
+        angleRange = angleRange + incrementPerLargeTick/ticksBetweenMajor; //Loop through each degree, set a major or minor tick.
+        gaugeIncrement += incrementPerLargeTick/ticksBetweenMajor;
     }
 }
 

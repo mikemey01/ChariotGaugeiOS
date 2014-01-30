@@ -94,7 +94,7 @@
     if([widebandUnits isEqualToString:@"Lambda"]){
         [self.gaugeView initializeGauge];
         self.gaugeView.minGaugeNumber = 0.0f;
-        self.gaugeView.maxGaugeNumber = 5.0f;
+        self.gaugeView.maxGaugeNumber = 2.0f;
         self.gaugeView.gaugeLabel = @"Gas Wideband \n(Lambda)";
         self.gaugeView.incrementPerLargeTick = 1.0;
         self.gaugeView.tickStartAngleDegrees = 225;
