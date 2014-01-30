@@ -5,12 +5,6 @@
 	<key>PreferenceSpecifiers</key>
 	<array>
 		<dict>
-			<key>Title</key>
-			<string>Chariot Gauge Settings</string>
-			<key>Type</key>
-			<string>PSGroupSpecifier</string>
-		</dict>
-		<dict>
 			<key>DefaultValue</key>
 			<string>General Settings</string>
 			<key>Key</key>

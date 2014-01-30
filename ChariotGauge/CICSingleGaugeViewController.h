@@ -25,6 +25,8 @@
     //Prefs vars
     NSString *pressureUnits;
     NSString *widebandUnits;
+    NSString *widebandFuelType;
+    NSString *temperatureUnits;
 }
 
 @property GaugeType gaugeType;
