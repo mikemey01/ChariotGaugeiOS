@@ -21,6 +21,10 @@
     NSString *currentStringValue;
     NSInteger currentIntergerValue;
     CICCalculateData *calcData;
+    
+    //Prefs vars
+    NSString *pressureUnits;
+    NSString *widebandUnits;
 }
 
 @property GaugeType gaugeType;
@@ -31,6 +35,7 @@
 -(void)createBoostGauge;
 -(void)createOilGauge;
 -(void)createTempGauge;
+-(void)initPrefs;
 
 -(void) setGaugeValue:(NSArray *)array;
 @end

@@ -26,7 +26,6 @@
 
 -(float) calcBoost:(float)val
 {
-    
     float vOut;
     float kpa=0;
     float psi=0;

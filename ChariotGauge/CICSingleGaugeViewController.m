@@ -31,6 +31,8 @@
 {
     [super viewDidLoad];
     
+    [self initPrefs];
+    
     if(gaugeType==0){
         [self createWidebandGauge];
     }else if(gaugeType==1){
@@ -46,11 +48,6 @@
     [self.bluetooth setBtDelegate:self];
     
     calcData = [[CICCalculateData alloc] init];
-    
-    //TEST AREA//
-    NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
-    NSLog(@"test: %@",[standardDefaults stringForKey:@"twogauge_gauge_two"]);
-    
 }
 
 -(void) getLatestData:(NSMutableString *)newData
@@ -94,13 +91,23 @@
 
 -(void)createWidebandGauge
 {
-    [self.gaugeView initializeGauge]; 
-    self.gaugeView.minGaugeNumber = 5.0f;
-    self.gaugeView.maxGaugeNumber = 25.0f;
-    self.gaugeView.gaugeLabel = @"Gas Wideband \n(AFR)";
-    self.gaugeView.incrementPerLargeTick = 5;
-    self.gaugeView.tickStartAngleDegrees = 180;
-    self.gaugeView.tickDistance = 180;
+    if([widebandUnits isEqualToString:@"Lambda"]){
+        [self.gaugeView initializeGauge];
+        self.gaugeView.minGaugeNumber = 0.0f;
+        self.gaugeView.maxGaugeNumber = 5.0f;
+        self.gaugeView.gaugeLabel = @"Gas Wideband \n(Lambda)";
+        self.gaugeView.incrementPerLargeTick = 1.0;
+        self.gaugeView.tickStartAngleDegrees = 225;
+        self.gaugeView.tickDistance = 90;
+    }else{
+        [self.gaugeView initializeGauge];
+        self.gaugeView.minGaugeNumber = 5.0f;
+        self.gaugeView.maxGaugeNumber = 25.0f;
+        self.gaugeView.gaugeLabel = @"Gas Wideband \n(AFR)";
+        self.gaugeView.incrementPerLargeTick = 5;
+        self.gaugeView.tickStartAngleDegrees = 180;
+        self.gaugeView.tickDistance = 180;
+    }
     self.gaugeView.lineWidth = 1;
     self.gaugeView.value = self.gaugeView.minGaugeNumber;
     self.gaugeView.menuItemsFont = [UIFont fontWithName:@"Futura" size:18];
@@ -109,13 +116,23 @@
 
 -(void)createBoostGauge
 {
-    [self.gaugeView initializeGauge];
-    self.gaugeView.minGaugeNumber = -30.0f;
-    self.gaugeView.maxGaugeNumber = 25.0f;
-    self.gaugeView.gaugeLabel = @"Boost/Vac \n(PSI/inHG)";
-    self.gaugeView.incrementPerLargeTick = 5;
-    self.gaugeView.tickStartAngleDegrees = 135;
-    self.gaugeView.tickDistance = 270;
+    if([pressureUnits isEqualToString:@"PSI"]){
+        [self.gaugeView initializeGauge];
+        self.gaugeView.minGaugeNumber = -30.0f;
+        self.gaugeView.maxGaugeNumber = 25.0f;
+        self.gaugeView.gaugeLabel = @"Boost/Vac \n(PSI/inHG)";
+        self.gaugeView.incrementPerLargeTick = 5;
+        self.gaugeView.tickStartAngleDegrees = 135;
+        self.gaugeView.tickDistance = 270;
+    }else{
+        [self.gaugeView initializeGauge];
+        self.gaugeView.minGaugeNumber = 0.0f;
+        self.gaugeView.maxGaugeNumber = 250.0f;
+        self.gaugeView.gaugeLabel = @"Boost/Vac \n(KPA)";
+        self.gaugeView.incrementPerLargeTick = 25;
+        self.gaugeView.tickStartAngleDegrees = 135;
+        self.gaugeView.tickDistance = 270;
+    }
     self.gaugeView.lineWidth = 1;
     self.gaugeView.value = self.gaugeView.minGaugeNumber;
     self.gaugeView.menuItemsFont = [UIFont fontWithName:@"Futura" size:18];
@@ -162,6 +179,14 @@
     
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void) initPrefs
+{
+    NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
+
+    pressureUnits = [standardDefaults stringForKey:@"boost_psi_kpa"];
+    widebandUnits = [standardDefaults stringForKey:@"wideband_afr_lambda"];
 }
 
 @end
