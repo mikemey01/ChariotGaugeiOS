@@ -70,10 +70,32 @@
 
 -(float) calcOil:(float)val
 {
-    return val;
+    double oil = 0;
+    double vOut = 0;
+    double vPercentage;
+    
+    vOut = (val*5.00)/1024; //get voltage
+    
+    vOut = vOut - oilLowVolts; //get on the same level as the oil pressure sensor
+    if(vOut == 0){ //Remove divide by 0 errors.
+        vOut = .01;
+    }
+    vPercentage = vOut / oilVoltRange; //find the percentage of the range we're at
+    oil = vPercentage * oilPSIRange; //apply same percentage to range of oil.
+    
+    if(oil > self.sensorMaxValue){
+        self.sensorMaxValue = oil;
+    }
+    
+    return oil;
 }
 
 -(float) calcTemp:(float)val
+{
+    return val;
+}
+
+-(float) calcVolts:(float)val
 {
     return val;
 }
@@ -120,6 +142,16 @@
     pressureUnits = [standardDefaults stringForKey:@"boost_psi_kpa"];
     
     //Oil setup:
+    oilLowOhms = (CGFloat)[[standardDefaults stringForKey:@"oil_low_ohms"] floatValue];
+    oilHighOhms = (CGFloat)[[standardDefaults stringForKey:@"oil_high_ohms"] floatValue];
+    oilLowPSI = (CGFloat) [[standardDefaults stringForKey:@"oil_low_psi"] floatValue];
+    oilHighPSI = (CGFloat)[[standardDefaults stringForKey:@"oil_high_psi"] floatValue];
+    oilBiasResistor = (CGFloat) [[standardDefaults stringForKey:@"oil_bias_resistor"] floatValue];
+    oilLowVolts = (oilLowOhms/(oilBiasResistor+oilLowOhms))*5;
+    oilHighVolts = (oilHighOhms/(oilBiasResistor+oilHighOhms))*5;
+    oilVoltRange = oilHighVolts - oilLowVolts;
+    oilPSIRange = oilHighPSI - oilLowPSI;
+    
     
     //Temp setup:
     temperatureUnits = [standardDefaults stringForKey:@"temperature_celsius_fahrenheit"];

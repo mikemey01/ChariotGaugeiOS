@@ -24,6 +24,15 @@
     CGFloat wbVoltRange;
     CGFloat wbAFRRange;
     CGFloat wbStoich;
+    CGFloat oilLowVolts;
+    CGFloat oilHighVolts;
+    CGFloat oilLowPSI;
+    CGFloat oilHighPSI;
+    CGFloat oilLowOhms;
+    CGFloat oilHighOhms;
+    CGFloat oilBiasResistor;
+    CGFloat oilVoltRange;
+    CGFloat oilPSIRange;
 }
 
 @property (nonatomic, assign) float sensorMaxValue;
@@ -32,6 +41,7 @@
 -(float) calcBoost:(float)val;
 -(float) calcOil:(float)val;
 -(float) calcTemp:(float)val;
+-(float) calcVolts:(float)val;
 -(void) initStoich;
 -(void) initPrefs;
 
