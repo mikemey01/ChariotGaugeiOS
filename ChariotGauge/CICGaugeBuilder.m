@@ -168,7 +168,7 @@
 }
 
 
-- (void)setValue:(float)val
+- (void)setValue:(CGFloat)val
 {
     //Make sure the passed in value is within the bounds of the current gauge.
 	if (val > self.maxGaugeNumber)

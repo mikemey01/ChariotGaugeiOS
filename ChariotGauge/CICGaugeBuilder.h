@@ -141,7 +141,7 @@
 @property (nonatomic, assign) CGFloat lineWidth;
 @property (nonatomic, retain) NSString *digitalGaugeValue;
 @property (nonatomic, readonly) DigitalBuilder *digitalBuilder;
-@property (nonatomic, retain)   CATextLayer *digitalLayer;
+@property (nonatomic, retain) CATextLayer *digitalLayer;
 @property (nonatomic, assign) float gaugeWidth;
 @property (nonatomic, assign) float viewWidth;
 @property (nonatomic, assign) float gaugeX;
@@ -162,6 +162,6 @@
 -(void)drawGaugeText:(NSString*) text;
 
 //needle functions
--(void)setValue:(float)val;
+-(void)setValue:(CGFloat)val;
 
 @end

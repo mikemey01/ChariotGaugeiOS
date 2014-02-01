@@ -61,6 +61,8 @@
         currentStringValue = [array objectAtIndex:gaugeType];
         currentIntergerValue = [currentStringValue integerValue];
         
+        //NSLog(@"cur val: %i", currentIntergerValue);
+        
         if(gaugeType==0){
             self.gaugeView.value = [calcData calcWideBand:currentIntergerValue];
         }else if(gaugeType==1){
@@ -120,6 +122,14 @@
             self.gaugeView.maxGaugeNumber = 12.0f;
             self.gaugeView.gaugeLabel = [widebandFuelType stringByAppendingString:@" Wideband \n(AFR)"];
             self.gaugeView.incrementPerLargeTick = 1.0;
+            self.gaugeView.tickStartAngleDegrees = 180;
+            self.gaugeView.tickDistance = 180;
+        }else{
+            [self.gaugeView initializeGauge];
+            self.gaugeView.minGaugeNumber = 5.0f;
+            self.gaugeView.maxGaugeNumber = 25.0f;
+            self.gaugeView.gaugeLabel = [widebandFuelType stringByAppendingString:@" Wideband \n(AFR)"];
+            self.gaugeView.incrementPerLargeTick = 5;
             self.gaugeView.tickStartAngleDegrees = 180;
             self.gaugeView.tickDistance = 180;
         }

@@ -21,6 +21,8 @@
     [self.window makeKeyAndVisible];
     
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
+    
+    [self initDefaultPrefs];
 
     return YES;
 }
@@ -39,6 +41,16 @@
 - (BOOL)shouldAutoRotate
 {
     return YES;
+}
+
+-(void) initDefaultPrefs
+{
+    NSArray *keys = [NSArray arrayWithObjects:@"oil_low_psi", @"oil_high_psi", nil];
+    NSArray *objects = [NSArray arrayWithObjects:@"0.0", @"80.0", nil];
+    NSDictionary *defaults = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
+    
+//    NSDictionary* defaults = @{@"oil_high_ohms": @"180.0"};
+    [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
 }
 
 

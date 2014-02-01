@@ -21,4 +21,6 @@
 @property (nonatomic, retain) IBOutlet CICHomeScreenViewController *viewController;
 @property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
 
+-(void) initDefaultPrefs;
+
 @end

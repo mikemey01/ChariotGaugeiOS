@@ -87,7 +87,7 @@
     if(oil > self.sensorMaxValue){
         self.sensorMaxValue = oil;
     }
-    
+    NSLog(@" oil val: %f", oilHighPSI);
     return oil;
 }
 
