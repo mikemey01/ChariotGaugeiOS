@@ -10,7 +10,7 @@
 
 @interface CICCalculateData : NSObject{
     
-    float sensorMaxValue;
+    CGFloat sensorMaxValue;
     
     //Prefs vars
     NSString *pressureUnits;
@@ -33,15 +33,33 @@
     CGFloat oilBiasResistor;
     CGFloat oilVoltRange;
     CGFloat oilPSIRange;
+    
+    CGFloat tempOne;
+    CGFloat tempTwo;
+    CGFloat tempThree;
+    CGFloat tempOhmsOne;
+    CGFloat tempOhmsTwo;
+    CGFloat tempOhmsThree;
+    CGFloat tempBiasResistor;
+    CGFloat a;
+    CGFloat b;
+    CGFloat c;
+    
 }
 
 @property (nonatomic, assign) float sensorMaxValue;
 
--(float) calcWideBand:(float)val;
--(float) calcBoost:(float)val;
--(float) calcOil:(float)val;
--(float) calcTemp:(float)val;
--(float) calcVolts:(float)val;
+-(CGFloat) calcWideBand:(NSInteger)val;
+-(CGFloat) calcBoost:(NSInteger)val;
+-(CGFloat) calcOil:(NSInteger)val;
+-(CGFloat) calcTemp:(NSInteger)val;
+-(CGFloat) calcVolts:(NSInteger)val;
+
+-(CGFloat)getResistance:(CGFloat)ADC;
+-(CGFloat)getTemperature:(CGFloat)res;
+-(CGFloat)getF:(CGFloat)tempIn;
+-(void)initSHHCoefficients;
+
 -(void) initStoich;
 -(void) initPrefs;
 

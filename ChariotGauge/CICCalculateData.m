@@ -7,6 +7,7 @@
 //
 
 #import "CICCalculateData.h"
+#import <math.h>
 
 #define ATMOSPHERIC 101.325
 #define PSI_TO_INHG 2.03625437
@@ -19,7 +20,7 @@
 
 /* Calc functions */
 
--(float) calcWideBand:(float)val
+-(CGFloat) calcWideBand:(NSInteger)val
 {
     float vOut;
     float vPercentage;
@@ -40,7 +41,7 @@
     return o2;
 }
 
--(float) calcBoost:(float)val
+-(CGFloat) calcBoost:(NSInteger)val
 {
     float vOut;
     float kpa=0;
@@ -68,11 +69,11 @@
     }
 }
 
--(float) calcOil:(float)val
+-(CGFloat) calcOil:(NSInteger)val
 {
-    double oil = 0;
-    double vOut = 0;
-    double vPercentage;
+    CGFloat oil = 0;
+    CGFloat vOut = 0;
+    CGFloat vPercentage;
     
     vOut = (val*5.00)/1024; //get voltage
     
@@ -90,17 +91,80 @@
     return oil;
 }
 
--(float) calcTemp:(float)val
+-(CGFloat) calcTemp:(NSInteger)val
 {
-    return val;
+    CGFloat res;
+    CGFloat temp;
+    
+    res = [self getResistance:val];
+    temp = [self getTemperature:res];
+    
+    if([temperatureUnits isEqualToString:@"Fahrenheit"]){
+        temp = [self getF:temp];
+    }
+    
+    if(temp > self.sensorMaxValue){
+        self.sensorMaxValue = temp;
+    }
+    
+    return temp;
 }
 
--(float) calcVolts:(float)val
+-(CGFloat) calcVolts:(NSInteger)val
 {
-    return val;
+    CGFloat volts = 0.0;
+    
+    //scale input adc to voltage using 10k/2k voltage divider.
+    volts = .029326*val;
+    
+    if(volts > self.sensorMaxValue){
+        self.sensorMaxValue = volts;
+    }
+    
+    return volts;
 }
 
 /* Helper Functions */
+
+-(CGFloat)getResistance:(CGFloat)ADC
+{
+    CGFloat numer;
+    CGFloat denom;
+    
+    numer = tempBiasResistor*(ADC/1024);
+    denom = fabsf((ADC/1024)-1);
+    
+    return numer / denom;;
+}
+
+-(CGFloat)getTemperature:(CGFloat)res
+{
+    CGFloat ret = 0.0f;
+    ret = ((1/(a+(b*log(res))+(c*(pow((log(res)), 3)))))-273.15);
+    return ret;
+}
+
+-(CGFloat)getF:(CGFloat)tempIn
+{
+    return (tempIn*1.8)+32;
+}
+
+-(void)initSHHCoefficients
+{
+    CGFloat numer;
+    CGFloat denom;
+    
+    //Start with C
+    numer = ((1/(tempOne+273.15)-1/(tempTwo+273.15))-(log(tempOhmsOne)-log(tempOhmsTwo))*(1/(tempOne+273.15)-1/(tempThree+273.15))/(log(tempOhmsOne)-log(tempOhmsThree)));
+    denom = ((pow((log(tempOhmsOne)), 3)-pow((log(tempOhmsTwo)), 3) - (log(tempOhmsOne)-log(tempOhmsTwo))*(pow((log(tempOhmsOne)),3)-pow((log(tempOhmsThree)), 3))/(log(tempOhmsOne)-log(tempOhmsThree))));
+    c = numer / denom;
+    
+    //Then B
+    b = ((1/(tempOne+273.15)-1/(tempTwo+273.15))-c*(pow((log(tempOhmsOne)), 3)-pow((log(tempOhmsTwo)), 3)))/(log(tempOhmsOne)-log(tempOhmsTwo));
+    
+    //Finally A
+    a = 1/(tempOne+273.15)-c*pow((log(tempOhmsOne)), 3)-b*log(tempOhmsOne);
+}
 
 -(void) initStoich
 {
@@ -152,9 +216,18 @@
     oilVoltRange = oilHighVolts - oilLowVolts;
     oilPSIRange = oilHighPSI - oilLowPSI;
     
-    
     //Temp setup:
     temperatureUnits = [standardDefaults stringForKey:@"temperature_celsius_fahrenheit"];
+    tempOne = (CGFloat)[[standardDefaults stringForKey:@"temperature_temperature_one"] floatValue];
+    tempTwo = (CGFloat)[[standardDefaults stringForKey:@"temperature_temperature_two"] floatValue];
+    tempThree = (CGFloat)[[standardDefaults stringForKey:@"temperature_temperature_three"] floatValue];
+    tempOhmsOne = (CGFloat)[[standardDefaults stringForKey:@"temperature_ohms_one"] floatValue];
+    tempOhmsTwo = (CGFloat)[[standardDefaults stringForKey:@"temperature_ohms_two"] floatValue];
+    tempOhmsThree = (CGFloat)[[standardDefaults stringForKey:@"temperature_ohms_three"] floatValue];
+    tempBiasResistor = (CGFloat)[[standardDefaults stringForKey:@"temperature_bias_resistor"] floatValue];
+    a = 0.0f;
+    b = 0.0f;
+    c = 0.0f;
     
 }
 

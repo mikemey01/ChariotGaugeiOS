@@ -13,11 +13,6 @@
 #import "CICBluetoothHandler.h"
 #import "CICCalculateData.h"
 
-#define ATMOSPHERIC 101.325
-#define PSI_TO_INHG 2.03625437
-#define KPA_TO_PSI  0.14503773773020923
-#define KPA_TO_INHG 0.295299830714
-
 @interface CICSingleGaugeViewController ()
 
 @end
@@ -48,6 +43,9 @@
     [self.bluetooth setBtDelegate:self];
     
     calcData = [[CICCalculateData alloc] init];
+    [calcData initPrefs];
+    [calcData initStoich];
+    [calcData initSHHCoefficients];
 }
 
 -(void) getLatestData:(NSMutableString *)newData
