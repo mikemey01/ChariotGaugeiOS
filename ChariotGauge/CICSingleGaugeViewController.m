@@ -29,13 +29,15 @@
     [self initPrefs];
     
     if(gaugeType==0){
-        [self createWidebandGauge];
+        [self createBoostGauge];
     }else if(gaugeType==1){
         [self createBoostGauge];
     }else if(gaugeType==2){
-        [self createOilGauge];
+        [self createWidebandGauge];
     }else if(gaugeType==3){
         [self createTempGauge];
+    }else if(gaugeType==4){
+        [self createOilGauge];
     }else{
         [self createBoostGauge];
     }
@@ -50,6 +52,7 @@
 
 -(void) getLatestData:(NSMutableString *)newData
 {
+    NSLog(@"full string: %@", newData);
     newArray = [newData componentsSeparatedByString: @","];
     [self setGaugeValue:newArray];
     newArray = nil;
@@ -64,13 +67,15 @@
         //NSLog(@"cur val: %i", currentIntergerValue);
         
         if(gaugeType==0){
-            self.gaugeView.value = [calcData calcWideBand:currentIntergerValue];
+            self.gaugeView.value = [calcData calcVolts:currentIntergerValue];
         }else if(gaugeType==1){
             self.gaugeView.value = [calcData calcBoost:currentIntergerValue];
         }else if(gaugeType==2){
-            self.gaugeView.value = [calcData calcOil:currentIntergerValue];
+            self.gaugeView.value = [calcData calcWideBand:currentIntergerValue];
         }else if(gaugeType==3){
             self.gaugeView.value = [calcData calcTemp:currentIntergerValue];
+        }else if(gaugeType==4){
+            self.gaugeView.value = [calcData calcOil:currentIntergerValue];
         }
     }
 }

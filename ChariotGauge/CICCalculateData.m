@@ -22,9 +22,10 @@
 
 -(CGFloat) calcWideBand:(NSInteger)val
 {
-    float vOut;
-    float vPercentage;
-    float o2=0;
+    CGFloat vOut;
+    CGFloat vPercentage;
+    CGFloat o2=0;
+    //val=512;
     
     vOut = (val*wbVoltRange)/1024;
     vPercentage = vOut / wbVoltRange;
@@ -37,6 +38,7 @@
     if(o2 > self.sensorMaxValue){
         self.sensorMaxValue = o2;
     }
+    NSLog(@"val: %i, widebandUnits: %@, vOut: %f, o2: %f, wbVoltRange: %f", val,widebandUnits,vOut,o2,wbVoltRange);
     
     return o2;
 }
@@ -87,7 +89,7 @@
     if(oil > self.sensorMaxValue){
         self.sensorMaxValue = oil;
     }
-    //NSLog(@"oil: %f, vOut: %f, vPercentage: %f, inputVal: %i, oilPSIRange: %f", oil,vOut,vPercentage,val,oilPSIRange);
+    //NSLog(@"oil: %f, vOut: %f, vPercentage: %f, inputVal: %i, oilBiasResistor: %f", oil,vOut,vPercentage,val,oilBiasResistor);
     return oil;
 }
 

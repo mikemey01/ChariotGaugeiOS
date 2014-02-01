@@ -15,10 +15,11 @@
 }
 
 typedef enum {
-    wideband,
+    volts,
     boost,
-    oil,
+    wideband,
     temp,
+    oil,
     dual,
     quad
 } GaugeType;
