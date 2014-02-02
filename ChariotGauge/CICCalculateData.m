@@ -38,7 +38,7 @@
     if(o2 > self.sensorMaxValue){
         self.sensorMaxValue = o2;
     }
-    NSLog(@"val: %i, widebandUnits: %@, vOut: %f, o2: %f, wbVoltRange: %f", val,widebandUnits,vOut,o2,wbVoltRange);
+    //NSLog(@"val: %i, widebandUnits: %@, vOut: %f, o2: %f, wbVoltRange: %f", val,widebandUnits,vOut,o2,wbVoltRange);
     
     return o2;
 }

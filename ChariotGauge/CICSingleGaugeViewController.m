@@ -52,7 +52,6 @@
 
 -(void) getLatestData:(NSMutableString *)newData
 {
-    NSLog(@"full string: %@", newData);
     newArray = [newData componentsSeparatedByString: @","];
     [self setGaugeValue:newArray];
     newArray = nil;
