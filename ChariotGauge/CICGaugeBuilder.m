@@ -477,7 +477,6 @@
     //initialize the gauge to the lowest value.
     self.value = self.minGaugeNumber;
     
-    
     self.needleBuilder.gaugeX = self.gaugeX;
     self.needleBuilder.gaugeWidth = self.gaugeWidth;
     self.needleBuilder.viewWidth = self.viewWidth;

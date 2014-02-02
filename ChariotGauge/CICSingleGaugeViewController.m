@@ -95,6 +95,9 @@
 
 -(void)createWidebandGauge
 {
+    //Set nav bar title
+    self.navigationItem.title = @"Wideband";
+    
     if([widebandUnits isEqualToString:@"Lambda"]){
         [self.gaugeView initializeGauge];
         self.gaugeView.minGaugeNumber = 0.0f;
@@ -146,6 +149,9 @@
 
 -(void)createBoostGauge
 {
+    //Set nav bar title
+    self.navigationItem.title = @"Boost/Vac";
+    
     if([pressureUnits isEqualToString:@"PSI"]){
         [self.gaugeView initializeGauge];
         self.gaugeView.minGaugeNumber = -30.0f;
@@ -171,6 +177,9 @@
 
 -(void)createOilGauge
 {
+    //Set nav bar title
+    self.navigationItem.title = @"Oil Pressure";
+    
     [self.gaugeView initializeGauge];
     self.gaugeView.minGaugeNumber = 0.0f;
     self.gaugeView.maxGaugeNumber = 100.0f;
@@ -186,6 +195,9 @@
 
 -(void)createTempGauge
 {
+    //Set nav bar title
+    self.navigationItem.title = @"Temperature";
+    
     if([temperatureUnits isEqualToString:@"Fahrenheit"]){
         [self.gaugeView initializeGauge];
         self.gaugeView.minGaugeNumber = -20.0f;
