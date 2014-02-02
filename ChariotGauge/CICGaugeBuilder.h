@@ -161,6 +161,12 @@
 -(void)drawCurvedText:(NSString *)text atAngle:(float)angle withContext:(CGContextRef)context forTickArc:(BOOL)isForTickArc;
 -(void)drawGaugeText:(NSString*) text;
 
+//TEST AREA//
+
+- (void)drawDigitalLabel:(CGContextRef)context;
+
+//test area//
+
 //needle functions
 -(void)setValue:(CGFloat)val;
 

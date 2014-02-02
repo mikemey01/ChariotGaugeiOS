@@ -38,7 +38,7 @@
 	CGContextSetFillColorWithColor(context, self.needleColor.CGColor);
 	CGContextSetStrokeColorWithColor(context, self.needleColor.CGColor);
 	CGContextSetLineWidth(context, self.needleWidth);
-    CGFloat ellipseRadius = floor(self.needleWidth * 2.5);
+    CGFloat ellipseRadius = floor(self.needleWidth * 3.0);
 	
     //Get center coordinates
 	CGFloat centerX = (layer.bounds.size.width) / 2.0;
@@ -59,16 +59,16 @@
     CGContextSetShadow(context, CGSizeMake(2.0f, 2.0f), 2.0f);
     
     //controls the size of the hand.
-    CGRect rect = CGRectMake(centerX, centerY, DIAMETER_LAYER/2-48, DIAMETER_LAYER/2-48);
+    CGRect rect = CGRectIntegral(CGRectMake(centerX, centerY, DIAMETER_LAYER/2-48, DIAMETER_LAYER/2-48));
     
     //controls the shape (mirrored)
     CGContextBeginPath(context);
-    CGContextMoveToPoint   (context, CGRectGetMinX(rect)+12, CGRectGetMinY(rect)+6);
+    CGContextMoveToPoint   (context, CGRectGetMinX(rect)+14, CGRectGetMinY(rect)+7);
     CGContextAddLineToPoint(context, CGRectGetMinX(rect)+25, CGRectGetMinY(rect)+12);
     CGContextAddLineToPoint(context, CGRectGetMaxX(rect), CGRectGetMinY(rect)+1.5);
     CGContextAddLineToPoint(context, CGRectGetMaxX(rect), CGRectGetMinY(rect)-1.5);
     CGContextAddLineToPoint(context, CGRectGetMinX(rect)+25, CGRectGetMinY(rect)-12);
-    CGContextAddLineToPoint(context, CGRectGetMinX(rect)+12, CGRectGetMinY(rect)-6);
+    CGContextAddLineToPoint(context, CGRectGetMinX(rect)+14, CGRectGetMinY(rect)-7);
     CGContextClosePath(context);
     
     //Set the color and fill
@@ -80,7 +80,7 @@
     
     /* draw screw */
     
-    CGRect needleScrew = CGRectMake(centerX - ellipseRadius + 10.0, centerY - ellipseRadius + 10.0, ellipseRadius-5.0, ellipseRadius-5.0);
+    CGRect needleScrew = CGRectMake(centerX - ellipseRadius + 12.0, centerY - ellipseRadius + 12.0, ellipseRadius-5.0, ellipseRadius-5.0);
     CGContextSetRGBFillColor(context, 0.0, 0.0, 0.0, 1.0);
     CGContextSetRGBStrokeColor(context, 110.0/255.0, 110.0/255.0, 110.0/255.0, 1.0);
     CGContextFillEllipseInRect(context, needleScrew);
@@ -108,14 +108,23 @@
         yPlacement = self.gaugeWidth + 90;
     }
     
-    CATextLayer *label = [[CATextLayer alloc] init];
-    [label setFont:CFBridgingRetain(self.digitalFont.fontName)];
-    [label setFontSize:(int)self.digitalFont.pointSize];
-    [label setFrame:CGRectIntegral(CGRectMake((int)0+(self.gaugeX*2), (int)yPlacement, (int)self.gaugeWidth, (int)self.digitalFont.pointSize))];
-    [label setString:self.digitalValue];
-    [label setAlignmentMode:kCAAlignmentCenter];
-    [label setForegroundColor:[[UIColor blackColor] CGColor]];
-    [layer addSublayer:label];
+    yPlacement = roundf(yPlacement);
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectIntegral(CGRectMake(self.gaugeX*2, yPlacement, self.gaugeWidth, self.digitalFont.pointSize))];
+    [label setFont:self.digitalFont];
+    
+    [label setText:@"10.0"];
+    
+//    CGContextSetShouldSmoothFonts(context, TRUE);
+//    
+//    CATextLayer *label = [[CATextLayer alloc] init];
+//    [label setFont:CFBridgingRetain(self.digitalFont.fontName)];
+//    [label setFontSize:self.digitalFont.pointSize];
+//    [label setFrame:CGRectIntegral(CGRectMake(0+(self.gaugeX*2), yPlacement, self.gaugeWidth, self.digitalFont.pointSize))];
+//    [label setString:self.digitalValue];
+//    [label setAlignmentMode:kCAAlignmentCenter];
+//    [label setForegroundColor:[[UIColor blackColor] CGColor]];
+//    [layer addSublayer:label];
     
     //[loadingText setFrame:CGRectIntegral(loadingText.frame)];
 }
@@ -163,6 +172,8 @@
     
     [self drawGaugeText:gaugeLabel];
     
+    [self drawDigitalLabel:(context)];
+    
     //[self drawCurvedText:self.gaugeLabel atAngle:DEGREES_TO_RADIANS(90.0f) withContext:context forTickArc:NO];
     
 }
@@ -188,7 +199,7 @@
     self.digitalBuilder.digitalValue = [NSString stringWithFormat:@"%.1f", val];
     
     [needleLayer setNeedsDisplay];
-    //[digitalLayer setNeedsDisplay];
+    [digitalLayer setNeedsDisplay];
 }
 
 - (void)drawTicksOnArc:(CGContextRef)context
@@ -450,12 +461,21 @@
     CGContextDrawPath(context, kCGPathStroke);
 }
 
+- (void)drawDigitalLabel:(CGContextRef)context
+{
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectIntegral(CGRectMake(self.gaugeX*2, self.gaugeWidth, self.gaugeWidth, self.digitalBuilder.digitalFont.pointSize))];
+    [label setFont:self.digitalBuilder.digitalFont];
+    
+    [label setText:@"10.0"];
+    [self addSubview:label];
+}
+
 - (void)initializeGauge
 {
     gaugeWidth = MIN(self.frame.size.width, self.frame.size.height);
     viewWidth = MIN(self.frame.size.width, self.frame.size.height);
     
-    CGFloat digitalFontSize = 30.0f;
+    CGFloat digitalFontSize = 80.0f;
     
     //Adjust the size of the gauge if needed.
     if (self.frame.size.height < self.frame.size.width) {
@@ -475,7 +495,7 @@
     self.tickDistance = 270;
     self.menuItemsFont = [UIFont fontWithName:@"Futura" size:14];
     self.gaugeLabelFont = [UIFont fontWithName:@"Helvetica" size:14]; //TODO: not working correctly
-    self.digitalGaugeValue = [NSString stringWithFormat:@"%i", self.minGaugeNumber];
+    self.digitalGaugeValue = [NSString stringWithFormat:@"%.1f", self.minGaugeNumber];
     
     //needle init
     needleBuilder_ = [[NeedleBuilder alloc] init];
@@ -503,9 +523,10 @@
     //digital gauge layer init
     digitalLayer = [CALayer layer];
     digitalLayer.bounds = self.bounds;
-    digitalLayer.position = CGPointMake((int)self.gaugeWidth / 2.0+self.gaugeX, (int)self.gaugeWidth / 2.0);
+    digitalLayer.position = CGPointMake(self.gaugeWidth / 2.0+self.gaugeX, self.gaugeWidth / 2.0);
     digitalLayer.needsDisplayOnBoundsChange = YES;
     digitalLayer.delegate = self.digitalBuilder;
+    digitalLayer.contentsScale = [[UIScreen mainScreen] scale];
     [self.layer addSublayer:digitalLayer];
     [digitalLayer setNeedsDisplay];
     
