@@ -39,25 +39,6 @@
 @end
 
 
-@interface DigitalBuilder : NSObject{
-    NSString *digitalValue;
-    float gaugeWidth;
-    float viewWidth;
-    float gaugeX;
-    UIFont *digitalFont;
-}
-
-@property (nonatomic, retain) NSString *digitalValue;
-@property (nonatomic, assign) float gaugeWidth;
-@property (nonatomic, assign) float viewWidth;
-@property (nonatomic, assign) float gaugeX;
-@property (nonatomic, retain) UIFont *digitalFont;
-
-- (void)drawLayer:(CALayer*)layer inContext:(CGContextRef)context;
-
-@end
-
-
 
 @interface CICGaugeBuilder : UIView{
     CGFloat lineWidth; //width of the circles
@@ -112,12 +93,6 @@
     
         /*digital stuff*/
     
-    //gauge value for digital (as string)
-    NSString *digitalGaugeValue;
-    
-    DigitalBuilder *digitalBuilder_;
-    CATextLayer *digitalLayer;
-    
     UILabel *digitalLabel;
     
     
@@ -141,9 +116,6 @@
 @property (nonatomic, assign) CGFloat value;
 @property (nonatomic, retain) CALayer *needleLayer;
 @property (nonatomic, assign) CGFloat lineWidth;
-@property (nonatomic, retain) NSString *digitalGaugeValue;
-@property (nonatomic, readonly) DigitalBuilder *digitalBuilder;
-@property (nonatomic, retain) CATextLayer *digitalLayer;
 @property (nonatomic, assign) float gaugeWidth;
 @property (nonatomic, assign) float viewWidth;
 @property (nonatomic, assign) float gaugeX;

@@ -95,55 +95,15 @@
 
 @end
 
-@implementation DigitalBuilder
-
-@synthesize digitalValue, gaugeWidth, viewWidth, gaugeX, digitalFont;
-
-
-- (void)drawLayer:(CALayer*)layer inContext:(CGContextRef)context
-{
-    //Handles the navbar size.
-    float yPlacement = self.gaugeWidth+10;
-    if (layer.frame.size.width < layer.frame.size.height) {
-        yPlacement = self.gaugeWidth + 90;
-    }
-    
-    yPlacement = roundf(yPlacement);
-    
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectIntegral(CGRectMake(self.gaugeX*2, yPlacement, self.gaugeWidth, self.digitalFont.pointSize))];
-    [label setFont:self.digitalFont];
-    
-    [label setText:@"10.0"];
-    
-//    CGContextSetShouldSmoothFonts(context, TRUE);
-//    
-//    CATextLayer *label = [[CATextLayer alloc] init];
-//    [label setFont:CFBridgingRetain(self.digitalFont.fontName)];
-//    [label setFontSize:self.digitalFont.pointSize];
-//    [label setFrame:CGRectIntegral(CGRectMake(0+(self.gaugeX*2), yPlacement, self.gaugeWidth, self.digitalFont.pointSize))];
-//    [label setString:self.digitalValue];
-//    [label setAlignmentMode:kCAAlignmentCenter];
-//    [label setForegroundColor:[[UIColor blackColor] CGColor]];
-//    [layer addSublayer:label];
-    
-    //[loadingText setFrame:CGRectIntegral(loadingText.frame)];
-}
-
-
-@end
-
-
 
 
 @implementation CICGaugeBuilder
 
 //synthesize gauge props
 @synthesize minGaugeNumber, maxGaugeNumber, gaugeLabel, incrementPerLargeTick, gaugeType, tickStartAngleDegrees,
-            tickDistance, menuItemsFont, value, gaugeLabelFont, digitalGaugeValue, gaugeWidth, viewWidth, gaugeX, gaugeY;
+            tickDistance, menuItemsFont, value, gaugeLabelFont, gaugeWidth, viewWidth, gaugeX, gaugeY, digitalLabel;
 @synthesize needleBuilder = needleBuilder_;
 @synthesize lineWidth, needleLayer;
-@synthesize digitalBuilder = digitalBuilder_;
-@synthesize digitalLayer;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -468,7 +428,7 @@
     UIFont *digitalFont = [UIFont fontWithName:@"LetsgoDigital-Regular" size:digFontSize];
     self.digitalLabel = [[UILabel alloc] initWithFrame:CGRectIntegral(CGRectMake(self.gaugeX*2, self.gaugeWidth, self.gaugeWidth, digitalFont.pointSize))];
     [self.digitalLabel setFont:digitalFont];
-    
+    self.digitalLabel.textAlignment = NSTextAlignmentCenter;
     [self.digitalLabel setText:[NSString stringWithFormat:@"%.1f", self.minGaugeNumber]];
     [self addSubview:self.digitalLabel];
 }
@@ -498,8 +458,7 @@
     self.tickDistance = 270;
     self.menuItemsFont = [UIFont fontWithName:@"Futura" size:14];
     self.gaugeLabelFont = [UIFont fontWithName:@"Helvetica" size:14]; //TODO: not working correctly
-    self.digitalGaugeValue = [NSString stringWithFormat:@"%.1f", self.minGaugeNumber];
-    
+
     //needle init
     needleBuilder_ = [[NeedleBuilder alloc] init];
 	self.needleBuilder.needleColor = [UIColor orangeColor];
