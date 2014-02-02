@@ -94,6 +94,7 @@
         /*digital stuff*/
     
     UILabel *digitalLabel;
+    CGFloat digitalFontSize;
     
     
     struct angleRanges{
@@ -121,6 +122,7 @@
 @property (nonatomic, assign) float gaugeX;
 @property (nonatomic, assign) float gaugeY;
 @property (nonatomic, retain) UILabel *digitalLabel;
+@property (nonatomic, assign) CGFloat digitalFontSize;
 
 
 //gauge functions

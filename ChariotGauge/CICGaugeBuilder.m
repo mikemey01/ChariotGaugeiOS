@@ -101,7 +101,7 @@
 
 //synthesize gauge props
 @synthesize minGaugeNumber, maxGaugeNumber, gaugeLabel, incrementPerLargeTick, gaugeType, tickStartAngleDegrees,
-            tickDistance, menuItemsFont, value, gaugeLabelFont, gaugeWidth, viewWidth, gaugeX, gaugeY, digitalLabel;
+            tickDistance, menuItemsFont, value, gaugeLabelFont, gaugeWidth, viewWidth, gaugeX, gaugeY, digitalLabel, digitalFontSize;
 @synthesize needleBuilder = needleBuilder_;
 @synthesize lineWidth, needleLayer;
 
@@ -424,8 +424,7 @@
 
 - (void)drawDigitalLabel:(CGContextRef)context
 {
-    CGFloat digFontSize = 80.0f;
-    UIFont *digitalFont = [UIFont fontWithName:@"LetsgoDigital-Regular" size:digFontSize];
+    UIFont *digitalFont = [UIFont fontWithName:@"LetsgoDigital-Regular" size:self.digitalFontSize];
     self.digitalLabel = [[UILabel alloc] initWithFrame:CGRectIntegral(CGRectMake(self.gaugeX*2, self.gaugeWidth, self.gaugeWidth, digitalFont.pointSize))];
     [self.digitalLabel setFont:digitalFont];
     self.digitalLabel.textAlignment = NSTextAlignmentCenter;
@@ -437,8 +436,6 @@
 {
     gaugeWidth = MIN(self.frame.size.width, self.frame.size.height);
     viewWidth = MIN(self.frame.size.width, self.frame.size.height);
-    
-    CGFloat digitalFontSize = 80.0f;
     
     //Adjust the size of the gauge if needed.
     if (self.frame.size.height < self.frame.size.width) {
@@ -480,6 +477,9 @@
     self.needleBuilder.gaugeX = self.gaugeX;
     self.needleBuilder.gaugeWidth = self.gaugeWidth;
     self.needleBuilder.viewWidth = self.viewWidth;
+    
+    //Digital init
+    self.digitalFontSize = 60.0f;
     
 
 }
