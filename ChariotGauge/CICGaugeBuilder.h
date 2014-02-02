@@ -118,6 +118,8 @@
     DigitalBuilder *digitalBuilder_;
     CATextLayer *digitalLayer;
     
+    UILabel *digitalLabel;
+    
     
     struct angleRanges{
         float startRange;
@@ -136,7 +138,7 @@
 @property (nonatomic, retain) UIFont *menuItemsFont;
 @property (nonatomic, retain) UIFont *gaugeLabelFont;
 @property (nonatomic, readonly) NeedleBuilder *needleBuilder;
-@property (nonatomic, assign) float value;
+@property (nonatomic, assign) CGFloat value;
 @property (nonatomic, retain) CALayer *needleLayer;
 @property (nonatomic, assign) CGFloat lineWidth;
 @property (nonatomic, retain) NSString *digitalGaugeValue;
@@ -146,6 +148,7 @@
 @property (nonatomic, assign) float viewWidth;
 @property (nonatomic, assign) float gaugeX;
 @property (nonatomic, assign) float gaugeY;
+@property (nonatomic, retain) UILabel *digitalLabel;
 
 
 //gauge functions

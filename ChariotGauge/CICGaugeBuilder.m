@@ -196,10 +196,11 @@
     //Transform the layer to the correct angle along the z-plane.
 	needleLayer.transform = CATransform3DMakeRotation(DEGREES_TO_RADIANS(angle), 0.0f, 0.0f, 1.0f);
     
-    self.digitalBuilder.digitalValue = [NSString stringWithFormat:@"%.1f", val];
+    //Set digital gauge value;
+    [self.digitalLabel setText:[NSString stringWithFormat:@"%.1f", val]];
     
+    //Redraw needle.
     [needleLayer setNeedsDisplay];
-    [digitalLayer setNeedsDisplay];
 }
 
 - (void)drawTicksOnArc:(CGContextRef)context
@@ -463,11 +464,13 @@
 
 - (void)drawDigitalLabel:(CGContextRef)context
 {
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectIntegral(CGRectMake(self.gaugeX*2, self.gaugeWidth, self.gaugeWidth, self.digitalBuilder.digitalFont.pointSize))];
-    [label setFont:self.digitalBuilder.digitalFont];
+    CGFloat digFontSize = 80.0f;
+    UIFont *digitalFont = [UIFont fontWithName:@"LetsgoDigital-Regular" size:digFontSize];
+    self.digitalLabel = [[UILabel alloc] initWithFrame:CGRectIntegral(CGRectMake(self.gaugeX*2, self.gaugeWidth, self.gaugeWidth, digitalFont.pointSize))];
+    [self.digitalLabel setFont:digitalFont];
     
-    [label setText:@"10.0"];
-    [self addSubview:label];
+    [self.digitalLabel setText:[NSString stringWithFormat:@"%.1f", self.minGaugeNumber]];
+    [self addSubview:self.digitalLabel];
 }
 
 - (void)initializeGauge
@@ -515,28 +518,10 @@
     //initialize the gauge to the lowest value.
     self.value = self.minGaugeNumber;
     
-    //digital gauge init
-    digitalBuilder_ = [[DigitalBuilder alloc]init];
-    self.digitalBuilder.digitalValue = @"00.0";
-    self.digitalBuilder.digitalFont = [UIFont fontWithName:@"LetsgoDigital-Regular" size:digitalFontSize];
-    
-    //digital gauge layer init
-    digitalLayer = [CALayer layer];
-    digitalLayer.bounds = self.bounds;
-    digitalLayer.position = CGPointMake(self.gaugeWidth / 2.0+self.gaugeX, self.gaugeWidth / 2.0);
-    digitalLayer.needsDisplayOnBoundsChange = YES;
-    digitalLayer.delegate = self.digitalBuilder;
-    digitalLayer.contentsScale = [[UIScreen mainScreen] scale];
-    [self.layer addSublayer:digitalLayer];
-    [digitalLayer setNeedsDisplay];
-    
     
     self.needleBuilder.gaugeX = self.gaugeX;
     self.needleBuilder.gaugeWidth = self.gaugeWidth;
     self.needleBuilder.viewWidth = self.viewWidth;
-    self.digitalBuilder.gaugeX = self.gaugeX;
-    self.digitalBuilder.gaugeWidth = self.gaugeWidth;
-    self.digitalBuilder.viewWidth = self.viewWidth;
     
 
 }
