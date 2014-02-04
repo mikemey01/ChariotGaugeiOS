@@ -65,6 +65,8 @@
                                               @"temperature_ohms_two",
                                               @"temperature_ohms_three",
                                               @"temperature_bias_resistor",
+                                              @"twogauge_gauge_one",
+                                              @"twogauge_gauge_two",
                                               nil];
     NSArray *objects = [NSArray arrayWithObjects:@"AFR",
                                                  @"Gasoline",
@@ -86,6 +88,8 @@
                                                  @"7500.0",
                                                  @"185.0",
                                                  @"2000.0",
+                                                 @"Boost",
+                                                 @"Wideband",
                                                 nil];
     NSDictionary *defaults = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
     

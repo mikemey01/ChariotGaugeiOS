@@ -70,6 +70,9 @@
     //distance in degrees to travel around arc.
     float tickDistance;
     
+    //Radius of tick arc adjustable for different gauge sizes
+    CGFloat tickArcRadius;
+    
     //gauge and view width for placement of the gauge on the view.
     float gaugeWidth;
     float viewWidth;
@@ -119,6 +122,7 @@
 @property (nonatomic, assign) CGFloat lineWidth;
 @property (nonatomic, assign) float gaugeWidth;
 @property (nonatomic, assign) float viewWidth;
+@property (nonatomic, assign) CGFloat tickArcRadius;
 @property (nonatomic, assign) float gaugeX;
 @property (nonatomic, assign) float gaugeY;
 @property (nonatomic, retain) UILabel *digitalLabel;

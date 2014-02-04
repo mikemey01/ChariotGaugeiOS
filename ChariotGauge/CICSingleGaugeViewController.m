@@ -144,6 +144,7 @@
     self.gaugeView.lineWidth = 1;
     self.gaugeView.value = self.gaugeView.minGaugeNumber;
     self.gaugeView.menuItemsFont = [UIFont fontWithName:@"Futura" size:18];
+    self.gaugeView.tickArcRadius = (self.gaugeView.gaugeWidth / 2) - 50;
     calcData.sensorMaxValue = self.gaugeView.minGaugeNumber;
 }
 
@@ -172,6 +173,7 @@
     self.gaugeView.lineWidth = 1;
     self.gaugeView.value = self.gaugeView.minGaugeNumber;
     self.gaugeView.menuItemsFont = [UIFont fontWithName:@"Futura" size:18];
+    self.gaugeView.tickArcRadius = (self.gaugeView.gaugeWidth / 2) - 50;
     calcData.sensorMaxValue = self.gaugeView.minGaugeNumber;
 }
 
@@ -190,6 +192,7 @@
     self.gaugeView.lineWidth = 1;
     self.gaugeView.value = self.gaugeView.minGaugeNumber;
     self.gaugeView.menuItemsFont = [UIFont fontWithName:@"Futura" size:18];
+    self.gaugeView.tickArcRadius = (self.gaugeView.gaugeWidth / 2) - 50;
     calcData.sensorMaxValue = self.gaugeView.minGaugeNumber;
 }
 
@@ -218,7 +221,18 @@
     self.gaugeView.lineWidth = 1;
     self.gaugeView.value = self.gaugeView.minGaugeNumber;
     self.gaugeView.menuItemsFont = [UIFont fontWithName:@"Futura" size:18];
+    self.gaugeView.tickArcRadius = (self.gaugeView.gaugeWidth / 2) - 50;
     calcData.sensorMaxValue = self.gaugeView.minGaugeNumber;
+}
+
+-(void) initPrefs
+{
+    NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
+    
+    pressureUnits = [standardDefaults stringForKey:@"boost_psi_kpa"];
+    widebandUnits = [standardDefaults stringForKey:@"wideband_afr_lambda"];
+    widebandFuelType = [standardDefaults stringForKey:@"wideband_fuel_type"];
+    temperatureUnits = [standardDefaults stringForKey:@"temperature_celsius_fahrenheit"];
 }
 
 - (void)viewDidUnload
@@ -231,16 +245,6 @@
     
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
--(void) initPrefs
-{
-    NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
-
-    pressureUnits = [standardDefaults stringForKey:@"boost_psi_kpa"];
-    widebandUnits = [standardDefaults stringForKey:@"wideband_afr_lambda"];
-    widebandFuelType = [standardDefaults stringForKey:@"wideband_fuel_type"];
-    temperatureUnits = [standardDefaults stringForKey:@"temperature_celsius_fahrenheit"];
 }
 
 @end

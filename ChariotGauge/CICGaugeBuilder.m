@@ -92,7 +92,6 @@
 
 }
 
-
 @end
 
 
@@ -195,7 +194,7 @@
         startAngle =  DEGREES_TO_RADIANS(startAngle);
         endAngle = DEGREES_TO_RADIANS(endAngle);
         UIBezierPath *aPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(self.gaugeWidth/2+self.gaugeX, self.gaugeWidth/2)
-                                                             radius:(TICK_ARC_RADIUS+tickLineLength/2) //Sets the radius based on the tick length;
+                                                             radius:(self.tickArcRadius+tickLineLength/2) //Sets the radius based on the tick length;
                                                          startAngle:startAngle
                                                            endAngle:endAngle
                                                           clockwise:YES];
@@ -250,7 +249,7 @@
     CGContextTranslateCTM(context, centerPoint.x, centerPoint.y);
     
     if(isForTickArc){
-        [self drawStringAtContext:context string:text atAngle:angle withRadius:TICK_ARC_RADIUS+12]; //number arc
+        [self drawStringAtContext:context string:text atAngle:angle withRadius:self.tickArcRadius+12]; //number arc
     }
     
     CGContextRestoreGState(context);
@@ -371,7 +370,7 @@
     
     //controls the look of the arc NOT placement.
     UIBezierPath *aPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(self.gaugeWidth/2+self.gaugeX, self.gaugeWidth/2)
-                                                         radius:TICK_ARC_RADIUS //Controls the size of the tick arc
+                                                         radius:self.tickArcRadius //Controls the size of the tick arc
                                                      startAngle:0
                                                        endAngle:DEGREES_TO_RADIANS(360)
                                                       clockwise:YES];
@@ -455,6 +454,7 @@
     self.tickDistance = 270;
     self.menuItemsFont = [UIFont fontWithName:@"Futura" size:14];
     self.gaugeLabelFont = [UIFont fontWithName:@"Helvetica" size:14]; //TODO: not working correctly
+    self.tickArcRadius = (gaugeWidth / 2) - 38;
 
     //needle init
     needleBuilder_ = [[NeedleBuilder alloc] init];
