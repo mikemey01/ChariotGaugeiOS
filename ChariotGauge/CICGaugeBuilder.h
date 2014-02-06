@@ -14,6 +14,9 @@
     //Needle Length
     float needleLength;
     
+    //Needle extension for various gauge/screen sizes
+    CGFloat needleExtension;
+    
     //Needle Width
     float needleWidth;
     
@@ -33,6 +36,7 @@
 @property (nonatomic, assign) float gaugeX;
 @property (nonatomic, assign) float gaugeWidth;
 @property (nonatomic, assign) float viewWidth;
+@property (nonatomic, assign) CGFloat needleExtension;
 
 - (void)drawLayer:(CALayer*)layer inContext:(CGContextRef)ctx;
 

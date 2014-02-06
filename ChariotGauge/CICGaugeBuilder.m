@@ -19,7 +19,7 @@
 @implementation NeedleBuilder
 
 //synthesize needle props
-@synthesize needleLength, needleWidth, needleColor, gaugeX, viewWidth, gaugeWidth;
+@synthesize needleLength, needleWidth, needleColor, gaugeX, viewWidth, gaugeWidth, needleExtension;
 
 
 - (void)drawLayer:(CALayer*)layer inContext:(CGContextRef)context
@@ -39,6 +39,7 @@
 	CGContextSetStrokeColorWithColor(context, self.needleColor.CGColor);
 	CGContextSetLineWidth(context, self.needleWidth);
     CGFloat ellipseRadius = floor(self.needleWidth * 3.0);
+
 	
     //Get center coordinates
 	CGFloat centerX = (layer.bounds.size.width) / 2.0;
@@ -65,8 +66,8 @@
     CGContextBeginPath(context);
     CGContextMoveToPoint   (context, CGRectGetMinX(rect)+14, CGRectGetMinY(rect)+7);
     CGContextAddLineToPoint(context, CGRectGetMinX(rect)+25, CGRectGetMinY(rect)+12);
-    CGContextAddLineToPoint(context, CGRectGetMaxX(rect), CGRectGetMinY(rect)+1.5);
-    CGContextAddLineToPoint(context, CGRectGetMaxX(rect), CGRectGetMinY(rect)-1.5);
+    CGContextAddLineToPoint(context, CGRectGetMaxX(rect)+self.needleExtension, CGRectGetMinY(rect)+1.5);
+    CGContextAddLineToPoint(context, CGRectGetMaxX(rect)+self.needleExtension, CGRectGetMinY(rect)-1.5);
     CGContextAddLineToPoint(context, CGRectGetMinX(rect)+25, CGRectGetMinY(rect)-12);
     CGContextAddLineToPoint(context, CGRectGetMinX(rect)+14, CGRectGetMinY(rect)-7);
     CGContextClosePath(context);
@@ -460,7 +461,8 @@
     needleBuilder_ = [[NeedleBuilder alloc] init];
 	self.needleBuilder.needleColor = [UIColor orangeColor];
 	self.needleBuilder.needleWidth = 6.0;
-	self.needleBuilder.needleLength = 0.65;
+	self.needleBuilder.needleLength = 0.95;
+    self.needleBuilder.needleExtension = 0.0f;
     
     //needle layer init
 	needleLayer = [CALayer layer];
