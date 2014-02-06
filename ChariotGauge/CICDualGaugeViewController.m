@@ -97,9 +97,11 @@
     }
     gaugeView.lineWidth = 1;
     gaugeView.value = gaugeView.minGaugeNumber;
-    gaugeView.menuItemsFont = [UIFont fontWithName:@"Futura" size:18];
+    gaugeView.menuItemsFont = [UIFont fontWithName:@"Futura" size:16];
     gaugeView.tickArcRadius = (gaugeView.gaugeWidth / 2) - 40;
     gaugeView.needleBuilder.needleExtension = 10.0f;
+    gaugeView.gaugeX = 0.0f;
+    gaugeView.digitalFontSize = 30.0f;
     calcData.sensorMaxValue = gaugeView.minGaugeNumber;
 }
 
@@ -120,6 +122,9 @@
         gaugeView.tickDistance = 90;
     }else{
         if([widebandFuelType isEqualToString:@"Gasoline"] || [widebandFuelType isEqualToString:@"Propane"] || [widebandFuelType isEqualToString:@"Diesel"]){
+            if([widebandFuelType isEqualToString:@"Gasoline"]){
+                widebandFuelType = @"Gas";
+            }
             [gaugeView initializeGauge];
             gaugeView.minGaugeNumber = 5.0f;
             gaugeView.maxGaugeNumber = 25.0f;
@@ -155,9 +160,10 @@
     }
     gaugeView.lineWidth = 1;
     gaugeView.value = gaugeView.minGaugeNumber;
-    gaugeView.menuItemsFont = [UIFont fontWithName:@"Futura" size:18];
+    gaugeView.menuItemsFont = [UIFont fontWithName:@"Futura" size:16];
     gaugeView.tickArcRadius = (gaugeView.gaugeWidth / 2) - 40;
     gaugeView.needleBuilder.needleExtension = 10.0f;
+    gaugeView.digitalFontSize = 30.0f;
     calcData.sensorMaxValue = gaugeView.minGaugeNumber;
 }
 
@@ -187,9 +193,10 @@
     }
     gaugeView.lineWidth = 1;
     gaugeView.value = gaugeView.minGaugeNumber;
-    gaugeView.menuItemsFont = [UIFont fontWithName:@"Futura" size:18];
+    gaugeView.menuItemsFont = [UIFont fontWithName:@"Futura" size:16];
     gaugeView.tickArcRadius = (gaugeView.gaugeWidth / 2) - 40;
     gaugeView.needleBuilder.needleExtension = 10.0f;
+    gaugeView.digitalFontSize = 30.0f;
     calcData.sensorMaxValue = gaugeView.minGaugeNumber;
 }
 
@@ -209,9 +216,10 @@
     gaugeView.tickDistance = 270;
     gaugeView.lineWidth = 1;
     gaugeView.value = gaugeView.minGaugeNumber;
-    gaugeView.menuItemsFont = [UIFont fontWithName:@"Futura" size:18];
+    gaugeView.menuItemsFont = [UIFont fontWithName:@"Futura" size:16];
     gaugeView.tickArcRadius = (gaugeView.gaugeWidth / 2) - 40;
     gaugeView.needleBuilder.needleExtension = 10.0f;
+    gaugeView.digitalFontSize = 30.0f;
     calcData.sensorMaxValue = gaugeView.minGaugeNumber;
 }
 
