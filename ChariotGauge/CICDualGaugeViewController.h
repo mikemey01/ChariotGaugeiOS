@@ -14,11 +14,15 @@
 
 @class CICGaugeBuilder;
 
-@interface CICDualGaugeViewController : UIViewController{
+@interface CICDualGaugeViewController : UIViewController <BluetoothDelegate>{
     CICGaugeBuilder *firstGauge;
     CICGaugeBuilder *secondGauge;
     UIView *firstGaugeView;
     CICCalculateData *calcData;
+    CICBluetoothHandler *bluetooth;
+    NSArray *newArray;
+    NSString *currentStringValue;
+    NSInteger currentIntergerValue;
     
     //Prefs vars
     NSString *pressureUnits;
@@ -33,7 +37,6 @@
 @property GaugeType gaugeType;
 @property (nonatomic, retain) IBOutlet CICGaugeBuilder *firstGauge;
 @property (nonatomic, retain) IBOutlet CICGaugeBuilder *secondGauge;
-@property (nonatomic, retain) IBOutlet UIView *firstGaugeView;
 
 -(void)createBoostGauge:(CICGaugeBuilder *) gaugeView;
 -(void)createWidebandGauge:(CICGaugeBuilder *) gaugeView;

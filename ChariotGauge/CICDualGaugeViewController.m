@@ -10,6 +10,7 @@
 #import "CICGaugeBuilder.h"
 #import "CICAppDelegate.h"
 #import "CICCalculateData.h"
+#import "CICBluetoothHandler.h"
 
 @interface CICDualGaugeViewController ()
 
@@ -17,7 +18,7 @@
 
 @implementation CICDualGaugeViewController
 
-@synthesize firstGauge, secondGauge, firstGaugeView, gaugeType, bluetooth;
+@synthesize firstGauge, secondGauge, gaugeType, bluetooth;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -68,6 +69,57 @@
         [self createTempGauge:self.secondGauge];
     }else if([gaugeTwoType isEqualToString:@"Oil"]){
         [self createOilGauge:self.secondGauge];
+    }
+    
+    [self.bluetooth setBtDelegate:self];
+}
+
+-(void) getLatestData:(NSMutableString *)newData
+{
+    newArray = [newData componentsSeparatedByString: @","];
+    [self setGaugeValue:newArray];
+    newArray = nil;
+}
+
+-(void) setGaugeValue:(NSArray *)array
+{
+    if(array.count >= 4){
+        
+        if([gaugeOneType isEqualToString:@"Boost"]){
+            currentStringValue = [array objectAtIndex:1];
+            currentIntergerValue = [currentStringValue integerValue];
+            self.firstGauge.value = [calcData calcBoost:currentIntergerValue];
+        }else if([gaugeOneType isEqualToString:@"Wideband"]){
+            currentStringValue = [array objectAtIndex:2];
+            currentIntergerValue = [currentStringValue integerValue];
+            self.firstGauge.value = [calcData calcWideBand:currentIntergerValue];
+        }else if([gaugeOneType isEqualToString:@"Temperature"]){
+            currentStringValue = [array objectAtIndex:3];
+            currentIntergerValue = [currentStringValue integerValue];
+            self.firstGauge.value = [calcData calcTemp:currentIntergerValue];
+        }else if([gaugeOneType isEqualToString:@"Oil"]){
+            currentStringValue = [array objectAtIndex:4];
+            currentIntergerValue = [currentStringValue integerValue];
+            self.firstGauge.value = [calcData calcOil:currentIntergerValue];
+        }
+        
+        if([gaugeTwoType isEqualToString:@"Boost"]){
+            currentStringValue = [array objectAtIndex:1];
+            currentIntergerValue = [currentStringValue integerValue];
+            self.secondGauge.value = [calcData calcBoost:currentIntergerValue];
+        }else if([gaugeTwoType isEqualToString:@"Wideband"]){
+            currentStringValue = [array objectAtIndex:2];
+            currentIntergerValue = [currentStringValue integerValue];
+            self.secondGauge.value = [calcData calcWideBand:currentIntergerValue];
+        }else if([gaugeTwoType isEqualToString:@"Temperature"]){
+            currentStringValue = [array objectAtIndex:3];
+            currentIntergerValue = [currentStringValue integerValue];
+            self.secondGauge.value = [calcData calcTemp:currentIntergerValue];
+        }else if([gaugeTwoType isEqualToString:@"Oil"]){
+            currentStringValue = [array objectAtIndex:4];
+            currentIntergerValue = [currentStringValue integerValue];
+            self.secondGauge.value = [calcData calcOil:currentIntergerValue];
+        }
     }
 }
 
