@@ -52,7 +52,6 @@
 		CE9CB89E1896147D00F24822 /* IASKSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9CB88E1896147D00F24822 /* IASKSlider.m */; };
 		CE9CB89F1896147D00F24822 /* IASKSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9CB8901896147D00F24822 /* IASKSwitch.m */; };
 		CE9CB8A01896147D00F24822 /* IASKTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9CB8921896147D00F24822 /* IASKTextField.m */; };
-		CED082FB1878BAD2007FD05A /* CICDigitalGaugeBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = CED082FA1878BAD2007FD05A /* CICDigitalGaugeBuilder.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,8 +137,6 @@
 		CE9CB8901896147D00F24822 /* IASKSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IASKSwitch.m; sourceTree = "<group>"; };
 		CE9CB8911896147D00F24822 /* IASKTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IASKTextField.h; sourceTree = "<group>"; };
 		CE9CB8921896147D00F24822 /* IASKTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IASKTextField.m; sourceTree = "<group>"; };
-		CED082F91878BAD2007FD05A /* CICDigitalGaugeBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICDigitalGaugeBuilder.h; sourceTree = "<group>"; };
-		CED082FA1878BAD2007FD05A /* CICDigitalGaugeBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICDigitalGaugeBuilder.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,8 +225,6 @@
 				CE34F40918710A3700C1F12B /* CICDualGaugeViewController.m */,
 				CE34F40B1872227F00C1F12B /* CICQuadGaugeViewController.h */,
 				CE34F40C1872227F00C1F12B /* CICQuadGaugeViewController.m */,
-				CED082F91878BAD2007FD05A /* CICDigitalGaugeBuilder.h */,
-				CED082FA1878BAD2007FD05A /* CICDigitalGaugeBuilder.m */,
 				CE166EE318934BAB0063CB51 /* CICCalculateData.h */,
 				CE166EE418934BAB0063CB51 /* CICCalculateData.m */,
 				CE58A010186F8E3F001348DA /* CICDrawLine.h */,
@@ -467,7 +462,6 @@
 				CE2E85171847B01000C51A49 /* main.m in Sources */,
 				CE9CB8941896147D00F24822 /* IASKAppSettingsWebViewController.m in Sources */,
 				CE9CB8A01896147D00F24822 /* IASKTextField.m in Sources */,
-				CED082FB1878BAD2007FD05A /* CICDigitalGaugeBuilder.m in Sources */,
 				CE05FFB01849433700764A43 /* CICGaugeBuilder.m in Sources */,
 				CE9CB8931896147D00F24822 /* IASKAppSettingsViewController.m in Sources */,
 			);
