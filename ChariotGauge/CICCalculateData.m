@@ -192,6 +192,7 @@
 -(void) initPrefs
 {
     NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
+    self.sensorMaxValue = -100;
     
     //Wideband setup:
     widebandUnits = [standardDefaults stringForKey:@"wideband_afr_lambda"];

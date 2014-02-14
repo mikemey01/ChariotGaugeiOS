@@ -28,6 +28,7 @@
     
     [self initPrefs];
     
+    //set up bar button items
     maxButton = [[UIBarButtonItem alloc]
                  initWithTitle:@"Max"
                  style:UIBarButtonItemStyleBordered
@@ -40,8 +41,10 @@
                  target:self
                  action:@selector(resetButtonAction)];
     
+    //set the bar button items in the nav bar.
     self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:maxButton, resetButton, nil];
     
+    //build selected gauge.
     if(gaugeType==0){
         [self createBoostGauge];
     }else if(gaugeType==1){
@@ -56,8 +59,10 @@
         [self createBoostGauge];
     }
     
+    //set bluetooth delegate to self;
     [self.bluetooth setBtDelegate:self];
     
+    //create CalculateData object and initialize it.
     calcData = [[CICCalculateData alloc] init];
     [calcData initPrefs];
     [calcData initStoich];
@@ -66,9 +71,13 @@
 
 -(void) getLatestData:(NSMutableString *)newData
 {
-    newArray = [newData componentsSeparatedByString: @","];
-    [self setGaugeValue:newArray];
-    newArray = nil;
+    if(!isPaused){
+        newArray = [newData componentsSeparatedByString: @","];
+        [self setGaugeValue:newArray];
+        newArray = nil;
+    }else{
+        self.gaugeView.value = calcData.sensorMaxValue;
+    }
 }
 
 -(void) setGaugeValue:(NSArray *)array
@@ -76,8 +85,6 @@
     if(array.count > gaugeType){
         currentStringValue = [array objectAtIndex:gaugeType];
         currentIntergerValue = [currentStringValue integerValue];
-        
-        //NSLog(@"cur val: %i", currentIntergerValue);
         
         if(gaugeType==0){
             self.gaugeView.value = [calcData calcVolts:currentIntergerValue];
@@ -241,12 +248,12 @@
 
 -(void)maxButtonAction
 {
-    NSLog(@"max button pressed");
+    isPaused = !isPaused;
 }
 
 -(void)resetButtonAction
 {
-    NSLog(@"reset button pressed");
+    calcData.sensorMaxValue = self.gaugeView.minGaugeNumber;
 }
 
 -(void) initPrefs

@@ -21,8 +21,11 @@
     NSString *currentStringValue;
     NSInteger currentIntergerValue;
     CICCalculateData *calcData;
+    
+    //Bar button stuff
     UIBarButtonItem *maxButton;
     UIBarButtonItem *resetButton;
+    BOOL isPaused;
     
     //Prefs vars
     NSString *pressureUnits;

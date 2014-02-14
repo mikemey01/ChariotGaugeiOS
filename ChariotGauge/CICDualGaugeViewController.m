@@ -43,6 +43,22 @@
     
     [self initPrefs];
     
+    //set up bar button items
+    maxButton = [[UIBarButtonItem alloc]
+                 initWithTitle:@"Max"
+                 style:UIBarButtonItemStyleBordered
+                 target:self
+                 action:@selector(maxButtonAction)];
+    
+    resetButton = [[UIBarButtonItem alloc]
+                   initWithTitle:@"reset"
+                   style:UIBarButtonItemStyleBordered
+                   target:self
+                   action:@selector(resetButtonAction)];
+    
+    //set the bar button items in the nav bar.
+    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:maxButton, resetButton, nil];
+    
     //Handles forcing landscape orientation NEEDS WORK
     UIViewController *mVC = [[UIViewController alloc] init];
     [self presentModalViewController:mVC animated:NO];
@@ -52,33 +68,48 @@
     //NSLog(@"gaugeOne: %@, gaugeTwo: %@", gaugeOneType, gaugeTwoType);
     
     if([gaugeOneType isEqualToString:@"Boost"]){
-        [self createBoostGauge:self.firstGauge];
+        [self createBoostGauge:self.firstGauge :calcDataOne];
     }else if([gaugeOneType isEqualToString:@"Wideband"]){
-        [self createWidebandGauge:self.firstGauge];
+        [self createWidebandGauge:self.firstGauge :calcDataOne];
     }else if([gaugeOneType isEqualToString:@"Temperature"]){
-        [self createTempGauge:self.firstGauge];
+        [self createTempGauge:self.firstGauge :calcDataOne];
     }else if([gaugeOneType isEqualToString:@"Oil"]){
-        [self createOilGauge:self.firstGauge];
+        [self createOilGauge:self.firstGauge :calcDataOne];
     }
     
     if([gaugeTwoType isEqualToString:@"Boost"]){
-        [self createBoostGauge:self.secondGauge];
+        [self createBoostGauge:self.secondGauge :calcDataTwo];
     }else if([gaugeTwoType isEqualToString:@"Wideband"]){
-        [self createWidebandGauge:self.secondGauge];
+        [self createWidebandGauge:self.secondGauge :calcDataTwo];
     }else if([gaugeTwoType isEqualToString:@"Temperature"]){
-        [self createTempGauge:self.secondGauge];
+        [self createTempGauge:self.secondGauge :calcDataTwo];
     }else if([gaugeTwoType isEqualToString:@"Oil"]){
-        [self createOilGauge:self.secondGauge];
+        [self createOilGauge:self.secondGauge :calcDataTwo];
     }
     
     [self.bluetooth setBtDelegate:self];
+    
+    calcDataOne = [[CICCalculateData alloc] init];
+    [calcDataOne initPrefs];
+    [calcDataOne initStoich];
+    [calcDataOne initSHHCoefficients];
+    
+    calcDataTwo = [[CICCalculateData alloc] init];
+    [calcDataTwo initPrefs];
+    [calcDataTwo initStoich];
+    [calcDataTwo initSHHCoefficients];
 }
 
 -(void) getLatestData:(NSMutableString *)newData
 {
-    newArray = [newData componentsSeparatedByString: @","];
-    [self setGaugeValue:newArray];
-    newArray = nil;
+    if(!isPaused){
+        newArray = [newData componentsSeparatedByString: @","];
+        [self setGaugeValue:newArray];
+        newArray = nil;
+    }else{
+        self.firstGauge.value = calcDataOne.sensorMaxValue;
+        self.secondGauge.value = calcDataTwo.sensorMaxValue;
+    }
 }
 
 -(void) setGaugeValue:(NSArray *)array
@@ -88,48 +119,43 @@
         if([gaugeOneType isEqualToString:@"Boost"]){
             currentStringValue = [array objectAtIndex:1];
             currentIntergerValue = [currentStringValue integerValue];
-            self.firstGauge.value = [calcData calcBoost:currentIntergerValue];
+            self.firstGauge.value = [calcDataOne calcBoost:currentIntergerValue];
         }else if([gaugeOneType isEqualToString:@"Wideband"]){
             currentStringValue = [array objectAtIndex:2];
             currentIntergerValue = [currentStringValue integerValue];
-            self.firstGauge.value = [calcData calcWideBand:currentIntergerValue];
+            self.firstGauge.value = [calcDataOne calcWideBand:currentIntergerValue];
         }else if([gaugeOneType isEqualToString:@"Temperature"]){
             currentStringValue = [array objectAtIndex:3];
             currentIntergerValue = [currentStringValue integerValue];
-            self.firstGauge.value = [calcData calcTemp:currentIntergerValue];
+            self.firstGauge.value = [calcDataOne calcTemp:currentIntergerValue];
         }else if([gaugeOneType isEqualToString:@"Oil"]){
             currentStringValue = [array objectAtIndex:4];
             currentIntergerValue = [currentStringValue integerValue];
-            self.firstGauge.value = [calcData calcOil:currentIntergerValue];
+            self.firstGauge.value = [calcDataOne calcOil:currentIntergerValue];
         }
         
         if([gaugeTwoType isEqualToString:@"Boost"]){
             currentStringValue = [array objectAtIndex:1];
             currentIntergerValue = [currentStringValue integerValue];
-            self.secondGauge.value = [calcData calcBoost:currentIntergerValue];
+            self.secondGauge.value = [calcDataTwo calcBoost:currentIntergerValue];
         }else if([gaugeTwoType isEqualToString:@"Wideband"]){
             currentStringValue = [array objectAtIndex:2];
             currentIntergerValue = [currentStringValue integerValue];
-            self.secondGauge.value = [calcData calcWideBand:currentIntergerValue];
+            self.secondGauge.value = [calcDataTwo calcWideBand:currentIntergerValue];
         }else if([gaugeTwoType isEqualToString:@"Temperature"]){
             currentStringValue = [array objectAtIndex:3];
             currentIntergerValue = [currentStringValue integerValue];
-            self.secondGauge.value = [calcData calcTemp:currentIntergerValue];
+            self.secondGauge.value = [calcDataTwo calcTemp:currentIntergerValue];
         }else if([gaugeTwoType isEqualToString:@"Oil"]){
             currentStringValue = [array objectAtIndex:4];
             currentIntergerValue = [currentStringValue integerValue];
-            self.secondGauge.value = [calcData calcOil:currentIntergerValue];
+            self.secondGauge.value = [calcDataTwo calcOil:currentIntergerValue];
         }
     }
 }
 
--(void)createBoostGauge:(CICGaugeBuilder *)gaugeView
+-(void)createBoostGauge:(CICGaugeBuilder *)gaugeView :(CICCalculateData *)calcData
 {
-    calcData = [[CICCalculateData alloc] init];
-    [calcData initPrefs];
-    [calcData initStoich];
-    [calcData initSHHCoefficients];
-    
     if([pressureUnits isEqualToString:@"PSI"]){
         [gaugeView initializeGauge];
         gaugeView.minGaugeNumber = -30.0f;
@@ -157,13 +183,8 @@
     calcData.sensorMaxValue = gaugeView.minGaugeNumber;
 }
 
--(void)createWidebandGauge:(CICGaugeBuilder *) gaugeView
+-(void)createWidebandGauge:(CICGaugeBuilder *) gaugeView :(CICCalculateData *) calcData
 {
-    calcData = [[CICCalculateData alloc] init];
-    [calcData initPrefs];
-    [calcData initStoich];
-    [calcData initSHHCoefficients];
-    
     if([widebandUnits isEqualToString:@"Lambda"]){
         [gaugeView initializeGauge];
         gaugeView.minGaugeNumber = 0.0f;
@@ -219,13 +240,8 @@
     calcData.sensorMaxValue = gaugeView.minGaugeNumber;
 }
 
--(void)createTempGauge:(CICGaugeBuilder *) gaugeView
+-(void)createTempGauge:(CICGaugeBuilder *) gaugeView :(CICCalculateData *) calcData
 {
-    calcData = [[CICCalculateData alloc] init];
-    [calcData initPrefs];
-    [calcData initStoich];
-    [calcData initSHHCoefficients];
-    
     if([temperatureUnits isEqualToString:@"Fahrenheit"]){
         [gaugeView initializeGauge];
         gaugeView.minGaugeNumber = -20.0f;
@@ -252,13 +268,8 @@
     calcData.sensorMaxValue = gaugeView.minGaugeNumber;
 }
 
--(void)createOilGauge:(CICGaugeBuilder *) gaugeView
+-(void)createOilGauge:(CICGaugeBuilder *) gaugeView :(CICCalculateData *) calcData
 {
-    calcData = [[CICCalculateData alloc] init];
-    [calcData initPrefs];
-    [calcData initStoich];
-    [calcData initSHHCoefficients];
-    
     [gaugeView initializeGauge];
     gaugeView.minGaugeNumber = 0.0f;
     gaugeView.maxGaugeNumber = 100.0f;
@@ -273,6 +284,17 @@
     gaugeView.needleBuilder.needleExtension = 10.0f;
     gaugeView.digitalFontSize = 30.0f;
     calcData.sensorMaxValue = gaugeView.minGaugeNumber;
+}
+
+-(void)maxButtonAction
+{
+    isPaused = !isPaused;
+}
+
+-(void)resetButtonAction
+{
+    calcDataOne.sensorMaxValue = self.firstGauge.minGaugeNumber;
+    calcDataTwo.sensorMaxValue = self.secondGauge.minGaugeNumber;
 }
 
 -(void) initPrefs

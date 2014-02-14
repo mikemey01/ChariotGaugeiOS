@@ -133,9 +133,6 @@
     [self drawGaugeText:gaugeLabel];
     
     [self drawDigitalLabel:(context)];
-    
-    //[self drawCurvedText:self.gaugeLabel atAngle:DEGREES_TO_RADIANS(90.0f) withContext:context forTickArc:NO];
-    
 }
 
 
@@ -446,7 +443,7 @@
     
     //Gauge init
     lineWidth = 1;
-    self.minGaugeNumber = 0;
+    self.minGaugeNumber = -100;
     self.maxGaugeNumber = 100;
     self.gaugeType = 2;
     self.gaugeLabel = @"temp";

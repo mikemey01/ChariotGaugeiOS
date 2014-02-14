@@ -17,12 +17,19 @@
 @interface CICDualGaugeViewController : UIViewController <BluetoothDelegate>{
     CICGaugeBuilder *firstGauge;
     CICGaugeBuilder *secondGauge;
+    CICCalculateData *calcDataOne;
+    CICCalculateData *calcDataTwo;
     UIView *firstGaugeView;
-    CICCalculateData *calcData;
+    //CICCalculateData *calcData;
     CICBluetoothHandler *bluetooth;
     NSArray *newArray;
     NSString *currentStringValue;
     NSInteger currentIntergerValue;
+    
+    //Bar button stuff
+    UIBarButtonItem *maxButton;
+    UIBarButtonItem *resetButton;
+    BOOL isPaused;
     
     //Prefs vars
     NSString *pressureUnits;
@@ -38,9 +45,12 @@
 @property (nonatomic, retain) IBOutlet CICGaugeBuilder *firstGauge;
 @property (nonatomic, retain) IBOutlet CICGaugeBuilder *secondGauge;
 
--(void)createBoostGauge:(CICGaugeBuilder *) gaugeView;
--(void)createWidebandGauge:(CICGaugeBuilder *) gaugeView;
--(void)createTempGauge:(CICGaugeBuilder *) gaugeView;
--(void)createOilGauge:(CICGaugeBuilder *) gaugeView;
+-(void)createBoostGauge:(CICGaugeBuilder *) gaugeView :(CICCalculateData *) calcData;
+-(void)createWidebandGauge:(CICGaugeBuilder *) gaugeView :(CICCalculateData *) calcData;
+-(void)createTempGauge:(CICGaugeBuilder *) gaugeView :(CICCalculateData *) calcData;
+-(void)createOilGauge:(CICGaugeBuilder *) gaugeView :(CICCalculateData *) calcData;
+-(void)maxButtonAction;
+-(void)resetButtonAction;
+-(void)initPrefs;
 
 @end
