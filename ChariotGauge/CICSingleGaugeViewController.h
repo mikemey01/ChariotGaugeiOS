@@ -21,6 +21,8 @@
     NSString *currentStringValue;
     NSInteger currentIntergerValue;
     CICCalculateData *calcData;
+    UIBarButtonItem *maxButton;
+    UIBarButtonItem *resetButton;
     
     //Prefs vars
     NSString *pressureUnits;
@@ -37,6 +39,8 @@
 -(void)createBoostGauge;
 -(void)createOilGauge;
 -(void)createTempGauge;
+-(void)maxButtonAction;
+-(void)resetButtonAction;
 -(void)initPrefs;
 
 -(void) setGaugeValue:(NSArray *)array;

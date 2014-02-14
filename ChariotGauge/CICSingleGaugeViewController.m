@@ -28,6 +28,20 @@
     
     [self initPrefs];
     
+    maxButton = [[UIBarButtonItem alloc]
+                 initWithTitle:@"Max"
+                 style:UIBarButtonItemStyleBordered
+                 target:self
+                 action:@selector(maxButtonAction)];
+    
+    resetButton = [[UIBarButtonItem alloc]
+                 initWithTitle:@"reset"
+                 style:UIBarButtonItemStyleBordered
+                 target:self
+                 action:@selector(resetButtonAction)];
+    
+    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:maxButton, resetButton, nil];
+    
     if(gaugeType==0){
         [self createBoostGauge];
     }else if(gaugeType==1){
@@ -223,6 +237,16 @@
     self.gaugeView.menuItemsFont = [UIFont fontWithName:@"Futura" size:18];
     self.gaugeView.tickArcRadius = (self.gaugeView.gaugeWidth / 2) - 50;
     calcData.sensorMaxValue = self.gaugeView.minGaugeNumber;
+}
+
+-(void)maxButtonAction
+{
+    NSLog(@"max button pressed");
+}
+
+-(void)resetButtonAction
+{
+    NSLog(@"reset button pressed");
 }
 
 -(void) initPrefs
