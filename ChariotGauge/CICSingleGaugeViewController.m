@@ -294,7 +294,8 @@
     [voltLabel setFont:digitalFont];
     [voltLabel setText:@"Volts"];
     
-    voltLabelNumbers = [[UILabel alloc] initWithFrame:CGRectIntegral(CGRectMake(sizeOfScreen.width-45.0f, sizeOfScreen.height-32.0f, sizeOfScreen.width/2, 30.0f))];
+    voltLabelNumbers = [[UILabel alloc] initWithFrame:CGRectIntegral(CGRectMake(sizeOfScreen.width/2, sizeOfScreen.height-32.0f, sizeOfScreen.width/2-2, 30.0f))];
+    voltLabelNumbers.textAlignment = NSTextAlignmentRight;
     [voltLabelNumbers setFont:digitalFont];
     [voltLabelNumbers setText:@"0.0"];
     
