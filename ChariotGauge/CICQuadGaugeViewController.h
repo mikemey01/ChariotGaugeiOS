@@ -10,6 +10,7 @@
 #import "CICGaugeBuilder.h"
 #import "CICHomeScreenViewController.h"
 #import "CICBluetoothHandler.h"
+#import "CICCalculateData.h"
 
 @class CICGaugeBuilder;
 
@@ -18,6 +19,30 @@
     CICGaugeBuilder *secondGauge;
     CICGaugeBuilder *thirdGauge;
     CICGaugeBuilder *fourthGauge;
+    CICCalculateData *calcDataOne;
+    CICCalculateData *calcDataTwo;
+    CICCalculateData *calcDataThree;
+    CICCalculateData *calcDataFour;
+    CICBluetoothHandler *bluetooth;
+    NSArray *newArray;
+    NSString *currentStringValue;
+    NSInteger currentIntergerValue;
+    
+    //Bar button stuff
+    UIBarButtonItem *maxButton;
+    UIBarButtonItem *resetButton;
+    BOOL isPaused;
+    
+    //Prefs vars
+    NSString *pressureUnits;
+    NSString *widebandUnits;
+    NSString *widebandFuelType;
+    NSString *temperatureUnits;
+    
+    //volt gauge
+    UILabel *voltLabel;
+    UILabel *voltLabelNumbers;
+    CICCalculateData *calcDataVolts;
 }
 
 @property (nonatomic, retain) CICBluetoothHandler *bluetooth;
@@ -27,9 +52,13 @@
 @property (nonatomic, retain) IBOutlet CICGaugeBuilder *thirdGauge;
 @property (nonatomic, retain) IBOutlet CICGaugeBuilder *fourthGauge;
 
--(void)createFirstGauge;
--(void)createSecondGauge;
--(void)createThirdGauge;
--(void)createFourthGauge;
+-(void)createBoostGauge:(CICGaugeBuilder *) gaugeView :(CICCalculateData *) calcData;
+-(void)createWidebandGauge:(CICGaugeBuilder *) gaugeView :(CICCalculateData *) calcData;
+-(void)createTempGauge:(CICGaugeBuilder *) gaugeView :(CICCalculateData *) calcData;
+-(void)createOilGauge:(CICGaugeBuilder *) gaugeView :(CICCalculateData *) calcData;
+-(void)createVoltGauge;
+-(void)maxButtonAction;
+-(void)resetButtonAction;
+-(void)initPrefs;
 
 @end

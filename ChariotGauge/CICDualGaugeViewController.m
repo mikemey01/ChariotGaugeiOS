@@ -117,6 +117,7 @@
     }else{
         self.firstGauge.value = calcDataOne.sensorMaxValue;
         self.secondGauge.value = calcDataTwo.sensorMaxValue;
+        [voltLabelNumbers setText:[NSString stringWithFormat:@"%.1f", calcDataVolts.sensorMaxValue]];
     }
 }
 

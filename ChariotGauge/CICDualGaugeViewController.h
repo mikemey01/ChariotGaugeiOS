@@ -58,6 +58,5 @@
 -(void)maxButtonAction;
 -(void)resetButtonAction;
 -(void)initPrefs;
--(void)createVoltGauge;
 
 @end
