@@ -67,6 +67,18 @@
     [calcData initPrefs];
     [calcData initStoich];
     [calcData initSHHCoefficients];
+    
+    calcDataVolts = [[CICCalculateData alloc]init];
+    [calcDataVolts initPrefs];
+    [calcDataVolts initStoich];
+    [calcDataVolts initSHHCoefficients];
+    
+    
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [self createVoltGauge];
 }
 
 -(void) getLatestData:(NSMutableString *)newData
@@ -77,6 +89,7 @@
         newArray = nil;
     }else{
         self.gaugeView.value = calcData.sensorMaxValue;
+        [voltLabelNumbers setText:[NSString stringWithFormat:@"%.1f", calcDataVolts.sensorMaxValue]];
     }
 }
 
@@ -97,6 +110,12 @@
         }else if(gaugeType==4){
             self.gaugeView.value = [calcData calcOil:currentIntergerValue];
         }
+        
+        //Set voltage value
+        currentStringValue = [array objectAtIndex:0];
+        currentIntergerValue = [currentStringValue integerValue];
+        
+        [voltLabelNumbers setText:[NSString stringWithFormat:@"%.1f", [calcDataVolts calcVolts:currentIntergerValue]]];
     }
 }
 
@@ -264,6 +283,23 @@
     widebandUnits = [standardDefaults stringForKey:@"wideband_afr_lambda"];
     widebandFuelType = [standardDefaults stringForKey:@"wideband_fuel_type"];
     temperatureUnits = [standardDefaults stringForKey:@"temperature_celsius_fahrenheit"];
+}
+
+-(void)createVoltGauge
+{
+    CGSize sizeOfScreen = [[UIScreen mainScreen] bounds].size;
+    
+    UIFont *digitalFont = [UIFont fontWithName:@"LetsgoDigital-Regular" size:35.0f];
+    voltLabel = [[UILabel alloc] initWithFrame:CGRectIntegral(CGRectMake(2.0f, sizeOfScreen.height-32.0f, sizeOfScreen.width/2, 30.0f))];
+    [voltLabel setFont:digitalFont];
+    [voltLabel setText:@"Volts"];
+    
+    voltLabelNumbers = [[UILabel alloc] initWithFrame:CGRectIntegral(CGRectMake(sizeOfScreen.width-45.0f, sizeOfScreen.height-32.0f, sizeOfScreen.width/2, 30.0f))];
+    [voltLabelNumbers setFont:digitalFont];
+    [voltLabelNumbers setText:@"0.0"];
+    
+    [self.view addSubview:voltLabel];
+    [self.view addSubview:voltLabelNumbers];
 }
 
 - (void)viewDidUnload

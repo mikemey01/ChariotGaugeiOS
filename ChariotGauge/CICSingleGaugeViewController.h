@@ -32,6 +32,11 @@
     NSString *widebandUnits;
     NSString *widebandFuelType;
     NSString *temperatureUnits;
+    
+    //volt gauge
+    UILabel *voltLabel;
+    UILabel *voltLabelNumbers;
+    CICCalculateData *calcDataVolts;
 }
 
 @property GaugeType gaugeType;
@@ -45,6 +50,7 @@
 -(void)maxButtonAction;
 -(void)resetButtonAction;
 -(void)initPrefs;
+-(void)createVoltGauge;
 
 -(void) setGaugeValue:(NSArray *)array;
 @end

@@ -47,7 +47,7 @@
     
 }
 
-@property (nonatomic, assign) float sensorMaxValue;
+@property (nonatomic, assign) CGFloat sensorMaxValue;
 
 -(CGFloat) calcWideBand:(NSInteger)val;
 -(CGFloat) calcBoost:(NSInteger)val;

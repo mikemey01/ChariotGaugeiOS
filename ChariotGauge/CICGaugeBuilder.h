@@ -90,7 +90,7 @@
         /*Needle stuff*/
     
     //Needle value
-    float value;
+    CGFloat value;
     
     //Needle layer
     CALayer *needleLayer;
