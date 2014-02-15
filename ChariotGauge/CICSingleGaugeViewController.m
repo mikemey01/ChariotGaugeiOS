@@ -59,6 +59,9 @@
         [self createBoostGauge];
     }
     
+    //Create volt gauge
+    [self createVoltGauge];
+    
     //set bluetooth delegate to self;
     [self.bluetooth setBtDelegate:self];
     
@@ -74,11 +77,6 @@
     [calcDataVolts initSHHCoefficients];
     
     
-}
-
--(void)viewDidAppear:(BOOL)animated
-{
-    [self createVoltGauge];
 }
 
 -(void) getLatestData:(NSMutableString *)newData
@@ -265,6 +263,24 @@
     calcData.sensorMaxValue = self.gaugeView.minGaugeNumber;
 }
 
+-(void)createVoltGauge
+{
+    CGSize sizeOfScreen = [[UIScreen mainScreen] bounds].size;
+    
+    UIFont *digitalFont = [UIFont fontWithName:@"LetsgoDigital-Regular" size:30.0f];
+    voltLabel = [[UILabel alloc] initWithFrame:CGRectIntegral(CGRectMake(2.0f, sizeOfScreen.height-32.0f, sizeOfScreen.width/2, 30.0f))];
+    [voltLabel setFont:digitalFont];
+    [voltLabel setText:@"Volts"];
+    
+    voltLabelNumbers = [[UILabel alloc] initWithFrame:CGRectIntegral(CGRectMake(sizeOfScreen.width/2, sizeOfScreen.height-32.0f, sizeOfScreen.width/2-2, 30.0f))];
+    voltLabelNumbers.textAlignment = NSTextAlignmentRight;
+    [voltLabelNumbers setFont:digitalFont];
+    [voltLabelNumbers setText:@"0.0"];
+    
+    [self.view addSubview:voltLabel];
+    [self.view addSubview:voltLabelNumbers];
+}
+
 -(void)maxButtonAction
 {
     isPaused = !isPaused;
@@ -283,24 +299,6 @@
     widebandUnits = [standardDefaults stringForKey:@"wideband_afr_lambda"];
     widebandFuelType = [standardDefaults stringForKey:@"wideband_fuel_type"];
     temperatureUnits = [standardDefaults stringForKey:@"temperature_celsius_fahrenheit"];
-}
-
--(void)createVoltGauge
-{
-    CGSize sizeOfScreen = [[UIScreen mainScreen] bounds].size;
-    
-    UIFont *digitalFont = [UIFont fontWithName:@"LetsgoDigital-Regular" size:35.0f];
-    voltLabel = [[UILabel alloc] initWithFrame:CGRectIntegral(CGRectMake(2.0f, sizeOfScreen.height-32.0f, sizeOfScreen.width/2, 30.0f))];
-    [voltLabel setFont:digitalFont];
-    [voltLabel setText:@"Volts"];
-    
-    voltLabelNumbers = [[UILabel alloc] initWithFrame:CGRectIntegral(CGRectMake(sizeOfScreen.width/2, sizeOfScreen.height-32.0f, sizeOfScreen.width/2-2, 30.0f))];
-    voltLabelNumbers.textAlignment = NSTextAlignmentRight;
-    [voltLabelNumbers setFont:digitalFont];
-    [voltLabelNumbers setText:@"0.0"];
-    
-    [self.view addSubview:voltLabel];
-    [self.view addSubview:voltLabelNumbers];
 }
 
 - (void)viewDidUnload

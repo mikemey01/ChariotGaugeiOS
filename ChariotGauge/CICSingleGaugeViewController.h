@@ -47,10 +47,10 @@
 -(void)createBoostGauge;
 -(void)createOilGauge;
 -(void)createTempGauge;
+-(void)createVoltGauge;
 -(void)maxButtonAction;
 -(void)resetButtonAction;
 -(void)initPrefs;
--(void)createVoltGauge;
 
 -(void) setGaugeValue:(NSArray *)array;
 @end

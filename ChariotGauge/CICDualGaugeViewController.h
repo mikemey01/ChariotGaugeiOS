@@ -38,6 +38,11 @@
     NSString *temperatureUnits;
     NSString *gaugeOneType;
     NSString *gaugeTwoType;
+    
+    //volt gauge
+    UILabel *voltLabel;
+    UILabel *voltLabelNumbers;
+    CICCalculateData *calcDataVolts;
 }
 
 @property (nonatomic, retain) CICBluetoothHandler *bluetooth;
@@ -49,8 +54,10 @@
 -(void)createWidebandGauge:(CICGaugeBuilder *) gaugeView :(CICCalculateData *) calcData;
 -(void)createTempGauge:(CICGaugeBuilder *) gaugeView :(CICCalculateData *) calcData;
 -(void)createOilGauge:(CICGaugeBuilder *) gaugeView :(CICCalculateData *) calcData;
+-(void)createVoltGauge;
 -(void)maxButtonAction;
 -(void)resetButtonAction;
 -(void)initPrefs;
+-(void)createVoltGauge;
 
 @end

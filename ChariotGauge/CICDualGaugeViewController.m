@@ -87,6 +87,8 @@
         [self createOilGauge:self.secondGauge :calcDataTwo];
     }
     
+    [self createVoltGauge];
+    
     [self.bluetooth setBtDelegate:self];
     
     calcDataOne = [[CICCalculateData alloc] init];
@@ -98,7 +100,13 @@
     [calcDataTwo initPrefs];
     [calcDataTwo initStoich];
     [calcDataTwo initSHHCoefficients];
+    
+    calcDataVolts = [[CICCalculateData alloc]init];
+    [calcDataVolts initPrefs];
+    [calcDataVolts initStoich];
+    [calcDataVolts initSHHCoefficients];
 }
+
 
 -(void) getLatestData:(NSMutableString *)newData
 {
@@ -151,6 +159,12 @@
             currentIntergerValue = [currentStringValue integerValue];
             self.secondGauge.value = [calcDataTwo calcOil:currentIntergerValue];
         }
+        
+        //Set voltage value
+        currentStringValue = [array objectAtIndex:0];
+        currentIntergerValue = [currentStringValue integerValue];
+        
+        [voltLabelNumbers setText:[NSString stringWithFormat:@"%.1f", [calcDataVolts calcVolts:currentIntergerValue]]];
     }
 }
 
@@ -284,6 +298,29 @@
     gaugeView.needleBuilder.needleExtension = 10.0f;
     gaugeView.digitalFontSize = 30.0f;
     calcData.sensorMaxValue = gaugeView.minGaugeNumber;
+}
+
+-(void)createVoltGauge
+{
+    //Screen size, reverse them for landscape.
+    CGSize sizeOfScreen = [[UIScreen mainScreen] bounds].size;
+    CGFloat widthHolder = sizeOfScreen.width;
+    sizeOfScreen.width = sizeOfScreen.height;
+    sizeOfScreen.height = widthHolder;
+    
+    UIFont *digitalFont = [UIFont fontWithName:@"LetsgoDigital-Regular" size:20.0f];
+    voltLabel = [[UILabel alloc] initWithFrame:CGRectIntegral(CGRectMake(0.0f, sizeOfScreen.height-44.0f, sizeOfScreen.width, 20.0f))];
+    voltLabel.textAlignment = NSTextAlignmentCenter;
+    [voltLabel setFont:digitalFont];
+    [voltLabel setText:@"Volts"];
+    
+    voltLabelNumbers = [[UILabel alloc] initWithFrame:CGRectIntegral(CGRectMake(0.0f, sizeOfScreen.height-22.0f, sizeOfScreen.width, 20.0f))];
+    voltLabelNumbers.textAlignment = NSTextAlignmentCenter;
+    [voltLabelNumbers setFont:digitalFont];
+    [voltLabelNumbers setText:@"0.0"];
+    
+    [self.view addSubview:voltLabel];
+    [self.view addSubview:voltLabelNumbers];
 }
 
 -(void)maxButtonAction
