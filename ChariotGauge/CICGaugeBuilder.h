@@ -27,6 +27,8 @@
     float gaugeWidth;
     float viewWidth;
     float gaugeX;
+    
+    CGFloat needleScaler;
 }
 
 //Needle props
@@ -37,6 +39,7 @@
 @property (nonatomic, assign) float gaugeWidth;
 @property (nonatomic, assign) float viewWidth;
 @property (nonatomic, assign) CGFloat needleExtension;
+@property (nonatomic, assign) CGFloat needleScaler;
 
 - (void)drawLayer:(CALayer*)layer inContext:(CGContextRef)ctx;
 

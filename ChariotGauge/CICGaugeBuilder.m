@@ -19,7 +19,7 @@
 @implementation NeedleBuilder
 
 //synthesize needle props
-@synthesize needleLength, needleWidth, needleColor, gaugeX, viewWidth, gaugeWidth, needleExtension;
+@synthesize needleLength, needleWidth, needleColor, gaugeX, viewWidth, gaugeWidth, needleExtension, needleScaler;
 
 
 - (void)drawLayer:(CALayer*)layer inContext:(CGContextRef)context
@@ -45,9 +45,9 @@
 	CGFloat centerX = (layer.bounds.size.width) / 2.0;
 	CGFloat centerY = (layer.bounds.size.height) / 2.0;
     
-	
+	 
     //Fill the needle circle
-	CGContextFillEllipseInRect(context, CGRectMake(centerX - ellipseRadius, centerY - ellipseRadius, ellipseRadius * 2.0, ellipseRadius * 2.0));
+	CGContextFillEllipseInRect(context, CGRectMake(centerX - ellipseRadius*needleScaler, centerY - ellipseRadius*needleScaler, ellipseRadius * 2.0 *needleScaler, ellipseRadius * 2.0 * needleScaler));
     
     CGContextRestoreGState(context);
     CGContextSaveGState(context);
@@ -64,12 +64,12 @@
     
     //controls the shape (mirrored)
     CGContextBeginPath(context);
-    CGContextMoveToPoint   (context, CGRectGetMinX(rect)+14, CGRectGetMinY(rect)+7);
-    CGContextAddLineToPoint(context, CGRectGetMinX(rect)+25, CGRectGetMinY(rect)+12);
-    CGContextAddLineToPoint(context, CGRectGetMaxX(rect)+self.needleExtension, CGRectGetMinY(rect)+1.5);
-    CGContextAddLineToPoint(context, CGRectGetMaxX(rect)+self.needleExtension, CGRectGetMinY(rect)-1.5);
-    CGContextAddLineToPoint(context, CGRectGetMinX(rect)+25, CGRectGetMinY(rect)-12);
-    CGContextAddLineToPoint(context, CGRectGetMinX(rect)+14, CGRectGetMinY(rect)-7);
+    CGContextMoveToPoint   (context, CGRectGetMinX(rect)+14*needleScaler, CGRectGetMinY(rect)+7*needleScaler);
+    CGContextAddLineToPoint(context, CGRectGetMinX(rect)+25*needleScaler, CGRectGetMinY(rect)+12*needleScaler);
+    CGContextAddLineToPoint(context, CGRectGetMaxX(rect)+self.needleExtension, CGRectGetMinY(rect)+1.5*needleScaler);
+    CGContextAddLineToPoint(context, CGRectGetMaxX(rect)+self.needleExtension, CGRectGetMinY(rect)-1.5*needleScaler);
+    CGContextAddLineToPoint(context, CGRectGetMinX(rect)+25*needleScaler, CGRectGetMinY(rect)-12*needleScaler);
+    CGContextAddLineToPoint(context, CGRectGetMinX(rect)+14*needleScaler, CGRectGetMinY(rect)-7*needleScaler);
     CGContextClosePath(context);
     
     //Set the color and fill
@@ -81,10 +81,12 @@
     
     /* draw screw */
     
-    CGRect needleScrew = CGRectMake(centerX - ellipseRadius + 12.0, centerY - ellipseRadius + 12.0, ellipseRadius-5.0, ellipseRadius-5.0);
+    //CGRect needleScrew = CGRectMake((centerX - ellipseRadius + 12.0), (centerY - ellipseRadius + 12.0), (ellipseRadius-5.0)*needleScaler, (ellipseRadius-5.0)*needleScaler);
     CGContextSetRGBFillColor(context, 0.0, 0.0, 0.0, 1.0);
     CGContextSetRGBStrokeColor(context, 110.0/255.0, 110.0/255.0, 110.0/255.0, 1.0);
-    CGContextFillEllipseInRect(context, needleScrew);
+    CGContextFillEllipseInRect(context, CGRectMake(centerX - ellipseRadius*needleScaler*0.3, centerY - ellipseRadius*needleScaler*0.3, ellipseRadius * 2.0 *needleScaler*0.3, ellipseRadius * 2.0 * needleScaler*0.3));
+    
+    //CGContextFillEllipseInRect(context, needleScrew);
     
     
 	layer.transform = transform;
@@ -479,6 +481,7 @@
     
     //Digital init
     self.digitalFontSize = 60.0f;
+    self.needleBuilder.needleScaler = 1.0f;
     
 
 }
