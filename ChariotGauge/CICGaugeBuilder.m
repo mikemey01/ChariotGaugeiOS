@@ -105,7 +105,7 @@
 @synthesize minGaugeNumber, maxGaugeNumber, gaugeLabel, incrementPerLargeTick, gaugeType, tickStartAngleDegrees,
             tickDistance, menuItemsFont, value, gaugeLabelFont, gaugeWidth, viewWidth, gaugeX, gaugeY, digitalLabel, digitalFontSize;
 @synthesize needleBuilder = needleBuilder_;
-@synthesize lineWidth, needleLayer;
+@synthesize lineWidth, needleLayer, gaugeLabelHeight, tickArcRadius;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -224,7 +224,7 @@
 
 -(void)drawGaugeText:(NSString*) text
 {
-    CGRect textBox = CGRectMake(self.gaugeX, self.gaugeWidth, self.viewWidth, self.gaugeWidth-100);
+    CGRect textBox = CGRectMake(self.gaugeX, self.gaugeWidth, self.viewWidth, self.gaugeWidth-self.gaugeLabelHeight);
     CGFloat fontHeight = gaugeLabelFont.pointSize;
     CGFloat yOffset = (textBox.size.height - fontHeight) / 2.0;
     
@@ -455,6 +455,7 @@
     self.menuItemsFont = [UIFont fontWithName:@"Futura" size:14];
     self.gaugeLabelFont = [UIFont fontWithName:@"Helvetica" size:14]; //TODO: not working correctly
     self.tickArcRadius = (gaugeWidth / 2) - 38;
+    self.gaugeLabelHeight = 100.0f;
 
     //needle init
     needleBuilder_ = [[NeedleBuilder alloc] init];
@@ -478,10 +479,11 @@
     self.needleBuilder.gaugeX = self.gaugeX;
     self.needleBuilder.gaugeWidth = self.gaugeWidth;
     self.needleBuilder.viewWidth = self.viewWidth;
+    self.needleBuilder.needleScaler = 1.0f;
     
     //Digital init
     self.digitalFontSize = 60.0f;
-    self.needleBuilder.needleScaler = 1.0f;
+    
     
 
 }

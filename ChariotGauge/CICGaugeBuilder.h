@@ -67,6 +67,8 @@
     
     //text label for gauge type
     NSString *gaugeLabel;
+    UIFont *gaugeLabelFont;
+    CGFloat gaugeLabelHeight;
     
     //gauge curvature type (1 = 180, 2 = 270, 3 = 315).
     int gaugeType;
@@ -88,7 +90,6 @@
     
     //TODO: update
     UIFont *menuItemsFont;
-    UIFont *gaugeLabelFont;
     
         /*Needle stuff*/
     
@@ -117,12 +118,10 @@
 @property (nonatomic, assign) float minGaugeNumber;
 @property (nonatomic, assign) float maxGaugeNumber;
 @property (nonatomic, assign) int incrementPerLargeTick;
-@property (nonatomic, retain) NSString *gaugeLabel;
 @property (nonatomic, assign) int gaugeType;
 @property (nonatomic, assign) float tickStartAngleDegrees;
 @property (nonatomic, assign) float tickDistance;
 @property (nonatomic, retain) UIFont *menuItemsFont;
-@property (nonatomic, retain) UIFont *gaugeLabelFont;
 @property (nonatomic, readonly) NeedleBuilder *needleBuilder;
 @property (nonatomic, assign) CGFloat value;
 @property (nonatomic, retain) CALayer *needleLayer;
@@ -134,6 +133,9 @@
 @property (nonatomic, assign) float gaugeY;
 @property (nonatomic, retain) UILabel *digitalLabel;
 @property (nonatomic, assign) CGFloat digitalFontSize;
+@property (nonatomic, retain) NSString *gaugeLabel;
+@property (nonatomic, assign) CGFloat gaugeLabelHeight;
+@property (nonatomic, retain) UIFont *gaugeLabelFont;
 
 
 //gauge functions

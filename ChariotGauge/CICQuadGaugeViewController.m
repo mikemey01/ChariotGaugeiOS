@@ -117,6 +117,7 @@
     gaugeView.digitalFontSize = 30.0f;
     gaugeView.gaugeLabelFont = [UIFont fontWithName:@"Helvetica" size:8.0f];
     gaugeView.needleBuilder.needleScaler = 0.5f;
+    gaugeView.gaugeLabelHeight = 60.0f;
     calcData.sensorMaxValue = gaugeView.minGaugeNumber;
 }
 
