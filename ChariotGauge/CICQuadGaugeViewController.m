@@ -171,14 +171,15 @@
     }
     gaugeView.lineWidth = 1;
     gaugeView.value = gaugeView.minGaugeNumber;
-    gaugeView.menuItemsFont = [UIFont fontWithName:@"Futura" size:16];
-    gaugeView.tickArcRadius = (gaugeView.gaugeWidth / 2) - 40;
-    gaugeView.needleBuilder.needleExtension = 10.0f;
+    gaugeView.menuItemsFont = [UIFont fontWithName:@"Futura" size:10];
+    gaugeView.tickArcRadius = (gaugeView.gaugeWidth / 2) - 34;
+    gaugeView.needleBuilder.needleExtension = 16.0f;
+    gaugeView.gaugeX = 0.0f;
     gaugeView.digitalFontSize = 30.0f;
     gaugeView.gaugeLabelFont = [UIFont fontWithName:@"Helvetica" size:8.0f];
     gaugeView.needleBuilder.needleScaler = 0.5f;
+    gaugeView.gaugeLabelHeight = 60.0f;
     calcData.sensorMaxValue = gaugeView.minGaugeNumber;
-    gaugeView.value = 25.0f;
 }
 
 -(void)createTempGauge:(CICGaugeBuilder *) gaugeView :(CICCalculateData *) calcData
@@ -202,12 +203,14 @@
     }
     gaugeView.lineWidth = 1;
     gaugeView.value = gaugeView.minGaugeNumber;
-    gaugeView.menuItemsFont = [UIFont fontWithName:@"Futura" size:16];
-    gaugeView.tickArcRadius = (gaugeView.gaugeWidth / 2) - 40;
-    gaugeView.needleBuilder.needleExtension = 10.0f;
+    gaugeView.menuItemsFont = [UIFont fontWithName:@"Futura" size:10];
+    gaugeView.tickArcRadius = (gaugeView.gaugeWidth / 2) - 34;
+    gaugeView.needleBuilder.needleExtension = 16.0f;
+    gaugeView.gaugeX = 0.0f;
     gaugeView.digitalFontSize = 30.0f;
     gaugeView.gaugeLabelFont = [UIFont fontWithName:@"Helvetica" size:8.0f];
     gaugeView.needleBuilder.needleScaler = 0.5f;
+    gaugeView.gaugeLabelHeight = 60.0f;
     calcData.sensorMaxValue = gaugeView.minGaugeNumber;
 }
 
@@ -222,12 +225,14 @@
     gaugeView.tickDistance = 270;
     gaugeView.lineWidth = 1;
     gaugeView.value = gaugeView.minGaugeNumber;
-    gaugeView.menuItemsFont = [UIFont fontWithName:@"Futura" size:16];
-    gaugeView.tickArcRadius = (gaugeView.gaugeWidth / 2) - 40;
-    gaugeView.needleBuilder.needleExtension = 10.0f;
+    gaugeView.menuItemsFont = [UIFont fontWithName:@"Futura" size:10];
+    gaugeView.tickArcRadius = (gaugeView.gaugeWidth / 2) - 34;
+    gaugeView.needleBuilder.needleExtension = 16.0f;
+    gaugeView.gaugeX = 0.0f;
     gaugeView.digitalFontSize = 30.0f;
     gaugeView.gaugeLabelFont = [UIFont fontWithName:@"Helvetica" size:8.0f];
     gaugeView.needleBuilder.needleScaler = 0.5f;
+    gaugeView.gaugeLabelHeight = 60.0f;
     calcData.sensorMaxValue = gaugeView.minGaugeNumber;
 }
 
