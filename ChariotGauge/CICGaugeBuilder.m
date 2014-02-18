@@ -102,10 +102,10 @@
 @implementation CICGaugeBuilder
 
 //synthesize gauge props
-@synthesize minGaugeNumber, maxGaugeNumber, gaugeLabel, incrementPerLargeTick, gaugeType, tickStartAngleDegrees,
-            tickDistance, menuItemsFont, value, gaugeLabelFont, gaugeWidth, viewWidth, gaugeX, gaugeY, digitalLabel, digitalFontSize;
+@synthesize minGaugeNumber, maxGaugeNumber, gaugeLabel, incrementPerLargeTick, gaugeType, tickStartAngleDegrees;
+@synthesize tickDistance, menuItemsFont, value, gaugeLabelFont, gaugeWidth, viewWidth, gaugeX, gaugeY, digitalLabel, digitalFontSize;
 @synthesize needleBuilder = needleBuilder_;
-@synthesize lineWidth, needleLayer, gaugeLabelHeight, tickArcRadius;
+@synthesize lineWidth, needleLayer, gaugeLabelHeight, tickArcRadius, kerningScaler;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -272,7 +272,7 @@
         NSString* letter = [text substringWithRange:range];
         char* c = (char*)[letter UTF8String];
         CGSize charSize = [letter sizeWithAttributes:@{self.menuItemsFont:[UIFont systemFontOfSize:14.0f]}];
-        charSize.width += 2;
+        charSize.width = (charSize.width + 2)*self.kerningScaler; //Adjusts the kerning.
         
         float x = radius * cos(angle);
         float y = radius * sin(angle);
@@ -456,6 +456,7 @@
     self.gaugeLabelFont = [UIFont fontWithName:@"Helvetica" size:14]; //TODO: not working correctly
     self.tickArcRadius = (gaugeWidth / 2) - 38;
     self.gaugeLabelHeight = 100.0f;
+    self.kerningScaler = 1.0f;
 
     //needle init
     needleBuilder_ = [[NeedleBuilder alloc] init];

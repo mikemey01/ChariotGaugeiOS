@@ -118,6 +118,7 @@
     gaugeView.gaugeLabelFont = [UIFont fontWithName:@"Helvetica" size:8.0f];
     gaugeView.needleBuilder.needleScaler = 0.5f;
     gaugeView.gaugeLabelHeight = 60.0f;
+    gaugeView.kerningScaler = 0.60f;
     calcData.sensorMaxValue = gaugeView.minGaugeNumber;
 }
 
@@ -179,6 +180,7 @@
     gaugeView.gaugeLabelFont = [UIFont fontWithName:@"Helvetica" size:8.0f];
     gaugeView.needleBuilder.needleScaler = 0.5f;
     gaugeView.gaugeLabelHeight = 60.0f;
+    gaugeView.kerningScaler = 0.60f;
     calcData.sensorMaxValue = gaugeView.minGaugeNumber;
 }
 
@@ -211,6 +213,7 @@
     gaugeView.gaugeLabelFont = [UIFont fontWithName:@"Helvetica" size:8.0f];
     gaugeView.needleBuilder.needleScaler = 0.5f;
     gaugeView.gaugeLabelHeight = 60.0f;
+    gaugeView.kerningScaler = 0.60f;
     calcData.sensorMaxValue = gaugeView.minGaugeNumber;
 }
 
@@ -233,6 +236,7 @@
     gaugeView.gaugeLabelFont = [UIFont fontWithName:@"Helvetica" size:8.0f];
     gaugeView.needleBuilder.needleScaler = 0.5f;
     gaugeView.gaugeLabelHeight = 60.0f;
+    gaugeView.kerningScaler = 0.60f;
     calcData.sensorMaxValue = gaugeView.minGaugeNumber;
 }
 

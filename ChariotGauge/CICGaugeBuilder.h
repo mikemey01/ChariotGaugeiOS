@@ -91,6 +91,9 @@
     //TODO: update
     UIFont *menuItemsFont;
     
+    //Kerning of digits on gauge face
+    CGFloat kerningScaler;
+    
         /*Needle stuff*/
     
     //Needle value
@@ -131,6 +134,7 @@
 @property (nonatomic, assign) CGFloat tickArcRadius;
 @property (nonatomic, assign) float gaugeX;
 @property (nonatomic, assign) float gaugeY;
+@property (nonatomic, assign) CGFloat kerningScaler;
 @property (nonatomic, retain) UILabel *digitalLabel;
 @property (nonatomic, assign) CGFloat digitalFontSize;
 @property (nonatomic, retain) NSString *gaugeLabel;
