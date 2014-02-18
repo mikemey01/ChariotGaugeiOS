@@ -83,6 +83,52 @@
     
 }
 
+-(void) getLatestData:(NSMutableString *)newData
+{
+    if(!isPaused){
+        newArray = [newData componentsSeparatedByString: @","];
+        [self setGaugeValue:newArray];
+        newArray = nil;
+    }else{
+        self.firstGauge.value = calcDataOne.sensorMaxValue;
+        self.secondGauge.value = calcDataTwo.sensorMaxValue;
+        self.thirdGauge.value = calcDataThree.sensorMaxValue;
+        self.fourthGauge.value = calcDataFour.sensorMaxValue;
+        [voltLabelNumbers setText:[NSString stringWithFormat:@"%.1f", calcDataVolts.sensorMaxValue]];
+    }
+}
+
+-(void) setGaugeValue:(NSArray *)array
+{
+    if(array.count > gaugeType){
+        
+        //Set boost.
+        currentStringValue = [array objectAtIndex:1];
+        currentIntergerValue = [currentStringValue integerValue];
+        self.firstGauge.value = [calcDataOne calcBoost:currentIntergerValue];
+        
+        //Set wideband.
+        currentStringValue = [array objectAtIndex:2];
+        currentIntergerValue = [currentStringValue integerValue];
+        self.firstGauge.value = [calcDataOne calcBoost:currentIntergerValue];
+        
+        //Set temp.
+        currentStringValue = [array objectAtIndex:3];
+        currentIntergerValue = [currentStringValue integerValue];
+        self.firstGauge.value = [calcDataOne calcBoost:currentIntergerValue];
+        
+        //Set oil.
+        currentStringValue = [array objectAtIndex:4];
+        currentIntergerValue = [currentStringValue integerValue];
+        self.firstGauge.value = [calcDataOne calcBoost:currentIntergerValue];
+        
+        //Set voltage value
+        currentStringValue = [array objectAtIndex:0];
+        currentIntergerValue = [currentStringValue integerValue];
+        [voltLabelNumbers setText:[NSString stringWithFormat:@"%.1f", [calcDataVolts calcVolts:currentIntergerValue]]];
+    }
+}
+
 //Handles portrait only mode.
 - (BOOL)shouldAutorotate
 {
@@ -267,6 +313,8 @@
 {
     calcDataOne.sensorMaxValue = self.firstGauge.minGaugeNumber;
     calcDataTwo.sensorMaxValue = self.secondGauge.minGaugeNumber;
+    calcDataTwo.sensorMaxValue = self.thirdGauge.minGaugeNumber;
+    calcDataThree.sensorMaxValue = self.fourthGauge.minGaugeNumber;
 }
 
 -(void) initPrefs
