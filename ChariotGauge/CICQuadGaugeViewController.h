@@ -14,7 +14,7 @@
 
 @class CICGaugeBuilder;
 
-@interface CICQuadGaugeViewController : UIViewController{
+@interface CICQuadGaugeViewController : UIViewController <BluetoothDelegate>{
     CICGaugeBuilder *firstGauge;
     CICGaugeBuilder *secondGauge;
     CICGaugeBuilder *thirdGauge;

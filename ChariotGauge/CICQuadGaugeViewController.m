@@ -100,27 +100,28 @@
 
 -(void) setGaugeValue:(NSArray *)array
 {
-    if(array.count > gaugeType){
+    if(array.count >= 3){
         
         //Set boost.
         currentStringValue = [array objectAtIndex:1];
         currentIntergerValue = [currentStringValue integerValue];
+        NSLog(@"boost: %f", [calcDataOne calcBoost:currentIntergerValue]);
         self.firstGauge.value = [calcDataOne calcBoost:currentIntergerValue];
         
         //Set wideband.
         currentStringValue = [array objectAtIndex:2];
         currentIntergerValue = [currentStringValue integerValue];
-        self.firstGauge.value = [calcDataOne calcBoost:currentIntergerValue];
+        self.secondGauge.value = [calcDataTwo calcWideBand:currentIntergerValue];
         
         //Set temp.
         currentStringValue = [array objectAtIndex:3];
         currentIntergerValue = [currentStringValue integerValue];
-        self.firstGauge.value = [calcDataOne calcBoost:currentIntergerValue];
+        self.thirdGauge.value = [calcDataThree calcTemp:currentIntergerValue];
         
         //Set oil.
         currentStringValue = [array objectAtIndex:4];
         currentIntergerValue = [currentStringValue integerValue];
-        self.firstGauge.value = [calcDataOne calcBoost:currentIntergerValue];
+        self.fourthGauge.value = [calcDataFour calcOil:currentIntergerValue];
         
         //Set voltage value
         currentStringValue = [array objectAtIndex:0];
