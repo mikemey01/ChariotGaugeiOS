@@ -39,7 +39,7 @@
                  action:@selector(maxButtonAction)];
     
     resetButton = [[UIBarButtonItem alloc]
-                   initWithTitle:@"reset"
+                   initWithTitle:@"Reset"
                    style:UIBarButtonItemStyleBordered
                    target:self
                    action:@selector(resetButtonAction)];
@@ -290,12 +290,12 @@
 {
     CGSize sizeOfScreen = [[UIScreen mainScreen] bounds].size;
     
-    UIFont *digitalFont = [UIFont fontWithName:@"LetsgoDigital-Regular" size:30.0f];
-    voltLabel = [[UILabel alloc] initWithFrame:CGRectIntegral(CGRectMake(2.0f, sizeOfScreen.height-32.0f, sizeOfScreen.width/2, 30.0f))];
+    UIFont *digitalFont = [UIFont fontWithName:@"LetsgoDigital-Regular" size:20.0f];
+    voltLabel = [[UILabel alloc] initWithFrame:CGRectIntegral(CGRectMake(2.0f, sizeOfScreen.height-22.0f, sizeOfScreen.width/2, 20.0f))];
     [voltLabel setFont:digitalFont];
     [voltLabel setText:@"Volts"];
     
-    voltLabelNumbers = [[UILabel alloc] initWithFrame:CGRectIntegral(CGRectMake(sizeOfScreen.width/2, sizeOfScreen.height-32.0f, sizeOfScreen.width/2-2, 30.0f))];
+    voltLabelNumbers = [[UILabel alloc] initWithFrame:CGRectIntegral(CGRectMake(sizeOfScreen.width/2, sizeOfScreen.height-22.0f, sizeOfScreen.width/2-2, 20.0f))];
     voltLabelNumbers.textAlignment = NSTextAlignmentRight;
     [voltLabelNumbers setFont:digitalFont];
     [voltLabelNumbers setText:@"0.0"];
@@ -313,8 +313,8 @@
 {
     calcDataOne.sensorMaxValue = self.firstGauge.minGaugeNumber;
     calcDataTwo.sensorMaxValue = self.secondGauge.minGaugeNumber;
-    calcDataTwo.sensorMaxValue = self.thirdGauge.minGaugeNumber;
-    calcDataThree.sensorMaxValue = self.fourthGauge.minGaugeNumber;
+    calcDataThree.sensorMaxValue = self.thirdGauge.minGaugeNumber;
+    calcDataFour.sensorMaxValue = self.fourthGauge.minGaugeNumber;
 }
 
 -(void) initPrefs
@@ -331,9 +331,6 @@
 {
     return UIInterfaceOrientationMaskPortrait;
 }
-//End handling portrait only mode.
-
-
 
 - (void)didReceiveMemoryWarning
 {

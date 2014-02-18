@@ -51,7 +51,7 @@
                  action:@selector(maxButtonAction)];
     
     resetButton = [[UIBarButtonItem alloc]
-                   initWithTitle:@"reset"
+                   initWithTitle:@"Reset"
                    style:UIBarButtonItemStyleBordered
                    target:self
                    action:@selector(resetButtonAction)];
