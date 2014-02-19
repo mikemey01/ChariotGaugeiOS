@@ -37,7 +37,6 @@
 -(void)parseValue:(CBCharacteristic *)characteristic;
 
 -(void)addPeripheralToDictionary:(CBPeripheral *)peripheral;
--(void)getDictionaryKeys:(NSDictionary *)dictionary;
 -(void)connectSelectedPeripheral:(CBPeripheral *)peripheral;
 
 

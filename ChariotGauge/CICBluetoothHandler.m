@@ -88,17 +88,9 @@
     [self getDictionaryKeys:self.peripheralDictionary];
 }
 
--(void)getDictionaryKeys:(NSDictionary *)dictionary
-{
-    NSArray *array = [[NSArray alloc] initWithArray:[dictionary allKeys]];
-    for(id object in array){
-        NSLog(@"object: %@", object);
-    }
-}
-
 -(void)connectSelectedPeripheral:(CBPeripheral *)peripheral
 {
-    [self.centralManager stopScan];
+    [self.centralManager stopScan]; //Should keep scanning for a period of time.
     peripheral.delegate = self;
     self.peripheral = peripheral;
     [self.centralManager connectPeripheral:peripheral options:nil];
