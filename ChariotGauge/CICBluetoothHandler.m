@@ -10,13 +10,14 @@
 
 @implementation CICBluetoothHandler
 
-@synthesize connectPressed, stringConcat, btDelegate;
+@synthesize connectPressed, stringConcat, btDelegate, peripheralDictionary;
 
 -(void)startScan
 {
     //Set flag that the connect button has been pressed.
     self.connectPressed = YES;
     stringConcat = [NSMutableString stringWithString:@""];
+    self.peripheralDictionary = [[NSMutableDictionary alloc] init]; //used for collecting peripherals if there are multiples.
     
     //Make sure we're not already connected.
     if(self.peripheral.state != CBPeripheralStateConnected){
@@ -69,14 +70,39 @@
 */
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
 {
-	NSString *localName = [advertisementData objectForKey:CBAdvertisementDataLocalNameKey];
-	if (![localName isEqual:@""]) { //if a device is found -- connect.
-        [self.centralManager stopScan];
-		peripheral.delegate = self;
-        self.peripheral = peripheral;
-		[self.centralManager connectPeripheral:peripheral options:nil];
-        NSLog(@"peripheral name: %@", localName);
-	}
+    NSInteger numEntries;
+    [self addPeripheralToDictionary:peripheral];
+    numEntries = [self.peripheralDictionary count];
+    if(numEntries == 1){
+        [self connectSelectedPeripheral:peripheral];
+    }else{
+        //TODO: pop open UIActionSheet.
+    }
+}
+
+-(void)addPeripheralToDictionary:(CBPeripheral *)peripheral
+{
+    NSString *peripheralUUID = [[NSString alloc] initWithString:[peripheral.identifier UUIDString]];
+    [self.peripheralDictionary setObject:peripheral forKey:peripheralUUID];
+    
+    [self getDictionaryKeys:self.peripheralDictionary];
+}
+
+-(void)getDictionaryKeys:(NSDictionary *)dictionary
+{
+    NSArray *array = [[NSArray alloc] initWithArray:[dictionary allKeys]];
+    for(id object in array){
+        NSLog(@"object: %@", object);
+    }
+}
+
+-(void)connectSelectedPeripheral:(CBPeripheral *)peripheral
+{
+    [self.centralManager stopScan];
+    peripheral.delegate = self;
+    self.peripheral = peripheral;
+    [self.centralManager connectPeripheral:peripheral options:nil];
+    NSLog(@"peripheral name: %@", peripheral.name);
 }
 
 // method called whenever we have successfully connected to the BLE peripheral

@@ -105,7 +105,6 @@
         //Set boost.
         currentStringValue = [array objectAtIndex:1];
         currentIntergerValue = [currentStringValue integerValue];
-        NSLog(@"boost: %f", [calcDataOne calcBoost:currentIntergerValue]);
         self.firstGauge.value = [calcDataOne calcBoost:currentIntergerValue];
         
         //Set wideband.
