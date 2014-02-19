@@ -84,8 +84,6 @@
 {
     NSString *peripheralUUID = [[NSString alloc] initWithString:[peripheral.identifier UUIDString]];
     [self.peripheralDictionary setObject:peripheral forKey:peripheralUUID];
-    
-    [self getDictionaryKeys:self.peripheralDictionary];
 }
 
 -(void)connectSelectedPeripheral:(CBPeripheral *)peripheral
