@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "CICBluetoothHandler.h"
 
-@interface CICHomeScreenViewController : UIViewController{
+@interface CICHomeScreenViewController : UIViewController <UIActionSheetDelegate>{
     CICBluetoothHandler *bluetooth;
     UILabel *connectLabel;
+    UIActionSheet *actionSheet;
 }
 
 typedef enum {
@@ -29,6 +30,7 @@ typedef enum {
 @property (nonatomic, assign) BOOL connect;
 @property (nonatomic, retain) CICBluetoothHandler *bluetooth;
 @property (nonatomic, retain) IBOutlet UILabel *connectLabel;
+@property (nonatomic, retain) UIActionSheet *actionSheet;
 
 -(IBAction)widebandButtonPress:(id)sender;
 -(IBAction)boostButtonPress:(id)sender;

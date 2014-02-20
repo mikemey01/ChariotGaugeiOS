@@ -17,7 +17,7 @@
 
 @implementation CICHomeScreenViewController
 
-@synthesize gaugeType, bluetooth, connectLabel;
+@synthesize gaugeType, bluetooth, connectLabel, actionSheet;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -102,23 +102,59 @@
 
 -(IBAction)connectButtonPress:(id)sender
 {
-    if(self.connect){
-        connectLabel.text = @"Connecting..";
-        [self.bluetooth startScan];
-        //TODO: Use delegate to push central manager's state to handle connect label's text.
-            connectLabel.text = @"Connected!";
-        //}
-    }else{
-        connectLabel.text = @"Disconnecting..";
-        [self.bluetooth disconnectBluetooth];
-        connectLabel.text = @"Connect";
-    }
-    self.connect = (!self.connect);
+    [self createActionSheet];
+//    if(self.connect){
+//        connectLabel.text = @"Connecting..";
+//        [self.bluetooth startScan];
+//        //TODO: Use delegate to push central manager's state to handle connect label's text.
+//            connectLabel.text = @"Connected!";
+//        //}
+//    }else{
+//        connectLabel.text = @"Disconnecting..";
+//        [self.bluetooth disconnectBluetooth];
+//        connectLabel.text = @"Connect";
+//    }
+//    self.connect = (!self.connect);
 }
 
 -(IBAction)settingsButtonPress:(id)sender
 {
     
+}
+
+-(void)createActionSheet
+{
+    NSString *actionSheetTitle = @"Scanning..."; //Action Sheet Title
+    NSString *other1 = @"Other Button 1";
+    NSString *cancelTitle = @"Cancel";
+    self.actionSheet = [[UIActionSheet alloc]
+                          initWithTitle:actionSheetTitle
+                          delegate:self
+                          cancelButtonTitle:cancelTitle
+                          destructiveButtonTitle:nil
+                          otherButtonTitles:nil];
+    [actionSheet showInView:self.view];
+    
+    [NSTimer scheduledTimerWithTimeInterval:2.0
+                                     target:self
+                                   selector:@selector(addButtonToActionSheet)
+                                   userInfo:nil
+                                    repeats:NO];
+}
+
+-(void)addButtonToActionSheet
+{
+    [self.actionSheet dismissWithClickedButtonIndex:0 animated:NO];
+    self.actionSheet = nil;
+    NSString *other1 = @"Other Button 1";
+    NSString *cancelTitle = @"Cancel";
+    self.actionSheet = [[UIActionSheet alloc]
+                        initWithTitle:@"New Shit"
+                        delegate:self
+                        cancelButtonTitle:cancelTitle
+                        destructiveButtonTitle:nil
+                        otherButtonTitles:other1, nil];
+    [actionSheet showInView:self.view];
 }
 
 - (void)viewDidLoad
