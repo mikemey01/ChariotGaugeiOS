@@ -28,6 +28,20 @@
     return self;
 }
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    self.connect = YES;
+    connectLabel.text = @"Connect";
+    
+    //Instatiate bluetooth handler.
+    self.bluetooth = [[CICBluetoothHandler alloc] init];
+    
+    [self.bluetooth setPeriphDelegate:self];
+    
+}
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if([segue.identifier isEqualToString:@"widebandSegue"]){
@@ -56,6 +70,7 @@
         gaugeController.bluetooth = self.bluetooth;
     }
 }
+
 
 //Handles portrait only mode.
 - (BOOL)shouldAutorotate
@@ -102,24 +117,27 @@
 
 -(IBAction)connectButtonPress:(id)sender
 {
-    [self createActionSheet];
-//    if(self.connect){
-//        connectLabel.text = @"Connecting..";
-//        [self.bluetooth startScan];
-//        //TODO: Use delegate to push central manager's state to handle connect label's text.
-//            connectLabel.text = @"Connected!";
-//        //}
-//    }else{
-//        connectLabel.text = @"Disconnecting..";
-//        [self.bluetooth disconnectBluetooth];
-//        connectLabel.text = @"Connect";
-//    }
-//    self.connect = (!self.connect);
+    if(self.connect){
+        [self createActionSheet];
+        connectLabel.text = @"Connecting..";
+        [self.bluetooth startScan];
+        connectLabel.text = @"Connected!";
+    }else{
+        connectLabel.text = @"Disconnecting..";
+        [self.bluetooth disconnectBluetooth];
+        connectLabel.text = @"Connect";
+    }
+    self.connect = (!self.connect);
 }
 
 -(IBAction)settingsButtonPress:(id)sender
 {
     
+}
+
+-(void)getLatestPeriph:(NSString *)periphName
+{
+    NSLog(@"periph name..: %@", periphName);
 }
 
 -(void)createActionSheet
@@ -157,17 +175,6 @@
     [actionSheet showInView:self.view];
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
-    self.connect = YES;
-    connectLabel.text = @"Connect";
-    
-    //Instatiate bluetooth handler.
-    self.bluetooth = [[CICBluetoothHandler alloc] init];
-    
-}
 
 - (void)didReceiveMemoryWarning
 {

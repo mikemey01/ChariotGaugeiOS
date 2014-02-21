@@ -10,7 +10,7 @@
 
 @implementation CICBluetoothHandler
 
-@synthesize connectPressed, stringConcat, btDelegate, peripheralDictionary;
+@synthesize connectPressed, stringConcat, btDelegate, peripheralDictionary, periphDelegate;
 
 -(void)startScan
 {
@@ -73,6 +73,7 @@
     NSInteger numEntries;
     [self addPeripheralToDictionary:peripheral];
     numEntries = [self.peripheralDictionary count];
+    [[self periphDelegate] getLatestPeriph:peripheral.name];
     if(numEntries == 1){
         [self connectSelectedPeripheral:peripheral];
     }else{
@@ -80,15 +81,15 @@
     }
 }
 
--(void)addPeripheralToDictionary:(CBPeripheral *)peripheral
+-(void)addPeripheralToDictionary:(CBPeripheral *)peripheralIn
 {
-    NSString *peripheralUUID = [[NSString alloc] initWithString:[peripheral.identifier UUIDString]];
-    [self.peripheralDictionary setObject:peripheral forKey:peripheralUUID];
+    NSString *peripheralUUID = [[NSString alloc] initWithString:[peripheralIn.identifier UUIDString]];
+    [self.peripheralDictionary setObject:peripheralIn forKey:peripheralUUID];
 }
 
 -(void)connectSelectedPeripheral:(CBPeripheral *)peripheral
 {
-    [self.centralManager stopScan]; //Should keep scanning for a period of time.
+    [self.centralManager stopScan];
     peripheral.delegate = self;
     self.peripheral = peripheral;
     [self.centralManager connectPeripheral:peripheral options:nil];

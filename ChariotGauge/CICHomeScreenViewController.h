@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "CICBluetoothHandler.h"
+@import CoreBluetooth;
 
-@interface CICHomeScreenViewController : UIViewController <UIActionSheetDelegate>{
+@interface CICHomeScreenViewController : UIViewController <UIActionSheetDelegate, PeriphDelegate>{
     CICBluetoothHandler *bluetooth;
     UILabel *connectLabel;
     UIActionSheet *actionSheet;

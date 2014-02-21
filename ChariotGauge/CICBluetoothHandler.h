@@ -14,6 +14,11 @@
 - (void) getLatestData: (NSMutableString *)newData;
 @end
 
+@protocol PeriphDelegate <NSObject>
+@required
+-(void)getLatestPeriph: (NSString *)periphName;
+@end
+
 @interface CICBluetoothHandler : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate>{
     BOOL connectPressed;
     NSString *stringValue;
@@ -21,6 +26,7 @@
     NSMutableDictionary *peripheralDictionary;
     
     id <BluetoothDelegate> btDelegate;
+    id <PeriphDelegate> periphDelegate;
 }
 
 @property (nonatomic, strong) CBCentralManager *centralManager;
@@ -30,6 +36,8 @@
 @property (nonatomic, retain) NSMutableString *stringConcat;
 @property (nonatomic, retain) id btDelegate;
 @property (nonatomic, retain) NSMutableDictionary *peripheralDictionary;
+@property (nonatomic, retain) id periphDelegate;
+
 
 -(void)startScan;
 -(void)stopScan;
