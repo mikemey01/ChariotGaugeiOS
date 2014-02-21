@@ -14,6 +14,7 @@
     CICBluetoothHandler *bluetooth;
     UILabel *connectLabel;
     UIActionSheet *actionSheet;
+    NSMutableArray *periphArray;
 }
 
 typedef enum {
@@ -32,6 +33,7 @@ typedef enum {
 @property (nonatomic, retain) CICBluetoothHandler *bluetooth;
 @property (nonatomic, retain) IBOutlet UILabel *connectLabel;
 @property (nonatomic, retain) UIActionSheet *actionSheet;
+@property (nonatomic, retain) NSMutableArray *periphArray;
 
 -(IBAction)widebandButtonPress:(id)sender;
 -(IBAction)boostButtonPress:(id)sender;
@@ -39,5 +41,6 @@ typedef enum {
 -(IBAction)tempButtonPress:(id)sender;
 -(IBAction)connectButtonPress:(id)sender;
 -(IBAction)settingsButtonPress:(id)sender;
+-(void)createActionSheet;
 
 @end

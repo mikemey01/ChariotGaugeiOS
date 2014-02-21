@@ -40,6 +40,7 @@
     
     [self.bluetooth setPeriphDelegate:self];
     
+    self.periphArray = [[NSMutableArray alloc] init];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -118,10 +119,8 @@
 -(IBAction)connectButtonPress:(id)sender
 {
     if(self.connect){
-        [self createActionSheet];
-        connectLabel.text = @"Connecting..";
+        connectLabel.text = @"Scanning..";
         [self.bluetooth startScan];
-        connectLabel.text = @"Connected!";
     }else{
         connectLabel.text = @"Disconnecting..";
         [self.bluetooth disconnectBluetooth];
@@ -137,42 +136,29 @@
 
 -(void)getLatestPeriph:(NSString *)periphName
 {
-    NSLog(@"periph name..: %@", periphName);
+    [self.periphArray addObject:periphName];
+    [self createActionSheet];
 }
 
 -(void)createActionSheet
 {
-    NSString *actionSheetTitle = @"Scanning..."; //Action Sheet Title
-    NSString *other1 = @"Other Button 1";
-    NSString *cancelTitle = @"Cancel";
-    self.actionSheet = [[UIActionSheet alloc]
-                          initWithTitle:actionSheetTitle
-                          delegate:self
-                          cancelButtonTitle:cancelTitle
-                          destructiveButtonTitle:nil
-                          otherButtonTitles:nil];
-    [actionSheet showInView:self.view];
-    
-    [NSTimer scheduledTimerWithTimeInterval:2.0
-                                     target:self
-                                   selector:@selector(addButtonToActionSheet)
-                                   userInfo:nil
-                                    repeats:NO];
-}
-
--(void)addButtonToActionSheet
-{
     [self.actionSheet dismissWithClickedButtonIndex:0 animated:NO];
     self.actionSheet = nil;
-    NSString *other1 = @"Other Button 1";
-    NSString *cancelTitle = @"Cancel";
-    self.actionSheet = [[UIActionSheet alloc]
-                        initWithTitle:@"New Shit"
-                        delegate:self
-                        cancelButtonTitle:cancelTitle
-                        destructiveButtonTitle:nil
-                        otherButtonTitles:other1, nil];
-    [actionSheet showInView:self.view];
+    self.actionSheet = [[UIActionSheet alloc] init];
+    self.actionSheet.title = @"Illustrations";
+    self.actionSheet.delegate = self;
+    for(NSString *string in self.periphArray){
+        [self.actionSheet addButtonWithTitle:string];
+    }
+    
+    self.actionSheet.cancelButtonIndex = [actionSheet addButtonWithTitle:@"Cancel"];
+    [self.actionSheet showInView:self.view];
+    
+//    [NSTimer scheduledTimerWithTimeInterval:2.0
+//                                     target:self
+//                                   selector:@selector(addButtonToActionSheet)
+//                                   userInfo:nil
+//                                    repeats:NO];
 }
 
 
