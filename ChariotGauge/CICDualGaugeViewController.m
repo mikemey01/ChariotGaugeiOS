@@ -62,8 +62,9 @@
     //Handles forcing landscape orientation NEEDS WORK
     UIViewController *mVC = [[UIViewController alloc] init];
     [self presentModalViewController:mVC animated:NO];
-    if (![mVC isBeingDismissed])
+    if (![mVC isBeingDismissed]){
         [self dismissModalViewControllerAnimated:YES];
+    }
     
     //NSLog(@"gaugeOne: %@, gaugeTwo: %@", gaugeOneType, gaugeTwoType);
     

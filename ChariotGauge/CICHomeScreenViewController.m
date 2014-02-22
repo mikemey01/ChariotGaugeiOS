@@ -39,8 +39,6 @@
     self.bluetooth = [[CICBluetoothHandler alloc] init];
     
     [self.bluetooth setPeriphDelegate:self];
-    
-    self.periphArray = [[NSMutableArray alloc] init];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -119,6 +117,7 @@
 -(IBAction)connectButtonPress:(id)sender
 {
     if(self.connect){
+        self.periphArray = [[NSMutableArray alloc] init];
         connectLabel.text = @"Scanning..";
         [self.bluetooth startScan];
     }else{
@@ -145,7 +144,7 @@
     [self.actionSheet dismissWithClickedButtonIndex:0 animated:NO];
     self.actionSheet = nil;
     self.actionSheet = [[UIActionSheet alloc] init];
-    self.actionSheet.title = @"Illustrations";
+    self.actionSheet.title = @"Select a Chariot Gauge controller";
     self.actionSheet.delegate = self;
     self.actionSheet.tag = 1;
     for(NSString *string in self.periphArray){
@@ -154,8 +153,6 @@
     
     self.actionSheet.cancelButtonIndex = [actionSheet addButtonWithTitle:@"Cancel"];
     [self.actionSheet showInView:self.view];
-    
-    //TODO: WHEN CANCEL OR A CONTROLLER IS SELECTED CLEAR THE periphArray!!!
     
 //    [NSTimer scheduledTimerWithTimeInterval:2.0
 //                                     target:self
@@ -171,24 +168,48 @@
             switch (buttonIndex) {
                 case 0:
                     if(self.actionSheet.cancelButtonIndex == 0){
-                        NSLog(@"Cancel button clicked");
+                        [self.bluetooth stopScan];
+                    }else{
+                        NSLog(@"first button click");
                     }
-                    NSLog(@"first button click");
+                    self.periphArray = nil;
                     break;
                 case 1:
-                    NSLog(@"second button clicked");
+                    if(self.actionSheet.cancelButtonIndex == 1){
+                        [self.bluetooth stopScan];
+                    }else{
+                        NSLog(@"second button click");
+                    }
+                    self.periphArray = nil;
                     break;
                 case 2:
-                    NSLog(@"third button clicked");
+                    if(self.actionSheet.cancelButtonIndex == 2){
+                        [self.bluetooth stopScan];
+                    }else{
+                        NSLog(@"third button click");
+                    }
+                    self.periphArray = nil;
                     break;
                 case 3:
-                    NSLog(@"fourth button clicked");
+                    if(self.actionSheet.cancelButtonIndex == 3){
+                        [self.bluetooth stopScan];
+                    }else{
+                        NSLog(@"fourth button click");
+                    }
+                    self.periphArray = nil;
                     break;
                 case 4:
-                    NSLog(@"fifth button clicked");
+                    if(self.actionSheet.cancelButtonIndex == 4){
+                        [self.bluetooth stopScan];
+                    }else{
+                        NSLog(@"fifth button click");
+                    }
+                    self.periphArray = nil;
                     break;
                 default:
                     NSLog(@"default triggered");
+                    [self.bluetooth stopScan];
+                    self.periphArray = nil;
                     break;
             }
             break;

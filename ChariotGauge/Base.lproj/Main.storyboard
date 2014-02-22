@@ -230,6 +230,7 @@
                             <constraint firstItem="Ypw-zT-RRd" firstAttribute="centerX" secondItem="dWU-Dr-Jyn" secondAttribute="centerX" id="cAT-wM-8CX"/>
                             <constraint firstItem="paE-FK-US7" firstAttribute="top" relation="greaterThanOrEqual" secondItem="IPv-bl-MV1" secondAttribute="bottom" constant="10" id="epR-mK-bZZ"/>
                             <constraint firstItem="Lom-cP-URM" firstAttribute="top" secondItem="Ds6-L6-M4i" secondAttribute="bottom" constant="8" id="fak-Nn-1UV"/>
+                            <constraint firstItem="Ds6-L6-M4i" firstAttribute="centerX" secondItem="Ypw-zT-RRd" secondAttribute="centerX" id="gI7-c9-v2G"/>
                             <constraint firstItem="Ypw-zT-RRd" firstAttribute="centerX" secondItem="Lom-cP-URM" secondAttribute="centerX" id="goY-sO-vTU"/>
                             <constraint firstItem="7dr-b8-xw4" firstAttribute="top" secondItem="Ypw-zT-RRd" secondAttribute="bottom" constant="5" id="lJH-kc-o8G"/>
                             <constraint firstItem="dWU-Dr-Jyn" firstAttribute="top" secondItem="S1h-EX-L3S" secondAttribute="bottom" constant="8" id="lOc-ao-3Se"/>
@@ -237,8 +238,10 @@
                             <constraint firstItem="Ds6-L6-M4i" firstAttribute="top" relation="greaterThanOrEqual" secondItem="IPv-bl-MV1" secondAttribute="bottom" constant="10" id="n2l-I4-iHd"/>
                             <constraint firstItem="rle-EW-vRG" firstAttribute="top" secondItem="S27-hk-JoM" secondAttribute="bottom" constant="30" id="obZ-Oy-KhD"/>
                             <constraint firstItem="Ypw-zT-RRd" firstAttribute="centerX" secondItem="Ds6-L6-M4i" secondAttribute="centerX" id="ouy-zL-hyN"/>
+                            <constraint firstItem="Ds6-L6-M4i" firstAttribute="centerX" secondItem="S1h-EX-L3S" secondAttribute="centerX" id="rjD-Yo-4cL"/>
                             <constraint firstItem="7u0-Ph-RUU" firstAttribute="centerX" secondItem="paE-FK-US7" secondAttribute="centerX" id="ruq-qE-FRG"/>
                             <constraint firstItem="S1h-EX-L3S" firstAttribute="top" secondItem="7dr-b8-xw4" secondAttribute="bottom" constant="30" id="rw1-wc-0k9"/>
+                            <constraint firstItem="Ds6-L6-M4i" firstAttribute="centerX" secondItem="Uk9-9V-h3o" secondAttribute="centerX" id="sRw-9j-PtP"/>
                             <constraint firstItem="Ypw-zT-RRd" firstAttribute="centerX" secondItem="7dr-b8-xw4" secondAttribute="centerX" id="xKU-oP-U1J"/>
                         </constraints>
                     </view>
