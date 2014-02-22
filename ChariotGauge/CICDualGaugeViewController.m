@@ -334,6 +334,7 @@
 {
     calcDataOne.sensorMaxValue = self.firstGauge.minGaugeNumber;
     calcDataTwo.sensorMaxValue = self.secondGauge.minGaugeNumber;
+    calcDataVolts.sensorMaxValue = 0.0f;
 }
 
 -(void) initPrefs

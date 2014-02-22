@@ -289,6 +289,7 @@
 -(void)resetButtonAction
 {
     calcData.sensorMaxValue = self.gaugeView.minGaugeNumber;
+    calcDataVolts.sensorMaxValue = 0.0f;
 }
 
 -(void) initPrefs

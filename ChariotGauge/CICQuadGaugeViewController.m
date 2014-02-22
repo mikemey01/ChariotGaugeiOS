@@ -315,6 +315,7 @@
     calcDataTwo.sensorMaxValue = self.secondGauge.minGaugeNumber;
     calcDataThree.sensorMaxValue = self.thirdGauge.minGaugeNumber;
     calcDataFour.sensorMaxValue = self.fourthGauge.minGaugeNumber;
+    calcDataVolts.sensorMaxValue = 0.0f;
 }
 
 -(void) initPrefs
