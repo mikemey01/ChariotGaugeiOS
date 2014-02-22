@@ -147,12 +147,15 @@
     self.actionSheet = [[UIActionSheet alloc] init];
     self.actionSheet.title = @"Illustrations";
     self.actionSheet.delegate = self;
+    self.actionSheet.tag = 1;
     for(NSString *string in self.periphArray){
         [self.actionSheet addButtonWithTitle:string];
     }
     
     self.actionSheet.cancelButtonIndex = [actionSheet addButtonWithTitle:@"Cancel"];
     [self.actionSheet showInView:self.view];
+    
+    //TODO: WHEN CANCEL OR A CONTROLLER IS SELECTED CLEAR THE periphArray!!!
     
 //    [NSTimer scheduledTimerWithTimeInterval:2.0
 //                                     target:self
@@ -161,6 +164,39 @@
 //                                    repeats:NO];
 }
 
+- (void)actionSheet:(UIActionSheet *)popup clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    switch (popup.tag) {
+        case 1: {
+            switch (buttonIndex) {
+                case 0:
+                    if(self.actionSheet.cancelButtonIndex == 0){
+                        NSLog(@"Cancel button clicked");
+                    }
+                    NSLog(@"first button click");
+                    break;
+                case 1:
+                    NSLog(@"second button clicked");
+                    break;
+                case 2:
+                    NSLog(@"third button clicked");
+                    break;
+                case 3:
+                    NSLog(@"fourth button clicked");
+                    break;
+                case 4:
+                    NSLog(@"fifth button clicked");
+                    break;
+                default:
+                    NSLog(@"default triggered");
+                    break;
+            }
+            break;
+        }
+        default:
+            break;
+    }
+}
 
 - (void)didReceiveMemoryWarning
 {
