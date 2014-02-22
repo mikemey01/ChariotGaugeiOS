@@ -17,7 +17,7 @@
 
 @implementation CICHomeScreenViewController
 
-@synthesize gaugeType, bluetooth, connectLabel, actionSheet;
+@synthesize gaugeType, bluetooth, connectLabel, actionSheet, periphArray, scanTimer;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,7 +32,7 @@
 {
     [super viewDidLoad];
     
-    self.connect = YES;
+    self.isConnected = NO;
     connectLabel.text = @"Connect";
     
     //Instatiate bluetooth handler.
@@ -116,16 +116,34 @@
 
 -(IBAction)connectButtonPress:(id)sender
 {
-    if(self.connect){
+    if(!self.isConnected){
         self.periphArray = [[NSMutableArray alloc] init];
         connectLabel.text = @"Scanning..";
         [self.bluetooth startScan];
+        [self startTimer];
     }else{
+        [self stopTimer];
         connectLabel.text = @"Disconnecting..";
         [self.bluetooth disconnectBluetooth];
         connectLabel.text = @"Connect";
+        self.isConnected = NO;
     }
-    self.connect = (!self.connect);
+    //self.isConnected = (!self.isConnected);
+}
+
+-(void)startTimer
+{
+    self.scanTimer = [NSTimer scheduledTimerWithTimeInterval:5.0
+                                                      target:self
+                                                    selector:@selector(didNotFindController)
+                                                    userInfo:nil
+                                                     repeats:NO];
+}
+
+-(void)stopTimer
+{
+    [self.scanTimer invalidate];
+    self.scanTimer = nil;
 }
 
 -(IBAction)settingsButtonPress:(id)sender
@@ -133,9 +151,27 @@
     
 }
 
+-(void)didNotFindController
+{
+    if(self.periphArray.count < 1){
+        [self.bluetooth stopScan];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"ROFL"
+                                                        message:@"Could not find a Chariot Gauge controller to connect to"
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+        self.connectLabel.text = @"Connect";
+        self.isConnected = NO;
+        [self.actionSheet dismissWithClickedButtonIndex:0 animated:NO];
+        self.actionSheet = nil;
+    }
+}
+
 -(void)getLatestPeriph:(NSString *)periphName
 {
     [self.periphArray addObject:periphName];
+    [self stopTimer];
     [self createActionSheet];
 }
 
@@ -153,12 +189,6 @@
     
     self.actionSheet.cancelButtonIndex = [actionSheet addButtonWithTitle:@"Cancel"];
     [self.actionSheet showInView:self.view];
-    
-//    [NSTimer scheduledTimerWithTimeInterval:2.0
-//                                     target:self
-//                                   selector:@selector(addButtonToActionSheet)
-//                                   userInfo:nil
-//                                    repeats:NO];
 }
 
 - (void)actionSheet:(UIActionSheet *)popup clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -169,8 +199,12 @@
                 case 0:
                     if(self.actionSheet.cancelButtonIndex == 0){
                         [self.bluetooth stopScan];
+                        self.connectLabel.text = @"Connect";
+                        self.isConnected = NO;
                     }else{
-                        NSLog(@"first button click");
+                        [self.bluetooth connectSelectedPeripheral:0];
+                        self.connectLabel.text = @"Connected!";
+                        self.isConnected = YES;
                     }
                     self.periphArray = nil;
                     break;
@@ -178,7 +212,7 @@
                     if(self.actionSheet.cancelButtonIndex == 1){
                         [self.bluetooth stopScan];
                     }else{
-                        NSLog(@"second button click");
+                        [self.bluetooth connectSelectedPeripheral:1];
                     }
                     self.periphArray = nil;
                     break;
@@ -186,7 +220,7 @@
                     if(self.actionSheet.cancelButtonIndex == 2){
                         [self.bluetooth stopScan];
                     }else{
-                        NSLog(@"third button click");
+                        [self.bluetooth connectSelectedPeripheral:2];
                     }
                     self.periphArray = nil;
                     break;
@@ -194,7 +228,7 @@
                     if(self.actionSheet.cancelButtonIndex == 3){
                         [self.bluetooth stopScan];
                     }else{
-                        NSLog(@"fourth button click");
+                        [self.bluetooth connectSelectedPeripheral:3];
                     }
                     self.periphArray = nil;
                     break;
@@ -202,7 +236,7 @@
                     if(self.actionSheet.cancelButtonIndex == 4){
                         [self.bluetooth stopScan];
                     }else{
-                        NSLog(@"fifth button click");
+                        [self.bluetooth connectSelectedPeripheral:4];
                     }
                     self.periphArray = nil;
                     break;

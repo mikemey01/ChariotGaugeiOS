@@ -15,6 +15,7 @@
     UILabel *connectLabel;
     UIActionSheet *actionSheet;
     NSMutableArray *periphArray;
+    NSTimer *scanTimer;
 }
 
 typedef enum {
@@ -29,11 +30,12 @@ typedef enum {
 
 @property GaugeType gaugeType;
 @property (nonatomic, assign) BOOL connectPressed;
-@property (nonatomic, assign) BOOL connect;
+@property (nonatomic, assign) BOOL isConnected;
 @property (nonatomic, retain) CICBluetoothHandler *bluetooth;
 @property (nonatomic, retain) IBOutlet UILabel *connectLabel;
 @property (nonatomic, retain) UIActionSheet *actionSheet;
 @property (nonatomic, retain) NSMutableArray *periphArray;
+@property (nonatomic, retain) NSTimer *scanTimer;
 
 -(IBAction)widebandButtonPress:(id)sender;
 -(IBAction)boostButtonPress:(id)sender;
@@ -41,6 +43,9 @@ typedef enum {
 -(IBAction)tempButtonPress:(id)sender;
 -(IBAction)connectButtonPress:(id)sender;
 -(IBAction)settingsButtonPress:(id)sender;
+-(void)startTimer;
+-(void)stopTimer;
+-(void)didNotFindController;
 -(void)createActionSheet;
 
 @end

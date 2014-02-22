@@ -23,7 +23,7 @@
     BOOL connectPressed;
     NSString *stringValue;
     NSMutableString *stringConcat;
-    NSMutableDictionary *peripheralDictionary;
+    NSMutableArray *periphArray;
     
     id <BluetoothDelegate> btDelegate;
     id <PeriphDelegate> periphDelegate;
@@ -35,8 +35,8 @@
 @property (nonatomic, assign) BOOL connectPressed;
 @property (nonatomic, retain) NSMutableString *stringConcat;
 @property (nonatomic, retain) id btDelegate;
-@property (nonatomic, retain) NSMutableDictionary *peripheralDictionary;
 @property (nonatomic, retain) id periphDelegate;
+@property (nonatomic, retain) NSMutableArray *periphArray;
 
 
 -(void)startScan;
@@ -44,8 +44,8 @@
 -(void)disconnectBluetooth;
 -(void)parseValue:(CBCharacteristic *)characteristic;
 
--(void)addPeripheralToDictionary:(CBPeripheral *)peripheral;
--(void)connectSelectedPeripheral:(CBPeripheral *)peripheral;
+-(void)addPeriphToArray:(CBPeripheral *)periph;
+-(void)connectSelectedPeripheral:(NSUInteger)index;
 
 
 @end
