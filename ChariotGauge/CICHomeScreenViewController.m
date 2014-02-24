@@ -40,6 +40,7 @@
     self.bluetooth = [[CICBluetoothHandler alloc] init];
     
     [self.bluetooth setPeriphDelegate:self];
+    [self.bluetooth setStateDelegate:self];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -119,7 +120,7 @@
 {
     if(!self.isConnected){
         self.periphArray = [[NSMutableArray alloc] init];
-        connectLabel.text = @"Scanning..";
+        //connectLabel.text = @"Scanning..";
         [self.bluetooth startScan];
         [self startTimer];
     }else{
@@ -154,6 +155,9 @@
 
 -(void)getLatestBluetoothState:(NSString *)latestStatus
 {
+    if([latestStatus isEqualToString:@"Connected!"]){
+        self.isConnected = YES;
+    }
     self.connectLabel.text = latestStatus;
 }
 
@@ -161,7 +165,7 @@
 {
     if(self.periphArray.count < 1){
         [self.bluetooth stopScan];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"ROFL"
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Chariot Gauge"
                                                         message:@"Could not find a Chariot Gauge controller to connect to"
                                                        delegate:self
                                               cancelButtonTitle:@"OK"
@@ -209,14 +213,14 @@
                         self.isConnected = NO;
                     }else{
                         [self.bluetooth connectSelectedPeripheral:0];
-                        self.connectLabel.text = @"Connected!";
-                        self.isConnected = YES;
                     }
                     self.periphArray = nil;
                     break;
                 case 1:
                     if(self.actionSheet.cancelButtonIndex == 1){
                         [self.bluetooth stopScan];
+                        self.connectLabel.text = @"Connect";
+                        self.isConnected = NO;
                     }else{
                         [self.bluetooth connectSelectedPeripheral:1];
                     }
@@ -225,6 +229,8 @@
                 case 2:
                     if(self.actionSheet.cancelButtonIndex == 2){
                         [self.bluetooth stopScan];
+                        self.connectLabel.text = @"Connect";
+                        self.isConnected = NO;
                     }else{
                         [self.bluetooth connectSelectedPeripheral:2];
                     }
@@ -233,6 +239,8 @@
                 case 3:
                     if(self.actionSheet.cancelButtonIndex == 3){
                         [self.bluetooth stopScan];
+                        self.connectLabel.text = @"Connect";
+                        self.isConnected = NO;
                     }else{
                         [self.bluetooth connectSelectedPeripheral:3];
                     }
@@ -241,6 +249,8 @@
                 case 4:
                     if(self.actionSheet.cancelButtonIndex == 4){
                         [self.bluetooth stopScan];
+                        self.connectLabel.text = @"Connect";
+                        self.isConnected = NO;
                     }else{
                         [self.bluetooth connectSelectedPeripheral:4];
                     }
@@ -250,6 +260,7 @@
                     NSLog(@"default triggered");
                     [self.bluetooth stopScan];
                     self.periphArray = nil;
+                    self.isConnected = NO;
                     break;
             }
             break;
