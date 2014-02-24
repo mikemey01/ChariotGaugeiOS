@@ -10,12 +10,13 @@
 #import "CICBluetoothHandler.h"
 @import CoreBluetooth;
 
-@interface CICHomeScreenViewController : UIViewController <UIActionSheetDelegate, PeriphDelegate>{
+@interface CICHomeScreenViewController : UIViewController <UIActionSheetDelegate, PeriphDelegate, StateChangeDelegate>{
     CICBluetoothHandler *bluetooth;
     UILabel *connectLabel;
     UIActionSheet *actionSheet;
     NSMutableArray *periphArray;
     NSTimer *scanTimer;
+    NSString *stateString;
 }
 
 typedef enum {
@@ -36,6 +37,7 @@ typedef enum {
 @property (nonatomic, retain) UIActionSheet *actionSheet;
 @property (nonatomic, retain) NSMutableArray *periphArray;
 @property (nonatomic, retain) NSTimer *scanTimer;
+@property (nonatomic, retain) NSString *stateString;
 
 -(IBAction)widebandButtonPress:(id)sender;
 -(IBAction)boostButtonPress:(id)sender;

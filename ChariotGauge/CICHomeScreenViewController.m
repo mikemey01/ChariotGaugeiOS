@@ -17,7 +17,7 @@
 
 @implementation CICHomeScreenViewController
 
-@synthesize gaugeType, bluetooth, connectLabel, actionSheet, periphArray, scanTimer;
+@synthesize gaugeType, bluetooth, connectLabel, actionSheet, periphArray, scanTimer, stateString;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -34,6 +34,7 @@
     
     self.isConnected = NO;
     connectLabel.text = @"Connect";
+    self.stateString = [[NSString alloc] init];
     
     //Instatiate bluetooth handler.
     self.bluetooth = [[CICBluetoothHandler alloc] init];
@@ -149,6 +150,11 @@
 -(IBAction)settingsButtonPress:(id)sender
 {
     
+}
+
+-(void)getLatestBluetoothState:(NSString *)latestStatus
+{
+    self.connectLabel.text = latestStatus;
 }
 
 -(void)didNotFindController

@@ -10,7 +10,7 @@
 
 @implementation CICBluetoothHandler
 
-@synthesize connectPressed, stringConcat, btDelegate, periphDelegate, periphArray;
+@synthesize connectPressed, stringConcat, btDelegate, periphDelegate, periphArray, stateDelegate, stateString;
 
 -(void)startScan
 {
@@ -18,10 +18,12 @@
     self.connectPressed = YES;
     stringConcat = [NSMutableString stringWithString:@""];
     self.periphArray = [[NSMutableArray alloc] init];
+    self.stateString = [[NSString alloc] init];
     
     //Make sure we're not already connected.
     if(self.peripheral.state != CBPeripheralStateConnected){
         NSLog(@"starting scan/connect.");
+        [self.stateDelegate getLatestBluetoothState:@"Scanning.."];
         CBCentralManager *centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil options:nil];
         [centralManager scanForPeripheralsWithServices:nil options:nil];
         self.centralManager = centralManager;
@@ -59,6 +61,7 @@
 
 - (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
     NSLog(@"Failed to connect %@", error.localizedDescription);
+    [self.stateDelegate getLatestBluetoothState:@"Connect Failed"];
     [self disconnectBluetooth];
 }
 
@@ -82,6 +85,7 @@
 -(void)connectSelectedPeripheral:(NSUInteger)index
 {
     [self.centralManager stopScan];
+    [self.stateDelegate getLatestBluetoothState:@"Connecting.."];
     self.peripheral = [self.periphArray objectAtIndex:index];
     self.peripheral.delegate = self;
     [self.centralManager connectPeripheral:self.peripheral options:nil];
@@ -103,7 +107,7 @@
     if(error != nil){
         NSLog(@"error in didDiscoverServices: %@", error);
     }
-    
+    [self.stateDelegate getLatestBluetoothState:@"Service Found"];
 	for (CBService *service in peripheral.services) {
 		[peripheral discoverCharacteristics:nil forService:service];
         NSLog(@"Services present on periph: %@", service);
@@ -116,9 +120,8 @@
     if(error != nil){
         NSLog(@"Error in didDisconverCharForService: %@", error);
     }
-    
-    for (CBCharacteristic *aChar in service.characteristics)
-    {
+    [self.stateDelegate getLatestBluetoothState:@"Characteristic Found"];
+    for (CBCharacteristic *aChar in service.characteristics){
         NSLog(@" characteristic present: %@", aChar);
         [self.peripheral setNotifyValue:YES forCharacteristic:aChar];
         [self.peripheral readValueForCharacteristic:aChar];
@@ -128,9 +131,8 @@
 // Invoked when you retrieve a specified characteristic's value, or when the peripheral device notifies your app that the characteristic's value has changed.
 - (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
 {
-    
+    [self.stateDelegate getLatestBluetoothState:@"Connected!"];
     [self parseValue:characteristic];
-    
 }
 
 - (void)parseValue:(CBCharacteristic *)characteristic
