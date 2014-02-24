@@ -38,9 +38,9 @@
     
     //Instatiate bluetooth handler.
     self.bluetooth = [[CICBluetoothHandler alloc] init];
-    
     [self.bluetooth setPeriphDelegate:self];
     [self.bluetooth setStateDelegate:self];
+    self.bluetooth.failedConnectCount = 0;
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -133,6 +133,11 @@
     //self.isConnected = (!self.isConnected);
 }
 
+-(IBAction)settingsButtonPress:(id)sender
+{
+    
+}
+
 -(void)startTimer
 {
     self.scanTimer = [NSTimer scheduledTimerWithTimeInterval:5.0
@@ -146,19 +151,6 @@
 {
     [self.scanTimer invalidate];
     self.scanTimer = nil;
-}
-
--(IBAction)settingsButtonPress:(id)sender
-{
-    
-}
-
--(void)getLatestBluetoothState:(NSString *)latestStatus
-{
-    if([latestStatus isEqualToString:@"Connected!"]){
-        self.isConnected = YES;
-    }
-    self.connectLabel.text = latestStatus;
 }
 
 -(void)didNotFindController
@@ -183,6 +175,24 @@
     [self.periphArray addObject:periphName];
     [self stopTimer];
     [self createActionSheet];
+}
+
+-(void)getLatestBluetoothState:(NSString *)latestStatus
+{
+    if([latestStatus isEqualToString:@"error"]){
+        //go to error alert
+        self.isConnected = NO;
+        self.connectLabel.text = @"Connect";
+        return;
+    }
+    
+    if([latestStatus isEqualToString:@"Connected!"]){
+        self.isConnected = YES;
+    }else{
+        self.isConnected = NO;
+    }
+    
+    self.connectLabel.text = latestStatus;
 }
 
 -(void)createActionSheet

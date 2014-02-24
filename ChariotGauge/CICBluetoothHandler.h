@@ -31,6 +31,7 @@
     NSMutableString *stringConcat;
     NSMutableArray *periphArray;
     NSString *stateString;
+    NSUInteger failedConnectCount;
     
     id <BluetoothDelegate> btDelegate;
     id <PeriphDelegate> periphDelegate;
@@ -47,6 +48,7 @@
 @property (nonatomic, retain) NSMutableArray *periphArray;
 @property (nonatomic, retain) id stateDelegate;
 @property (nonatomic, retain) NSString *stateString;
+@property (nonatomic, assign) NSUInteger failedConnectCount;
 
 -(void)startScan;
 -(void)stopScan;
