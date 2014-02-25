@@ -32,6 +32,7 @@
     NSMutableArray *periphArray;
     NSString *stateString;
     NSUInteger failedConnectCount;
+    NSTimer *connectTimer;
     
     id <BluetoothDelegate> btDelegate;
     id <PeriphDelegate> periphDelegate;
@@ -49,6 +50,7 @@
 @property (nonatomic, retain) id stateDelegate;
 @property (nonatomic, retain) NSString *stateString;
 @property (nonatomic, assign) NSUInteger failedConnectCount;
+@property (nonatomic, retain) NSTimer *connectTimer;
 
 -(void)startScan;
 -(void)stopScan;
@@ -57,6 +59,9 @@
 
 -(void)addPeriphToArray:(CBPeripheral *)periph;
 -(void)connectSelectedPeripheral:(NSUInteger)index;
+-(void)startTimer;
+-(void)stopTimer;
+-(void)peripheralFailedToConnect;
 
 
 @end

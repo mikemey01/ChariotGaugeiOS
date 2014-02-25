@@ -10,7 +10,7 @@
 
 @implementation CICBluetoothHandler
 
-@synthesize connectPressed, stringConcat, btDelegate, periphDelegate, periphArray, stateDelegate, stateString, failedConnectCount;
+@synthesize connectPressed, stringConcat, btDelegate, periphDelegate, periphArray, stateDelegate, stateString, failedConnectCount, connectTimer;
 
 -(void)startScan
 {
@@ -99,12 +99,35 @@
 // method called whenever we have successfully connected to the BLE peripheral
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral
 {
-    self.failedConnectCount += 1;
-    //start timer here, kill it if service is discovered.
-    //if failedConnectCount is > 2 then show alert to restart phone.
-    
 	[peripheral setDelegate:self];
     [peripheral discoverServices:nil];
+    [self startTimer];
+}
+
+-(void)startTimer
+{
+    self.connectTimer = [NSTimer scheduledTimerWithTimeInterval:5.0
+                                                      target:self
+                                                    selector:@selector(peripheralFailedToConnect)
+                                                    userInfo:nil
+                                                     repeats:NO];
+}
+
+-(void)stopTimer
+{
+    [self.connectTimer invalidate];
+    self.connectTimer = nil;
+}
+
+-(void)peripheralFailedToConnect
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Chariot Gauge"
+                                                    message:@"Failed to Connect, please try again. If the problem persists you made need to restart the device."
+                                                   delegate:self
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
+    [self.stateDelegate getLatestBluetoothState:@"Connect"];
 }
 
 // CBPeripheralDelegate - Invoked when you discover the peripheral's available services.
@@ -130,7 +153,7 @@
         [self.stateDelegate getLatestBluetoothState:@"error"];
         return;
     }
-    self.failedConnectCount = 0;
+    
     [self.stateDelegate getLatestBluetoothState:@"Characteristic Found"];
     for (CBCharacteristic *aChar in service.characteristics){
         NSLog(@" characteristic present: %@", aChar);
@@ -145,6 +168,8 @@
     if(error != nil){
         [self.stateDelegate getLatestBluetoothState:@"error"];
     }
+    
+    [self stopTimer];
     [self.stateDelegate getLatestBluetoothState:@"Connected!"];
     [self parseValue:characteristic];
 }

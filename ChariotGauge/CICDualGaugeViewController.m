@@ -327,6 +327,11 @@
 
 -(void)maxButtonAction
 {
+    if(!isPaused){
+        maxButton.tintColor = [UIColor redColor];
+    }else{
+        maxButton.tintColor = nil;
+    }
     isPaused = !isPaused;
 }
 
@@ -335,6 +340,8 @@
     calcDataOne.sensorMaxValue = self.firstGauge.minGaugeNumber;
     calcDataTwo.sensorMaxValue = self.secondGauge.minGaugeNumber;
     calcDataVolts.sensorMaxValue = 0.0f;
+    maxButton.tintColor = nil;
+    isPaused = NO;
 }
 
 -(void) initPrefs
