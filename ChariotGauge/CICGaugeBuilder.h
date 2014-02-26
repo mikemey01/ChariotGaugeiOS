@@ -110,6 +110,9 @@
     UILabel *digitalLabel;
     CGFloat digitalFontSize;
     
+    //Allow negative numbers or not (boost/vac = not)
+    BOOL allowNegatives;
+    
     
     struct angleRanges{
         float startRange;
@@ -140,6 +143,7 @@
 @property (nonatomic, retain) NSString *gaugeLabel;
 @property (nonatomic, assign) CGFloat gaugeLabelHeight;
 @property (nonatomic, retain) UIFont *gaugeLabelFont;
+@property (nonatomic, assign) BOOL allowNegatives;
 
 
 //gauge functions

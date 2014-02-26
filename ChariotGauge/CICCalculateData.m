@@ -44,9 +44,9 @@
 
 -(CGFloat) calcBoost:(NSInteger)val
 {
-    float vOut;
-    float kpa=0;
-    float psi=0;
+    CGFloat vOut;
+    CGFloat kpa=0;
+    CGFloat psi=0;
     
     vOut = (val*5.00)/1024;
     kpa = ((vOut/5.00)+.04)/.004;

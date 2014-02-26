@@ -145,6 +145,7 @@
         gaugeView.incrementPerLargeTick = 5;
         gaugeView.tickStartAngleDegrees = 135;
         gaugeView.tickDistance = 270;
+        gaugeView.allowNegatives = NO;
     }else{
         [gaugeView initializeGauge];
         gaugeView.minGaugeNumber = 0.0f;

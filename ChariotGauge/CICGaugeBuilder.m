@@ -155,6 +155,10 @@
     //Transform the layer to the correct angle along the z-plane.
 	needleLayer.transform = CATransform3DMakeRotation(DEGREES_TO_RADIANS(angle), 0.0f, 0.0f, 1.0f);
     
+    if(!self.allowNegatives){
+        val = fabs(val);
+    }
+    
     //Set digital gauge value;
     [self.digitalLabel setText:[NSString stringWithFormat:@"%.1f", val]];
     
@@ -427,7 +431,11 @@
     self.digitalLabel = [[UILabel alloc] initWithFrame:CGRectIntegral(CGRectMake(self.gaugeX*2, self.gaugeWidth, self.gaugeWidth, digitalFont.pointSize))];
     [self.digitalLabel setFont:digitalFont];
     self.digitalLabel.textAlignment = NSTextAlignmentCenter;
-    [self.digitalLabel setText:[NSString stringWithFormat:@"%.1f", self.minGaugeNumber]];
+    if(!self.allowNegatives){
+        [self.digitalLabel setText:[NSString stringWithFormat:@"%.1f", fabs(self.minGaugeNumber)]];
+    }else{
+        [self.digitalLabel setText:[NSString stringWithFormat:@"%.1f", self.minGaugeNumber]];
+    }
     [self addSubview:self.digitalLabel];
 }
 
@@ -484,6 +492,9 @@
     
     //Digital init
     self.digitalFontSize = 60.0f;
+    
+    //Allow negatives or not, init to true
+    self.allowNegatives = YES;
     
     
 

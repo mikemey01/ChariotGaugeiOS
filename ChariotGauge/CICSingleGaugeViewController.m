@@ -199,6 +199,7 @@
         self.gaugeView.incrementPerLargeTick = 5;
         self.gaugeView.tickStartAngleDegrees = 135;
         self.gaugeView.tickDistance = 270;
+        self.gaugeView.allowNegatives = NO;
     }else{
         [self.gaugeView initializeGauge];
         self.gaugeView.minGaugeNumber = 0.0f;
