@@ -176,6 +176,9 @@
     if(periphName == nil){
         periphName = @"Chariot Gauge";
     }
+    if([periphName isEqualToString:@"HMSoft"]){
+        periphName = @"Chariot Gauge";
+    }
     [self.periphArray addObject:periphName];
     [self stopTimer];
     [self createActionSheet];
