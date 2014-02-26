@@ -106,7 +106,7 @@
 
 -(void)startTimer
 {
-    self.connectTimer = [NSTimer scheduledTimerWithTimeInterval:5.0
+    self.connectTimer = [NSTimer scheduledTimerWithTimeInterval:7.0
                                                       target:self
                                                     selector:@selector(peripheralFailedToConnect)
                                                     userInfo:nil

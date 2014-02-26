@@ -118,7 +118,7 @@
 
 -(IBAction)connectButtonPress:(id)sender
 {
-    if(!self.isConnected){
+    if(!self.isConnected && !([self.connectLabel.text isEqualToString:@"Scanning.."])){
         self.periphArray = [[NSMutableArray alloc] init];
         //connectLabel.text = @"Scanning..";
         [self.bluetooth startScan];
@@ -140,7 +140,7 @@
 
 -(void)startTimer
 {
-    self.scanTimer = [NSTimer scheduledTimerWithTimeInterval:5.0
+    self.scanTimer = [NSTimer scheduledTimerWithTimeInterval:7.0
                                                       target:self
                                                     selector:@selector(didNotFindController)
                                                     userInfo:nil
@@ -163,6 +163,7 @@
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
         [alert show];
+        [self.bluetooth disconnectBluetooth];
         self.connectLabel.text = @"Connect";
         self.isConnected = NO;
         [self.actionSheet dismissWithClickedButtonIndex:0 animated:NO];
@@ -172,6 +173,9 @@
 
 -(void)getLatestPeriph:(NSString *)periphName
 {
+    if(periphName == nil){
+        periphName = @"Chariot Gauge";
+    }
     [self.periphArray addObject:periphName];
     [self stopTimer];
     [self createActionSheet];
