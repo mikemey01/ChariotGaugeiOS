@@ -186,6 +186,16 @@
     if([latestStatus isEqualToString:@"error"]){
         //go to error alert
         [self.bluetooth stopScan];
+        [self stopTimer];
+        [self.bluetooth disconnectBluetooth];
+        self.isConnected = NO;
+        self.connectLabel.text = @"Connect";
+        return;
+    }
+    
+    if([latestStatus isEqualToString:@"bluetoothOff"]){
+        [self.bluetooth stopScan];
+        [self stopTimer];
         [self.bluetooth disconnectBluetooth];
         self.isConnected = NO;
         self.connectLabel.text = @"Connect";

@@ -122,7 +122,7 @@
 -(void)peripheralFailedToConnect
 {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Chariot Gauge"
-                                                    message:@"Failed to Connect, please try again. If the problem persists you made need to restart the device."
+                                                    message:@"Failed to Connect, please try again. If the problem persists you may need to restart the device."
                                                    delegate:self
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];
@@ -136,6 +136,7 @@
     if(error != nil){
         NSLog(@"error in didDiscoverServices: %@", error);
         [self.stateDelegate getLatestBluetoothState:@"error"];
+        [self stopTimer];
         return;
     }
     [self.stateDelegate getLatestBluetoothState:@"Service Found"];
@@ -151,6 +152,7 @@
     if(error != nil){
         NSLog(@"Error in didDisconverCharForService: %@", error);
         [self.stateDelegate getLatestBluetoothState:@"error"];
+        [self stopTimer];
         return;
     }
     
@@ -167,6 +169,7 @@
 {
     if(error != nil){
         [self.stateDelegate getLatestBluetoothState:@"error"];
+        NSLog(@"error in didUpdateValueForChar");
     }
     
     [self stopTimer];
@@ -199,6 +202,7 @@
         if(connectPressed){
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Bluetooth Status" message:@"Bluetooth is turned off, please turn on in Settings" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alert show];
+            [self.stateDelegate getLatestBluetoothState:@"bluetoothOff"];
         }
 	}
 	else if ([central state] == CBCentralManagerStatePoweredOn) {
