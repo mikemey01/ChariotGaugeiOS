@@ -83,7 +83,7 @@
 		CE2E850A1847B01000C51A49 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CE2E850C1847B01000C51A49 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		CE2E850E1847B01000C51A49 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		CE2E85121847B01000C51A49 /* ChariotGauge-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ChariotGauge-Info.plist"; sourceTree = "<group>"; };
+		CE2E85121847B01000C51A49 /* ChariotGauge-Info.plist */ = {isa = PBXFileReference; explicitFileType = text.xml; path = "ChariotGauge-Info.plist"; sourceTree = "<group>"; };
 		CE2E85141847B01000C51A49 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CE2E85161847B01000C51A49 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CE2E85181847B01000C51A49 /* ChariotGauge-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ChariotGauge-Prefix.pch"; sourceTree = "<group>"; };
