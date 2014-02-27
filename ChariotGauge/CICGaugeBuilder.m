@@ -216,7 +216,13 @@
         
         //Draw numbers on major ticks
         if(tickLineLength == 10){
-            NSString * drawNumber = [NSString stringWithFormat:@"%d",abs(gaugeIncrement)]; //cast decimal to string
+            NSInteger textToDraw = 0;
+            if(!self.allowNegatives){
+                textToDraw = abs(gaugeIncrement);
+            }else{
+                textToDraw = gaugeIncrement;
+            }
+            NSString * drawNumber = [NSString stringWithFormat:@"%d", textToDraw]; //cast decimal to string
             [self drawCurvedText:drawNumber atAngle:DEGREES_TO_RADIANS(actualLineAngle) withContext:context forTickArc:YES]; //draw the number at the major ticks.
         }
         
