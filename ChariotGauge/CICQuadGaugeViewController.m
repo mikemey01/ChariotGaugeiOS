@@ -100,7 +100,7 @@
 
 -(void) setGaugeValue:(NSArray *)array
 {
-    if(array.count >= 3){
+    if(array.count >= 5){
         
         //Set boost.
         currentStringValue = [array objectAtIndex:1];
