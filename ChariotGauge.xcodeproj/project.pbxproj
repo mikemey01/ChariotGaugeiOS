@@ -10,6 +10,14 @@
 		CE05FFB01849433700764A43 /* CICGaugeBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = CE05FFAF1849433700764A43 /* CICGaugeBuilder.m */; };
 		CE0C78101867B44C006C6C1C /* CICHomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0C780F1867B44C006C6C1C /* CICHomeScreenViewController.m */; };
 		CE0C78121867B4DD006C6C1C /* boost_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = CE0C78111867B4DD006C6C1C /* boost_logo.png */; };
+		CE141B4618C0108700C1F1FD /* iPad768x1024.png in Resources */ = {isa = PBXBuildFile; fileRef = CE141B3F18C0108700C1F1FD /* iPad768x1024.png */; };
+		CE141B4718C0108700C1F1FD /* iPad1024x768.png in Resources */ = {isa = PBXBuildFile; fileRef = CE141B4018C0108700C1F1FD /* iPad1024x768.png */; };
+		CE141B4818C0108700C1F1FD /* iPad1536x2048.png in Resources */ = {isa = PBXBuildFile; fileRef = CE141B4118C0108700C1F1FD /* iPad1536x2048.png */; };
+		CE141B4918C0108700C1F1FD /* iPad2048x1536.png in Resources */ = {isa = PBXBuildFile; fileRef = CE141B4218C0108700C1F1FD /* iPad2048x1536.png */; };
+		CE141B4A18C0108700C1F1FD /* iPhone320x480.png in Resources */ = {isa = PBXBuildFile; fileRef = CE141B4318C0108700C1F1FD /* iPhone320x480.png */; };
+		CE141B4B18C0108700C1F1FD /* iPhone640x960.png in Resources */ = {isa = PBXBuildFile; fileRef = CE141B4418C0108700C1F1FD /* iPhone640x960.png */; };
+		CE141B4C18C0108700C1F1FD /* iPhone640x1136.png in Resources */ = {isa = PBXBuildFile; fileRef = CE141B4518C0108700C1F1FD /* iPhone640x1136.png */; };
+		CE141B4E18C011D300C1F1FD /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE141B4D18C011D300C1F1FD /* Default-568h@2x.png */; };
 		CE166EE518934BAB0063CB51 /* CICCalculateData.m in Sources */ = {isa = PBXBuildFile; fileRef = CE166EE418934BAB0063CB51 /* CICCalculateData.m */; };
 		CE2E850B1847B01000C51A49 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2E850A1847B01000C51A49 /* Foundation.framework */; };
 		CE2E850D1847B01000C51A49 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2E850C1847B01000C51A49 /* CoreGraphics.framework */; };
@@ -77,6 +85,14 @@
 		CE0C780E1867B44C006C6C1C /* CICHomeScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICHomeScreenViewController.h; sourceTree = "<group>"; };
 		CE0C780F1867B44C006C6C1C /* CICHomeScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICHomeScreenViewController.m; sourceTree = "<group>"; };
 		CE0C78111867B4DD006C6C1C /* boost_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = boost_logo.png; path = "../../../../Documents/Chariot Gauge/ChariotGauge Media/Project Sensor/Trent - Icon Set/Resized/boost_logo.png"; sourceTree = "<group>"; };
+		CE141B3F18C0108700C1F1FD /* iPad768x1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iPad768x1024.png; sourceTree = "<group>"; };
+		CE141B4018C0108700C1F1FD /* iPad1024x768.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iPad1024x768.png; sourceTree = "<group>"; };
+		CE141B4118C0108700C1F1FD /* iPad1536x2048.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iPad1536x2048.png; sourceTree = "<group>"; };
+		CE141B4218C0108700C1F1FD /* iPad2048x1536.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iPad2048x1536.png; sourceTree = "<group>"; };
+		CE141B4318C0108700C1F1FD /* iPhone320x480.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iPhone320x480.png; sourceTree = "<group>"; };
+		CE141B4418C0108700C1F1FD /* iPhone640x960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iPhone640x960.png; sourceTree = "<group>"; };
+		CE141B4518C0108700C1F1FD /* iPhone640x1136.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iPhone640x1136.png; sourceTree = "<group>"; };
+		CE141B4D18C011D300C1F1FD /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		CE166EE318934BAB0063CB51 /* CICCalculateData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICCalculateData.h; sourceTree = "<group>"; };
 		CE166EE418934BAB0063CB51 /* CICCalculateData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICCalculateData.m; sourceTree = "<group>"; };
 		CE2E85071847B01000C51A49 /* ChariotGauge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChariotGauge.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -192,9 +208,24 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
+		CE141B3E18C0103D00C1F1FD /* Launch_Images */ = {
+			isa = PBXGroup;
+			children = (
+				CE141B3F18C0108700C1F1FD /* iPad768x1024.png */,
+				CE141B4018C0108700C1F1FD /* iPad1024x768.png */,
+				CE141B4118C0108700C1F1FD /* iPad1536x2048.png */,
+				CE141B4218C0108700C1F1FD /* iPad2048x1536.png */,
+				CE141B4318C0108700C1F1FD /* iPhone320x480.png */,
+				CE141B4418C0108700C1F1FD /* iPhone640x960.png */,
+				CE141B4518C0108700C1F1FD /* iPhone640x1136.png */,
+			);
+			name = Launch_Images;
+			sourceTree = "<group>";
+		};
 		CE2E84FE1847B01000C51A49 = {
 			isa = PBXGroup;
 			children = (
+				CE141B4D18C011D300C1F1FD /* Default-568h@2x.png */,
 				CE9CB8721896147D00F24822 /* InAppSettingsKit */,
 				CE2E85101847B01000C51A49 /* ChariotGauge */,
 				CE2E852F1847B01000C51A49 /* ChariotGaugeTests */,
@@ -246,6 +277,7 @@
 				CE58A011186F8E3F001348DA /* CICDrawLine.m */,
 				CE05FFAE1849433700764A43 /* CICGaugeBuilder.h */,
 				CE05FFAF1849433700764A43 /* CICGaugeBuilder.m */,
+				CE141B3E18C0103D00C1F1FD /* Launch_Images */,
 				CE9CB7E3189483B600F24822 /* Settings.bundle */,
 				CE2E85221847B01000C51A49 /* Images.xcassets */,
 				CEA4F64118BD9829001593F8 /* App_Icons */,
@@ -449,8 +481,14 @@
 				CE2E85231847B01000C51A49 /* Images.xcassets in Resources */,
 				CE4F05B8187BB9D0000BFC0B /* LetsGoDigital.ttf in Resources */,
 				CE9CB7E4189483B600F24822 /* Settings.bundle in Resources */,
+				CE141B4818C0108700C1F1FD /* iPad1536x2048.png in Resources */,
 				CE58A006186F4A2F001348DA /* custom_logo.png in Resources */,
+				CE141B4E18C011D300C1F1FD /* Default-568h@2x.png in Resources */,
+				CE141B4A18C0108700C1F1FD /* iPhone320x480.png in Resources */,
+				CE141B4618C0108700C1F1FD /* iPad768x1024.png in Resources */,
 				CE0C78121867B4DD006C6C1C /* boost_logo.png in Resources */,
+				CE141B4B18C0108700C1F1FD /* iPhone640x960.png in Resources */,
+				CE141B4C18C0108700C1F1FD /* iPhone640x1136.png in Resources */,
 				CEA4F64E18BD9922001593F8 /* app_icon_120.png in Resources */,
 				CE58A009186F4A2F001348DA /* wideband_logo.png in Resources */,
 				CEA4F64D18BD9922001593F8 /* app_icon_80.png in Resources */,
@@ -459,9 +497,11 @@
 				CEA4F64C18BD9922001593F8 /* app_icon_76.png in Resources */,
 				CE58A005186F4A2F001348DA /* bluetooth_logo.png in Resources */,
 				CE58A00D186F4C75001348DA /* four_gauges.png in Resources */,
+				CE141B4918C0108700C1F1FD /* iPad2048x1536.png in Resources */,
 				CEA4F64A18BD9922001593F8 /* app_icon_40.png in Resources */,
 				CE58A008186F4A2F001348DA /* settings_logo.png in Resources */,
 				CEA4F64F18BD9922001593F8 /* app_icon_152.png in Resources */,
+				CE141B4718C0108700C1F1FD /* iPad1024x768.png in Resources */,
 				CE2E851E1847B01000C51A49 /* Main.storyboard in Resources */,
 				CE58A007186F4A2F001348DA /* oil_logo.png in Resources */,
 				CE58A00F186F4CD1001348DA /* custom_multi_logo.png in Resources */,
@@ -632,6 +672,8 @@
 		CE2E853A1847B01000C51A49 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -648,6 +690,8 @@
 		CE2E853B1847B01000C51A49 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
