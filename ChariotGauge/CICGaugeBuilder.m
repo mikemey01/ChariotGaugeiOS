@@ -105,7 +105,7 @@
 @synthesize minGaugeNumber, maxGaugeNumber, gaugeLabel, incrementPerLargeTick, gaugeType, tickStartAngleDegrees;
 @synthesize tickDistance, menuItemsFont, value, gaugeLabelFont, gaugeWidth, viewWidth, gaugeX, gaugeY, digitalLabel, digitalFontSize;
 @synthesize needleBuilder = needleBuilder_;
-@synthesize lineWidth, needleLayer, gaugeLabelHeight, tickArcRadius, kerningScaler, allowNegatives, gaugeRingScaler;
+@synthesize lineWidth, needleLayer, gaugeLabelHeight, tickArcRadius, kerningScaler, allowNegatives, gaugeRingScaler, gaugeNumberShift;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -273,7 +273,7 @@
     float textAngle = textSize.width / perimeter * -2 * M_PI;
     
     angle += (textAngle / 2);
-    angle += DEGREES_TO_RADIANS(-.75);
+    angle += DEGREES_TO_RADIANS(-.75 - self.gaugeNumberShift);
     
     
     for (int index = 0; index < [text length]; index++)
@@ -473,6 +473,7 @@
     self.gaugeLabelHeight = 100.0f;
     self.kerningScaler = 1.0f;
     self.gaugeRingScaler = 0.0f;
+    self.gaugeNumberShift = 0.0f;
 
     //needle init
     needleBuilder_ = [[NeedleBuilder alloc] init];

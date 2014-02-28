@@ -94,6 +94,7 @@
     //Scaler variables for sizing.
     CGFloat kerningScaler;
     CGFloat gaugeRingScaler;
+    CGFloat gaugeNumberShift;
     
         /*Needle stuff*/
     
@@ -146,6 +147,7 @@
 @property (nonatomic, retain) UIFont *gaugeLabelFont;
 @property (nonatomic, assign) BOOL allowNegatives;
 @property (nonatomic, assign) CGFloat gaugeRingScaler;
+@property (nonatomic, assign) CGFloat gaugeNumberShift;
 
 
 //gauge functions

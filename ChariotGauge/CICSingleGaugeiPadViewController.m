@@ -190,6 +190,7 @@
     self.gaugeView.gaugeLabelHeight = 300.0f;
     self.gaugeView.gaugeRingScaler = 20.0f;
     self.gaugeView.kerningScaler = 2.2f;
+    self.gaugeView.gaugeNumberShift = 5.0;
     calcData.sensorMaxValue = self.gaugeView.minGaugeNumber;
 }
 
@@ -228,6 +229,7 @@
     self.gaugeView.gaugeLabelHeight = 300.0f;
     self.gaugeView.gaugeRingScaler = 20.0f;
     self.gaugeView.kerningScaler = 2.2f;
+    self.gaugeView.gaugeNumberShift = 5.0;
     calcData.sensorMaxValue = self.gaugeView.minGaugeNumber;
 }
 
@@ -255,6 +257,7 @@
     self.gaugeView.gaugeLabelHeight = 300.0f;
     self.gaugeView.gaugeRingScaler = 20.0f;
     self.gaugeView.kerningScaler = 2.2f;
+    self.gaugeView.gaugeNumberShift = 5.0;
     calcData.sensorMaxValue = self.gaugeView.minGaugeNumber;
 }
 
@@ -292,6 +295,7 @@
     self.gaugeView.gaugeLabelHeight = 300.0f;
     self.gaugeView.gaugeRingScaler = 20.0f;
     self.gaugeView.kerningScaler = 2.2f;
+    self.gaugeView.gaugeNumberShift = 5.0;
     calcData.sensorMaxValue = self.gaugeView.minGaugeNumber;
 }
 
@@ -299,12 +303,12 @@
 {
     CGSize sizeOfScreen = [[UIScreen mainScreen] bounds].size;
     
-    UIFont *digitalFont = [UIFont fontWithName:@"LetsgoDigital-Regular" size:30.0f];
-    voltLabel = [[UILabel alloc] initWithFrame:CGRectIntegral(CGRectMake(2.0f, sizeOfScreen.height-32.0f, sizeOfScreen.width/2, 30.0f))];
+    UIFont *digitalFont = [UIFont fontWithName:@"LetsgoDigital-Regular" size:40.0f];
+    voltLabel = [[UILabel alloc] initWithFrame:CGRectIntegral(CGRectMake(2.0f, sizeOfScreen.height-42.0f, sizeOfScreen.width/2, 40.0f))];
     [voltLabel setFont:digitalFont];
     [voltLabel setText:@"Volts"];
     
-    voltLabelNumbers = [[UILabel alloc] initWithFrame:CGRectIntegral(CGRectMake(sizeOfScreen.width/2, sizeOfScreen.height-32.0f, sizeOfScreen.width/2-2, 30.0f))];
+    voltLabelNumbers = [[UILabel alloc] initWithFrame:CGRectIntegral(CGRectMake(sizeOfScreen.width/2, sizeOfScreen.height-42.0f, sizeOfScreen.width/2-2, 40.0f))];
     voltLabelNumbers.textAlignment = NSTextAlignmentRight;
     [voltLabelNumbers setFont:digitalFont];
     [voltLabelNumbers setText:@"0.0"];

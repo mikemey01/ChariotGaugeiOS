@@ -202,6 +202,7 @@
     gaugeView.gaugeLabelHeight = 200.0f;
     gaugeView.gaugeRingScaler = 10.0f;
     gaugeView.kerningScaler = 2.0f;
+    gaugeView.gaugeNumberShift = 5.0;
     calcData.sensorMaxValue = gaugeView.minGaugeNumber;
 }
 
@@ -265,6 +266,7 @@
     gaugeView.gaugeLabelHeight = 200.0f;
     gaugeView.gaugeRingScaler = 10.0f;
     gaugeView.kerningScaler = 2.0f;
+    gaugeView.gaugeNumberShift = 5.0;
     calcData.sensorMaxValue = gaugeView.minGaugeNumber;
 }
 
@@ -299,6 +301,7 @@
     gaugeView.gaugeLabelHeight = 200.0f;
     gaugeView.gaugeRingScaler = 10.0f;
     gaugeView.kerningScaler = 2.0f;
+    gaugeView.gaugeNumberShift = 5.0;
     calcData.sensorMaxValue = gaugeView.minGaugeNumber;
 }
 
@@ -323,6 +326,7 @@
     gaugeView.gaugeLabelHeight = 200.0f;
     gaugeView.gaugeRingScaler = 10.0f;
     gaugeView.kerningScaler = 2.0f;
+    gaugeView.gaugeNumberShift = 5.0;
     calcData.sensorMaxValue = gaugeView.minGaugeNumber;
 }
 

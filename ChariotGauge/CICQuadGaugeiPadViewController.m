@@ -157,16 +157,17 @@
     }
     gaugeView.lineWidth = 1;
     gaugeView.value = gaugeView.minGaugeNumber;
-    gaugeView.menuItemsFont = [UIFont fontWithName:@"Futura" size:30];
+    gaugeView.menuItemsFont = [UIFont fontWithName:@"Futura" size:25];
     gaugeView.tickArcRadius = (gaugeView.gaugeWidth / 2) - 70;
     gaugeView.needleBuilder.needleExtension = -16.0f;
     gaugeView.gaugeX = 0.0f;
-    gaugeView.digitalFontSize = 70.0f;
+    gaugeView.digitalFontSize = 60.0f;
     gaugeView.gaugeLabelFont = [UIFont fontWithName:@"Helvetica" size:20.0f];
-    gaugeView.needleBuilder.needleScaler = 1.0f;
-    gaugeView.gaugeLabelHeight = 200.0f;
+    gaugeView.needleBuilder.needleScaler = 1.25f;
+    gaugeView.gaugeLabelHeight = 160.0f;
     gaugeView.gaugeRingScaler = 10.0f;
-    gaugeView.kerningScaler = 2.0f;
+    gaugeView.kerningScaler = 1.5f;
+    gaugeView.gaugeNumberShift = 5.0;
     calcData.sensorMaxValue = gaugeView.minGaugeNumber;
 }
 
@@ -220,15 +221,17 @@
     }
     gaugeView.lineWidth = 1;
     gaugeView.value = gaugeView.minGaugeNumber;
-    gaugeView.menuItemsFont = [UIFont fontWithName:@"Futura" size:10];
-    gaugeView.tickArcRadius = (gaugeView.gaugeWidth / 2) - 34;
-    gaugeView.needleBuilder.needleExtension = 16.0f;
+    gaugeView.menuItemsFont = [UIFont fontWithName:@"Futura" size:25];
+    gaugeView.tickArcRadius = (gaugeView.gaugeWidth / 2) - 70;
+    gaugeView.needleBuilder.needleExtension = -16.0f;
     gaugeView.gaugeX = 0.0f;
-    gaugeView.digitalFontSize = 30.0f;
-    gaugeView.gaugeLabelFont = [UIFont fontWithName:@"Helvetica" size:8.0f];
-    gaugeView.needleBuilder.needleScaler = 0.5f;
-    gaugeView.gaugeLabelHeight = 60.0f;
-    gaugeView.kerningScaler = 0.60f;
+    gaugeView.digitalFontSize = 60.0f;
+    gaugeView.gaugeLabelFont = [UIFont fontWithName:@"Helvetica" size:20.0f];
+    gaugeView.needleBuilder.needleScaler = 1.25f;
+    gaugeView.gaugeLabelHeight = 160.0f;
+    gaugeView.gaugeRingScaler = 10.0f;
+    gaugeView.kerningScaler = 1.5f;
+    gaugeView.gaugeNumberShift = 5.0;
     calcData.sensorMaxValue = gaugeView.minGaugeNumber;
 }
 
@@ -253,15 +256,17 @@
     }
     gaugeView.lineWidth = 1;
     gaugeView.value = gaugeView.minGaugeNumber;
-    gaugeView.menuItemsFont = [UIFont fontWithName:@"Futura" size:10];
-    gaugeView.tickArcRadius = (gaugeView.gaugeWidth / 2) - 34;
-    gaugeView.needleBuilder.needleExtension = 16.0f;
+    gaugeView.menuItemsFont = [UIFont fontWithName:@"Futura" size:25];
+    gaugeView.tickArcRadius = (gaugeView.gaugeWidth / 2) - 70;
+    gaugeView.needleBuilder.needleExtension = -16.0f;
     gaugeView.gaugeX = 0.0f;
-    gaugeView.digitalFontSize = 30.0f;
-    gaugeView.gaugeLabelFont = [UIFont fontWithName:@"Helvetica" size:8.0f];
-    gaugeView.needleBuilder.needleScaler = 0.5f;
-    gaugeView.gaugeLabelHeight = 60.0f;
-    gaugeView.kerningScaler = 0.60f;
+    gaugeView.digitalFontSize = 60.0f;
+    gaugeView.gaugeLabelFont = [UIFont fontWithName:@"Helvetica" size:20.0f];
+    gaugeView.needleBuilder.needleScaler = 1.25f;
+    gaugeView.gaugeLabelHeight = 160.0f;
+    gaugeView.gaugeRingScaler = 10.0f;
+    gaugeView.kerningScaler = 1.5f;
+    gaugeView.gaugeNumberShift = 5.0;
     calcData.sensorMaxValue = gaugeView.minGaugeNumber;
 }
 
@@ -276,15 +281,17 @@
     gaugeView.tickDistance = 270;
     gaugeView.lineWidth = 1;
     gaugeView.value = gaugeView.minGaugeNumber;
-    gaugeView.menuItemsFont = [UIFont fontWithName:@"Futura" size:10];
-    gaugeView.tickArcRadius = (gaugeView.gaugeWidth / 2) - 34;
-    gaugeView.needleBuilder.needleExtension = 16.0f;
+    gaugeView.menuItemsFont = [UIFont fontWithName:@"Futura" size:25];
+    gaugeView.tickArcRadius = (gaugeView.gaugeWidth / 2) - 70;
+    gaugeView.needleBuilder.needleExtension = -16.0f;
     gaugeView.gaugeX = 0.0f;
-    gaugeView.digitalFontSize = 30.0f;
-    gaugeView.gaugeLabelFont = [UIFont fontWithName:@"Helvetica" size:8.0f];
-    gaugeView.needleBuilder.needleScaler = 0.5f;
-    gaugeView.gaugeLabelHeight = 60.0f;
-    gaugeView.kerningScaler = 0.60f;
+    gaugeView.digitalFontSize = 60.0f;
+    gaugeView.gaugeLabelFont = [UIFont fontWithName:@"Helvetica" size:20.0f];
+    gaugeView.needleBuilder.needleScaler = 1.25f;
+    gaugeView.gaugeLabelHeight = 160.0f;
+    gaugeView.gaugeRingScaler = 10.0f;
+    gaugeView.kerningScaler = 1.5f;
+    gaugeView.gaugeNumberShift = 5.0;
     calcData.sensorMaxValue = gaugeView.minGaugeNumber;
 }
 
@@ -292,12 +299,12 @@
 {
     CGSize sizeOfScreen = [[UIScreen mainScreen] bounds].size;
     
-    UIFont *digitalFont = [UIFont fontWithName:@"LetsgoDigital-Regular" size:20.0f];
-    voltLabel = [[UILabel alloc] initWithFrame:CGRectIntegral(CGRectMake(2.0f, sizeOfScreen.height-22.0f, sizeOfScreen.width/2, 20.0f))];
+    UIFont *digitalFont = [UIFont fontWithName:@"LetsgoDigital-Regular" size:40.0f];
+    voltLabel = [[UILabel alloc] initWithFrame:CGRectIntegral(CGRectMake(2.0f, sizeOfScreen.height-42.0f, sizeOfScreen.width/2, 40.0f))];
     [voltLabel setFont:digitalFont];
     [voltLabel setText:@"Volts"];
     
-    voltLabelNumbers = [[UILabel alloc] initWithFrame:CGRectIntegral(CGRectMake(sizeOfScreen.width/2, sizeOfScreen.height-22.0f, sizeOfScreen.width/2-2, 20.0f))];
+    voltLabelNumbers = [[UILabel alloc] initWithFrame:CGRectIntegral(CGRectMake(sizeOfScreen.width/2, sizeOfScreen.height-42.0f, sizeOfScreen.width/2-2, 40.0f))];
     voltLabelNumbers.textAlignment = NSTextAlignmentRight;
     [voltLabelNumbers setFont:digitalFont];
     [voltLabelNumbers setText:@"0.0"];
