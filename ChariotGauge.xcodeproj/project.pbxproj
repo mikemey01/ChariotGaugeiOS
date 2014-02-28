@@ -67,6 +67,9 @@
 		CEA4F64D18BD9922001593F8 /* app_icon_80.png in Resources */ = {isa = PBXBuildFile; fileRef = CEA4F64618BD9922001593F8 /* app_icon_80.png */; };
 		CEA4F64E18BD9922001593F8 /* app_icon_120.png in Resources */ = {isa = PBXBuildFile; fileRef = CEA4F64718BD9922001593F8 /* app_icon_120.png */; };
 		CEA4F64F18BD9922001593F8 /* app_icon_152.png in Resources */ = {isa = PBXBuildFile; fileRef = CEA4F64818BD9922001593F8 /* app_icon_152.png */; };
+		CEB7805218C02BD500473D9F /* CICSingleGaugeiPadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB7805118C02BD500473D9F /* CICSingleGaugeiPadViewController.m */; };
+		CEB7805518C038CD00473D9F /* CICDualGaugeiPadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB7805418C038CD00473D9F /* CICDualGaugeiPadViewController.m */; };
+		CEB7805818C038DF00473D9F /* CICQuadGaugeiPadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB7805718C038DF00473D9F /* CICQuadGaugeiPadViewController.m */; };
 		CEB856CB18C0213C007D0081 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEB856C918C0213C007D0081 /* Main_iPad.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -168,6 +171,12 @@
 		CEA4F64618BD9922001593F8 /* app_icon_80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon_80.png; sourceTree = "<group>"; };
 		CEA4F64718BD9922001593F8 /* app_icon_120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon_120.png; sourceTree = "<group>"; };
 		CEA4F64818BD9922001593F8 /* app_icon_152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon_152.png; sourceTree = "<group>"; };
+		CEB7805018C02BD500473D9F /* CICSingleGaugeiPadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICSingleGaugeiPadViewController.h; sourceTree = "<group>"; };
+		CEB7805118C02BD500473D9F /* CICSingleGaugeiPadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICSingleGaugeiPadViewController.m; sourceTree = "<group>"; };
+		CEB7805318C038CD00473D9F /* CICDualGaugeiPadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICDualGaugeiPadViewController.h; sourceTree = "<group>"; };
+		CEB7805418C038CD00473D9F /* CICDualGaugeiPadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICDualGaugeiPadViewController.m; sourceTree = "<group>"; };
+		CEB7805618C038DF00473D9F /* CICQuadGaugeiPadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICQuadGaugeiPadViewController.h; sourceTree = "<group>"; };
+		CEB7805718C038DF00473D9F /* CICQuadGaugeiPadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICQuadGaugeiPadViewController.m; sourceTree = "<group>"; };
 		CEB856CA18C0213C007D0081 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -264,6 +273,7 @@
 				CE2E851A1847B01000C51A49 /* CICAppDelegate.m */,
 				CE3DA0F5188348CD006650D9 /* CICBluetoothHandler.h */,
 				CE3DA0F6188348CD006650D9 /* CICBluetoothHandler.m */,
+				CEB856C918C0213C007D0081 /* Main_iPad.storyboard */,
 				CE2E851C1847B01000C51A49 /* Main.storyboard */,
 				CE0C780E1867B44C006C6C1C /* CICHomeScreenViewController.h */,
 				CE0C780F1867B44C006C6C1C /* CICHomeScreenViewController.m */,
@@ -271,7 +281,6 @@
 				CE30D3831863FF57005475C1 /* CICSingleGaugeViewController.m */,
 				CE34F40818710A3700C1F12B /* CICDualGaugeViewController.h */,
 				CE34F40918710A3700C1F12B /* CICDualGaugeViewController.m */,
-				CEB856C918C0213C007D0081 /* Main_iPad.storyboard */,
 				CE34F40B1872227F00C1F12B /* CICQuadGaugeViewController.h */,
 				CE34F40C1872227F00C1F12B /* CICQuadGaugeViewController.m */,
 				CE166EE318934BAB0063CB51 /* CICCalculateData.h */,
@@ -397,6 +406,12 @@
 		CEA4F65C18BD9A8B001593F8 /* iPad */ = {
 			isa = PBXGroup;
 			children = (
+				CEB7805018C02BD500473D9F /* CICSingleGaugeiPadViewController.h */,
+				CEB7805118C02BD500473D9F /* CICSingleGaugeiPadViewController.m */,
+				CEB7805318C038CD00473D9F /* CICDualGaugeiPadViewController.h */,
+				CEB7805418C038CD00473D9F /* CICDualGaugeiPadViewController.m */,
+				CEB7805618C038DF00473D9F /* CICQuadGaugeiPadViewController.h */,
+				CEB7805718C038DF00473D9F /* CICQuadGaugeiPadViewController.m */,
 			);
 			name = iPad;
 			sourceTree = "<group>";
@@ -534,12 +549,14 @@
 				CE9CB8951896147D00F24822 /* IASKSpecifierValuesViewController.m in Sources */,
 				CE9CB89E1896147D00F24822 /* IASKSlider.m in Sources */,
 				CE34F40D1872227F00C1F12B /* CICQuadGaugeViewController.m in Sources */,
+				CEB7805818C038DF00473D9F /* CICQuadGaugeiPadViewController.m in Sources */,
 				CE34F40A18710A3700C1F12B /* CICDualGaugeViewController.m in Sources */,
 				CE9CB89C1896147D00F24822 /* IASKPSTextFieldSpecifierViewCell.m in Sources */,
 				CE9CB8971896147D00F24822 /* IASKSettingsStore.m in Sources */,
 				CE3DA0F7188348CD006650D9 /* CICBluetoothHandler.m in Sources */,
 				CE58A012186F8E3F001348DA /* CICDrawLine.m in Sources */,
 				CE9CB8961896147D00F24822 /* IASKSettingsReader.m in Sources */,
+				CEB7805518C038CD00473D9F /* CICDualGaugeiPadViewController.m in Sources */,
 				CE166EE518934BAB0063CB51 /* CICCalculateData.m in Sources */,
 				CE2E851B1847B01000C51A49 /* CICAppDelegate.m in Sources */,
 				CE0C78101867B44C006C6C1C /* CICHomeScreenViewController.m in Sources */,
@@ -550,6 +567,7 @@
 				CE2E85171847B01000C51A49 /* main.m in Sources */,
 				CE9CB8941896147D00F24822 /* IASKAppSettingsWebViewController.m in Sources */,
 				CE9CB8A01896147D00F24822 /* IASKTextField.m in Sources */,
+				CEB7805218C02BD500473D9F /* CICSingleGaugeiPadViewController.m in Sources */,
 				CE05FFB01849433700764A43 /* CICGaugeBuilder.m in Sources */,
 				CE9CB8931896147D00F24822 /* IASKAppSettingsViewController.m in Sources */,
 			);
