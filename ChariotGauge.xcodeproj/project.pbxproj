@@ -17,7 +17,7 @@
 		CE141B4A18C0108700C1F1FD /* iPhone320x480.png in Resources */ = {isa = PBXBuildFile; fileRef = CE141B4318C0108700C1F1FD /* iPhone320x480.png */; };
 		CE141B4B18C0108700C1F1FD /* iPhone640x960.png in Resources */ = {isa = PBXBuildFile; fileRef = CE141B4418C0108700C1F1FD /* iPhone640x960.png */; };
 		CE141B4C18C0108700C1F1FD /* iPhone640x1136.png in Resources */ = {isa = PBXBuildFile; fileRef = CE141B4518C0108700C1F1FD /* iPhone640x1136.png */; };
-		CE141B4E18C011D300C1F1FD /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE141B4D18C011D300C1F1FD /* Default-568h@2x.png */; };
+		CE141B5018C014EE00C1F1FD /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE141B4F18C014EE00C1F1FD /* Default-568h@2x.png */; };
 		CE166EE518934BAB0063CB51 /* CICCalculateData.m in Sources */ = {isa = PBXBuildFile; fileRef = CE166EE418934BAB0063CB51 /* CICCalculateData.m */; };
 		CE2E850B1847B01000C51A49 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2E850A1847B01000C51A49 /* Foundation.framework */; };
 		CE2E850D1847B01000C51A49 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2E850C1847B01000C51A49 /* CoreGraphics.framework */; };
@@ -67,6 +67,7 @@
 		CEA4F64D18BD9922001593F8 /* app_icon_80.png in Resources */ = {isa = PBXBuildFile; fileRef = CEA4F64618BD9922001593F8 /* app_icon_80.png */; };
 		CEA4F64E18BD9922001593F8 /* app_icon_120.png in Resources */ = {isa = PBXBuildFile; fileRef = CEA4F64718BD9922001593F8 /* app_icon_120.png */; };
 		CEA4F64F18BD9922001593F8 /* app_icon_152.png in Resources */ = {isa = PBXBuildFile; fileRef = CEA4F64818BD9922001593F8 /* app_icon_152.png */; };
+		CEB856CB18C0213C007D0081 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEB856C918C0213C007D0081 /* Main_iPad.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,7 +93,7 @@
 		CE141B4318C0108700C1F1FD /* iPhone320x480.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iPhone320x480.png; sourceTree = "<group>"; };
 		CE141B4418C0108700C1F1FD /* iPhone640x960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iPhone640x960.png; sourceTree = "<group>"; };
 		CE141B4518C0108700C1F1FD /* iPhone640x1136.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iPhone640x1136.png; sourceTree = "<group>"; };
-		CE141B4D18C011D300C1F1FD /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		CE141B4F18C014EE00C1F1FD /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		CE166EE318934BAB0063CB51 /* CICCalculateData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICCalculateData.h; sourceTree = "<group>"; };
 		CE166EE418934BAB0063CB51 /* CICCalculateData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICCalculateData.m; sourceTree = "<group>"; };
 		CE2E85071847B01000C51A49 /* ChariotGauge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChariotGauge.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -167,6 +168,7 @@
 		CEA4F64618BD9922001593F8 /* app_icon_80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon_80.png; sourceTree = "<group>"; };
 		CEA4F64718BD9922001593F8 /* app_icon_120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon_120.png; sourceTree = "<group>"; };
 		CEA4F64818BD9922001593F8 /* app_icon_152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon_152.png; sourceTree = "<group>"; };
+		CEB856CA18C0213C007D0081 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -225,7 +227,7 @@
 		CE2E84FE1847B01000C51A49 = {
 			isa = PBXGroup;
 			children = (
-				CE141B4D18C011D300C1F1FD /* Default-568h@2x.png */,
+				CE141B4F18C014EE00C1F1FD /* Default-568h@2x.png */,
 				CE9CB8721896147D00F24822 /* InAppSettingsKit */,
 				CE2E85101847B01000C51A49 /* ChariotGauge */,
 				CE2E852F1847B01000C51A49 /* ChariotGaugeTests */,
@@ -269,6 +271,7 @@
 				CE30D3831863FF57005475C1 /* CICSingleGaugeViewController.m */,
 				CE34F40818710A3700C1F12B /* CICDualGaugeViewController.h */,
 				CE34F40918710A3700C1F12B /* CICDualGaugeViewController.m */,
+				CEB856C918C0213C007D0081 /* Main_iPad.storyboard */,
 				CE34F40B1872227F00C1F12B /* CICQuadGaugeViewController.h */,
 				CE34F40C1872227F00C1F12B /* CICQuadGaugeViewController.m */,
 				CE166EE318934BAB0063CB51 /* CICCalculateData.h */,
@@ -483,7 +486,7 @@
 				CE9CB7E4189483B600F24822 /* Settings.bundle in Resources */,
 				CE141B4818C0108700C1F1FD /* iPad1536x2048.png in Resources */,
 				CE58A006186F4A2F001348DA /* custom_logo.png in Resources */,
-				CE141B4E18C011D300C1F1FD /* Default-568h@2x.png in Resources */,
+				CE141B5018C014EE00C1F1FD /* Default-568h@2x.png in Resources */,
 				CE141B4A18C0108700C1F1FD /* iPhone320x480.png in Resources */,
 				CE141B4618C0108700C1F1FD /* iPad768x1024.png in Resources */,
 				CE0C78121867B4DD006C6C1C /* boost_logo.png in Resources */,
@@ -504,6 +507,7 @@
 				CE141B4718C0108700C1F1FD /* iPad1024x768.png in Resources */,
 				CE2E851E1847B01000C51A49 /* Main.storyboard in Resources */,
 				CE58A007186F4A2F001348DA /* oil_logo.png in Resources */,
+				CEB856CB18C0213C007D0081 /* Main_iPad.storyboard in Resources */,
 				CE58A00F186F4CD1001348DA /* custom_multi_logo.png in Resources */,
 				CEA4F64918BD9922001593F8 /* app_icon_29.png in Resources */,
 			);
@@ -592,6 +596,14 @@
 				CE2E85331847B01000C51A49 /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		CEB856C918C0213C007D0081 /* Main_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CEB856CA18C0213C007D0081 /* Base */,
+			);
+			name = Main_iPad.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

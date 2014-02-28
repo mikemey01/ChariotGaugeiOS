@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="8sk-Dn-HgG">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+    </dependencies>
+    <scenes>
+        <!--Home Screen View Controller - Chariot Gauge-->
+        <scene sceneID="uSn-fI-Zw1">
+            <objects>
+                <viewController id="f5Q-SH-udO" customClass="CICHomeScreenViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="IPv-bl-MV1"/>
+                        <viewControllerLayoutGuide type="bottom" id="f4U-hw-Fx8"/>
+                    </layoutGuides>
+                    <view key="view" autoresizesSubviews="NO" contentMode="scaleToFill" id="XkH-AC-Xvp">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uk9-9V-h3o">
+                                <rect key="frame" x="206" y="213" width="48" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="48" id="ceF-AB-jJI"/>
+                                    <constraint firstAttribute="height" constant="48" id="rEN-SY-bf4"/>
+                                </constraints>
+                                <state key="normal" image="boost_logo.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="boostButtonPress:" destination="f5Q-SH-udO" eventType="touchUpInside" id="aVu-TX-6Jj"/>
+                                    <segue destination="Ut1-rf-dv2" kind="push" identifier="boostSegue" id="r31-vz-lfd"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="paE-FK-US7">
+                                <rect key="frame" x="63" y="90" width="48" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration" label="">
+                                    <accessibilityTraits key="traits" none="YES" button="YES" image="YES" staticText="YES"/>
+                                </accessibility>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="RJN-Yn-cgJ"/>
+                                    <constraint firstAttribute="width" constant="48" id="olS-XP-LDD"/>
+                                </constraints>
+                                <state key="normal" image="bluetooth_logo.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="connectButtonPress:" destination="f5Q-SH-udO" eventType="touchUpInside" id="jl5-ef-o3T"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ds6-L6-M4i">
+                                <rect key="frame" x="360" y="90" width="48" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="Wqj-BA-oPA"/>
+                                    <constraint firstAttribute="width" constant="48" id="XMF-uX-gC4"/>
+                                </constraints>
+                                <state key="normal" image="settings_logo.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="settingsButtonPress:" destination="f5Q-SH-udO" eventType="touchUpInside" id="3iV-LT-rWw"/>
+                                    <segue destination="YR7-Xx-ToI" kind="push" id="jCG-wD-L1t"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6mG-7d-tmg">
+                                <rect key="frame" x="64" y="213" width="48" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="48" id="XTS-QW-Ye4"/>
+                                    <constraint firstAttribute="height" constant="48" id="ka2-eI-sG1"/>
+                                </constraints>
+                                <state key="normal" image="wideband_logo.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="widebandButtonPress:" destination="f5Q-SH-udO" eventType="touchUpInside" id="Ciw-so-V4z"/>
+                                    <segue destination="Ut1-rf-dv2" kind="push" identifier="widebandSegue" id="bRT-1E-FaX"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rle-EW-vRG">
+                                <rect key="frame" x="63" y="333" width="48" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="Mpw-yk-Iiq"/>
+                                    <constraint firstAttribute="width" constant="48" id="O5F-qj-qBl"/>
+                                </constraints>
+                                <state key="normal" image="oil_logo.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="oilButtonPress:" destination="f5Q-SH-udO" eventType="touchUpInside" id="TLs-iv-CxU"/>
+                                    <segue destination="Ut1-rf-dv2" kind="push" identifier="oilSegue" id="Grz-D6-Kjz"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ypw-zT-RRd">
+                                <rect key="frame" x="206" y="333" width="48" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="48" id="9nn-dz-4Jg"/>
+                                    <constraint firstAttribute="height" constant="48" id="cLI-t6-8D5"/>
+                                </constraints>
+                                <state key="normal" image="custom_logo.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="tempButtonPress:" destination="f5Q-SH-udO" eventType="touchUpInside" id="GOQ-jc-YUL"/>
+                                    <segue destination="Ut1-rf-dv2" kind="push" identifier="tempSegue" id="Egc-0G-KXw"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3ZI-BM-nfz">
+                                <rect key="frame" x="64" y="452" width="48" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="48" id="bad-Cs-En7"/>
+                                    <constraint firstAttribute="height" constant="48" id="rHX-TO-VIb"/>
+                                </constraints>
+                                <state key="normal" image="custom_multi_logo.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="dualButtonPress:" destination="f5Q-SH-udO" eventType="touchUpInside" id="vw0-vk-OqM"/>
+                                    <segue destination="hQh-5e-VRS" kind="push" identifier="dualSegue" id="psI-BY-8sG"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S1h-EX-L3S">
+                                <rect key="frame" x="206" y="452" width="48" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="48" id="0sx-7w-QuB"/>
+                                    <constraint firstAttribute="height" constant="48" id="LwR-S2-CY1"/>
+                                </constraints>
+                                <state key="normal" image="four_gauges.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="quadButtonPress:" destination="f5Q-SH-udO" eventType="touchUpInside" id="p6k-93-w7r"/>
+                                    <segue destination="evd-nH-Cvr" kind="push" identifier="quadSegue" id="MJZ-P5-bee"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Connect" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6aB-Zo-Am5">
+                                <rect key="frame" x="54" y="146" width="67" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="OriyaSangamMN" family="Oriya Sangam MN" pointSize="16"/>
+                                <color key="textColor" red="0.30261772358468864" green="0.36423753821370386" blue="0.49912958559782605" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lom-cP-URM">
+                                <rect key="frame" x="194" y="146" width="72" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="OriyaSangamMN" family="Oriya Sangam MN" pointSize="16"/>
+                                <color key="textColor" red="0.3026177236" green="0.36423753819999999" blue="0.49912958559999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Wideband O2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S27-hk-JoM">
+                                <rect key="frame" x="36" y="269" width="110" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="OriyaSangamMN" family="Oriya Sangam MN" pointSize="16"/>
+                                <color key="textColor" red="0.3026177236" green="0.36423753819999999" blue="0.49912958559999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Boost/Vac" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XTG-EA-e19">
+                                <rect key="frame" x="188" y="269" width="85" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="OriyaSangamMN" family="Oriya Sangam MN" pointSize="16"/>
+                                <color key="textColor" red="0.3026177236" green="0.36423753819999999" blue="0.49912958559999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Oil Pressure" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0po-W0-UI3">
+                                <rect key="frame" x="39" y="389" width="98" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="OriyaSangamMN" family="Oriya Sangam MN" pointSize="16"/>
+                                <color key="textColor" red="0.3026177236" green="0.36423753819999999" blue="0.49912958559999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Temperature" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7dr-b8-xw4">
+                                <rect key="frame" x="180" y="389" width="101" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="OriyaSangamMN" family="Oriya Sangam MN" pointSize="16"/>
+                                <color key="textColor" red="0.3026177236" green="0.36423753819999999" blue="0.49912958559999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Dual Gauge" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7u0-Ph-RUU" colorLabel="IBBuiltInLabel-Gray">
+                                <rect key="frame" x="38" y="508" width="107" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="OriyaSangamMN" family="Oriya Sangam MN" pointSize="16"/>
+                                <color key="textColor" red="0.3026177236" green="0.36423753819999999" blue="0.49912958559999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Quad Gauge" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dWU-Dr-Jyn">
+                                <rect key="frame" x="180" y="508" width="101" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <fontDescription key="fontDescription" name="OriyaSangamMN" family="Oriya Sangam MN" pointSize="16"/>
+                                <color key="textColor" red="0.3026177236" green="0.36423753819999999" blue="0.49912958559999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R13-mh-yx4" customClass="CICDrawLine">
+                                <rect key="frame" x="20" y="186" width="280" height="8"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Ypw-zT-RRd" firstAttribute="centerX" secondItem="Uk9-9V-h3o" secondAttribute="centerX" id="2CB-DB-bFS"/>
+                            <constraint firstItem="dWU-Dr-Jyn" firstAttribute="bottom" secondItem="7u0-Ph-RUU" secondAttribute="bottom" id="2P1-jD-JgL"/>
+                            <constraint firstItem="7u0-Ph-RUU" firstAttribute="top" secondItem="3ZI-BM-nfz" secondAttribute="bottom" constant="8" id="2Wk-Fy-YcL"/>
+                            <constraint firstItem="3ZI-BM-nfz" firstAttribute="top" secondItem="0po-W0-UI3" secondAttribute="bottom" constant="30" id="4VC-gP-9ar"/>
+                            <constraint firstItem="7u0-Ph-RUU" firstAttribute="centerX" secondItem="6mG-7d-tmg" secondAttribute="centerX" id="5EQ-9J-bJS"/>
+                            <constraint firstItem="7u0-Ph-RUU" firstAttribute="centerX" secondItem="0po-W0-UI3" secondAttribute="centerX" id="5cf-5y-Wug"/>
+                            <constraint firstItem="7u0-Ph-RUU" firstAttribute="centerX" secondItem="6aB-Zo-Am5" secondAttribute="centerX" id="8wV-WR-qIv"/>
+                            <constraint firstItem="Ypw-zT-RRd" firstAttribute="centerX" secondItem="XTG-EA-e19" secondAttribute="centerX" id="AXg-Ep-yhS"/>
+                            <constraint firstItem="7u0-Ph-RUU" firstAttribute="centerX" secondItem="S27-hk-JoM" secondAttribute="centerX" id="AkV-X7-ML0"/>
+                            <constraint firstItem="7u0-Ph-RUU" firstAttribute="centerX" secondItem="rle-EW-vRG" secondAttribute="centerX" id="B7G-J1-9hh"/>
+                            <constraint firstItem="6aB-Zo-Am5" firstAttribute="bottom" secondItem="Lom-cP-URM" secondAttribute="bottom" id="Gf4-Ib-8hG"/>
+                            <constraint firstItem="f4U-hw-Fx8" firstAttribute="top" relation="greaterThanOrEqual" secondItem="7u0-Ph-RUU" secondAttribute="bottom" constant="10" id="Jdu-nM-boi"/>
+                            <constraint firstItem="7dr-b8-xw4" firstAttribute="bottom" secondItem="0po-W0-UI3" secondAttribute="bottom" id="Kfx-eO-c0l"/>
+                            <constraint firstItem="S27-hk-JoM" firstAttribute="bottom" secondItem="XTG-EA-e19" secondAttribute="bottom" id="Kot-eZ-Iz8"/>
+                            <constraint firstItem="S27-hk-JoM" firstAttribute="top" secondItem="6mG-7d-tmg" secondAttribute="bottom" constant="5" id="MLo-h6-9Iw"/>
+                            <constraint firstItem="0po-W0-UI3" firstAttribute="top" secondItem="rle-EW-vRG" secondAttribute="bottom" constant="5" id="Mf3-NM-TUV"/>
+                            <constraint firstItem="Ypw-zT-RRd" firstAttribute="centerX" secondItem="S1h-EX-L3S" secondAttribute="centerX" id="OcJ-oG-35c"/>
+                            <constraint firstItem="6mG-7d-tmg" firstAttribute="top" secondItem="R13-mh-yx4" secondAttribute="bottom" constant="12" id="P0H-C0-srH"/>
+                            <constraint firstItem="XTG-EA-e19" firstAttribute="bottom" secondItem="S27-hk-JoM" secondAttribute="bottom" id="Qox-LI-T5m"/>
+                            <constraint firstItem="7u0-Ph-RUU" firstAttribute="centerX" secondItem="3ZI-BM-nfz" secondAttribute="centerX" id="Uom-ug-9ic"/>
+                            <constraint firstItem="Ds6-L6-M4i" firstAttribute="bottom" secondItem="paE-FK-US7" secondAttribute="bottom" id="UtP-jN-Tuf"/>
+                            <constraint firstItem="Ypw-zT-RRd" firstAttribute="top" secondItem="XTG-EA-e19" secondAttribute="bottom" constant="30" id="Vd3-oT-AJN"/>
+                            <constraint firstItem="XTG-EA-e19" firstAttribute="top" secondItem="Uk9-9V-h3o" secondAttribute="bottom" constant="5" id="Vnw-cn-yYf"/>
+                            <constraint firstItem="6aB-Zo-Am5" firstAttribute="top" secondItem="paE-FK-US7" secondAttribute="bottom" constant="8" id="amj-Xb-BPm"/>
+                            <constraint firstItem="f4U-hw-Fx8" firstAttribute="top" relation="greaterThanOrEqual" secondItem="dWU-Dr-Jyn" secondAttribute="bottom" constant="10" id="apG-3N-6MO"/>
+                            <constraint firstItem="Ypw-zT-RRd" firstAttribute="centerX" secondItem="dWU-Dr-Jyn" secondAttribute="centerX" id="cAT-wM-8CX"/>
+                            <constraint firstItem="paE-FK-US7" firstAttribute="top" relation="greaterThanOrEqual" secondItem="IPv-bl-MV1" secondAttribute="bottom" constant="10" id="epR-mK-bZZ"/>
+                            <constraint firstItem="Lom-cP-URM" firstAttribute="top" secondItem="Ds6-L6-M4i" secondAttribute="bottom" constant="8" id="fak-Nn-1UV"/>
+                            <constraint firstItem="Ds6-L6-M4i" firstAttribute="centerX" secondItem="Ypw-zT-RRd" secondAttribute="centerX" id="gI7-c9-v2G"/>
+                            <constraint firstItem="Ypw-zT-RRd" firstAttribute="centerX" secondItem="Lom-cP-URM" secondAttribute="centerX" id="goY-sO-vTU"/>
+                            <constraint firstItem="7dr-b8-xw4" firstAttribute="top" secondItem="Ypw-zT-RRd" secondAttribute="bottom" constant="5" id="lJH-kc-o8G"/>
+                            <constraint firstItem="dWU-Dr-Jyn" firstAttribute="top" secondItem="S1h-EX-L3S" secondAttribute="bottom" constant="8" id="lOc-ao-3Se"/>
+                            <constraint firstItem="Uk9-9V-h3o" firstAttribute="bottom" secondItem="6mG-7d-tmg" secondAttribute="bottom" id="mLg-v2-IDg"/>
+                            <constraint firstItem="Ds6-L6-M4i" firstAttribute="top" relation="greaterThanOrEqual" secondItem="IPv-bl-MV1" secondAttribute="bottom" constant="10" id="n2l-I4-iHd"/>
+                            <constraint firstItem="rle-EW-vRG" firstAttribute="top" secondItem="S27-hk-JoM" secondAttribute="bottom" constant="30" id="obZ-Oy-KhD"/>
+                            <constraint firstItem="Ypw-zT-RRd" firstAttribute="centerX" secondItem="Ds6-L6-M4i" secondAttribute="centerX" id="ouy-zL-hyN"/>
+                            <constraint firstItem="Ds6-L6-M4i" firstAttribute="centerX" secondItem="S1h-EX-L3S" secondAttribute="centerX" id="rjD-Yo-4cL"/>
+                            <constraint firstItem="7u0-Ph-RUU" firstAttribute="centerX" secondItem="paE-FK-US7" secondAttribute="centerX" id="ruq-qE-FRG"/>
+                            <constraint firstItem="S1h-EX-L3S" firstAttribute="top" secondItem="7dr-b8-xw4" secondAttribute="bottom" constant="30" id="rw1-wc-0k9"/>
+                            <constraint firstItem="Ds6-L6-M4i" firstAttribute="centerX" secondItem="Uk9-9V-h3o" secondAttribute="centerX" id="sRw-9j-PtP"/>
+                            <constraint firstItem="Ypw-zT-RRd" firstAttribute="centerX" secondItem="7dr-b8-xw4" secondAttribute="centerX" id="xKU-oP-U1J"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Chariot Gauge" id="ieH-eP-YRq" colorLabel="IBBuiltInLabel-Blue"/>
+                    <connections>
+                        <outlet property="connectLabel" destination="6aB-Zo-Am5" id="CFB-xf-hej"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kXo-Oq-oUk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-557" y="91"/>
+        </scene>
+        <!--Quad Gauge View Controller - Quad Gauge-->
+        <scene sceneID="iS9-my-lkq">
+            <objects>
+                <viewController id="evd-nH-Cvr" customClass="CICQuadGaugeViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eAT-ej-Yvj"/>
+                        <viewControllerLayoutGuide type="bottom" id="Rp7-bP-bPZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fKb-Mi-quc">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="STa-Dk-g8K" customClass="CICGaugeBuilder">
+                                <rect key="frame" x="0.0" y="257" width="160" height="311"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZqI-F7-E9M" customClass="CICGaugeBuilder">
+                                <rect key="frame" x="160" y="257" width="608" height="767"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3v9-59-Hqn" customClass="CICGaugeBuilder">
+                                <rect key="frame" x="0.0" y="67" width="160" height="190"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lz0-QE-Klg" customClass="CICGaugeBuilder">
+                                <rect key="frame" x="160" y="67" width="160" height="190"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Quad Gauge" id="nwe-Ix-rd7"/>
+                    <connections>
+                        <outlet property="firstGauge" destination="3v9-59-Hqn" id="tOz-xj-bLP"/>
+                        <outlet property="fourthGauge" destination="ZqI-F7-E9M" id="eHI-yK-GIq"/>
+                        <outlet property="secondGauge" destination="lz0-QE-Klg" id="3Ju-Mn-cNz"/>
+                        <outlet property="thirdGauge" destination="STa-Dk-g8K" id="IHW-1a-XTr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pdb-iM-wgY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="539" y="1451"/>
+        </scene>
+        <!--Dual Gauge View Controller - Dual Gauge-->
+        <scene sceneID="Qx7-LH-1rL">
+            <objects>
+                <viewController id="hQh-5e-VRS" customClass="CICDualGaugeViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="lti-zz-Y1w"/>
+                        <viewControllerLayoutGuide type="bottom" id="FOS-09-aSe"/>
+                    </layoutGuides>
+                    <view key="view" autoresizesSubviews="NO" contentMode="scaleToFill" id="NK2-ax-80d">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hOD-Tg-XgS" customClass="CICGaugeBuilder">
+                                <rect key="frame" x="504" y="68" width="520" height="503"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <view autoresizesSubviews="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b1e-vc-YvO" customClass="CICGaugeBuilder">
+                                <rect key="frame" x="0.0" y="68" width="496" height="503"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="hOD-Tg-XgS" secondAttribute="trailing" id="DWL-uz-Rhn"/>
+                        </constraints>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Dual Gauge" id="kFT-t3-x3l"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <connections>
+                        <outlet property="firstGauge" destination="b1e-vc-YvO" id="Q5t-zY-HeF"/>
+                        <outlet property="firstGaugeView" destination="b1e-vc-YvO" id="Ifz-cv-xIv"/>
+                        <outlet property="secondGauge" destination="hOD-Tg-XgS" id="B1W-z6-ngC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mcJ-8R-1dL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1456" y="803"/>
+        </scene>
+        <!--Single Gauge View Controller - Single Gauge-->
+        <scene sceneID="SWP-ML-A3k">
+            <objects>
+                <viewController id="Ut1-rf-dv2" customClass="CICSingleGaugeViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="89f-4K-dMu"/>
+                        <viewControllerLayoutGuide type="bottom" id="mkh-Sc-Sby"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2o0-vQ-5qo">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h9E-JY-Ic5" customClass="CICGaugeBuilder">
+                                <rect key="frame" x="0.0" y="65" width="768" height="959"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Single Gauge" id="JHR-bT-Wbo"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <connections>
+                        <outlet property="gaugeView" destination="h9E-JY-Ic5" id="HpH-sl-hqm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vnH-rP-huU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="483" y="-379"/>
+        </scene>
+        <!--App Settings View Controller - Settings-->
+        <scene sceneID="EiT-YW-2bU">
+            <objects>
+                <tableViewController id="YR7-Xx-ToI" customClass="IASKAppSettingsViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Qre-09-A4b">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Ur3-lO-rFf">
+                                <rect key="frame" x="0.0" y="119" width="768" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ur3-lO-rFf" id="59E-RF-42C">
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="YR7-Xx-ToI" id="2cU-GN-N89"/>
+                            <outlet property="delegate" destination="YR7-Xx-ToI" id="79l-yR-9v9"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Settings" id="kde-B2-cqu"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yMV-y6-maU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1672" y="-371"/>
+        </scene>
+        <!--Navigation Controller - Chariot Gauge-->
+        <scene sceneID="61J-oY-vUI">
+            <objects>
+                <navigationController title="Chariot Gauge" automaticallyAdjustsScrollViewInsets="NO" id="8sk-Dn-HgG" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" opaque="NO" contentMode="scaleToFill" id="zlz-iD-84l">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.22935020506574244" green="0.28189338013893228" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.24056581182401754" green="0.37280043994553191" blue="0.57653277853260865" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="22"/>
+                            <color key="textColor" red="0.86393936820652173" green="0.86393936820652173" blue="0.86393936820652173" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="textShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            <offsetWrapper key="textShadowOffset" horizontal="1" vertical="1"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="f5Q-SH-udO" kind="relationship" relationship="rootViewController" id="yU3-nq-Lgb"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IK2-0w-PGg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1445" y="103"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="bluetooth_logo.png" width="96" height="96"/>
+        <image name="boost_logo.png" width="96" height="96"/>
+        <image name="custom_logo.png" width="96" height="96"/>
+        <image name="custom_multi_logo.png" width="96" height="96"/>
+        <image name="four_gauges.png" width="96" height="96"/>
+        <image name="oil_logo.png" width="96" height="96"/>
+        <image name="settings_logo.png" width="96" height="96"/>
+        <image name="wideband_logo.png" width="96" height="96"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="Egc-0G-KXw"/>
+    </inferredMetricsTieBreakers>
+</document>
