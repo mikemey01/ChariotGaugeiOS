@@ -91,8 +91,9 @@
     //TODO: update
     UIFont *menuItemsFont;
     
-    //Kerning of digits on gauge face
+    //Scaler variables for sizing.
     CGFloat kerningScaler;
+    CGFloat gaugeRingScaler;
     
         /*Needle stuff*/
     
@@ -144,6 +145,7 @@
 @property (nonatomic, assign) CGFloat gaugeLabelHeight;
 @property (nonatomic, retain) UIFont *gaugeLabelFont;
 @property (nonatomic, assign) BOOL allowNegatives;
+@property (nonatomic, assign) CGFloat gaugeRingScaler;
 
 
 //gauge functions

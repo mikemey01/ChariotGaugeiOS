@@ -105,7 +105,7 @@
 @synthesize minGaugeNumber, maxGaugeNumber, gaugeLabel, incrementPerLargeTick, gaugeType, tickStartAngleDegrees;
 @synthesize tickDistance, menuItemsFont, value, gaugeLabelFont, gaugeWidth, viewWidth, gaugeX, gaugeY, digitalLabel, digitalFontSize;
 @synthesize needleBuilder = needleBuilder_;
-@synthesize lineWidth, needleLayer, gaugeLabelHeight, tickArcRadius, kerningScaler;
+@synthesize lineWidth, needleLayer, gaugeLabelHeight, tickArcRadius, kerningScaler, allowNegatives, gaugeRingScaler;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -238,7 +238,7 @@
     CGFloat fontHeight = gaugeLabelFont.pointSize;
     CGFloat yOffset = (textBox.size.height - fontHeight) / 2.0;
     
-    CGRect textRect = CGRectMake(0, yOffset, self.viewWidth, fontHeight+20);
+    CGRect textRect = CGRectMake(0, yOffset, self.viewWidth, fontHeight+100);
     
     [text drawInRect:textRect withFont:gaugeLabelFont lineBreakMode:UILineBreakModeClip alignment:UITextAlignmentCenter];
 }
@@ -316,7 +316,7 @@
 
 - (CGRect)drawInnerRim:(CGContextRef)context
 {
-    CGRect innerRect = CGRectMake(self.gaugeX+7.5, 7.5, self.gaugeWidth-15, self.gaugeWidth-15);
+    CGRect innerRect = CGRectMake(self.gaugeX+7.5+(self.gaugeRingScaler/2), 7.5+(self.gaugeRingScaler/2), (self.gaugeWidth-15)-self.gaugeRingScaler, (self.gaugeWidth-15)-self.gaugeRingScaler);
     innerRect = CGRectInset(innerRect, lineWidth * 0.75, lineWidth * 0.75);
     CGContextSetRGBStrokeColor(context, 110.0/255.0, 110.0/255.0, 110.0/255.0, 1.0);
     CGContextSetRGBFillColor(context, 250.0/255.0, 250.0/255.0, 242.0/255.0, 1.0);
@@ -333,14 +333,14 @@
     //// Shadow Declarations
     UIColor* shadow = [UIColor blackColor];
     CGSize shadowOffset = CGSizeMake(1, 1);
-    CGFloat shadowBlurRadius = 8;
+    CGFloat shadowBlurRadius = 8+(self.gaugeRingScaler/2);
     
     //// Frames
     CGRect frame = rect;
     
     
     //Create the CGRect and set its location
-    CGRect shadowBoxRect = CGRectMake(self.gaugeX+7.5, 7.5, self.gaugeWidth-15, self.gaugeWidth-15);
+    CGRect shadowBoxRect = CGRectMake(self.gaugeX+7.5+(self.gaugeRingScaler/2), 7.5+(self.gaugeRingScaler/2), self.gaugeWidth-15-self.gaugeRingScaler, self.gaugeWidth-15-self.gaugeRingScaler);
     
     //Create the bezier path using the CGRect as a ref.
     UIBezierPath* bPath = [UIBezierPath bezierPathWithOvalInRect: shadowBoxRect];
@@ -396,6 +396,7 @@
     
     //draws the arc.
     [aPath stroke];
+    //[aPath fill];
     
     // Restore the graphics state before drawing any other content.
     CGContextRestoreGState(context);
@@ -471,6 +472,7 @@
     self.tickArcRadius = (gaugeWidth / 2) - 38;
     self.gaugeLabelHeight = 100.0f;
     self.kerningScaler = 1.0f;
+    self.gaugeRingScaler = 0.0f;
 
     //needle init
     needleBuilder_ = [[NeedleBuilder alloc] init];

@@ -179,10 +179,17 @@
         }
     }
     self.gaugeView.lineWidth = 1;
-    self.gaugeView.value = self.gaugeView.minGaugeNumber;
-    self.gaugeView.menuItemsFont = [UIFont fontWithName:@"Futura" size:18];
-    self.gaugeView.tickArcRadius = (self.gaugeView.gaugeWidth / 2) - 50;
-    self.gaugeView.needleBuilder.needleScaler = 2.0;
+    self.gaugeView.value = gaugeView.minGaugeNumber;
+    self.gaugeView.menuItemsFont = [UIFont fontWithName:@"Futura" size:40];
+    self.gaugeView.tickArcRadius = (gaugeView.gaugeWidth / 2) - 100;
+    self.gaugeView.needleBuilder.needleExtension = -46.0f;
+    self.gaugeView.gaugeX = 0.0f;
+    self.gaugeView.digitalFontSize = 70.0f;
+    self.gaugeView.gaugeLabelFont = [UIFont fontWithName:@"Helvetica" size:30.0f];
+    self.gaugeView.needleBuilder.needleScaler = 2.5f;
+    self.gaugeView.gaugeLabelHeight = 300.0f;
+    self.gaugeView.gaugeRingScaler = 20.0f;
+    self.gaugeView.kerningScaler = 2.2f;
     calcData.sensorMaxValue = self.gaugeView.minGaugeNumber;
 }
 
@@ -210,9 +217,17 @@
         self.gaugeView.tickDistance = 270;
     }
     self.gaugeView.lineWidth = 1;
-    self.gaugeView.value = self.gaugeView.minGaugeNumber;
-    self.gaugeView.menuItemsFont = [UIFont fontWithName:@"Futura" size:18];
-    self.gaugeView.tickArcRadius = (self.gaugeView.gaugeWidth / 2) - 50;
+    self.gaugeView.value = gaugeView.minGaugeNumber;
+    self.gaugeView.menuItemsFont = [UIFont fontWithName:@"Futura" size:40];
+    self.gaugeView.tickArcRadius = (gaugeView.gaugeWidth / 2) - 100;
+    self.gaugeView.needleBuilder.needleExtension = -46.0f;
+    self.gaugeView.gaugeX = 0.0f;
+    self.gaugeView.digitalFontSize = 70.0f;
+    self.gaugeView.gaugeLabelFont = [UIFont fontWithName:@"Helvetica" size:30.0f];
+    self.gaugeView.needleBuilder.needleScaler = 2.5f;
+    self.gaugeView.gaugeLabelHeight = 300.0f;
+    self.gaugeView.gaugeRingScaler = 20.0f;
+    self.gaugeView.kerningScaler = 2.2f;
     calcData.sensorMaxValue = self.gaugeView.minGaugeNumber;
 }
 
@@ -229,9 +244,17 @@
     self.gaugeView.tickStartAngleDegrees = 135;
     self.gaugeView.tickDistance = 270;
     self.gaugeView.lineWidth = 1;
-    self.gaugeView.value = self.gaugeView.minGaugeNumber;
-    self.gaugeView.menuItemsFont = [UIFont fontWithName:@"Futura" size:18];
-    self.gaugeView.tickArcRadius = (self.gaugeView.gaugeWidth / 2) - 50;
+    self.gaugeView.value = gaugeView.minGaugeNumber;
+    self.gaugeView.menuItemsFont = [UIFont fontWithName:@"Futura" size:40];
+    self.gaugeView.tickArcRadius = (gaugeView.gaugeWidth / 2) - 100;
+    self.gaugeView.needleBuilder.needleExtension = -46.0f;
+    self.gaugeView.gaugeX = 0.0f;
+    self.gaugeView.digitalFontSize = 70.0f;
+    self.gaugeView.gaugeLabelFont = [UIFont fontWithName:@"Helvetica" size:30.0f];
+    self.gaugeView.needleBuilder.needleScaler = 2.5f;
+    self.gaugeView.gaugeLabelHeight = 300.0f;
+    self.gaugeView.gaugeRingScaler = 20.0f;
+    self.gaugeView.kerningScaler = 2.2f;
     calcData.sensorMaxValue = self.gaugeView.minGaugeNumber;
 }
 
@@ -258,9 +281,17 @@
         self.gaugeView.tickDistance = 270;
     }
     self.gaugeView.lineWidth = 1;
-    self.gaugeView.value = self.gaugeView.minGaugeNumber;
-    self.gaugeView.menuItemsFont = [UIFont fontWithName:@"Futura" size:18];
-    self.gaugeView.tickArcRadius = (self.gaugeView.gaugeWidth / 2) - 50;
+    self.gaugeView.value = gaugeView.minGaugeNumber;
+    self.gaugeView.menuItemsFont = [UIFont fontWithName:@"Futura" size:40];
+    self.gaugeView.tickArcRadius = (gaugeView.gaugeWidth / 2) - 100;
+    self.gaugeView.needleBuilder.needleExtension = -46.0f;
+    self.gaugeView.gaugeX = 0.0f;
+    self.gaugeView.digitalFontSize = 70.0f;
+    self.gaugeView.gaugeLabelFont = [UIFont fontWithName:@"Helvetica" size:30.0f];
+    self.gaugeView.needleBuilder.needleScaler = 2.5f;
+    self.gaugeView.gaugeLabelHeight = 300.0f;
+    self.gaugeView.gaugeRingScaler = 20.0f;
+    self.gaugeView.kerningScaler = 2.2f;
     calcData.sensorMaxValue = self.gaugeView.minGaugeNumber;
 }
 
