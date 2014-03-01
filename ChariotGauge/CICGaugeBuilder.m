@@ -222,7 +222,7 @@
             }else{
                 textToDraw = gaugeIncrement;
             }
-            NSString * drawNumber = [NSString stringWithFormat:@"%d", textToDraw]; //cast decimal to string
+            NSString * drawNumber = [NSString stringWithFormat:@"%ld", (long)textToDraw]; //cast decimal to string
             [self drawCurvedText:drawNumber atAngle:DEGREES_TO_RADIANS(actualLineAngle) withContext:context forTickArc:YES]; //draw the number at the major ticks.
         }
         
@@ -240,7 +240,17 @@
     
     CGRect textRect = CGRectMake(0, yOffset, self.viewWidth, fontHeight+100);
     
-    [text drawInRect:textRect withFont:gaugeLabelFont lineBreakMode:UILineBreakModeClip alignment:UITextAlignmentCenter];
+    /// Make a copy of the default paragraph style
+    NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    /// Set line break mode
+    paragraphStyle.lineBreakMode = NSLineBreakByClipping;
+    /// Set text alignment
+    paragraphStyle.alignment = NSTextAlignmentCenter;
+    
+    NSDictionary *attributes = @{ NSFontAttributeName: gaugeLabelFont,
+                                  NSParagraphStyleAttributeName: paragraphStyle};
+
+    [text drawInRect:textRect withAttributes:attributes];
 }
 
 - (void) drawCurvedText:(NSString *)text atAngle:(float)angle withContext:(CGContextRef)context forTickArc:(BOOL)isForTickArc
@@ -248,19 +258,14 @@
     CGPoint centerPoint = CGPointMake(self.gaugeWidth / 2 +self.gaugeX, self.gaugeWidth / 2);
     char* fontName = (char*)[self.menuItemsFont.fontName UTF8String];
     
-    if(isForTickArc){
-        CGContextSelectFont(context, fontName, self.menuItemsFont.pointSize, kCGEncodingMacRoman); //controls the font.
-    }
-    
+    CGContextSelectFont(context, fontName, self.menuItemsFont.pointSize, kCGEncodingMacRoman); //controls the font.
     
     CGContextSetTextMatrix(context, CGAffineTransformIdentity);
     
     CGContextSaveGState(context);
     CGContextTranslateCTM(context, centerPoint.x, centerPoint.y);
-    
-    if(isForTickArc){
-        [self drawStringAtContext:context string:text atAngle:angle withRadius:self.tickArcRadius+12]; //number arc
-    }
+
+    [self drawStringAtContext:context string:text atAngle:angle withRadius:self.tickArcRadius+12]; //number arc
     
     CGContextRestoreGState(context);
 }
@@ -472,7 +477,7 @@
     self.tickStartAngleDegrees = 135;
     self.tickDistance = 270;
     self.menuItemsFont = [UIFont fontWithName:@"Futura" size:14];
-    self.gaugeLabelFont = [UIFont fontWithName:@"Helvetica" size:14]; //TODO: not working correctly
+    self.gaugeLabelFont = [UIFont fontWithName:@"Helvetica" size:14];
     self.tickArcRadius = (gaugeWidth / 2) - 38;
     self.gaugeLabelHeight = 100.0f;
     self.kerningScaler = 1.0f;
