@@ -32,13 +32,14 @@
     UIBarButtonItem *maxButton;
     UIBarButtonItem *resetButton;
     BOOL isPaused;
-    BOOL isNightMode;
     
     //Prefs vars
     NSString *pressureUnits;
     NSString *widebandUnits;
     NSString *widebandFuelType;
     NSString *temperatureUnits;
+    BOOL showVolts;
+    BOOL isNightMode;
     
     //volt gauge
     UILabel *voltLabel;

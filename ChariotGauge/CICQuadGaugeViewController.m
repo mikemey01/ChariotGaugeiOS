@@ -52,7 +52,10 @@
     [self createTempGauge:thirdGauge :calcDataThree];
     [self createOilGauge:fourthGauge :calcDataFour];
     
-    [self createVoltGauge];
+    //Create volt gauge
+    if(showVolts){
+        [self createVoltGauge];
+    }
     
     [self.bluetooth setBtDelegate:self];
     
@@ -340,6 +343,7 @@
     widebandUnits = [standardDefaults stringForKey:@"wideband_afr_lambda"];
     widebandFuelType = [standardDefaults stringForKey:@"wideband_fuel_type"];
     temperatureUnits = [standardDefaults stringForKey:@"temperature_celsius_fahrenheit"];
+    showVolts = [standardDefaults boolForKey:@"general_show_volts"];
     isNightMode = [standardDefaults boolForKey:@"general_night_mode"];
 }
 

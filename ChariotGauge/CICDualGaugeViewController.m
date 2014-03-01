@@ -88,7 +88,10 @@
         [self createOilGauge:self.secondGauge :calcDataTwo];
     }
     
-    [self createVoltGauge];
+    //Create volt gauge
+    if(showVolts){
+        [self createVoltGauge];
+    }
     
     [self.bluetooth setBtDelegate:self];
     
@@ -361,6 +364,7 @@
     temperatureUnits = [standardDefaults stringForKey:@"temperature_celsius_fahrenheit"];
     gaugeOneType = [standardDefaults stringForKey:@"twogauge_gauge_one"];
     gaugeTwoType = [standardDefaults stringForKey:@"twogauge_gauge_two"];
+    showVolts = [standardDefaults boolForKey:@"general_show_volts"];
     isNightMode = [standardDefaults boolForKey:@"general_night_mode"];
 }
 
