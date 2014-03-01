@@ -56,6 +56,12 @@
     
     [self.bluetooth setBtDelegate:self];
     
+    if(isNightMode){
+        [self.view setBackgroundColor:[UIColor colorWithRed:168.0/255.0 green:173.0/255.0 blue:190.0/255.0 alpha:1.0]];
+    }else{
+        [self.view setBackgroundColor:[UIColor whiteColor]];
+    }
+    
     calcDataOne = [[CICCalculateData alloc] init];
     [calcDataOne initPrefs];
     [calcDataOne initStoich];
@@ -334,6 +340,7 @@
     widebandUnits = [standardDefaults stringForKey:@"wideband_afr_lambda"];
     widebandFuelType = [standardDefaults stringForKey:@"wideband_fuel_type"];
     temperatureUnits = [standardDefaults stringForKey:@"temperature_celsius_fahrenheit"];
+    isNightMode = [standardDefaults boolForKey:@"general_night_mode"];
 }
 
 - (NSUInteger)supportedInterfaceOrientations

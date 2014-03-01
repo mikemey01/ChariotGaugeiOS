@@ -60,10 +60,18 @@
     }
     
     //Create volt gauge
-    [self createVoltGauge];
+    if(showVolts){
+        [self createVoltGauge];
+    }
     
     //set bluetooth delegate to self;
     [self.bluetooth setBtDelegate:self];
+    
+    if(isNightMode){
+        [self.view setBackgroundColor:[UIColor colorWithRed:168.0/255.0 green:173.0/255.0 blue:190.0/255.0 alpha:1.0]];
+    }else{
+        [self.view setBackgroundColor:[UIColor whiteColor]];
+    }
     
     //create CalculateData object and initialize it.
     calcData = [[CICCalculateData alloc] init];
@@ -308,6 +316,8 @@
     widebandUnits = [standardDefaults stringForKey:@"wideband_afr_lambda"];
     widebandFuelType = [standardDefaults stringForKey:@"wideband_fuel_type"];
     temperatureUnits = [standardDefaults stringForKey:@"temperature_celsius_fahrenheit"];
+    showVolts = [standardDefaults boolForKey:@"general_show_volts"];
+    isNightMode = [standardDefaults boolForKey:@"general_night_mode"];
 }
 
 - (void)viewDidUnload

@@ -105,7 +105,7 @@
 @synthesize minGaugeNumber, maxGaugeNumber, gaugeLabel, incrementPerLargeTick, gaugeType, tickStartAngleDegrees;
 @synthesize tickDistance, menuItemsFont, value, gaugeLabelFont, gaugeWidth, viewWidth, gaugeX, gaugeY, digitalLabel, digitalFontSize;
 @synthesize needleBuilder = needleBuilder_;
-@synthesize lineWidth, needleLayer, gaugeLabelHeight, tickArcRadius, kerningScaler, allowNegatives, gaugeRingScaler, gaugeNumberShift;
+@synthesize lineWidth, needleLayer, gaugeLabelHeight, tickArcRadius, kerningScaler, allowNegatives, gaugeRingScaler, gaugeNumberShift, isNightMode;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -319,7 +319,11 @@
     CGRect innerRect = CGRectMake(self.gaugeX+7.5+(self.gaugeRingScaler/2), 7.5+(self.gaugeRingScaler/2), (self.gaugeWidth-15)-self.gaugeRingScaler, (self.gaugeWidth-15)-self.gaugeRingScaler);
     innerRect = CGRectInset(innerRect, lineWidth * 0.75, lineWidth * 0.75);
     CGContextSetRGBStrokeColor(context, 110.0/255.0, 110.0/255.0, 110.0/255.0, 1.0);
-    CGContextSetRGBFillColor(context, 250.0/255.0, 250.0/255.0, 242.0/255.0, 1.0);
+    if(self.isNightMode){
+        CGContextSetRGBFillColor(context, 210.0/255.0, 214.0/255.0, 217.0/255.0, 1.0);
+    }else{
+        CGContextSetRGBFillColor(context, 250.0/255.0, 250.0/255.0, 242.0/255.0, 1.0);
+    }
     CGContextSetLineWidth(context, 0.75);
     CGContextFillEllipseInRect (context, innerRect);
     CGContextStrokeEllipseInRect(context, innerRect);
@@ -505,7 +509,9 @@
     //Allow negatives or not, init to true
     self.allowNegatives = YES;
     
-    
+    //Night mode selector
+    NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
+    self.isNightMode = [standardDefaults boolForKey:@"general_night_mode"];
 
 }
 

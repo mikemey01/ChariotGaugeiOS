@@ -91,6 +91,9 @@
     //TODO: update
     UIFont *menuItemsFont;
     
+    //Night mode selector;
+    BOOL isNightMode;
+    
     //Scaler variables for sizing.
     CGFloat kerningScaler;
     CGFloat gaugeRingScaler;
@@ -148,6 +151,7 @@
 @property (nonatomic, assign) BOOL allowNegatives;
 @property (nonatomic, assign) CGFloat gaugeRingScaler;
 @property (nonatomic, assign) CGFloat gaugeNumberShift;
+@property (nonatomic, assign) BOOL isNightMode;
 
 
 //gauge functions

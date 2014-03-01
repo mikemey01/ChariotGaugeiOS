@@ -67,6 +67,8 @@
                                               @"temperature_bias_resistor",
                                               @"twogauge_gauge_one",
                                               @"twogauge_gauge_two",
+                                              @"general_show_volts",
+                                              @"general_night_mode",
                                               nil];
     NSArray *objects = [NSArray arrayWithObjects:@"AFR",
                                                  @"Gasoline",
@@ -90,7 +92,9 @@
                                                  @"2000.0",
                                                  @"Boost",
                                                  @"Wideband",
-                                                nil];
+                                                 [NSNumber numberWithBool:YES],
+                                                 [NSNumber numberWithBool:NO],
+                                                 nil];
     NSDictionary *defaults = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
     
 //    NSDictionary* defaults = @{@"oil_high_ohms": @"180.0"};

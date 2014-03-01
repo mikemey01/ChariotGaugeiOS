@@ -32,6 +32,7 @@
     UIBarButtonItem *maxButton;
     UIBarButtonItem *resetButton;
     BOOL isPaused;
+    BOOL isNightMode;
     
     //Prefs vars
     NSString *pressureUnits;
