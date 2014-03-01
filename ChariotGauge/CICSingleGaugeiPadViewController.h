@@ -32,6 +32,8 @@
     NSString *widebandUnits;
     NSString *widebandFuelType;
     NSString *temperatureUnits;
+    BOOL showVolts;
+    BOOL isNightMode;
     
     //volt gauge
     UILabel *voltLabel;

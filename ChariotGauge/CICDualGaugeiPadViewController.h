@@ -38,6 +38,8 @@
     NSString *temperatureUnits;
     NSString *gaugeOneType;
     NSString *gaugeTwoType;
+    BOOL showVolts;
+    BOOL isNightMode;
     
     //volt gauge
     UILabel *voltLabel;
