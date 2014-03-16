@@ -174,7 +174,7 @@
 -(void)getLatestPeriph:(NSString *)periphName
 {
     if(periphName == nil){
-        periphName = @"Chariot Gauge";
+        periphName = @"Unknown";
     }
     if([periphName isEqualToString:@"HMSoft"]){
         periphName = @"Chariot Gauge";
