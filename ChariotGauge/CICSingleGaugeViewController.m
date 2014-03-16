@@ -12,6 +12,7 @@
 #import "CICAppDelegate.h"
 #import "CICBluetoothHandler.h"
 #import "CICCalculateData.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface CICSingleGaugeViewController ()
 
@@ -40,6 +41,7 @@
                  style:UIBarButtonItemStyleBordered
                  target:self
                  action:@selector(resetButtonAction)];
+
     
     //set the bar button items in the nav bar.
     self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:maxButton, resetButton, nil];
