@@ -22,13 +22,13 @@
     
     //Make sure we're not already connected.
     if(self.peripheral.state != CBPeripheralStateConnected){
-        NSLog(@"starting scan/connect.");
+        //NSLog(@"starting scan/connect.");
         [self.stateDelegate getLatestBluetoothState:@"Scanning.."];
         CBCentralManager *centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil options:nil];
         [centralManager scanForPeripheralsWithServices:nil options:nil];
         self.centralManager = centralManager;
     }else{
-        NSLog(@"Already connected");
+        //NSLog(@"Already connected");
     }
 }
 
@@ -40,7 +40,7 @@
 -(void)disconnectBluetooth
 {
     if(self.peripheral.state == CBPeripheralStateConnected){
-        NSLog(@"disconnecting.");
+        //NSLog(@"disconnecting.");
         [self stopScan];
         if (self.peripheral.services != nil) {
             for (CBService *service in self.peripheral.services) {
@@ -55,12 +55,12 @@
         }
         [self.centralManager cancelPeripheralConnection:self.peripheral];
     }else{
-        NSLog(@"Not connected.");
+        //NSLog(@"Not connected.");
     }
 }
 
 - (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
-    NSLog(@"Failed to connect %@", error.localizedDescription);
+    //NSLog(@"Failed to connect %@", error.localizedDescription);
     [self.stateDelegate getLatestBluetoothState:@"error"];
     [self disconnectBluetooth];
 }
@@ -78,7 +78,16 @@
 
 -(void)addPeriphToArray:(CBPeripheral *)periph
 {
-    [self.periphArray addObject:periph];
+    if(!self.periphArray || ![self.periphArray count]){
+        for(CBPeripheral *per in self.periphArray){
+            if([periph.identifier isEqual:per.identifier]){
+                return;
+            }
+        }
+        [self.periphArray addObject:periph];
+    }else{
+        [self.periphArray addObject:periph];
+    }
 }
 
 -(void)connectSelectedPeripheral:(NSUInteger)index
@@ -89,7 +98,7 @@
         self.peripheral = [self.periphArray objectAtIndex:index];
         self.peripheral.delegate = self;
         [self.centralManager connectPeripheral:self.peripheral options:nil];
-        NSLog(@"peripheral name: %@", self.peripheral.name);
+        //NSLog(@"peripheral name: %@", self.peripheral.name);
     }else{
         [self stopScan];
         [self.stateDelegate getLatestBluetoothState:@"Connect"];
@@ -106,7 +115,7 @@
 
 -(void)startTimer
 {
-    self.connectTimer = [NSTimer scheduledTimerWithTimeInterval:7.0
+    self.connectTimer = [NSTimer scheduledTimerWithTimeInterval:5.0
                                                       target:self
                                                     selector:@selector(peripheralFailedToConnect)
                                                     userInfo:nil
@@ -134,7 +143,7 @@
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error
 {
     if(error != nil){
-        NSLog(@"error in didDiscoverServices: %@", error);
+        //NSLog(@"error in didDiscoverServices: %@", error);
         [self.stateDelegate getLatestBluetoothState:@"error"];
         [self stopTimer];
         return;
@@ -142,7 +151,7 @@
     [self.stateDelegate getLatestBluetoothState:@"Service Found"];
 	for (CBService *service in peripheral.services) {
 		[peripheral discoverCharacteristics:nil forService:service];
-        NSLog(@"Services present on periph: %@", service);
+        //NSLog(@"Services present on periph: %@", service);
 	}
 }
 
@@ -150,7 +159,7 @@
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error
 {
     if(error != nil){
-        NSLog(@"Error in didDisconverCharForService: %@", error);
+        //NSLog(@"Error in didDisconverCharForService: %@", error);
         [self.stateDelegate getLatestBluetoothState:@"error"];
         [self stopTimer];
         return;
@@ -158,7 +167,7 @@
     
     [self.stateDelegate getLatestBluetoothState:@"Characteristic Found"];
     for (CBCharacteristic *aChar in service.characteristics){
-        NSLog(@" characteristic present: %@", aChar);
+        //NSLog(@" characteristic present: %@", aChar);
         [self.peripheral setNotifyValue:YES forCharacteristic:aChar];
         [self.peripheral readValueForCharacteristic:aChar];
     }
@@ -169,7 +178,7 @@
 {
     if(error != nil){
         [self.stateDelegate getLatestBluetoothState:@"error"];
-        NSLog(@"error in didUpdateValueForChar");
+        //NSLog(@"error in didUpdateValueForChar");
     }
     
     [self stopTimer];
@@ -198,7 +207,7 @@
 {
 	// Determine the state of the peripheral
 	if ([central state] == CBCentralManagerStatePoweredOff) {
-		NSLog(@"CoreBluetooth BLE hardware is powered off");
+		//NSLog(@"CoreBluetooth BLE hardware is powered off");
         if(connectPressed){
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Bluetooth Status" message:@"Bluetooth is turned off, please turn on in Settings" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alert show];
@@ -206,16 +215,16 @@
         }
 	}
 	else if ([central state] == CBCentralManagerStatePoweredOn) {
-		NSLog(@"CoreBluetooth BLE hardware is powered on and ready");
+		//NSLog(@"CoreBluetooth BLE hardware is powered on and ready");
 	}
 	else if ([central state] == CBCentralManagerStateUnauthorized) {
-		NSLog(@"CoreBluetooth BLE state is unauthorized");
+		//NSLog(@"CoreBluetooth BLE state is unauthorized");
 	}
 	else if ([central state] == CBCentralManagerStateUnknown) {
-		NSLog(@"CoreBluetooth BLE state is unknown");
+		//NSLog(@"CoreBluetooth BLE state is unknown");
 	}
 	else if ([central state] == CBCentralManagerStateUnsupported) {
-		NSLog(@"CoreBluetooth BLE hardware is unsupported on this platform");
+		//NSLog(@"CoreBluetooth BLE hardware is unsupported on this platform");
 	}
 }
 

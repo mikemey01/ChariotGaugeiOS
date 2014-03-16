@@ -41,6 +41,8 @@
     [self.bluetooth setPeriphDelegate:self];
     [self.bluetooth setStateDelegate:self];
     self.bluetooth.failedConnectCount = 0;
+    
+    self.connectLabel.numberOfLines = 0;
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -118,19 +120,20 @@
 
 -(IBAction)connectButtonPress:(id)sender
 {
-    if(!self.isConnected && !([self.connectLabel.text isEqualToString:@"Scanning.."])){
+    if(!self.isConnected){
         self.periphArray = [[NSMutableArray alloc] init];
-        //connectLabel.text = @"Scanning..";
         [self.bluetooth startScan];
+        [self stopTimer];
         [self startTimer];
-    }else{
+    }
+    if(self.isConnected){
         [self stopTimer];
         connectLabel.text = @"Disconnecting..";
         [self.bluetooth disconnectBluetooth];
         connectLabel.text = @"Connect";
         self.isConnected = NO;
     }
-    //self.isConnected = (!self.isConnected);
+    
 }
 
 -(IBAction)settingsButtonPress:(id)sender
@@ -140,7 +143,7 @@
 
 -(void)startTimer
 {
-    self.scanTimer = [NSTimer scheduledTimerWithTimeInterval:7.0
+    self.scanTimer = [NSTimer scheduledTimerWithTimeInterval:5.0
                                                       target:self
                                                     selector:@selector(didNotFindController)
                                                     userInfo:nil
@@ -173,15 +176,14 @@
 
 -(void)getLatestPeriph:(NSString *)periphName
 {
-    if(periphName == nil){
-        periphName = @"Unknown";
-    }
     if([periphName isEqualToString:@"HMSoft"]){
         periphName = @"Chariot Gauge";
     }
-    [self.periphArray addObject:periphName];
-    [self stopTimer];
-    [self createActionSheet];
+    if(periphName != nil){
+        [self.periphArray addObject:periphName];
+        [self stopTimer];
+        [self createActionSheet];
+    }
 }
 
 -(void)getLatestBluetoothState:(NSString *)latestStatus
