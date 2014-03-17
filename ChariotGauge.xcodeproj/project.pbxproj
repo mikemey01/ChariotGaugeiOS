@@ -99,7 +99,7 @@
 		CE141B4F18C014EE00C1F1FD /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		CE166EE318934BAB0063CB51 /* CICCalculateData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICCalculateData.h; sourceTree = "<group>"; };
 		CE166EE418934BAB0063CB51 /* CICCalculateData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICCalculateData.m; sourceTree = "<group>"; };
-		CE2E85071847B01000C51A49 /* ChariotGauge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChariotGauge.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE2E85071847B01000C51A49 /* Chariot Gauge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Chariot Gauge.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE2E850A1847B01000C51A49 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CE2E850C1847B01000C51A49 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		CE2E850E1847B01000C51A49 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -248,7 +248,7 @@
 		CE2E85081847B01000C51A49 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CE2E85071847B01000C51A49 /* ChariotGauge.app */,
+				CE2E85071847B01000C51A49 /* Chariot Gauge.app */,
 				CE2E85281847B01000C51A49 /* ChariotGaugeTests.xctest */,
 			);
 			name = Products;
@@ -433,7 +433,7 @@
 			);
 			name = ChariotGauge;
 			productName = ChariotGauge;
-			productReference = CE2E85071847B01000C51A49 /* ChariotGauge.app */;
+			productReference = CE2E85071847B01000C51A49 /* Chariot Gauge.app */;
 			productType = "com.apple.product-type.application";
 		};
 		CE2E85271847B01000C51A49 /* ChariotGaugeTests */ = {
@@ -708,7 +708,7 @@
 				GCC_PREFIX_HEADER = "ChariotGauge/ChariotGauge-Prefix.pch";
 				INFOPLIST_FILE = "ChariotGauge/ChariotGauge-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Chariot Gauge";
 				PROVISIONING_PROFILE = "0564B093-D2F9-4664-9002-BADA771A3F71";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -726,7 +726,7 @@
 				GCC_PREFIX_HEADER = "ChariotGauge/ChariotGauge-Prefix.pch";
 				INFOPLIST_FILE = "ChariotGauge/ChariotGauge-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Chariot Gauge";
 				PROVISIONING_PROFILE = "0564B093-D2F9-4664-9002-BADA771A3F71";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
