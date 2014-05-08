@@ -13,7 +13,7 @@
 #define   DEGREES_TO_RADIANS(degrees)  ((M_PI * degrees)/ 180)
 #define   DIAMETER  MIN(self.frame.size.width, self.frame.size.height)
 #define   DIAMETER_HEIGHT self.frame.size.height
-#define   DIAMETER_LAYER MIN(layer.frame.size.height, layer.frame.size.width) //TODO: needs work
+#define   DIAMETER_LAYER MIN(layer.frame.size.height, layer.frame.size.width)
 #define   TICK_ARC_RADIUS (DIAMETER/2) - 50
 
 @implementation NeedleBuilder
@@ -258,6 +258,7 @@
     CGPoint centerPoint = CGPointMake(self.gaugeWidth / 2 +self.gaugeX, self.gaugeWidth / 2);
     char* fontName = (char*)[self.menuItemsFont.fontName UTF8String];
     
+    //TODO: deprecated needs works
     CGContextSelectFont(context, fontName, self.menuItemsFont.pointSize, kCGEncodingMacRoman); //controls the font.
     
     CGContextSetTextMatrix(context, CGAffineTransformIdentity);
@@ -300,6 +301,7 @@
         
         CGContextScaleCTM(context, 1.0, -1.0);
         
+        //TODO:deprecated - needs work.
         CGContextShowTextAtPoint(context, 0, 0, c, strlen(c));
         CGContextRestoreGState(context);
         
