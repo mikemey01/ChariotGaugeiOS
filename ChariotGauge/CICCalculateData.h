@@ -17,6 +17,7 @@
     NSString *widebandUnits;
     NSString *widebandFuelType;
     NSString *temperatureUnits;
+    NSString *oilPressureUnits;
     CGFloat wbLowVolts;
     CGFloat wbHighVolts;
     CGFloat wbLowAFR;

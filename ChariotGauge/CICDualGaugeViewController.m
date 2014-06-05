@@ -181,7 +181,17 @@
 
 -(void)createBoostGauge:(CICGaugeBuilder *)gaugeView :(CICCalculateData *)calcData
 {
-    if([pressureUnits isEqualToString:@"PSI"]){
+    if([pressureUnits isEqualToString:@"BAR"]){
+        [gaugeView initializeGauge];
+        gaugeView.minGaugeNumber = -1.0f;
+        gaugeView.maxGaugeNumber = 3.0f;
+        gaugeView.gaugeLabel = @"Boost/Vac \n(BAR)";
+        gaugeView.incrementPerLargeTick = 1;
+        gaugeView.tickStartAngleDegrees = 180;
+        gaugeView.tickDistance = 180;
+        gaugeView.allowNegatives = NO;
+        
+    }else if([pressureUnits isEqualToString:@"PSI"]){
         [gaugeView initializeGauge];
         gaugeView.minGaugeNumber = -30.0f;
         gaugeView.maxGaugeNumber = 25.0f;
@@ -296,13 +306,23 @@
 
 -(void)createOilGauge:(CICGaugeBuilder *) gaugeView :(CICCalculateData *) calcData
 {
-    [gaugeView initializeGauge];
-    gaugeView.minGaugeNumber = 0.0f;
-    gaugeView.maxGaugeNumber = 100.0f;
-    gaugeView.gaugeLabel = @"Oil Pressure \n(PSI)";
-    gaugeView.incrementPerLargeTick = 10;
-    gaugeView.tickStartAngleDegrees = 135;
-    gaugeView.tickDistance = 270;
+    if([oilPressureUnits isEqualToString:@"PIS"]){
+        [gaugeView initializeGauge];
+        gaugeView.minGaugeNumber = 0.0f;
+        gaugeView.maxGaugeNumber = 100.0f;
+        gaugeView.gaugeLabel = @"Oil Pressure \n(PSI)";
+        gaugeView.incrementPerLargeTick = 10;
+        gaugeView.tickStartAngleDegrees = 135;
+        gaugeView.tickDistance = 270;
+    }else{
+        [gaugeView initializeGauge];
+        gaugeView.minGaugeNumber = 0.0f;
+        gaugeView.maxGaugeNumber = 10.0f;
+        gaugeView.gaugeLabel = @"Oil Pressure \n(BAR)";
+        gaugeView.incrementPerLargeTick = 1;
+        gaugeView.tickStartAngleDegrees = 135;
+        gaugeView.tickDistance = 270;
+    }
     gaugeView.lineWidth = 1;
     gaugeView.value = gaugeView.minGaugeNumber;
     gaugeView.menuItemsFont = [UIFont fontWithName:@"Futura" size:16];
@@ -359,6 +379,7 @@
     NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
     
     pressureUnits = [standardDefaults stringForKey:@"boost_psi_kpa"];
+    oilPressureUnits = [standardDefaults stringForKey:@"oil_psi_bar"];
     widebandUnits = [standardDefaults stringForKey:@"wideband_afr_lambda"];
     widebandFuelType = [standardDefaults stringForKey:@"wideband_fuel_type"];
     temperatureUnits = [standardDefaults stringForKey:@"temperature_celsius_fahrenheit"];

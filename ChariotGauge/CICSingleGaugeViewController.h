@@ -32,6 +32,7 @@
     NSString *widebandUnits;
     NSString *widebandFuelType;
     NSString *temperatureUnits;
+    NSString *oilPressureUnits;
     BOOL showVolts;
     BOOL isNightMode;
     

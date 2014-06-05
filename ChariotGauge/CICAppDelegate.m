@@ -69,6 +69,7 @@
                                               @"twogauge_gauge_two",
                                               @"general_show_volts",
                                               @"general_night_mode",
+                                              @"oil_psi_bar",
                                               nil];
     NSArray *objects = [NSArray arrayWithObjects:@"AFR",
                                                  @"Gasoline",
@@ -94,6 +95,7 @@
                                                  @"Wideband",
                                                  [NSNumber numberWithBool:YES],
                                                  [NSNumber numberWithBool:NO],
+                                                 @"PSI",
                                                  nil];
     NSDictionary *defaults = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
     

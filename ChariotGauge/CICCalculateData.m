@@ -49,12 +49,19 @@
     CGFloat vOut;
     CGFloat kpa=0;
     CGFloat psi=0;
+    CGFloat bar=0;
     
     vOut = (val*5.00)/1024;
     kpa = ((vOut/5.00)+.04)/.004;
     psi = (kpa - ATMOSPHERIC) * KPA_TO_PSI;
+    bar = (kpa - ATMOSPHERIC) * KPA_TO_BAR;
     
-    if([pressureUnits isEqualToString:@"KPA"]){
+    if([pressureUnits isEqualToString:@"BAR"]){
+        if(bar > self.sensorMaxValue){
+            self.sensorMaxValue = bar;
+        }
+        return bar;
+    }else if([pressureUnits isEqualToString:@"KPA"]){
         if(kpa > self.sensorMaxValue){
             self.sensorMaxValue = kpa;
         }
@@ -77,6 +84,7 @@
     CGFloat oil = 0;
     CGFloat vOut = 0;
     CGFloat vPercentage;
+    CGFloat barOil = 0;
     
     vOut = (val*5.00)/1024; //get voltage
     
@@ -86,12 +94,19 @@
     }
     vPercentage = vOut / oilVoltRange; //find the percentage of the range we're at
     oil = vPercentage * oilPSIRange; //apply same percentage to range of oil.
+    barOil = oil * PSI_TO_BAR;
     
-    if(oil > self.sensorMaxValue){
-        self.sensorMaxValue = oil;
+    if([oilPressureUnits isEqualToString:@"PSI"]){
+        if(oil > self.sensorMaxValue){
+            self.sensorMaxValue = oil;
+        }
+        return oil;
+    }else{
+        if(barOil > self.sensorMaxValue){
+            self.sensorMaxValue = barOil;
+        }
+        return barOil;
     }
-    //NSLog(@"oil: %f, vOut: %f, vPercentage: %f, inputVal: %i, oilBiasResistor: %f", oil,vOut,vPercentage,val,oilBiasResistor);
-    return oil;
 }
 
 -(CGFloat) calcTemp:(NSInteger)val
@@ -219,6 +234,7 @@
     oilHighVolts = (oilHighOhms/(oilBiasResistor+oilHighOhms))*5;
     oilVoltRange = oilHighVolts - oilLowVolts;
     oilPSIRange = oilHighPSI - oilLowPSI;
+    oilPressureUnits = [standardDefaults stringForKey:@"oil_psi_bar"];
     
     //Temp setup:
     temperatureUnits = [standardDefaults stringForKey:@"temperature_celsius_fahrenheit"];

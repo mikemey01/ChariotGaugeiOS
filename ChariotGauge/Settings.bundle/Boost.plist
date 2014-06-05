@@ -9,11 +9,12 @@
 			<array>
 				<string>PSI</string>
 				<string>KPA</string>
+				<string>BAR</string>
 			</array>
 			<key>Type</key>
 			<string>PSMultiValueSpecifier</string>
 			<key>Title</key>
-			<string>Toggle PSI or KPA</string>
+			<string>Toggle PSI, KPA, or BAR</string>
 			<key>Key</key>
 			<string>boost_psi_kpa</string>
 			<key>DefaultValue</key>
@@ -22,6 +23,7 @@
 			<array>
 				<string>PSI</string>
 				<string>KPA</string>
+				<string>BAR</string>
 			</array>
 		</dict>
 	</array>

@@ -201,7 +201,17 @@
     //Set nav bar title
     self.navigationItem.title = @"Boost/Vac";
     
-    if([pressureUnits isEqualToString:@"PSI"]){
+    if([pressureUnits isEqualToString:@"BAR"]){
+        [self.gaugeView initializeGauge];
+        self.gaugeView.minGaugeNumber = -1.0f;
+        self.gaugeView.maxGaugeNumber = 3.0f;
+        self.gaugeView.gaugeLabel = @"Boost/Vac \n(BAR)";
+        self.gaugeView.incrementPerLargeTick = 1;
+        self.gaugeView.tickStartAngleDegrees = 180;
+        self.gaugeView.tickDistance = 180;
+        self.gaugeView.allowNegatives = NO;
+    
+    }else if([pressureUnits isEqualToString:@"PSI"]){
         [self.gaugeView initializeGauge];
         self.gaugeView.minGaugeNumber = -30.0f;
         self.gaugeView.maxGaugeNumber = 25.0f;
@@ -231,13 +241,23 @@
     //Set nav bar title
     self.navigationItem.title = @"Oil Pressure";
     
-    [self.gaugeView initializeGauge];
-    self.gaugeView.minGaugeNumber = 0.0f;
-    self.gaugeView.maxGaugeNumber = 100.0f;
-    self.gaugeView.gaugeLabel = @"Oil Pressure \n(PSI)";
-    self.gaugeView.incrementPerLargeTick = 10;
-    self.gaugeView.tickStartAngleDegrees = 135;
-    self.gaugeView.tickDistance = 270;
+    if([oilPressureUnits isEqualToString:@"PIS"]){
+        [self.gaugeView initializeGauge];
+        self.gaugeView.minGaugeNumber = 0.0f;
+        self.gaugeView.maxGaugeNumber = 100.0f;
+        self.gaugeView.gaugeLabel = @"Oil Pressure \n(PSI)";
+        self.gaugeView.incrementPerLargeTick = 10;
+        self.gaugeView.tickStartAngleDegrees = 135;
+        self.gaugeView.tickDistance = 270;
+    }else{
+        [self.gaugeView initializeGauge];
+        self.gaugeView.minGaugeNumber = 0.0f;
+        self.gaugeView.maxGaugeNumber = 10.0f;
+        self.gaugeView.gaugeLabel = @"Oil Pressure \n(BAR)";
+        self.gaugeView.incrementPerLargeTick = 1;
+        self.gaugeView.tickStartAngleDegrees = 135;
+        self.gaugeView.tickDistance = 270;
+    }
     self.gaugeView.lineWidth = 1;
     self.gaugeView.value = self.gaugeView.minGaugeNumber;
     self.gaugeView.menuItemsFont = [UIFont fontWithName:@"Futura" size:18];
@@ -320,6 +340,7 @@
     temperatureUnits = [standardDefaults stringForKey:@"temperature_celsius_fahrenheit"];
     showVolts = [standardDefaults boolForKey:@"general_show_volts"];
     isNightMode = [standardDefaults boolForKey:@"general_night_mode"];
+    oilPressureUnits = [standardDefaults stringForKey:@"oil_psi_bar"];
 }
 
 - (void)viewDidUnload
