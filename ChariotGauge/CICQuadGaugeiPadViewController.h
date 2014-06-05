@@ -35,6 +35,7 @@
     
     //Prefs vars
     NSString *pressureUnits;
+    NSString *oilPressureUnits;
     NSString *widebandUnits;
     NSString *widebandFuelType;
     NSString *temperatureUnits;

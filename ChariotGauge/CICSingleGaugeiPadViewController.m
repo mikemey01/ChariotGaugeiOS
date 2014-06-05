@@ -246,13 +246,24 @@
     //Set nav bar title
     self.navigationItem.title = @"Oil Pressure";
     
-    [self.gaugeView initializeGauge];
-    self.gaugeView.minGaugeNumber = 0.0f;
-    self.gaugeView.maxGaugeNumber = 100.0f;
-    self.gaugeView.gaugeLabel = @"Oil Pressure \n(PSI)";
-    self.gaugeView.incrementPerLargeTick = 10;
-    self.gaugeView.tickStartAngleDegrees = 135;
-    self.gaugeView.tickDistance = 270;
+    if([oilPressureUnits isEqualToString:@"PSI"]){
+        [self.gaugeView initializeGauge];
+        self.gaugeView.minGaugeNumber = 0.0f;
+        self.gaugeView.maxGaugeNumber = 100.0f;
+        self.gaugeView.gaugeLabel = @"Oil Pressure \n(PSI)";
+        self.gaugeView.incrementPerLargeTick = 10;
+        self.gaugeView.tickStartAngleDegrees = 135;
+        self.gaugeView.tickDistance = 270;
+    }else{
+        [self.gaugeView initializeGauge];
+        self.gaugeView.minGaugeNumber = 0.0f;
+        self.gaugeView.maxGaugeNumber = 10.0f;
+        self.gaugeView.gaugeLabel = @"Oil Pressure \n(BAR)";
+        self.gaugeView.incrementPerLargeTick = 1;
+        self.gaugeView.tickStartAngleDegrees = 135;
+        self.gaugeView.tickDistance = 270;
+    }
+    
     self.gaugeView.lineWidth = 1;
     self.gaugeView.value = gaugeView.minGaugeNumber;
     self.gaugeView.menuItemsFont = [UIFont fontWithName:@"Futura" size:40];
@@ -348,6 +359,7 @@
     NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
     
     pressureUnits = [standardDefaults stringForKey:@"boost_psi_kpa"];
+    oilPressureUnits = [standardDefaults stringForKey:@"oil_psi_bar"];
     widebandUnits = [standardDefaults stringForKey:@"wideband_afr_lambda"];
     widebandFuelType = [standardDefaults stringForKey:@"wideband_fuel_type"];
     temperatureUnits = [standardDefaults stringForKey:@"temperature_celsius_fahrenheit"];

@@ -6,7 +6,6 @@
 //  Copyright (c) 2013 Chariot Instruments. All rights reserved.
 //
 
-
 #import "CICSingleGaugeViewController.h"
 #import "CICGaugeBuilder.h"
 #import "CICAppDelegate.h"
@@ -241,7 +240,7 @@
     //Set nav bar title
     self.navigationItem.title = @"Oil Pressure";
     
-    if([oilPressureUnits isEqualToString:@"PIS"]){
+    if([oilPressureUnits isEqualToString:@"PSI"]){
         [self.gaugeView initializeGauge];
         self.gaugeView.minGaugeNumber = 0.0f;
         self.gaugeView.maxGaugeNumber = 100.0f;
@@ -335,12 +334,12 @@
     NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
     
     pressureUnits = [standardDefaults stringForKey:@"boost_psi_kpa"];
+    oilPressureUnits = [standardDefaults stringForKey:@"oil_psi_bar"];
     widebandUnits = [standardDefaults stringForKey:@"wideband_afr_lambda"];
     widebandFuelType = [standardDefaults stringForKey:@"wideband_fuel_type"];
     temperatureUnits = [standardDefaults stringForKey:@"temperature_celsius_fahrenheit"];
     showVolts = [standardDefaults boolForKey:@"general_show_volts"];
     isNightMode = [standardDefaults boolForKey:@"general_night_mode"];
-    oilPressureUnits = [standardDefaults stringForKey:@"oil_psi_bar"];
 }
 
 - (void)viewDidUnload

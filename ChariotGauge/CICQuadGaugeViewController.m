@@ -285,7 +285,7 @@
 
 -(void)createOilGauge:(CICGaugeBuilder *) gaugeView :(CICCalculateData *) calcData
 {
-    if([oilPressureUnits isEqualToString:@"PIS"]){
+    if([oilPressureUnits isEqualToString:@"PSI"]){
         [gaugeView initializeGauge];
         gaugeView.minGaugeNumber = 0.0f;
         gaugeView.maxGaugeNumber = 100.0f;
@@ -360,6 +360,7 @@
     NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
     
     pressureUnits = [standardDefaults stringForKey:@"boost_psi_kpa"];
+    oilPressureUnits = [standardDefaults stringForKey:@"oil_psi_bar"];
     widebandUnits = [standardDefaults stringForKey:@"wideband_afr_lambda"];
     widebandFuelType = [standardDefaults stringForKey:@"wideband_fuel_type"];
     temperatureUnits = [standardDefaults stringForKey:@"temperature_celsius_fahrenheit"];

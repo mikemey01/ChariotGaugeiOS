@@ -306,7 +306,7 @@
 
 -(void)createOilGauge:(CICGaugeBuilder *) gaugeView :(CICCalculateData *) calcData
 {
-    if([oilPressureUnits isEqualToString:@"PIS"]){
+    if([oilPressureUnits isEqualToString:@"PSI"]){
         [gaugeView initializeGauge];
         gaugeView.minGaugeNumber = 0.0f;
         gaugeView.maxGaugeNumber = 100.0f;
