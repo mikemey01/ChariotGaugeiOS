@@ -13,6 +13,8 @@
 #define PSI_TO_INHG 2.03625437
 #define KPA_TO_PSI  0.14503773773020923
 #define KPA_TO_INHG 0.295299830714
+#define KPA_TO_BAR  0.01
+#define PSI_TO_BAR  0.0689475729
 
 @implementation CICCalculateData
 
