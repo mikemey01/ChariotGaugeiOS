@@ -247,7 +247,7 @@
     self.navigationItem.title = @"Oil Pressure";
     
     if([oilPressureUnits isEqualToString:@"PSI"]){
-        [self.gaugeView initializeGauge];
+        [self.gaugeView initializeGauge]; 
         self.gaugeView.minGaugeNumber = 0.0f;
         self.gaugeView.maxGaugeNumber = 100.0f;
         self.gaugeView.gaugeLabel = @"Oil Pressure \n(PSI)";

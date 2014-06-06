@@ -26,14 +26,6 @@
 		</dict>
 		<dict>
 			<key>Type</key>
-			<string>PSChildPaneSpecifier</string>
-			<key>Title</key>
-			<string>Oil Sensor Calibration</string>
-			<key>File</key>
-			<string>OilCalibration</string>
-		</dict>
-		<dict>
-			<key>Type</key>
 			<string>PSTextFieldSpecifier</string>
 			<key>Title</key>
 			<string>Bias Resistor</string>
@@ -43,6 +35,14 @@
 			<string>100</string>
 			<key>KeyboardType</key>
 			<string>NumbersAndPunctuation</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+			<key>Title</key>
+			<string>Oil Sensor Calibration</string>
+			<key>File</key>
+			<string>OilCalibration</string>
 		</dict>
 	</array>
 </dict>
