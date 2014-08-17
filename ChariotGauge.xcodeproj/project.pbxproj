@@ -38,6 +38,7 @@
 		CE3DA0F7188348CD006650D9 /* CICBluetoothHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CE3DA0F6188348CD006650D9 /* CICBluetoothHandler.m */; };
 		CE4003D619A16A3100E5A96C /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE4003D519A16A3100E5A96C /* libCorePlot-CocoaTouch.a */; };
 		CE4003D819A16A6C00E5A96C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE4003D719A16A6C00E5A96C /* QuartzCore.framework */; };
+		CE4003DC19A171EA00E5A96C /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE4003DB19A171EA00E5A96C /* Accelerate.framework */; };
 		CE4F05B8187BB9D0000BFC0B /* LetsGoDigital.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE4F05B7187BB9D0000BFC0B /* LetsGoDigital.ttf */; };
 		CE58A005186F4A2F001348DA /* bluetooth_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = CE58A000186F4A2F001348DA /* bluetooth_logo.png */; };
 		CE58A006186F4A2F001348DA /* custom_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = CE58A001186F4A2F001348DA /* custom_logo.png */; };
@@ -98,7 +99,7 @@
 		CE141B4318C0108700C1F1FD /* iPhone320x480.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iPhone320x480.png; sourceTree = "<group>"; };
 		CE141B4418C0108700C1F1FD /* iPhone640x960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iPhone640x960.png; sourceTree = "<group>"; };
 		CE141B4518C0108700C1F1FD /* iPhone640x1136.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iPhone640x1136.png; sourceTree = "<group>"; };
-		CE141B4F18C014EE00C1F1FD /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		CE141B4F18C014EE00C1F1FD /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		CE166EE318934BAB0063CB51 /* CICCalculateData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICCalculateData.h; sourceTree = "<group>"; };
 		CE166EE418934BAB0063CB51 /* CICCalculateData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICCalculateData.m; sourceTree = "<group>"; };
 		CE2E85071847B01000C51A49 /* Chariot Gauge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Chariot Gauge.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -206,6 +207,7 @@
 		CE4003D419A16A1E00E5A96C /* NSNumberExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSNumberExtensions.h; sourceTree = "<group>"; };
 		CE4003D519A16A3100E5A96C /* libCorePlot-CocoaTouch.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libCorePlot-CocoaTouch.a"; path = "../core-plot-github/CorePlot_1.4/Binaries/iOS/libCorePlot-CocoaTouch.a"; sourceTree = "<group>"; };
 		CE4003D719A16A6C00E5A96C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		CE4003DB19A171EA00E5A96C /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		CE4F05B7187BB9D0000BFC0B /* LetsGoDigital.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = LetsGoDigital.ttf; path = "../../../Eclipse/Eclipse Dev/ChariotGauge/assets/fonts/LetsGoDigital.ttf"; sourceTree = "<group>"; };
 		CE58A000186F4A2F001348DA /* bluetooth_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bluetooth_logo.png; path = "../../../../Documents/Chariot Gauge/ChariotGauge Media/Project Sensor/Trent - Icon Set/Resized/bluetooth_logo.png"; sourceTree = "<group>"; };
 		CE58A001186F4A2F001348DA /* custom_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = custom_logo.png; path = "../../../../Documents/Chariot Gauge/ChariotGauge Media/Project Sensor/Trent - Icon Set/Resized/custom_logo.png"; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE4003DC19A171EA00E5A96C /* Accelerate.framework in Frameworks */,
 				CE4003D819A16A6C00E5A96C /* QuartzCore.framework in Frameworks */,
 				CE2E850D1847B01000C51A49 /* CoreGraphics.framework in Frameworks */,
 				CE2E850F1847B01000C51A49 /* UIKit.framework in Frameworks */,
@@ -292,6 +295,7 @@
 			isa = PBXGroup;
 			children = (
 				CE58A00E186F4CD1001348DA /* custom_multi_logo.png */,
+				CE141B4F18C014EE00C1F1FD /* Default-568h@2x.png */,
 				CE58A00B186F4C75001348DA /* four_gauges.png */,
 				CE58A000186F4A2F001348DA /* bluetooth_logo.png */,
 				CE58A001186F4A2F001348DA /* custom_logo.png */,
@@ -321,7 +325,6 @@
 			isa = PBXGroup;
 			children = (
 				CE40038519A16A0900E5A96C /* CorePlot */,
-				CE141B4F18C014EE00C1F1FD /* Default-568h@2x.png */,
 				CE9CB8721896147D00F24822 /* InAppSettingsKit */,
 				CE2E85101847B01000C51A49 /* ChariotGauge */,
 				CE2E852F1847B01000C51A49 /* ChariotGaugeTests */,
@@ -342,6 +345,7 @@
 		CE2E85091847B01000C51A49 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CE4003DB19A171EA00E5A96C /* Accelerate.framework */,
 				CE4003D719A16A6C00E5A96C /* QuartzCore.framework */,
 				CE2E850A1847B01000C51A49 /* Foundation.framework */,
 				CE2E850C1847B01000C51A49 /* CoreGraphics.framework */,
