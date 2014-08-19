@@ -10,4 +10,6 @@
 
 @interface CICChartBuilder : NSObject
 
+- (int)generateRand:(int)minNum withMaxNum:(int)maxNum;
+
 @end

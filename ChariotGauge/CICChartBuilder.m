@@ -10,4 +10,12 @@
 
 @implementation CICChartBuilder
 
+- (int)generateRand:(int)minNum withMaxNum:(int)maxNum
+{
+    int randNum = 0;
+    randNum = rand() % (maxNum - minNum) + minNum;
+    
+    return randNum;
+}
+
 @end
