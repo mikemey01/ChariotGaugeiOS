@@ -39,6 +39,7 @@
 		CE4003D819A16A6C00E5A96C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE4003D719A16A6C00E5A96C /* QuartzCore.framework */; };
 		CE4003DC19A171EA00E5A96C /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE4003DB19A171EA00E5A96C /* Accelerate.framework */; };
 		CE4004EA19A17E8600E5A96C /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE4004E919A17E8600E5A96C /* libCorePlot-CocoaTouch.a */; };
+		CE4004F719A2ECFF00E5A96C /* CICChartBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4004F619A2ECFF00E5A96C /* CICChartBuilder.m */; };
 		CE4F05B8187BB9D0000BFC0B /* LetsGoDigital.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE4F05B7187BB9D0000BFC0B /* LetsGoDigital.ttf */; };
 		CE58A005186F4A2F001348DA /* bluetooth_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = CE58A000186F4A2F001348DA /* bluetooth_logo.png */; };
 		CE58A006186F4A2F001348DA /* custom_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = CE58A001186F4A2F001348DA /* custom_logo.png */; };
@@ -208,6 +209,8 @@
 		CE4004E719A17E8600E5A96C /* NSDecimalNumberExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDecimalNumberExtensions.h; sourceTree = "<group>"; };
 		CE4004E819A17E8600E5A96C /* NSNumberExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSNumberExtensions.h; sourceTree = "<group>"; };
 		CE4004E919A17E8600E5A96C /* libCorePlot-CocoaTouch.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libCorePlot-CocoaTouch.a"; sourceTree = "<group>"; };
+		CE4004F519A2ECFF00E5A96C /* CICChartBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICChartBuilder.h; sourceTree = "<group>"; };
+		CE4004F619A2ECFF00E5A96C /* CICChartBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICChartBuilder.m; sourceTree = "<group>"; };
 		CE4F05B7187BB9D0000BFC0B /* LetsGoDigital.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = LetsGoDigital.ttf; path = "../../../Eclipse/Eclipse Dev/ChariotGauge/assets/fonts/LetsGoDigital.ttf"; sourceTree = "<group>"; };
 		CE58A000186F4A2F001348DA /* bluetooth_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bluetooth_logo.png; path = "../../../../Documents/Chariot Gauge/ChariotGauge Media/Project Sensor/Trent - Icon Set/Resized/bluetooth_logo.png"; sourceTree = "<group>"; };
 		CE58A001186F4A2F001348DA /* custom_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = custom_logo.png; path = "../../../../Documents/Chariot Gauge/ChariotGauge Media/Project Sensor/Trent - Icon Set/Resized/custom_logo.png"; sourceTree = "<group>"; };
@@ -326,7 +329,6 @@
 			children = (
 				CE40049919A17E7100E5A96C /* CorePlot */,
 				CE9CB8721896147D00F24822 /* InAppSettingsKit */,
-				CE4003DD19A1721800E5A96C /* Charting */,
 				CE2E85101847B01000C51A49 /* ChariotGauge */,
 				CE2E852F1847B01000C51A49 /* ChariotGaugeTests */,
 				CE2E85091847B01000C51A49 /* Frameworks */,
@@ -359,6 +361,7 @@
 		CE2E85101847B01000C51A49 /* ChariotGauge */ = {
 			isa = PBXGroup;
 			children = (
+				CE4004F419A2ECE900E5A96C /* Charting */,
 				CEA4F65C18BD9A8B001593F8 /* iPad */,
 				CE2E85191847B01000C51A49 /* CICAppDelegate.h */,
 				CE2E851A1847B01000C51A49 /* CICAppDelegate.m */,
@@ -418,13 +421,6 @@
 				CE2E85321847B01000C51A49 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		CE4003DD19A1721800E5A96C /* Charting */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Charting;
 			sourceTree = "<group>";
 		};
 		CE40049919A17E7100E5A96C /* CorePlot */ = {
@@ -519,6 +515,15 @@
 				CE4004E819A17E8600E5A96C /* NSNumberExtensions.h */,
 			);
 			path = CorePlotHeaders;
+			sourceTree = "<group>";
+		};
+		CE4004F419A2ECE900E5A96C /* Charting */ = {
+			isa = PBXGroup;
+			children = (
+				CE4004F519A2ECFF00E5A96C /* CICChartBuilder.h */,
+				CE4004F619A2ECFF00E5A96C /* CICChartBuilder.m */,
+			);
+			name = Charting;
 			sourceTree = "<group>";
 		};
 		CE9CB8721896147D00F24822 /* InAppSettingsKit */ = {
@@ -747,6 +752,7 @@
 				CE9CB8971896147D00F24822 /* IASKSettingsStore.m in Sources */,
 				CE3DA0F7188348CD006650D9 /* CICBluetoothHandler.m in Sources */,
 				CE58A012186F8E3F001348DA /* CICDrawLine.m in Sources */,
+				CE4004F719A2ECFF00E5A96C /* CICChartBuilder.m in Sources */,
 				CE9CB8961896147D00F24822 /* IASKSettingsReader.m in Sources */,
 				CEB7805518C038CD00473D9F /* CICDualGaugeiPadViewController.m in Sources */,
 				CE166EE518934BAB0063CB51 /* CICCalculateData.m in Sources */,
