@@ -10,6 +10,7 @@
 #import "CICSingleGaugeViewController.h"
 #import "CICDualGaugeViewController.h"
 #import "CICQuadGaugeViewController.h"
+#import "CICChartViewController.h"
 
 @interface CICHomeScreenViewController ()
 
@@ -52,13 +53,13 @@
         gaugeController.gaugeType = wideband;
         gaugeController.bluetooth = self.bluetooth;
     }else if([segue.identifier isEqualToString:@"chartSegue"]){
+        CICChartViewController *gaugeController = (CICChartViewController *)segue.destinationViewController;
+        gaugeController.gaugeType = chart;
+        gaugeController.bluetooth = self.bluetooth;
+    }else if([segue.identifier isEqualToString:@"boostSegue"]){
         CICSingleGaugeViewController *gaugeController = (CICSingleGaugeViewController *)segue.destinationViewController;
         gaugeController.gaugeType = boost;
         gaugeController.bluetooth = self.bluetooth;
-//    }else if([segue.identifier isEqualToString:@"boostSegue"]){
-//        CICSingleGaugeViewController *gaugeController = (CICSingleGaugeViewController *)segue.destinationViewController;
-//        gaugeController.gaugeType = boost;
-//        gaugeController.bluetooth = self.bluetooth;
     }else if([segue.identifier isEqualToString:@"oilSegue"]){
         CICSingleGaugeViewController *gaugeController = (CICSingleGaugeViewController *)segue.destinationViewController;
         gaugeController.gaugeType = oil;
@@ -91,6 +92,10 @@
 }
 //End handling portrait only mode.
 
+-(IBAction)chartButtonPress:(id)sender
+{
+    gaugeType = chart;
+}
 
 -(IBAction)widebandButtonPress:(id)sender
 {

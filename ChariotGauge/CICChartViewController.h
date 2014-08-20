@@ -8,9 +8,20 @@
 
 #import <UIKit/UIKit.h>
 #import "CICChartBuilder.h"
+#import "CICBluetoothHandler.h"
+#import "CICHomeScreenViewController.h"
 
-@interface CICChartViewController : UIViewController
+@class CICChartBuilder, CICChartViewController;
 
+@interface CICChartViewController : UIViewController <BluetoothDelegate>{
+    CICChartBuilder *chartView;
+    CICBluetoothHandler *bluetooth;
+}
+
+@property GaugeType gaugeType;
 @property (nonatomic, retain) IBOutlet CICChartBuilder *chartView;
+@property (nonatomic, retain) CICBluetoothHandler *bluetooth;
 
 @end
+
+

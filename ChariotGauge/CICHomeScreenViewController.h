@@ -26,7 +26,8 @@ typedef enum {
     temp,
     oil,
     dual,
-    quad
+    quad,
+    chart
 } GaugeType;
 
 @property GaugeType gaugeType;
@@ -39,6 +40,7 @@ typedef enum {
 @property (nonatomic, retain) NSTimer *scanTimer;
 @property (nonatomic, retain) NSString *stateString;
 
+-(IBAction)chartButtonPress:(id)sender;
 -(IBAction)widebandButtonPress:(id)sender;
 -(IBAction)boostButtonPress:(id)sender;
 -(IBAction)oilButtonPress:(id)sender;

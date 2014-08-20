@@ -7,12 +7,15 @@
 //
 
 #import "CICChartViewController.h"
+#import "CICAppDelegate.h"
 
 @interface CICChartViewController ()
 
 @end
 
 @implementation CICChartViewController
+
+@synthesize chartView, gaugeType, bluetooth;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

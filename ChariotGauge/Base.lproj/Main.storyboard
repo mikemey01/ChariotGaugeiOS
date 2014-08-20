@@ -28,7 +28,7 @@
                                 </state>
                                 <connections>
                                     <action selector="boostButtonPress:" destination="f5Q-SH-udO" eventType="touchUpInside" id="aVu-TX-6Jj"/>
-                                    <segue destination="BD1-HQ-NzR" kind="push" identifier="chartSegue" id="fQe-8l-jSq"/>
+                                    <segue destination="Ut1-rf-dv2" kind="push" id="VxB-Le-n4z"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="paE-FK-US7">
@@ -199,6 +199,17 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yIF-aa-e68">
+                                <rect key="frame" x="137" y="537" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="chartButtonPress:" destination="f5Q-SH-udO" eventType="touchUpInside" id="Hnh-ux-5FY"/>
+                                    <segue destination="BD1-HQ-NzR" kind="push" identifier="chartSegue" id="Heu-uk-LHt"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -343,10 +354,10 @@
             </objects>
             <point key="canvasLocation" x="848" y="227"/>
         </scene>
-        <!--View Controller - Charting-->
+        <!--Chart View Controller - Charting-->
         <scene sceneID="bhD-qm-xuH">
             <objects>
-                <viewController id="BD1-HQ-NzR" sceneMemberID="viewController">
+                <viewController id="BD1-HQ-NzR" customClass="CICChartViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jRV-IG-Gf0"/>
                         <viewControllerLayoutGuide type="bottom" id="UYs-Cx-wpw"/>
@@ -364,10 +375,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Charting" id="eyC-hh-DcS"/>
+                    <connections>
+                        <outlet property="chartView" destination="SIh-Jm-Khe" id="wOD-k2-HKe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yga-go-Q7F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="848" y="643"/>
+            <point key="canvasLocation" x="848" y="697"/>
         </scene>
         <!--Single Gauge View Controller - Single Gauge-->
         <scene sceneID="SWP-ML-A3k">
@@ -472,6 +486,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Egc-0G-KXw"/>
+        <segue reference="bRT-1E-FaX"/>
     </inferredMetricsTieBreakers>
 </document>
