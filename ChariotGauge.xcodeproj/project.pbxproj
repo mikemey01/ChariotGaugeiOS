@@ -39,7 +39,6 @@
 		CE4003D819A16A6C00E5A96C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE4003D719A16A6C00E5A96C /* QuartzCore.framework */; };
 		CE4003DC19A171EA00E5A96C /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE4003DB19A171EA00E5A96C /* Accelerate.framework */; };
 		CE4004EA19A17E8600E5A96C /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE4004E919A17E8600E5A96C /* libCorePlot-CocoaTouch.a */; };
-		CE4004F719A2ECFF00E5A96C /* CICChartBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4004F619A2ECFF00E5A96C /* CICChartBuilder.m */; };
 		CE4F05B8187BB9D0000BFC0B /* LetsGoDigital.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE4F05B7187BB9D0000BFC0B /* LetsGoDigital.ttf */; };
 		CE58A005186F4A2F001348DA /* bluetooth_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = CE58A000186F4A2F001348DA /* bluetooth_logo.png */; };
 		CE58A006186F4A2F001348DA /* custom_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = CE58A001186F4A2F001348DA /* custom_logo.png */; };
@@ -49,6 +48,8 @@
 		CE58A00D186F4C75001348DA /* four_gauges.png in Resources */ = {isa = PBXBuildFile; fileRef = CE58A00B186F4C75001348DA /* four_gauges.png */; };
 		CE58A00F186F4CD1001348DA /* custom_multi_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = CE58A00E186F4CD1001348DA /* custom_multi_logo.png */; };
 		CE58A012186F8E3F001348DA /* CICDrawLine.m in Sources */ = {isa = PBXBuildFile; fileRef = CE58A011186F8E3F001348DA /* CICDrawLine.m */; };
+		CE857FFD19A44B6F005527ED /* CICChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE857FFC19A44B6F005527ED /* CICChartViewController.m */; };
+		CE85800019A44E1D005527ED /* CICChartBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = CE857FFF19A44E1D005527ED /* CICChartBuilder.m */; };
 		CE9CB7E4189483B600F24822 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CE9CB7E3189483B600F24822 /* Settings.bundle */; };
 		CE9CB8931896147D00F24822 /* IASKAppSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9CB8751896147D00F24822 /* IASKAppSettingsViewController.m */; };
 		CE9CB8941896147D00F24822 /* IASKAppSettingsWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9CB8771896147D00F24822 /* IASKAppSettingsWebViewController.m */; };
@@ -209,8 +210,6 @@
 		CE4004E719A17E8600E5A96C /* NSDecimalNumberExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDecimalNumberExtensions.h; sourceTree = "<group>"; };
 		CE4004E819A17E8600E5A96C /* NSNumberExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSNumberExtensions.h; sourceTree = "<group>"; };
 		CE4004E919A17E8600E5A96C /* libCorePlot-CocoaTouch.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libCorePlot-CocoaTouch.a"; sourceTree = "<group>"; };
-		CE4004F519A2ECFF00E5A96C /* CICChartBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICChartBuilder.h; sourceTree = "<group>"; };
-		CE4004F619A2ECFF00E5A96C /* CICChartBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICChartBuilder.m; sourceTree = "<group>"; };
 		CE4F05B7187BB9D0000BFC0B /* LetsGoDigital.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = LetsGoDigital.ttf; path = "../../../Eclipse/Eclipse Dev/ChariotGauge/assets/fonts/LetsGoDigital.ttf"; sourceTree = "<group>"; };
 		CE58A000186F4A2F001348DA /* bluetooth_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bluetooth_logo.png; path = "../../../../Documents/Chariot Gauge/ChariotGauge Media/Project Sensor/Trent - Icon Set/Resized/bluetooth_logo.png"; sourceTree = "<group>"; };
 		CE58A001186F4A2F001348DA /* custom_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = custom_logo.png; path = "../../../../Documents/Chariot Gauge/ChariotGauge Media/Project Sensor/Trent - Icon Set/Resized/custom_logo.png"; sourceTree = "<group>"; };
@@ -221,6 +220,10 @@
 		CE58A00E186F4CD1001348DA /* custom_multi_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = custom_multi_logo.png; path = "../../../../Documents/Chariot Gauge/ChariotGauge Media/Project Sensor/custom_multi_logo.png"; sourceTree = "<group>"; };
 		CE58A010186F8E3F001348DA /* CICDrawLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICDrawLine.h; sourceTree = "<group>"; };
 		CE58A011186F8E3F001348DA /* CICDrawLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICDrawLine.m; sourceTree = "<group>"; };
+		CE857FFB19A44B6F005527ED /* CICChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICChartViewController.h; sourceTree = "<group>"; };
+		CE857FFC19A44B6F005527ED /* CICChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICChartViewController.m; sourceTree = "<group>"; };
+		CE857FFE19A44E1D005527ED /* CICChartBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICChartBuilder.h; sourceTree = "<group>"; };
+		CE857FFF19A44E1D005527ED /* CICChartBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICChartBuilder.m; sourceTree = "<group>"; };
 		CE9CB7E3189483B600F24822 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		CE9CB8741896147D00F24822 /* IASKAppSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IASKAppSettingsViewController.h; sourceTree = "<group>"; };
 		CE9CB8751896147D00F24822 /* IASKAppSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IASKAppSettingsViewController.m; sourceTree = "<group>"; };
@@ -520,8 +523,10 @@
 		CE4004F419A2ECE900E5A96C /* Charting */ = {
 			isa = PBXGroup;
 			children = (
-				CE4004F519A2ECFF00E5A96C /* CICChartBuilder.h */,
-				CE4004F619A2ECFF00E5A96C /* CICChartBuilder.m */,
+				CE857FFB19A44B6F005527ED /* CICChartViewController.h */,
+				CE857FFC19A44B6F005527ED /* CICChartViewController.m */,
+				CE857FFE19A44E1D005527ED /* CICChartBuilder.h */,
+				CE857FFF19A44E1D005527ED /* CICChartBuilder.m */,
 			);
 			name = Charting;
 			sourceTree = "<group>";
@@ -745,6 +750,7 @@
 				CE9CB89B1896147D00F24822 /* IASKPSSliderSpecifierViewCell.m in Sources */,
 				CE9CB8951896147D00F24822 /* IASKSpecifierValuesViewController.m in Sources */,
 				CE9CB89E1896147D00F24822 /* IASKSlider.m in Sources */,
+				CE85800019A44E1D005527ED /* CICChartBuilder.m in Sources */,
 				CE34F40D1872227F00C1F12B /* CICQuadGaugeViewController.m in Sources */,
 				CEB7805818C038DF00473D9F /* CICQuadGaugeiPadViewController.m in Sources */,
 				CE34F40A18710A3700C1F12B /* CICDualGaugeViewController.m in Sources */,
@@ -752,7 +758,6 @@
 				CE9CB8971896147D00F24822 /* IASKSettingsStore.m in Sources */,
 				CE3DA0F7188348CD006650D9 /* CICBluetoothHandler.m in Sources */,
 				CE58A012186F8E3F001348DA /* CICDrawLine.m in Sources */,
-				CE4004F719A2ECFF00E5A96C /* CICChartBuilder.m in Sources */,
 				CE9CB8961896147D00F24822 /* IASKSettingsReader.m in Sources */,
 				CEB7805518C038CD00473D9F /* CICDualGaugeiPadViewController.m in Sources */,
 				CE166EE518934BAB0063CB51 /* CICCalculateData.m in Sources */,
@@ -762,6 +767,7 @@
 				CE9CB8981896147D00F24822 /* IASKSettingsStoreFile.m in Sources */,
 				CE9CB89F1896147D00F24822 /* IASKSwitch.m in Sources */,
 				CE9CB89A1896147D00F24822 /* IASKSpecifier.m in Sources */,
+				CE857FFD19A44B6F005527ED /* CICChartViewController.m in Sources */,
 				CE2E85171847B01000C51A49 /* main.m in Sources */,
 				CE9CB8941896147D00F24822 /* IASKAppSettingsWebViewController.m in Sources */,
 				CE9CB8A01896147D00F24822 /* IASKTextField.m in Sources */,

@@ -51,10 +51,14 @@
         CICSingleGaugeViewController *gaugeController = (CICSingleGaugeViewController *)segue.destinationViewController;
         gaugeController.gaugeType = wideband;
         gaugeController.bluetooth = self.bluetooth;
-    }else if([segue.identifier isEqualToString:@"boostSegue"]){
+    }else if([segue.identifier isEqualToString:@"chartSegue"]){
         CICSingleGaugeViewController *gaugeController = (CICSingleGaugeViewController *)segue.destinationViewController;
         gaugeController.gaugeType = boost;
         gaugeController.bluetooth = self.bluetooth;
+//    }else if([segue.identifier isEqualToString:@"boostSegue"]){
+//        CICSingleGaugeViewController *gaugeController = (CICSingleGaugeViewController *)segue.destinationViewController;
+//        gaugeController.gaugeType = boost;
+//        gaugeController.bluetooth = self.bluetooth;
     }else if([segue.identifier isEqualToString:@"oilSegue"]){
         CICSingleGaugeViewController *gaugeController = (CICSingleGaugeViewController *)segue.destinationViewController;
         gaugeController.gaugeType = oil;

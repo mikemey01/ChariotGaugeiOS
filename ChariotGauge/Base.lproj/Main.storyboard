@@ -28,7 +28,7 @@
                                 </state>
                                 <connections>
                                     <action selector="boostButtonPress:" destination="f5Q-SH-udO" eventType="touchUpInside" id="aVu-TX-6Jj"/>
-                                    <segue destination="Ut1-rf-dv2" kind="push" identifier="boostSegue" id="r31-vz-lfd"/>
+                                    <segue destination="BD1-HQ-NzR" kind="push" identifier="chartSegue" id="fQe-8l-jSq"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="paE-FK-US7">
@@ -299,7 +299,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pdb-iM-wgY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="479" y="467"/>
+            <point key="canvasLocation" x="479" y="443"/>
         </scene>
         <!--Dual Gauge View Controller - Dual Gauge-->
         <scene sceneID="Qx7-LH-1rL">
@@ -342,6 +342,32 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mcJ-8R-1dL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="848" y="227"/>
+        </scene>
+        <!--View Controller - Charting-->
+        <scene sceneID="bhD-qm-xuH">
+            <objects>
+                <viewController id="BD1-HQ-NzR" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jRV-IG-Gf0"/>
+                        <viewControllerLayoutGuide type="bottom" id="UYs-Cx-wpw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="QbH-k2-FKg">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SIh-Jm-Khe" customClass="CICChartBuilder">
+                                <rect key="frame" x="0.0" y="81" width="320" height="487"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Charting" id="eyC-hh-DcS"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yga-go-Q7F" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="848" y="643"/>
         </scene>
         <!--Single Gauge View Controller - Single Gauge-->
         <scene sceneID="SWP-ML-A3k">
