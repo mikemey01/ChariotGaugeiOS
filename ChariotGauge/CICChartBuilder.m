@@ -10,6 +10,8 @@
 
 @implementation CICChartBuilder
 
+
+
 - (int)generateRand:(int)minNum withMaxNum:(int)maxNum
 {
     int randNum = 0;
