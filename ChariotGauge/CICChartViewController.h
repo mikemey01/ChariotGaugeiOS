@@ -10,6 +10,7 @@
 #import "CICChartBuilder.h"
 #import "CICBluetoothHandler.h"
 #import "CICHomeScreenViewController.h"
+#import "CorePlot-CocoaTouch.h"
 
 @class CICChartBuilder, CICChartViewController;
 
@@ -21,6 +22,7 @@
 @property GaugeType gaugeType;
 @property (nonatomic, retain) IBOutlet CICChartBuilder *chartView;
 @property (nonatomic, retain) CICBluetoothHandler *bluetooth;
+@property (nonatomic, strong) CPTGraphHostingView *hostView;
 
 @end
 

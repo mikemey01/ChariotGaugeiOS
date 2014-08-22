@@ -8,6 +8,7 @@
 
 #import "CICChartViewController.h"
 #import "CICAppDelegate.h"
+#import "CorePlot-CocoaTouch.h"
 
 @interface CICChartViewController ()
 
