@@ -64,42 +64,60 @@
 -(void)initPlot {
     [self configureHost];
     [self configureGraph];
-    [self configurePlots];
-    [self configureAxes];
+    //[self configurePlots];
+    //[self configureAxes];
 }
 
 -(void)configureHost {
-	self.hostView = [(CPTGraphHostingView *) [CPTGraphHostingView alloc] initWithFrame:self.view.bounds];
-	self.hostView.allowPinchScaling = YES;
+	self.hostView = [(CPTGraphHostingView *) [CPTGraphHostingView alloc] initWithFrame:self.view.frame];
+    self.hostView.clipsToBounds = YES;
+	self.hostView.allowPinchScaling = NO;
 	[self.view addSubview:self.hostView];
 }
 
 -(void)configureGraph {
+    
 	// 1 - Create the graph
-	CPTGraph *graph = [[CPTXYGraph alloc] initWithFrame:self.hostView.bounds];
-	[graph applyTheme:[CPTTheme themeNamed:kCPTDarkGradientTheme]];
+	CPTGraph *graph = [[CPTXYGraph alloc] initWithFrame:self.view.frame];
+	[graph applyTheme:[CPTTheme themeNamed:kCPTPlainBlackTheme]];
+    //[graph applyTheme:nil];
+    //graph.plotAreaFrame.borderLineStyle = nil;
 	self.hostView.hostedGraph = graph;
+    [self.hostView.layer setBorderWidth:1.0f];
+    
+    //test area
+    graph.paddingLeft = 0;
+    graph.paddingRight = 0;
+    graph.paddingTop = 0;
+    graph.paddingBottom = 0;
+    graph.plotAreaFrame.borderWidth = 0;
+    graph.plotAreaFrame.cornerRadius = 0;
+    
 	// 2 - Set graph title
 	NSString *title = @"Portfolio Prices: April 2012";
 	graph.title = title;
+    
 	// 3 - Create and set text style
 	CPTMutableTextStyle *titleStyle = [CPTMutableTextStyle textStyle];
 	titleStyle.color = [CPTColor whiteColor];
 	titleStyle.fontName = @"Helvetica-Bold";
-	titleStyle.fontSize = 16.0f;
+	titleStyle.fontSize = 10.0f;
 	graph.titleTextStyle = titleStyle;
 	graph.titlePlotAreaFrameAnchor = CPTRectAnchorTop;
-	graph.titleDisplacement = CGPointMake(0.0f, 10.0f);
+	graph.titleDisplacement = CGPointMake(0.0f, 0.0f);
+    
 	// 4 - Set padding for plot area
-	[graph.plotAreaFrame setPaddingLeft:30.0f];
-	[graph.plotAreaFrame setPaddingBottom:30.0f];
+	[graph.plotAreaFrame setPaddingLeft:0.0f];
+	[graph.plotAreaFrame setPaddingBottom:0.0f];
+    [graph.plotAreaFrame setFrame:self.view.frame];
+    
 	// 5 - Enable user interactions for plot space
 	CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *) graph.defaultPlotSpace;
 	plotSpace.allowsUserInteraction = YES;
 }
 
 -(void)configurePlots {
-    
+/*
 	// 1 - Get graph and plot space
 	CPTGraph *graph = self.hostView.hostedGraph;
 	CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *) graph.defaultPlotSpace;
@@ -132,10 +150,11 @@
 	aaplSymbol.lineStyle = aaplSymbolLineStyle;
 	aaplSymbol.size = CGSizeMake(6.0f, 6.0f);
 	aaplPlot.plotSymbol = aaplSymbol;
+ */
 }
 
 -(void)configureAxes {
-    
+/*
 	// 1 - Create styles
 	CPTMutableTextStyle *axisTitleStyle = [CPTMutableTextStyle textStyle];
 	axisTitleStyle.color = [CPTColor whiteColor];
@@ -224,6 +243,7 @@
 	y.axisLabels = yLabels;
 	y.majorTickLocations = yMajorLocations;
 	y.minorTickLocations = yMinorLocations;
+*/
 }
 
 #pragma mark - Rotation
@@ -233,10 +253,12 @@
 
 #pragma mark - CPTPlotDataSource methods
 -(NSUInteger)numberOfRecordsForPlot:(CPTPlot *)plot {
-	return [[[CPDStockPriceStore sharedInstance] datesInMonth] count];
+/*	return [[[CPDStockPriceStore sharedInstance] datesInMonth] count]; */
+    return 10;
 }
 
 -(NSNumber *)numberForPlot:(CPTPlot *)plot field:(NSUInteger)fieldEnum recordIndex:(NSUInteger)index {
+/*
 	NSInteger valueCount = [[[CPDStockPriceStore sharedInstance] datesInMonth] count];
 	switch (fieldEnum) {
 		case CPTScatterPlotFieldX:
@@ -251,6 +273,7 @@
 			}
 			break;
 	}
+*/
 	return [NSDecimalNumber zero];
 }
 
