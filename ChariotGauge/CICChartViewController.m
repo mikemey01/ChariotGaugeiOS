@@ -99,33 +99,27 @@
 }
 
 -(void)configurePlots {
+    
 	// 1 - Get graph and plot space
 	CPTGraph *graph = self.hostView.hostedGraph;
 	CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *) graph.defaultPlotSpace;
+    
 	// 2 - Create the three plots
 	CPTScatterPlot *aaplPlot = [[CPTScatterPlot alloc] init];
 	aaplPlot.dataSource = self;
 	aaplPlot.identifier = CPDTickerSymbolAAPL;
 	CPTColor *aaplColor = [CPTColor redColor];
 	[graph addPlot:aaplPlot toPlotSpace:plotSpace];
-	CPTScatterPlot *googPlot = [[CPTScatterPlot alloc] init];
-	googPlot.dataSource = self;
-	googPlot.identifier = CPDTickerSymbolGOOG;
-	CPTColor *googColor = [CPTColor greenColor];
-	[graph addPlot:googPlot toPlotSpace:plotSpace];
-	CPTScatterPlot *msftPlot = [[CPTScatterPlot alloc] init];
-	msftPlot.dataSource = self;
-	msftPlot.identifier = CPDTickerSymbolMSFT;
-	CPTColor *msftColor = [CPTColor blueColor];
-	[graph addPlot:msftPlot toPlotSpace:plotSpace];
+	
 	// 3 - Set up plot space
-	[plotSpace scaleToFitPlots:[NSArray arrayWithObjects:aaplPlot, googPlot, msftPlot, nil]];
+	[plotSpace scaleToFitPlots:[NSArray arrayWithObjects:aaplPlot, nil]];
 	CPTMutablePlotRange *xRange = [plotSpace.xRange mutableCopy];
 	[xRange expandRangeByFactor:CPTDecimalFromCGFloat(1.1f)];
 	plotSpace.xRange = xRange;
 	CPTMutablePlotRange *yRange = [plotSpace.yRange mutableCopy];
 	[yRange expandRangeByFactor:CPTDecimalFromCGFloat(1.2f)];
 	plotSpace.yRange = yRange;
+    
 	// 4 - Create styles and symbols
 	CPTMutableLineStyle *aaplLineStyle = [aaplPlot.dataLineStyle mutableCopy];
 	aaplLineStyle.lineWidth = 2.5;
@@ -138,31 +132,10 @@
 	aaplSymbol.lineStyle = aaplSymbolLineStyle;
 	aaplSymbol.size = CGSizeMake(6.0f, 6.0f);
 	aaplPlot.plotSymbol = aaplSymbol;
-	CPTMutableLineStyle *googLineStyle = [googPlot.dataLineStyle mutableCopy];
-	googLineStyle.lineWidth = 1.0;
-	googLineStyle.lineColor = googColor;
-	googPlot.dataLineStyle = googLineStyle;
-	CPTMutableLineStyle *googSymbolLineStyle = [CPTMutableLineStyle lineStyle];
-	googSymbolLineStyle.lineColor = googColor;
-	CPTPlotSymbol *googSymbol = [CPTPlotSymbol starPlotSymbol];
-	googSymbol.fill = [CPTFill fillWithColor:googColor];
-	googSymbol.lineStyle = googSymbolLineStyle;
-	googSymbol.size = CGSizeMake(6.0f, 6.0f);
-	googPlot.plotSymbol = googSymbol;
-	CPTMutableLineStyle *msftLineStyle = [msftPlot.dataLineStyle mutableCopy];
-	msftLineStyle.lineWidth = 2.0;
-	msftLineStyle.lineColor = msftColor;
-	msftPlot.dataLineStyle = msftLineStyle;
-	CPTMutableLineStyle *msftSymbolLineStyle = [CPTMutableLineStyle lineStyle];
-	msftSymbolLineStyle.lineColor = msftColor;
-	CPTPlotSymbol *msftSymbol = [CPTPlotSymbol diamondPlotSymbol];
-	msftSymbol.fill = [CPTFill fillWithColor:msftColor];
-	msftSymbol.lineStyle = msftSymbolLineStyle;
-	msftSymbol.size = CGSizeMake(6.0f, 6.0f);
-	msftPlot.plotSymbol = msftSymbol;
 }
 
 -(void)configureAxes {
+    
 	// 1 - Create styles
 	CPTMutableTextStyle *axisTitleStyle = [CPTMutableTextStyle textStyle];
 	axisTitleStyle.color = [CPTColor whiteColor];
@@ -181,8 +154,10 @@
 	CPTMutableLineStyle *gridLineStyle = [CPTMutableLineStyle lineStyle];
 	tickLineStyle.lineColor = [CPTColor blackColor];
 	tickLineStyle.lineWidth = 1.0f;
+    
 	// 2 - Get axis set
 	CPTXYAxisSet *axisSet = (CPTXYAxisSet *) self.hostView.hostedGraph.axisSet;
+    
 	// 3 - Configure x-axis
 	CPTAxis *x = axisSet.xAxis;
 	x.title = @"Day of Month";
@@ -210,6 +185,7 @@
 	}
 	x.axisLabels = xLabels;
 	x.majorTickLocations = xLocations;
+    
 	// 4 - Configure y-axis
 	CPTAxis *y = axisSet.yAxis;
 	y.title = @"Price";
@@ -272,10 +248,6 @@
 		case CPTScatterPlotFieldY:
 			if ([plot.identifier isEqual:CPDTickerSymbolAAPL] == YES) {
 				return [[[CPDStockPriceStore sharedInstance] monthlyPrices:CPDTickerSymbolAAPL] objectAtIndex:index];
-			} else if ([plot.identifier isEqual:CPDTickerSymbolGOOG] == YES) {
-				return [[[CPDStockPriceStore sharedInstance] monthlyPrices:CPDTickerSymbolGOOG] objectAtIndex:index];
-			} else if ([plot.identifier isEqual:CPDTickerSymbolMSFT] == YES) {
-				return [[[CPDStockPriceStore sharedInstance] monthlyPrices:CPDTickerSymbolMSFT] objectAtIndex:index];
 			}
 			break;
 	}
