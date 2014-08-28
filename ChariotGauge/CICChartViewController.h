@@ -22,7 +22,6 @@
 @property GaugeType gaugeType;
 @property (nonatomic, retain) IBOutlet CICChartBuilder *chartView;
 @property (nonatomic, retain) CICBluetoothHandler *bluetooth;
-@property (nonatomic, strong) CPTGraphHostingView *hostView;
 
 @end
 

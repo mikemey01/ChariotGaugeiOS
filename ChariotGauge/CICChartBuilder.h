@@ -7,9 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CorePlot-CocoaTouch.h"
 
-@interface CICChartBuilder : UIView
+@interface CICChartBuilder : UIView{
+    CGRect thisFrame;
+    
+}
+
+@property (nonatomic, strong) CPTGraphHostingView *hostView;
+@property (nonatomic, assign) CGRect thisFrame;
 
 - (int)generateRand:(int)minNum withMaxNum:(int)maxNum;
+- (void)initPlot;
+- (void)configureHost;
+- (void)configureGraph;
 
 @end

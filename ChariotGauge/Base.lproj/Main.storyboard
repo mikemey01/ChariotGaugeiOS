@@ -358,7 +358,26 @@
         <scene sceneID="bhD-qm-xuH">
             <objects>
                 <viewController id="BD1-HQ-NzR" customClass="CICChartViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pMu-cP-yiA"/>
+                        <viewControllerLayoutGuide type="bottom" id="omP-KY-iIh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="LFw-OH-ADb">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dYY-Ud-tQr" customClass="CICChartBuilder">
+                                <rect key="frame" x="0.0" y="69" width="320" height="499"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
                     <navigationItem key="navigationItem" title="Charting" id="eyC-hh-DcS"/>
+                    <connections>
+                        <outlet property="chartView" destination="dYY-Ud-tQr" id="rO4-vA-auG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yga-go-Q7F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
