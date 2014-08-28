@@ -77,14 +77,14 @@
 	CPTMutableTextStyle *titleStyle = [CPTMutableTextStyle textStyle];
 	titleStyle.color = [CPTColor whiteColor];
 	titleStyle.fontName = @"Helvetica-Bold";
-	titleStyle.fontSize = 7.0f;
+	titleStyle.fontSize = 15.0f;
 	graph.titleTextStyle = titleStyle;
 	graph.titlePlotAreaFrameAnchor = CPTRectAnchorTop;
 	graph.titleDisplacement = CGPointMake(0.0f, 0.0f);
     
 	// 4 - Set padding for plot area
 	[graph.plotAreaFrame setPaddingLeft:30.0f];
-	[graph.plotAreaFrame setPaddingBottom:30.0f];
+	[graph.plotAreaFrame setPaddingBottom:25.0f];
     [graph.plotAreaFrame setFrame:self.thisFrame];
     
 	// 5 - Enable user interactions for plot space
