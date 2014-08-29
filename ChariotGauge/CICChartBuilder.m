@@ -11,6 +11,8 @@
 
 @implementation CICChartBuilder
 
+NSString *  const CPDTickerSymbolAAPL = @"AAPL";
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -38,7 +40,7 @@
 -(void)initPlot {
     [self configureHost];
     [self configureGraph];
-    //[self configurePlots];
+    [self configurePlots];
     //[self configureAxes];
 }
 
@@ -93,12 +95,12 @@
 }
 
 -(void)configurePlots {
-/*
+
 	// 1 - Get graph and plot space
 	CPTGraph *graph = self.hostView.hostedGraph;
 	CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *) graph.defaultPlotSpace;
     
-	// 2 - Create the three plots
+	// 2 - Create the plot
 	CPTScatterPlot *aaplPlot = [[CPTScatterPlot alloc] init];
 	aaplPlot.dataSource = self;
 	aaplPlot.identifier = CPDTickerSymbolAAPL;
@@ -126,7 +128,7 @@
 	aaplSymbol.lineStyle = aaplSymbolLineStyle;
 	aaplSymbol.size = CGSizeMake(6.0f, 6.0f);
 	aaplPlot.plotSymbol = aaplSymbol;
- */
+
 }
 
 -(void)configureAxes {
@@ -234,7 +236,7 @@
 }
 
 -(NSNumber *)numberForPlot:(CPTPlot *)plot field:(NSUInteger)fieldEnum recordIndex:(NSUInteger)index {
-    /*
+/*
      NSInteger valueCount = [[[CPDStockPriceStore sharedInstance] datesInMonth] count];
      switch (fieldEnum) {
      case CPTScatterPlotFieldX:
@@ -249,7 +251,7 @@
      }
      break;
      }
-     */
+*/
 	return [NSDecimalNumber zero];
 }
 

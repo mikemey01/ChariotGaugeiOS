@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CorePlot-CocoaTouch.h"
 
-@interface CICChartBuilder : UIView{
+@interface CICChartBuilder : UIView <CPTPlotDataSource>{
     CGRect thisFrame;
     
 }
