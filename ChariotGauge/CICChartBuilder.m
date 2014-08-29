@@ -231,31 +231,84 @@ NSString *  const CPDTickerSymbolAAPL = @"AAPL";
 
 #pragma mark - CPTPlotDataSource methods
 -(NSUInteger)numberOfRecordsForPlot:(CPTPlot *)plot {
-    /*	return [[[CPDStockPriceStore sharedInstance] datesInMonth] count]; */
-    return 10;
+    return [[self xValueStore] count];
 }
 
 -(NSNumber *)numberForPlot:(CPTPlot *)plot field:(NSUInteger)fieldEnum recordIndex:(NSUInteger)index {
-/*
-     NSInteger valueCount = [[[CPDStockPriceStore sharedInstance] datesInMonth] count];
+
+     NSInteger valueCount = [[self xValueStore] count];
      switch (fieldEnum) {
      case CPTScatterPlotFieldX:
-     if (index < valueCount) {
-     return [NSNumber numberWithUnsignedInteger:index];
-     }
-     break;
+         if (index < valueCount) {
+             return [NSNumber numberWithUnsignedInteger:index];
+         }
+         break;
      
      case CPTScatterPlotFieldY:
-     if ([plot.identifier isEqual:CPDTickerSymbolAAPL] == YES) {
-     return [[[CPDStockPriceStore sharedInstance] monthlyPrices:CPDTickerSymbolAAPL] objectAtIndex:index];
+         if ([plot.identifier isEqual:CPDTickerSymbolAAPL] == YES) {
+             return [[self yValueStore] objectAtIndex:index];
+         }
+         break;
      }
-     break;
-     }
-*/
+
 	return [NSDecimalNumber zero];
 }
 
-//END
+-(NSArray *)yValueStore
+{
+    static NSArray *yValueArray = nil;
+    yValueArray = [NSArray arrayWithObjects:
+              [NSDecimalNumber numberWithFloat:6],
+              [NSDecimalNumber numberWithFloat:6],
+              [NSDecimalNumber numberWithFloat:7],
+              [NSDecimalNumber numberWithFloat:8],
+              [NSDecimalNumber numberWithFloat:3],
+              [NSDecimalNumber numberWithFloat:6],
+              [NSDecimalNumber numberWithFloat:2],
+              [NSDecimalNumber numberWithFloat:6],
+              [NSDecimalNumber numberWithFloat:5],
+              [NSDecimalNumber numberWithFloat:7],
+              [NSDecimalNumber numberWithFloat:6],
+              [NSDecimalNumber numberWithFloat:8],
+              [NSDecimalNumber numberWithFloat:4],
+              [NSDecimalNumber numberWithFloat:5],
+              [NSDecimalNumber numberWithFloat:5],
+              [NSDecimalNumber numberWithFloat:6],
+              [NSDecimalNumber numberWithFloat:6],
+              [NSDecimalNumber numberWithFloat:6],
+              [NSDecimalNumber numberWithFloat:6],
+              [NSDecimalNumber numberWithFloat:6],
+              nil];
+    return yValueArray;
+}
+
+-(NSArray *)xValueStore
+{
+    static NSArray *xValueArray = nil;
+    xValueArray = [NSArray arrayWithObjects:
+                   [NSDecimalNumber numberWithFloat:1],
+                   [NSDecimalNumber numberWithFloat:2],
+                   [NSDecimalNumber numberWithFloat:3],
+                   [NSDecimalNumber numberWithFloat:4],
+                   [NSDecimalNumber numberWithFloat:5],
+                   [NSDecimalNumber numberWithFloat:6],
+                   [NSDecimalNumber numberWithFloat:7],
+                   [NSDecimalNumber numberWithFloat:8],
+                   [NSDecimalNumber numberWithFloat:9],
+                   [NSDecimalNumber numberWithFloat:10],
+                   [NSDecimalNumber numberWithFloat:11],
+                   [NSDecimalNumber numberWithFloat:12],
+                   [NSDecimalNumber numberWithFloat:13],
+                   [NSDecimalNumber numberWithFloat:14],
+                   [NSDecimalNumber numberWithFloat:15],
+                   [NSDecimalNumber numberWithFloat:16],
+                   [NSDecimalNumber numberWithFloat:17],
+                   [NSDecimalNumber numberWithFloat:18],
+                   [NSDecimalNumber numberWithFloat:19],
+                   [NSDecimalNumber numberWithFloat:20],
+                   nil];
+    return xValueArray;
+}
 
 - (int)generateRand:(int)minNum withMaxNum:(int)maxNum
 {
