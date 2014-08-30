@@ -11,11 +11,15 @@
 
 @interface CICChartBuilder : UIView <CPTPlotDataSource>{
     CGRect thisFrame;
+    NSString *plotIdentifier;
+    CPTGraph *graph;
     
 }
 
 @property (nonatomic, strong) CPTGraphHostingView *hostView;
 @property (nonatomic, assign) CGRect thisFrame;
+@property (nonatomic, retain) NSString *plotIdentifier;
+@property (nonatomic, retain) CPTGraph *graph;
 
 - (int)generateRand:(int)minNum withMaxNum:(int)maxNum;
 - (void)initPlot;

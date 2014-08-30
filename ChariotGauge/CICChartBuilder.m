@@ -24,7 +24,7 @@ NSString *  const CPDTickerSymbolAAPL = @"AAPL";
 
 //START
 
-@synthesize hostView = hostView_, thisFrame;
+@synthesize hostView = hostView_, thisFrame, plotIdentifier, graph;
 
 
 
@@ -35,9 +35,16 @@ NSString *  const CPDTickerSymbolAAPL = @"AAPL";
     self.thisFrame = rect;
 }
 
+//check if variables are null or if they were created in the view controller - handle.
+-(void)initVariables{
+    if (self.plotIdentifier == (id)[NSNull null] || self.plotIdentifier.length == 0 ) self.plotIdentifier = @"gauge1";
+    if (self.graph == nil) self.graph = [[CPTXYGraph alloc] initWithFrame:self.hostView.bounds];
+}
+
 
 #pragma mark - Chart behavior
 -(void)initPlot {
+    [self initVariables];
     [self configureHost];
     [self configureGraph];
     [self configurePlots];
@@ -53,29 +60,13 @@ NSString *  const CPDTickerSymbolAAPL = @"AAPL";
 
 -(void)configureGraph {
     
-	// 1 - Create the graph
-	CPTGraph *graph = [[CPTXYGraph alloc] initWithFrame:self.hostView.bounds];
-    
     //Set graph style
 	[graph applyTheme:[CPTTheme themeNamed:kCPTPlainBlackTheme]];
-    //[graph applyTheme:nil];
 	self.hostView.hostedGraph = graph;
     [self.hostView.layer setBorderWidth:1.0f];
     
-    //Remove Border
-    graph.paddingLeft = 0;
-    graph.paddingRight = 0;
-    graph.paddingTop = 0;
-    graph.paddingBottom = 0;
-    graph.plotAreaFrame.borderWidth = 0;
-    graph.plotAreaFrame.cornerRadius = 0;
     
-    
-	// 2 - Set graph title
-	NSString *title = @"Charting";
-	graph.title = title;
-    
-	// 3 - Create and set text style
+	// Create and set text style for title
 	CPTMutableTextStyle *titleStyle = [CPTMutableTextStyle textStyle];
 	titleStyle.color = [CPTColor whiteColor];
 	titleStyle.fontName = @"Helvetica-Bold";
@@ -83,32 +74,35 @@ NSString *  const CPDTickerSymbolAAPL = @"AAPL";
 	graph.titleTextStyle = titleStyle;
 	graph.titlePlotAreaFrameAnchor = CPTRectAnchorTop;
 	graph.titleDisplacement = CGPointMake(0.0f, 0.0f);
+    graph.title = @"Charting";
     
-	// 4 - Set padding for plot area
+	// Set padding for plot area
+    graph.paddingLeft = 0;
+    graph.paddingRight = 0;
+    graph.paddingTop = 0;
+    graph.paddingBottom = 0;
+    graph.plotAreaFrame.borderWidth = 0;
+    graph.plotAreaFrame.cornerRadius = 0;
 	[graph.plotAreaFrame setPaddingLeft:30.0f];
 	[graph.plotAreaFrame setPaddingBottom:25.0f];
     [graph.plotAreaFrame setFrame:self.thisFrame];
-    
-	// 5 - Enable user interactions for plot space
-	CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *) graph.defaultPlotSpace;
-	plotSpace.allowsUserInteraction = YES;
 }
 
 -(void)configurePlots {
 
 	// 1 - Get graph and plot space
-	CPTGraph *graph = self.hostView.hostedGraph;
 	CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *) graph.defaultPlotSpace;
+    plotSpace.allowsUserInteraction = YES;
     
-	// 2 - Create the plot
-	CPTScatterPlot *aaplPlot = [[CPTScatterPlot alloc] init];
-	aaplPlot.dataSource = self;
-	aaplPlot.identifier = CPDTickerSymbolAAPL;
-	CPTColor *aaplColor = [CPTColor redColor];
-	[graph addPlot:aaplPlot toPlotSpace:plotSpace];
+	// 2 - Create the plot data source, identifier, color
+	CPTScatterPlot *gaugePlot = [[CPTScatterPlot alloc] init];
+	gaugePlot.dataSource = self;
+	gaugePlot.identifier = self.plotIdentifier;
+	CPTColor *plotColor = [CPTColor redColor];
+	[graph addPlot:gaugePlot toPlotSpace:plotSpace];
 	
 	// 3 - Set up plot space
-	[plotSpace scaleToFitPlots:[NSArray arrayWithObjects:aaplPlot, nil]];
+	[plotSpace scaleToFitPlots:[NSArray arrayWithObjects:gaugePlot, nil]];
 	CPTMutablePlotRange *xRange = [plotSpace.xRange mutableCopy];
 	[xRange expandRangeByFactor:CPTDecimalFromCGFloat(1.1f)];
 	plotSpace.xRange = xRange;
@@ -117,22 +111,22 @@ NSString *  const CPDTickerSymbolAAPL = @"AAPL";
 	plotSpace.yRange = yRange;
     
 	// 4 - Create styles and symbols
-	CPTMutableLineStyle *aaplLineStyle = [aaplPlot.dataLineStyle mutableCopy];
-	aaplLineStyle.lineWidth = 2.5;
-	aaplLineStyle.lineColor = aaplColor;
-	aaplPlot.dataLineStyle = aaplLineStyle;
+	CPTMutableLineStyle *aaplLineStyle = [gaugePlot.dataLineStyle mutableCopy];
+	aaplLineStyle.lineWidth = 1.0;
+	aaplLineStyle.lineColor = plotColor;
+	gaugePlot.dataLineStyle = aaplLineStyle;
 	CPTMutableLineStyle *aaplSymbolLineStyle = [CPTMutableLineStyle lineStyle];
-	aaplSymbolLineStyle.lineColor = aaplColor;
+	aaplSymbolLineStyle.lineColor = plotColor;
 	CPTPlotSymbol *aaplSymbol = [CPTPlotSymbol ellipsePlotSymbol];
-	aaplSymbol.fill = [CPTFill fillWithColor:aaplColor];
+	aaplSymbol.fill = [CPTFill fillWithColor:plotColor];
 	aaplSymbol.lineStyle = aaplSymbolLineStyle;
-	aaplSymbol.size = CGSizeMake(6.0f, 6.0f);
-	aaplPlot.plotSymbol = aaplSymbol;
+	aaplSymbol.size = CGSizeMake(2.0f, 2.0f);
+	gaugePlot.plotSymbol = aaplSymbol;
 
 }
 
 -(void)configureAxes {
-    /*
+/*
      // 1 - Create styles
      CPTMutableTextStyle *axisTitleStyle = [CPTMutableTextStyle textStyle];
      axisTitleStyle.color = [CPTColor whiteColor];
@@ -206,7 +200,7 @@ NSString *  const CPDTickerSymbolAAPL = @"AAPL";
      for (NSInteger j = minorIncrement; j <= yMax; j += minorIncrement) {
      NSUInteger mod = j % majorIncrement;
      if (mod == 0) {
-     CPTAxisLabel *label = [[CPTAxisLabel alloc] initWithText:[NSString stringWithFormat:@"%i", j] textStyle:y.labelTextStyle];
+     CPTAxisLabel *label = [[CPTAxisLabel alloc] initWithText:[NSString stringWithFormat:@"%li", (long)j] textStyle:y.labelTextStyle];
      NSDecimal location = CPTDecimalFromInteger(j);
      label.tickLocation = location;
      label.offset = -y.majorTickLength - y.labelOffset;
@@ -221,7 +215,7 @@ NSString *  const CPDTickerSymbolAAPL = @"AAPL";
      y.axisLabels = yLabels;
      y.majorTickLocations = yMajorLocations;
      y.minorTickLocations = yMinorLocations;
-     */
+ */
 }
 
 #pragma mark - Rotation
@@ -245,7 +239,7 @@ NSString *  const CPDTickerSymbolAAPL = @"AAPL";
          break;
      
      case CPTScatterPlotFieldY:
-         if ([plot.identifier isEqual:CPDTickerSymbolAAPL] == YES) {
+         if ([plot.identifier isEqual:self.plotIdentifier] == YES) {
              return [[self yValueStore] objectAtIndex:index];
          }
          break;
