@@ -48,7 +48,7 @@ NSString *  const CPDTickerSymbolAAPL = @"AAPL";
     [self configureHost];
     [self configureGraph];
     [self configurePlots];
-    //[self configureAxes];
+    [self configureAxes];
 }
 
 -(void)configureHost {
@@ -95,14 +95,14 @@ NSString *  const CPDTickerSymbolAAPL = @"AAPL";
     plotSpace.allowsUserInteraction = YES;
     
 	// 2 - Create the plot data source, identifier, color
-	CPTScatterPlot *gaugePlot = [[CPTScatterPlot alloc] init];
-	gaugePlot.dataSource = self;
-	gaugePlot.identifier = self.plotIdentifier;
+	CPTScatterPlot *scatterPlot = [[CPTScatterPlot alloc] init];
+	scatterPlot.dataSource = self;
+	scatterPlot.identifier = self.plotIdentifier;
 	CPTColor *plotColor = [CPTColor redColor];
-	[graph addPlot:gaugePlot toPlotSpace:plotSpace];
+	[graph addPlot:scatterPlot toPlotSpace:plotSpace];
 	
 	// 3 - Set up plot space
-	[plotSpace scaleToFitPlots:[NSArray arrayWithObjects:gaugePlot, nil]];
+	[plotSpace scaleToFitPlots:[NSArray arrayWithObjects:scatterPlot, nil]];
 	CPTMutablePlotRange *xRange = [plotSpace.xRange mutableCopy];
 	[xRange expandRangeByFactor:CPTDecimalFromCGFloat(1.1f)];
 	plotSpace.xRange = xRange;
@@ -111,111 +111,119 @@ NSString *  const CPDTickerSymbolAAPL = @"AAPL";
 	plotSpace.yRange = yRange;
     
 	// 4 - Create styles and symbols
-	CPTMutableLineStyle *aaplLineStyle = [gaugePlot.dataLineStyle mutableCopy];
-	aaplLineStyle.lineWidth = 1.0;
-	aaplLineStyle.lineColor = plotColor;
-	gaugePlot.dataLineStyle = aaplLineStyle;
-	CPTMutableLineStyle *aaplSymbolLineStyle = [CPTMutableLineStyle lineStyle];
-	aaplSymbolLineStyle.lineColor = plotColor;
-	CPTPlotSymbol *aaplSymbol = [CPTPlotSymbol ellipsePlotSymbol];
-	aaplSymbol.fill = [CPTFill fillWithColor:plotColor];
-	aaplSymbol.lineStyle = aaplSymbolLineStyle;
-	aaplSymbol.size = CGSizeMake(2.0f, 2.0f);
-	gaugePlot.plotSymbol = aaplSymbol;
+	CPTMutableLineStyle *scatterLineStyle = [scatterPlot.dataLineStyle mutableCopy];
+	scatterLineStyle.lineWidth = 1.0;
+	scatterLineStyle.lineColor = plotColor;
+	scatterPlot.dataLineStyle = scatterLineStyle;
+	CPTMutableLineStyle *plotSymbolLineStyle = [CPTMutableLineStyle lineStyle];
+	plotSymbolLineStyle.lineColor = plotColor;
+	CPTPlotSymbol *plotSymbol = [CPTPlotSymbol ellipsePlotSymbol];
+	plotSymbol.fill = [CPTFill fillWithColor:plotColor];
+	plotSymbol.lineStyle = plotSymbolLineStyle;
+	plotSymbol.size = CGSizeMake(2.0f, 2.0f);
+	scatterPlot.plotSymbol = plotSymbol;
 
+    
 }
 
 -(void)configureAxes {
-/*
+
      // 1 - Create styles
-     CPTMutableTextStyle *axisTitleStyle = [CPTMutableTextStyle textStyle];
-     axisTitleStyle.color = [CPTColor whiteColor];
-     axisTitleStyle.fontName = @"Helvetica-Bold";
-     axisTitleStyle.fontSize = 12.0f;
-     CPTMutableLineStyle *axisLineStyle = [CPTMutableLineStyle lineStyle];
-     axisLineStyle.lineWidth = 2.0f;
-     axisLineStyle.lineColor = [CPTColor whiteColor];
-     CPTMutableTextStyle *axisTextStyle = [[CPTMutableTextStyle alloc] init];
-     axisTextStyle.color = [CPTColor whiteColor];
-     axisTextStyle.fontName = @"Helvetica-Bold";
-     axisTextStyle.fontSize = 11.0f;
-     CPTMutableLineStyle *tickLineStyle = [CPTMutableLineStyle lineStyle];
-     tickLineStyle.lineColor = [CPTColor whiteColor];
-     tickLineStyle.lineWidth = 2.0f;
-     CPTMutableLineStyle *gridLineStyle = [CPTMutableLineStyle lineStyle];
-     tickLineStyle.lineColor = [CPTColor blackColor];
-     tickLineStyle.lineWidth = 1.0f;
-     
+    CPTMutableTextStyle *axisTitleStyle = [CPTMutableTextStyle textStyle];
+    axisTitleStyle.color = [CPTColor whiteColor];
+    axisTitleStyle.fontName = @"Helvetica-Bold";
+    axisTitleStyle.fontSize = 6.0f;
+    CPTMutableLineStyle *axisLineStyle = [CPTMutableLineStyle lineStyle];
+    axisLineStyle.lineWidth = 1.0f;
+    axisLineStyle.lineColor = [CPTColor whiteColor];
+    CPTMutableTextStyle *axisTextStyle = [[CPTMutableTextStyle alloc] init];
+    axisTextStyle.color = [CPTColor whiteColor];
+    axisTextStyle.fontName = @"Helvetica-Bold";
+    axisTextStyle.fontSize = 6.0f;
+
+    CPTMutableLineStyle *tickLineStyle = [CPTMutableLineStyle lineStyle];
+    tickLineStyle.lineColor = [CPTColor blueColor];
+    tickLineStyle.lineWidth = 1.0f;
+    CPTMutableLineStyle *gridLineStyle = [CPTMutableLineStyle lineStyle];
+    tickLineStyle.lineColor = [CPTColor redColor];
+    tickLineStyle.lineWidth = 1.0f;
+    
+    
      // 2 - Get axis set
-     CPTXYAxisSet *axisSet = (CPTXYAxisSet *) self.hostView.hostedGraph.axisSet;
+    CPTXYAxisSet *axisSet = (CPTXYAxisSet *) self.hostView.hostedGraph.axisSet;
      
      // 3 - Configure x-axis
-     CPTAxis *x = axisSet.xAxis;
-     x.title = @"Day of Month";
-     x.titleTextStyle = axisTitleStyle;
-     x.titleOffset = 15.0f;
-     x.axisLineStyle = axisLineStyle;
-     x.labelingPolicy = CPTAxisLabelingPolicyNone;
-     x.labelTextStyle = axisTextStyle;
-     x.majorTickLineStyle = axisLineStyle;
-     x.majorTickLength = 4.0f;
-     x.tickDirection = CPTSignNegative;
-     CGFloat dateCount = [[[CPDStockPriceStore sharedInstance] datesInMonth] count];
-     NSMutableSet *xLabels = [NSMutableSet setWithCapacity:dateCount];
-     NSMutableSet *xLocations = [NSMutableSet setWithCapacity:dateCount];
-     NSInteger i = 0;
-     for (NSString *date in [[CPDStockPriceStore sharedInstance] datesInMonth]) {
-     CPTAxisLabel *label = [[CPTAxisLabel alloc] initWithText:date  textStyle:x.labelTextStyle];
-     CGFloat location = i++;
-     label.tickLocation = CPTDecimalFromCGFloat(location);
-     label.offset = x.majorTickLength;
-     if (label) {
-     [xLabels addObject:label];
-     [xLocations addObject:[NSNumber numberWithFloat:location]];
-     }
-     }
-     x.axisLabels = xLabels;
-     x.majorTickLocations = xLocations;
-     
+    CPTAxis *x = axisSet.xAxis;
+    x.title = @"SOMETHING ELSE";
+    x.titleTextStyle = axisTitleStyle;
+    x.titleOffset = 15.0f;
+    x.axisLineStyle = axisLineStyle;
+    x.labelingPolicy = CPTAxisLabelingPolicyNone;
+    x.labelTextStyle = axisTextStyle;
+    x.majorTickLineStyle = axisLineStyle;
+    x.majorTickLength = 4.0f;
+    x.tickDirection = CPTSignNegative;
+    CGFloat dateCount = [[self xValueStore] count];
+    NSMutableSet *xLabels = [NSMutableSet setWithCapacity:dateCount];
+    NSMutableSet *xLocations = [NSMutableSet setWithCapacity:dateCount];
+
+    NSInteger i = 0;
+    NSString *xVal = @"";
+    for (NSString *xValDecimal in [self xValueStore]) {
+        xVal = [NSString stringWithFormat:@"%@", xValDecimal];
+        CPTAxisLabel *label = [[CPTAxisLabel alloc] initWithText:xVal  textStyle:x.labelTextStyle];
+        CGFloat location = i++;
+        label.tickLocation = CPTDecimalFromCGFloat(location);
+        label.offset = x.majorTickLength;
+        if (label) {
+            [xLabels addObject:label];
+            [xLocations addObject:[NSNumber numberWithFloat:location]];
+        }
+    }
+    x.axisLabels = xLabels;
+    x.majorTickLocations = xLocations;
+
+
      // 4 - Configure y-axis
-     CPTAxis *y = axisSet.yAxis;
-     y.title = @"Price";
-     y.titleTextStyle = axisTitleStyle;
-     y.titleOffset = -40.0f;
-     y.axisLineStyle = axisLineStyle;
-     y.majorGridLineStyle = gridLineStyle;
-     y.labelingPolicy = CPTAxisLabelingPolicyNone;
-     y.labelTextStyle = axisTextStyle;
-     y.labelOffset = 16.0f;
-     y.majorTickLineStyle = axisLineStyle;
-     y.majorTickLength = 4.0f;
-     y.minorTickLength = 2.0f;
-     y.tickDirection = CPTSignPositive;
-     NSInteger majorIncrement = 100;
-     NSInteger minorIncrement = 50;
-     CGFloat yMax = 700.0f;  // should determine dynamically based on max price
-     NSMutableSet *yLabels = [NSMutableSet set];
-     NSMutableSet *yMajorLocations = [NSMutableSet set];
-     NSMutableSet *yMinorLocations = [NSMutableSet set];
-     for (NSInteger j = minorIncrement; j <= yMax; j += minorIncrement) {
-     NSUInteger mod = j % majorIncrement;
-     if (mod == 0) {
-     CPTAxisLabel *label = [[CPTAxisLabel alloc] initWithText:[NSString stringWithFormat:@"%li", (long)j] textStyle:y.labelTextStyle];
-     NSDecimal location = CPTDecimalFromInteger(j);
-     label.tickLocation = location;
-     label.offset = -y.majorTickLength - y.labelOffset;
-     if (label) {
-     [yLabels addObject:label];
-     }
-     [yMajorLocations addObject:[NSDecimalNumber decimalNumberWithDecimal:location]];
-     } else {
-     [yMinorLocations addObject:[NSDecimalNumber decimalNumberWithDecimal:CPTDecimalFromInteger(j)]];
-     }
-     }
-     y.axisLabels = yLabels;
-     y.majorTickLocations = yMajorLocations;
-     y.minorTickLocations = yMinorLocations;
- */
+    CPTAxis *y = axisSet.yAxis;
+    y.title = @"Price";
+    y.titleTextStyle = axisTitleStyle;
+    y.titleOffset = -10.0f;
+    y.axisLineStyle = axisLineStyle;
+    y.majorGridLineStyle = gridLineStyle;
+    y.labelingPolicy = CPTAxisLabelingPolicyNone;
+    y.labelTextStyle = axisTextStyle;
+    y.labelOffset = 5.0f;
+    y.majorTickLineStyle = axisLineStyle;
+    y.majorTickLength = 6.0f;
+    y.minorTickLength = 3.0f;
+    y.tickDirection = CPTSignNegative;
+    
+    NSInteger majorIncrement = 10;
+    NSInteger minorIncrement = 1;
+    CGFloat yMax = 100.0f;  // should determine dynamically based on max price
+    NSMutableSet *yLabels = [NSMutableSet set];
+    NSMutableSet *yMajorLocations = [NSMutableSet set];
+    NSMutableSet *yMinorLocations = [NSMutableSet set];
+    for (NSInteger j = minorIncrement; j <= yMax; j += minorIncrement) {
+        NSUInteger mod = j % majorIncrement;
+        if (mod == 0) {
+            CPTAxisLabel *label = [[CPTAxisLabel alloc] initWithText:[NSString stringWithFormat:@"%li", (long)j] textStyle:y.labelTextStyle];
+            NSDecimal location = CPTDecimalFromInteger(j);
+            label.tickLocation = location;
+            label.offset = -y.majorTickLength - y.labelOffset;
+                if (label) {
+                    [yLabels addObject:label];
+                }
+            [yMajorLocations addObject:[NSDecimalNumber decimalNumberWithDecimal:location]];
+        } else {
+            [yMinorLocations addObject:[NSDecimalNumber decimalNumberWithDecimal:CPTDecimalFromInteger(j)]];
+        }
+    }
+    y.axisLabels = yLabels;
+    y.majorTickLocations = yMajorLocations;
+    y.minorTickLocations = yMinorLocations;
+
 }
 
 #pragma mark - Rotation
