@@ -54,7 +54,7 @@ NSString *  const CPDTickerSymbolAAPL = @"AAPL";
 -(void)configureHost {
 	self.hostView = [(CPTGraphHostingView *) [CPTGraphHostingView alloc] initWithFrame:self.thisFrame];
     self.hostView.clipsToBounds = YES;
-	self.hostView.allowPinchScaling = NO;
+	self.hostView.allowPinchScaling = YES;
 	[self addSubview:self.hostView];
 }
 
@@ -104,10 +104,10 @@ NSString *  const CPDTickerSymbolAAPL = @"AAPL";
 	// 3 - Set up plot space
 	[plotSpace scaleToFitPlots:[NSArray arrayWithObjects:scatterPlot, nil]];
 	CPTMutablePlotRange *xRange = [plotSpace.xRange mutableCopy];
-	[xRange expandRangeByFactor:CPTDecimalFromCGFloat(1.1f)];
+	[xRange expandRangeByFactor:CPTDecimalFromCGFloat(1.0f)];
 	plotSpace.xRange = xRange;
 	CPTMutablePlotRange *yRange = [plotSpace.yRange mutableCopy];
-	[yRange expandRangeByFactor:CPTDecimalFromCGFloat(1.2f)];
+	[yRange expandRangeByFactor:CPTDecimalFromCGFloat(1.05f)];
 	plotSpace.yRange = yRange;
     
 	// 4 - Create styles and symbols
@@ -132,20 +132,20 @@ NSString *  const CPDTickerSymbolAAPL = @"AAPL";
     CPTMutableTextStyle *axisTitleStyle = [CPTMutableTextStyle textStyle];
     axisTitleStyle.color = [CPTColor whiteColor];
     axisTitleStyle.fontName = @"Helvetica-Bold";
-    axisTitleStyle.fontSize = 6.0f;
+    axisTitleStyle.fontSize = 10.0f;
     CPTMutableLineStyle *axisLineStyle = [CPTMutableLineStyle lineStyle];
     axisLineStyle.lineWidth = 1.0f;
     axisLineStyle.lineColor = [CPTColor whiteColor];
     CPTMutableTextStyle *axisTextStyle = [[CPTMutableTextStyle alloc] init];
     axisTextStyle.color = [CPTColor whiteColor];
     axisTextStyle.fontName = @"Helvetica-Bold";
-    axisTextStyle.fontSize = 6.0f;
+    axisTextStyle.fontSize = 10.0f;
 
     CPTMutableLineStyle *tickLineStyle = [CPTMutableLineStyle lineStyle];
-    tickLineStyle.lineColor = [CPTColor blueColor];
+    tickLineStyle.lineColor = [CPTColor whiteColor];
     tickLineStyle.lineWidth = 1.0f;
     CPTMutableLineStyle *gridLineStyle = [CPTMutableLineStyle lineStyle];
-    tickLineStyle.lineColor = [CPTColor redColor];
+    tickLineStyle.lineColor = [CPTColor whiteColor];
     tickLineStyle.lineWidth = 1.0f;
     
     
@@ -188,7 +188,7 @@ NSString *  const CPDTickerSymbolAAPL = @"AAPL";
     CPTAxis *y = axisSet.yAxis;
     y.title = @"Price";
     y.titleTextStyle = axisTitleStyle;
-    y.titleOffset = -10.0f;
+    y.titleOffset = 15.0f;
     y.axisLineStyle = axisLineStyle;
     y.majorGridLineStyle = gridLineStyle;
     y.labelingPolicy = CPTAxisLabelingPolicyNone;
@@ -199,7 +199,7 @@ NSString *  const CPDTickerSymbolAAPL = @"AAPL";
     y.minorTickLength = 3.0f;
     y.tickDirection = CPTSignNegative;
     
-    NSInteger majorIncrement = 10;
+    NSInteger majorIncrement = 1;
     NSInteger minorIncrement = 1;
     CGFloat yMax = 100.0f;  // should determine dynamically based on max price
     NSMutableSet *yLabels = [NSMutableSet set];
@@ -260,7 +260,7 @@ NSString *  const CPDTickerSymbolAAPL = @"AAPL";
 {
     static NSArray *yValueArray = nil;
     yValueArray = [NSArray arrayWithObjects:
-              [NSDecimalNumber numberWithFloat:6],
+              [NSDecimalNumber numberWithFloat:0],
               [NSDecimalNumber numberWithFloat:6],
               [NSDecimalNumber numberWithFloat:7],
               [NSDecimalNumber numberWithFloat:8],
