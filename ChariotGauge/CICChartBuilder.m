@@ -99,7 +99,6 @@ NSString *  const CPDTickerSymbolAAPL = @"AAPL";
 	scatterPlot.dataSource = self;
 	scatterPlot.identifier = self.plotIdentifier;
 	CPTColor *plotColor = [CPTColor redColor];
-	[graph addPlot:scatterPlot toPlotSpace:plotSpace];
 	
 	// 3 - Set up plot space
 	[plotSpace scaleToFitPlots:[NSArray arrayWithObjects:scatterPlot, nil]];
@@ -123,7 +122,7 @@ NSString *  const CPDTickerSymbolAAPL = @"AAPL";
 	plotSymbol.size = CGSizeMake(2.0f, 2.0f);
 	scatterPlot.plotSymbol = plotSymbol;
 
-    
+    [graph addPlot:scatterPlot toPlotSpace:plotSpace]; //SCATTER PLOT ADDED HERE.
 }
 
 -(void)configureAxes {
