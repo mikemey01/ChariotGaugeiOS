@@ -22,11 +22,10 @@ NSString *  const CPDTickerSymbolAAPL = @"AAPL";
     return self;
 }
 
-//START
 
 @synthesize hostView = hostView_, thisFrame, plotIdentifier, graph;
 
-
+/*
 
  // Only override drawRect: if you perform custom drawing.
  // An empty implementation adversely affects performance during animation.
@@ -318,5 +317,5 @@ NSString *  const CPDTickerSymbolAAPL = @"AAPL";
     
     return randNum;
 }
-
+*/
 @end
