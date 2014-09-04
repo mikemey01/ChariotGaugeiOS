@@ -9,21 +9,25 @@
 #import <UIKit/UIKit.h>
 #import "CorePlot-CocoaTouch.h"
 
-@interface CICChartBuilder : UIView <CPTPlotDataSource>{
-    CGRect thisFrame;
-    NSString *plotIdentifier;
+@interface CICChartBuilder : UIView <CPTPlotDataSource>
+{
+@private
+    NSMutableArray *plotData;
+    NSUInteger currentIndex;
+    NSTimer *dataTimer;
+    NSMutableArray *graphs;
     CPTGraph *graph;
-    
+    CGRect thisFrame;
+    CPTGraphHostingView *hostView;
 }
 
-@property (nonatomic, strong) CPTGraphHostingView *hostView;
-@property (nonatomic, assign) CGRect thisFrame;
-@property (nonatomic, retain) NSString *plotIdentifier;
 @property (nonatomic, retain) CPTGraph *graph;
+@property (nonatomic, assign) CGRect thisFrame;
+@property (nonatomic, retain) CPTGraphHostingView *hostView;
 
-- (int)generateRand:(int)minNum withMaxNum:(int)maxNum;
-- (void)initPlot;
-- (void)configureHost;
-- (void)configureGraph;
+-(void)newData:(NSTimer *)theTimer;
+-(void)addGraph:(CPTGraph *)graph toHostingView:(CPTGraphHostingView *)layerHostingView;
+-(void)initPlot;
 
 @end
+
