@@ -22,10 +22,11 @@ NSString *  const CPDTickerSymbolAAPL = @"AAPL";
     return self;
 }
 
+//START
 
 @synthesize hostView = hostView_, thisFrame, plotIdentifier, graph;
 
-/*
+
 
  // Only override drawRect: if you perform custom drawing.
  // An empty implementation adversely affects performance during animation.
@@ -121,7 +122,7 @@ NSString *  const CPDTickerSymbolAAPL = @"AAPL";
 	plotSymbol.size = CGSizeMake(2.0f, 2.0f);
 	scatterPlot.plotSymbol = plotSymbol;
 
-    [graph addPlot:scatterPlot toPlotSpace:plotSpace]; //SCATTER PLOT ADDED HERE.
+    [graph addPlot:scatterPlot toPlotSpace:plotSpace];
 }
 
 -(void)configureAxes {
@@ -317,5 +318,5 @@ NSString *  const CPDTickerSymbolAAPL = @"AAPL";
     
     return randNum;
 }
-*/
+
 @end
