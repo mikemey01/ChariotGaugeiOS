@@ -67,14 +67,25 @@ static NSString *const kPlotIdentifier = @"Data Source Plot";
     
     [graph applyTheme:[CPTTheme themeNamed:kCPTDarkGradientTheme]];
     self.hostView.hostedGraph = graph;
+    [self.hostView.layer setBorderWidth:1.0f];
 
     
     [graph.plotAreaFrame setFrame:thisFrame];
-    graph.plotAreaFrame.paddingTop    = 15.0;
-    graph.plotAreaFrame.paddingRight  = 15.0;
-    graph.plotAreaFrame.paddingBottom = 55.0;
-    graph.plotAreaFrame.paddingLeft   = 55.0;
+    graph.paddingLeft = 0.0;
+    graph.paddingRight = 0.0;
+    graph.paddingTop = 0.0;
+    graph.paddingBottom = 0.0;
+    graph.plotAreaFrame.paddingTop    = 0.0;
+    graph.plotAreaFrame.paddingRight  = 0.0;
+    graph.plotAreaFrame.paddingBottom = 0.0;
+    graph.plotAreaFrame.paddingLeft   = 0.0;
     graph.plotAreaFrame.masksToBorder = NO;
+    graph.plotAreaFrame.borderWidth = 0;
+    graph.plotAreaFrame.cornerRadius = 0;
+	[graph.plotAreaFrame setPaddingLeft:30.0f];
+	[graph.plotAreaFrame setPaddingBottom:25.0f];
+    [graph.plotAreaFrame setPaddingTop:5.0f];
+    [graph.plotAreaFrame setPaddingRight:10.0f];
     
     // Grid line styles
     CPTMutableLineStyle *majorGridLineStyle = [CPTMutableLineStyle lineStyle];
@@ -95,10 +106,11 @@ static NSString *const kPlotIdentifier = @"Data Source Plot";
     x.minorGridLineStyle          = minorGridLineStyle;
     x.minorTicksPerInterval       = 9;
     x.title                       = @"X Axis";
-    x.titleOffset                 = 35.0;
+    x.titleOffset                 = 5.0;
     NSNumberFormatter *labelFormatter = [[NSNumberFormatter alloc] init];
     labelFormatter.numberStyle = NSNumberFormatterNoStyle;
     x.labelFormatter           = labelFormatter;
+    x.labelOffset                 = 1.0;
     
     // Y axis
     CPTXYAxis *y = axisSet.yAxis;
@@ -107,9 +119,9 @@ static NSString *const kPlotIdentifier = @"Data Source Plot";
     y.majorGridLineStyle          = majorGridLineStyle;
     y.minorGridLineStyle          = minorGridLineStyle;
     y.minorTicksPerInterval       = 3;
-    y.labelOffset                 = 5.0;
+    y.labelOffset                 = 2.0;
     y.title                       = @"Y Axis";
-    y.titleOffset                 = 30.0;
+    y.titleOffset                 = 5.0;
     y.axisConstraints             = [CPTConstraints constraintWithLowerOffset:0.0];
     
     // Rotate the labels by 45 degrees, just to show it can be done.
@@ -121,7 +133,7 @@ static NSString *const kPlotIdentifier = @"Data Source Plot";
     dataSourceLinePlot.cachePrecision = CPTPlotCachePrecisionDouble;
     
     CPTMutableLineStyle *lineStyle = [dataSourceLinePlot.dataLineStyle mutableCopy];
-    lineStyle.lineWidth              = 3.0;
+    lineStyle.lineWidth              = 2.0;
     lineStyle.lineColor              = [CPTColor greenColor];
     dataSourceLinePlot.dataLineStyle = lineStyle;
     
@@ -130,6 +142,7 @@ static NSString *const kPlotIdentifier = @"Data Source Plot";
     
     // Plot space
     CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)graph.defaultPlotSpace;
+    
     plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromUnsignedInteger(0) length:CPTDecimalFromUnsignedInteger(kMaxDataPoints - 2)];
     plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromUnsignedInteger(0) length:CPTDecimalFromUnsignedInteger(1)];
     
@@ -183,6 +196,7 @@ static NSString *const kPlotIdentifier = @"Data Source Plot";
         currentIndex++;
         [plotData addObject:@( (1.0 - kAlpha) * [[plotData lastObject] doubleValue] + kAlpha * rand() / (double)RAND_MAX )];
         [thePlot insertDataAtIndex:plotData.count - 1 numberOfRecords:1];
+        //NSLog(@"rand: %f", rand()/(double)RAND_MAX*10);
     }
 }
 
