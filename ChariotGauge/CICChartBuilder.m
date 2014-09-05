@@ -28,6 +28,7 @@ static NSString *const kPlotIdentifier = @"Data Source Plot";
     return self;
 }
 
+//Gets this views bounds - Important!
 - (void)drawRect:(CGRect)rect
 {
     self.thisFrame = rect;
@@ -44,6 +45,7 @@ static NSString *const kPlotIdentifier = @"Data Source Plot";
     self.hostView = [(CPTGraphHostingView *) [CPTGraphHostingView alloc] initWithFrame:self.thisFrame];
     self.hostView.clipsToBounds = YES;
 	self.hostView.allowPinchScaling = YES;
+    self.hostView.userInteractionEnabled = YES;
     
     [plotData removeAllObjects];
     currentIndex = 0;
@@ -167,9 +169,8 @@ static NSString *const kPlotIdentifier = @"Data Source Plot";
         [self resizeAxes];
         
         currentIndex++;
-        [plotData addObject:@( (1.0 - kAlpha) * [[plotData lastObject] doubleValue] + kAlpha * rand() / (double)RAND_MAX )];
+        [plotData addObject:@(rand()/(double)RAND_MAX*10)];
         [thePlot insertDataAtIndex:plotData.count - 1 numberOfRecords:1];
-        //NSLog(@"rand: %f", rand()/(double)RAND_MAX*10);
     }
 }
 
@@ -180,9 +181,9 @@ static NSString *const kPlotIdentifier = @"Data Source Plot";
     NSUInteger yLocation      = (0);
     
     CPTPlotRange *oldRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromUnsignedInteger( (location > 0) ? (location - 1) : 0 )
-                                                          length:CPTDecimalFromUnsignedInteger(kMaxDataPoints - 2)];
+                                                          length:CPTDecimalFromUnsignedInteger(kMaxDataPoints + 10)];
     CPTPlotRange *newRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromUnsignedInteger(location)
-                                                          length:CPTDecimalFromUnsignedInteger(kMaxDataPoints - 2)];
+                                                          length:CPTDecimalFromUnsignedInteger(kMaxDataPoints + 10)];
     
     //The following will scale the y-axis up! The conditional statement should reflect the highest/lowest point of the data received.
     if(currentIndex < 11 && currentIndex > 0){ //only expand the y range up to ten.
