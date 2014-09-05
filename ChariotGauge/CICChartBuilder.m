@@ -119,23 +119,12 @@ static NSString *const kPlotIdentifier = @"Data Source Plot";
     // Rotate the labels by 45 degrees, just to show it can be done.
     x.labelRotation = M_PI_4;
     
-    // Create the plot
-    CPTScatterPlot *dataSourceLinePlot = [[CPTScatterPlot alloc] init];
-    dataSourceLinePlot.identifier     = kPlotIdentifier;
-    dataSourceLinePlot.cachePrecision = CPTPlotCachePrecisionDouble;
-    
-    CPTMutableLineStyle *lineStyle = [dataSourceLinePlot.dataLineStyle mutableCopy];
-    lineStyle.lineWidth              = 2.0;
-    lineStyle.lineColor              = [CPTColor greenColor];
-    dataSourceLinePlot.dataLineStyle = lineStyle;
-    
-    dataSourceLinePlot.dataSource = self;
-    [graph addPlot:dataSourceLinePlot];
+    [self addPlotToGraph:kPlotIdentifier withColor:[CPTColor greenColor]];
     
     // Plot space
     CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)graph.defaultPlotSpace;
     
-    plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromUnsignedInteger(0) length:CPTDecimalFromUnsignedInteger(kMaxDataPoints - 2)];
+    plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromUnsignedInteger(0) length:CPTDecimalFromUnsignedInteger(kMaxDataPoints + 10)];
     plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromUnsignedInteger(0) length:CPTDecimalFromUnsignedInteger(1)];
     
     [dataTimer invalidate];
@@ -151,6 +140,22 @@ static NSString *const kPlotIdentifier = @"Data Source Plot";
     else {
         dataTimer = nil;
     }
+}
+
+-(void)addPlotToGraph:(NSString*)plotIdentifierIn withColor:(CPTColor*)colorIn
+{
+    // Create the plot
+    CPTScatterPlot *dataSourceLinePlot = [[CPTScatterPlot alloc] init];
+    dataSourceLinePlot.identifier     = plotIdentifierIn;
+    dataSourceLinePlot.cachePrecision = CPTPlotCachePrecisionDouble;
+    
+    CPTMutableLineStyle *lineStyle = [dataSourceLinePlot.dataLineStyle mutableCopy];
+    lineStyle.lineWidth              = 2.0;
+    lineStyle.lineColor              = colorIn;
+    dataSourceLinePlot.dataLineStyle = lineStyle;
+    
+    dataSourceLinePlot.dataSource = self;
+    [graph addPlot:dataSourceLinePlot];
 }
 
 #pragma mark -
