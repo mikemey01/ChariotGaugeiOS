@@ -179,25 +179,43 @@ static NSString *const kPlotIdentifier = @"Data Source Plot";
             [thePlot deleteDataInIndexRange:NSMakeRange(0, 1)];
         }
         
-        CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)graph.defaultPlotSpace;
-        NSUInteger location       = (currentIndex >= kMaxDataPoints ? currentIndex - kMaxDataPoints + 2 : 0);
-        
-        CPTPlotRange *oldRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromUnsignedInteger( (location > 0) ? (location - 1) : 0 )
-                                                              length:CPTDecimalFromUnsignedInteger(kMaxDataPoints - 2)];
-        CPTPlotRange *newRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromUnsignedInteger(location)
-                                                              length:CPTDecimalFromUnsignedInteger(kMaxDataPoints - 2)];
-        
-        [CPTAnimation animate:plotSpace
-                     property:@"xRange"
-                fromPlotRange:oldRange
-                  toPlotRange:newRange
-                     duration:CPTFloat(1.0 / kFrameRate)];
+        [self resizeAxes];
         
         currentIndex++;
         [plotData addObject:@( (1.0 - kAlpha) * [[plotData lastObject] doubleValue] + kAlpha * rand() / (double)RAND_MAX )];
         [thePlot insertDataAtIndex:plotData.count - 1 numberOfRecords:1];
         //NSLog(@"rand: %f", rand()/(double)RAND_MAX*10);
     }
+}
+
+-(void)resizeAxes
+{
+    CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)graph.defaultPlotSpace;
+    NSUInteger location       = (currentIndex >= kMaxDataPoints ? currentIndex - kMaxDataPoints + 2 : 0);
+    NSUInteger yLocation      = (0);
+    
+    CPTPlotRange *oldRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromUnsignedInteger( (location > 0) ? (location - 1) : 0 )
+                                                          length:CPTDecimalFromUnsignedInteger(kMaxDataPoints - 2)];
+    CPTPlotRange *newRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromUnsignedInteger(location)
+                                                          length:CPTDecimalFromUnsignedInteger(kMaxDataPoints - 2)];
+    
+    //The following will scale the y-axis up! The conditional statement should reflect the highest/lowest point of the data received.
+    if(currentIndex < 11 && currentIndex > 0){ //only expand the y range up to ten.
+        CPTPlotRange *yOldRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromUnsignedInteger(yLocation) length:CPTDecimalFromUnsignedInteger(currentIndex)];
+        CPTPlotRange *yNewRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromUnsignedInteger(yLocation) length:CPTDecimalFromUnsignedInteger(currentIndex+1)];
+        
+        [CPTAnimation animate:plotSpace
+                     property:@"yRange"
+                fromPlotRange:yOldRange
+                  toPlotRange:yNewRange
+                     duration:CPTFloat(1.0 / kFrameRate)];
+    }
+    
+    [CPTAnimation animate:plotSpace
+                 property:@"xRange"
+            fromPlotRange:oldRange
+              toPlotRange:newRange
+                 duration:CPTFloat(1.0 / kFrameRate)];
 }
 
 #pragma mark -
