@@ -37,28 +37,18 @@ static NSString *const kPlotIdentifier = @"Data Source Plot";
 {
     if (self.graph == nil) self.graph = [[CPTXYGraph alloc] initWithFrame:self.hostView.bounds];
     
-    [self killGraph];
+    [dataTimer invalidate];
+    dataTimer = nil;
     plotData  = [[NSMutableArray alloc] initWithCapacity:kMaxDataPoints];
     dataTimer = nil;
     self.hostView = [(CPTGraphHostingView *) [CPTGraphHostingView alloc] initWithFrame:self.thisFrame];
     self.hostView.clipsToBounds = YES;
 	self.hostView.allowPinchScaling = YES;
     
-    [self generateData];
-	[self addSubview:self.hostView];
-    [self renderInLayer:hostView animated:YES];
-}
-
--(void)killGraph
-{
-    [dataTimer invalidate];
-    dataTimer = nil;
-}
-
--(void)generateData
-{
     [plotData removeAllObjects];
     currentIndex = 0;
+	[self addSubview:self.hostView];
+    [self renderInLayer:hostView animated:YES];
 }
 
 
@@ -161,11 +151,6 @@ static NSString *const kPlotIdentifier = @"Data Source Plot";
     }
 }
 
--(void)dealloc
-{
-    [dataTimer invalidate];
-}
-
 #pragma mark -
 #pragma mark Timer callback
 
@@ -244,6 +229,11 @@ static NSString *const kPlotIdentifier = @"Data Source Plot";
     }
     
     return num;
+}
+
+-(void)dealloc
+{
+    [dataTimer invalidate];
 }
 
 @end
