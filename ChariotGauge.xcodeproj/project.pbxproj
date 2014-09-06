@@ -76,6 +76,7 @@
 		CEB7805518C038CD00473D9F /* CICDualGaugeiPadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB7805418C038CD00473D9F /* CICDualGaugeiPadViewController.m */; };
 		CEB7805818C038DF00473D9F /* CICQuadGaugeiPadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB7805718C038DF00473D9F /* CICQuadGaugeiPadViewController.m */; };
 		CEB856CB18C0213C007D0081 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEB856C918C0213C007D0081 /* Main_iPad.storyboard */; };
+		CEC8CEC219BBC48D0089D7C4 /* CICPlotBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC8CEC119BBC48D0089D7C4 /* CICPlotBuilder.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -268,6 +269,8 @@
 		CEB7805618C038DF00473D9F /* CICQuadGaugeiPadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICQuadGaugeiPadViewController.h; sourceTree = "<group>"; };
 		CEB7805718C038DF00473D9F /* CICQuadGaugeiPadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICQuadGaugeiPadViewController.m; sourceTree = "<group>"; };
 		CEB856CA18C0213C007D0081 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
+		CEC8CEC019BBC48D0089D7C4 /* CICPlotBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICPlotBuilder.h; sourceTree = "<group>"; };
+		CEC8CEC119BBC48D0089D7C4 /* CICPlotBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICPlotBuilder.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -525,6 +528,8 @@
 			children = (
 				CE857FFB19A44B6F005527ED /* CICChartViewController.h */,
 				CE857FFC19A44B6F005527ED /* CICChartViewController.m */,
+				CEC8CEC019BBC48D0089D7C4 /* CICPlotBuilder.h */,
+				CEC8CEC119BBC48D0089D7C4 /* CICPlotBuilder.m */,
 				CE857FFE19A44E1D005527ED /* CICChartBuilder.h */,
 				CE857FFF19A44E1D005527ED /* CICChartBuilder.m */,
 			);
@@ -751,6 +756,7 @@
 				CE9CB8951896147D00F24822 /* IASKSpecifierValuesViewController.m in Sources */,
 				CE9CB89E1896147D00F24822 /* IASKSlider.m in Sources */,
 				CE85800019A44E1D005527ED /* CICChartBuilder.m in Sources */,
+				CEC8CEC219BBC48D0089D7C4 /* CICPlotBuilder.m in Sources */,
 				CE34F40D1872227F00C1F12B /* CICQuadGaugeViewController.m in Sources */,
 				CEB7805818C038DF00473D9F /* CICQuadGaugeiPadViewController.m in Sources */,
 				CE34F40A18710A3700C1F12B /* CICDualGaugeViewController.m in Sources */,
