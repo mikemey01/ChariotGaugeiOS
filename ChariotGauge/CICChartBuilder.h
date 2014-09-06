@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CorePlot-CocoaTouch.h"
+#import "CICPlotBuilder.h"
 
 @interface CICChartBuilder : UIView <CPTPlotDataSource>
 {
@@ -19,6 +20,7 @@
     CPTGraph *graph;
     CGRect thisFrame;
     CPTGraphHostingView *hostView;
+    CICPlotBuilder * _localPlotBuilder;
 }
 
 @property (nonatomic, retain) CPTGraph *graph;

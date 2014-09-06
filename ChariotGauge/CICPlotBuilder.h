@@ -7,7 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import "CorePlot-CocoaTouch.h"
 
-@interface CICPlotBuilder : NSObject
+@interface CICPlotBuilder : NSObject <CPTPlotDataSource>{
+    NSMutableArray *plotData;
+    NSUInteger currentIndex;
+    NSString *plotIdentifier;
+    CPTScatterPlot *scatterPlot;
+}
+
+@property (nonatomic, retain) NSMutableArray *plotData;
+@property (nonatomic, retain) NSString *plotIdentifier;
+
+-(CPTScatterPlot *)createPlot:(NSString *) plotIdentifierIn withColor:(CPTColor *) colorIn;
+-(NSString *)getPlotIdentifier:(CPTScatterPlot *)plotIn;
 
 @end

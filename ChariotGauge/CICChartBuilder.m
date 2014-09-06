@@ -8,6 +8,7 @@
 
 #import "CICChartBuilder.h"
 #import "CorePlot-CocoaTouch.h"
+#import "CICPlotBuilder.h"
 
 static const double kFrameRate = 5.0;  // frames per second
 static const double kAlpha     = 0.25; // smoothing constant
@@ -119,7 +120,11 @@ static NSString *const kPlotIdentifier = @"Data Source Plot";
     // Rotate the labels by 45 degrees, just to show it can be done.
     x.labelRotation = M_PI_4;
     
-    [self addPlotToGraph:kPlotIdentifier withColor:[CPTColor greenColor]];
+    //Create the plot, add it to the graph.
+    _localPlotBuilder = [CICPlotBuilder alloc];
+    
+    CPTScatterPlot *newPlot = [_localPlotBuilder createPlot:@"newPlot" withColor:[CPTColor greenColor]];
+    [self addPlotToGraph:newPlot];
     
     // Plot space
     CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)graph.defaultPlotSpace;
@@ -142,20 +147,9 @@ static NSString *const kPlotIdentifier = @"Data Source Plot";
     }
 }
 
--(void)addPlotToGraph:(NSString*)plotIdentifierIn withColor:(CPTColor*)colorIn
+-(void)addPlotToGraph:(CPTScatterPlot *) plotIn
 {
-    // Create the plot
-    CPTScatterPlot *dataSourceLinePlot = [[CPTScatterPlot alloc] init];
-    dataSourceLinePlot.identifier     = plotIdentifierIn;
-    dataSourceLinePlot.cachePrecision = CPTPlotCachePrecisionDouble;
-    
-    CPTMutableLineStyle *lineStyle = [dataSourceLinePlot.dataLineStyle mutableCopy];
-    lineStyle.lineWidth              = 2.0;
-    lineStyle.lineColor              = colorIn;
-    dataSourceLinePlot.dataLineStyle = lineStyle;
-    
-    dataSourceLinePlot.dataSource = self;
-    [graph addPlot:dataSourceLinePlot];
+    [graph addPlot:plotIn];
 }
 
 #pragma mark -
@@ -163,7 +157,8 @@ static NSString *const kPlotIdentifier = @"Data Source Plot";
 
 -(void)newData:(NSTimer *)theTimer
 {
-    CPTPlot *thePlot   = [graph plotWithIdentifier:kPlotIdentifier];
+    //Need to make newPlot global
+    CPTPlot *thePlot   = [graph plotWithIdentifier:[_localPlotBuilder getPlotIdentifier:newPlot]];
     
     if ( thePlot ) {
         if ( plotData.count >= kMaxDataPoints ) {
