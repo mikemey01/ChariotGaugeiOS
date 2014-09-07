@@ -36,9 +36,7 @@ static const NSUInteger kMaxDataPoints = 52;
 -(void)initPlot
 {
     if (self.graph == nil) self.graph = [[CPTXYGraph alloc] initWithFrame:self.hostView.bounds];
-    
-    [dataTimer invalidate];
-    dataTimer = nil;
+
     self.hostView = [(CPTGraphHostingView *) [CPTGraphHostingView alloc] initWithFrame:self.thisFrame];
     self.hostView.clipsToBounds = YES;
 	self.hostView.allowPinchScaling = YES;
@@ -130,14 +128,6 @@ static const NSUInteger kMaxDataPoints = 52;
     [graph addPlot:plotIn];
 }
 
-#pragma mark -
-#pragma mark Timer callback
-
--(void)newData:(NSTimer *)theTimer
-{
-    [_localPlotBuilder addNewDataToPlot:(CGFloat)rand()/(double)RAND_MAX*10];
-    [self resizeAxes:_localPlotBuilder.currentIndex];
-}
 
 -(void)resizeAxes:(NSUInteger)currentIndexIn
 {
@@ -171,9 +161,5 @@ static const NSUInteger kMaxDataPoints = 52;
                  duration:CPTFloat(1.0 / kFrameRate)];
 }
 
--(void)dealloc
-{
-    [dataTimer invalidate];
-}
 
 @end
