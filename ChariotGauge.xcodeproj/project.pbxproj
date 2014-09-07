@@ -77,6 +77,7 @@
 		CEB7805818C038DF00473D9F /* CICQuadGaugeiPadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB7805718C038DF00473D9F /* CICQuadGaugeiPadViewController.m */; };
 		CEB856CB18C0213C007D0081 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEB856C918C0213C007D0081 /* Main_iPad.storyboard */; };
 		CEC8CEC219BBC48D0089D7C4 /* CICPlotBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC8CEC119BBC48D0089D7C4 /* CICPlotBuilder.m */; };
+		CEC8CEC519BD1C930089D7C4 /* CICDualChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC8CEC419BD1C930089D7C4 /* CICDualChartViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -271,6 +272,8 @@
 		CEB856CA18C0213C007D0081 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 		CEC8CEC019BBC48D0089D7C4 /* CICPlotBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICPlotBuilder.h; sourceTree = "<group>"; };
 		CEC8CEC119BBC48D0089D7C4 /* CICPlotBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICPlotBuilder.m; sourceTree = "<group>"; };
+		CEC8CEC319BD1C930089D7C4 /* CICDualChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICDualChartViewController.h; sourceTree = "<group>"; };
+		CEC8CEC419BD1C930089D7C4 /* CICDualChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICDualChartViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -532,6 +535,8 @@
 				CEC8CEC119BBC48D0089D7C4 /* CICPlotBuilder.m */,
 				CE857FFE19A44E1D005527ED /* CICChartBuilder.h */,
 				CE857FFF19A44E1D005527ED /* CICChartBuilder.m */,
+				CEC8CEC319BD1C930089D7C4 /* CICDualChartViewController.h */,
+				CEC8CEC419BD1C930089D7C4 /* CICDualChartViewController.m */,
 			);
 			name = Charting;
 			sourceTree = "<group>";
@@ -758,6 +763,7 @@
 				CE85800019A44E1D005527ED /* CICChartBuilder.m in Sources */,
 				CEC8CEC219BBC48D0089D7C4 /* CICPlotBuilder.m in Sources */,
 				CE34F40D1872227F00C1F12B /* CICQuadGaugeViewController.m in Sources */,
+				CEC8CEC519BD1C930089D7C4 /* CICDualChartViewController.m in Sources */,
 				CEB7805818C038DF00473D9F /* CICQuadGaugeiPadViewController.m in Sources */,
 				CE34F40A18710A3700C1F12B /* CICDualGaugeViewController.m in Sources */,
 				CE9CB89C1896147D00F24822 /* IASKPSTextFieldSpecifierViewCell.m in Sources */,
