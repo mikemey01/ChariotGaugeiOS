@@ -15,22 +15,25 @@
 @private
     NSMutableArray *plotData;
     NSUInteger currentIndex;
-    NSTimer *dataTimer;
     NSMutableArray *graphs;
     CPTGraph *graph;
     CGRect thisFrame;
     CPTGraphHostingView *hostView;
     CICPlotBuilder * _localPlotBuilder;
+    CGFloat yMin;
+    CGFloat yMax;
 }
 
 @property (nonatomic, retain) CPTGraph *graph;
 @property (nonatomic, assign) CGRect thisFrame;
 @property (nonatomic, retain) CPTGraphHostingView *hostView;
+@property (nonatomic, assign) CGFloat yMin;
+@property (nonatomic, assign) CGFloat yMax;
 
 -(void)initPlot;
--(void)newData:(NSTimer *)theTimer;
 -(void)addPlotToGraph:(CPTScatterPlot *) plotIn;
--(void)resizeAxes:(NSUInteger)currentIndexIn;
+-(void)resizeXAxis:(NSUInteger)currentIndexIn;
+-(void)resizeYAxis:(CGFloat)yMinIn withYMax:(CGFloat)yMaxIn;
 
 @end
 

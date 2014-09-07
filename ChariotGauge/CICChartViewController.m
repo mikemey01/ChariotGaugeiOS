@@ -61,14 +61,26 @@ static const double kFrameRate = 20.0;  // frames per second
     //Create the plot, add it to the graph.
     _localPlotBuilderOne = [CICPlotBuilder alloc];
     
-    CPTScatterPlot *newPlot = [_localPlotBuilderOne createPlot:@"newPlot" withColor:[CPTColor greenColor]];
+    CPTScatterPlot *newPlot = [_localPlotBuilderOne createPlot:@"PlotOne" withColor:[CPTColor greenColor]];
     [chartView addPlotToGraph:newPlot];
 }
 
 -(void)addNewDataToPlot:(CGFloat)newData
 {
-    [_localPlotBuilderOne addNewDataToPlot:(CGFloat)rand()/(double)RAND_MAX*10];
-    [chartView resizeAxes:_localPlotBuilderOne.currentIndex];
+    CGFloat newDataForPlot = (CGFloat)rand()/(double)RAND_MAX*10;
+    [_localPlotBuilderOne addNewDataToPlot:newDataForPlot];
+    [chartView resizeXAxis:_localPlotBuilderOne.currentIndex];
+    [self resizeAxes:newDataForPlot];
+}
+
+-(void)resizeAxes:(CGFloat)newData
+{
+    if(newData+2 > chartView.yMax){
+        [chartView resizeYAxis:chartView.yMin withYMax:newData+2];
+    }
+    if(newData < chartView.yMin){
+        [chartView resizeYAxis:newData withYMax:chartView.yMax];
+    }
 }
 
 -(void)startTimer

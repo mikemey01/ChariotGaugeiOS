@@ -16,7 +16,7 @@ static const NSUInteger kMaxDataPoints = 52;
 
 @implementation CICChartBuilder
 
-@synthesize graph, thisFrame, hostView;
+@synthesize graph, thisFrame, hostView, yMin, yMax;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -42,9 +42,12 @@ static const NSUInteger kMaxDataPoints = 52;
 	self.hostView.allowPinchScaling = YES;
     self.hostView.userInteractionEnabled = YES;
     
+    self.yMin = 0;
+    self.yMax = 1;
     currentIndex = 0;
 	[self addSubview:self.hostView];
     [self renderInLayer:hostView animated:YES];
+
 }
 
 
@@ -87,7 +90,7 @@ static const NSUInteger kMaxDataPoints = 52;
     CPTXYAxisSet *axisSet = (CPTXYAxisSet *)graph.axisSet;
     CPTXYAxis *x          = axisSet.xAxis;
     x.labelingPolicy              = CPTAxisLabelingPolicyAutomatic;
-    x.orthogonalCoordinateDecimal = CPTDecimalFromUnsignedInteger(0);
+    x.orthogonalCoordinateDecimal = CPTDecimalFromUnsignedInteger(yMin);
     x.majorGridLineStyle          = majorGridLineStyle;
     x.minorGridLineStyle          = minorGridLineStyle;
     x.minorTicksPerInterval       = 9;
@@ -101,25 +104,28 @@ static const NSUInteger kMaxDataPoints = 52;
     // Y axis
     CPTXYAxis *y = axisSet.yAxis;
     y.labelingPolicy              = CPTAxisLabelingPolicyAutomatic;
-    y.orthogonalCoordinateDecimal = CPTDecimalFromUnsignedInteger(0);
+    y.orthogonalCoordinateDecimal = CPTDecimalFromUnsignedInteger(yMin);
     y.majorGridLineStyle          = majorGridLineStyle;
     y.minorGridLineStyle          = minorGridLineStyle;
     y.minorTicksPerInterval       = 3;
     y.labelOffset                 = 2.0;
     y.title                       = @"Y Axis";
     y.titleOffset                 = 5.0;
-    y.axisConstraints             = [CPTConstraints constraintWithLowerOffset:0.0];
+    y.axisConstraints             = [CPTConstraints constraintWithLowerOffset:yMin];
     
     // Rotate the labels by 45 degrees, just to show it can be done.
     x.labelRotation = M_PI_4;
     
     
     
-    // Plot space
+    // Create Plot space
     CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)graph.defaultPlotSpace;
     
+    //Setup initial x-Range
     plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromUnsignedInteger(0) length:CPTDecimalFromUnsignedInteger(kMaxDataPoints + 10)];
-    plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromUnsignedInteger(0) length:CPTDecimalFromUnsignedInteger(1)];
+    
+    //Setup initial y-Range. yMax - yMin to handle negatives for the length.
+    plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromUnsignedInteger(yMin) length:CPTDecimalFromUnsignedInteger(yMax-yMin)];
     
 }
 
@@ -129,36 +135,43 @@ static const NSUInteger kMaxDataPoints = 52;
 }
 
 
--(void)resizeAxes:(NSUInteger)currentIndexIn
+-(void)resizeXAxis:(NSUInteger)currentIndexIn
 {
     currentIndex = currentIndexIn;
     
     CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)graph.defaultPlotSpace;
     NSUInteger location       = (currentIndex >= kMaxDataPoints ? currentIndex - kMaxDataPoints + 2 : 0);
-    NSUInteger yLocation      = (0);
     
     CPTPlotRange *oldRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromUnsignedInteger( (location > 0) ? (location - 1) : 0 )
                                                           length:CPTDecimalFromUnsignedInteger(kMaxDataPoints + 10)];
     CPTPlotRange *newRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromUnsignedInteger(location)
                                                           length:CPTDecimalFromUnsignedInteger(kMaxDataPoints + 10)];
     
-    //The following will scale the y-axis up! The conditional statement should reflect the highest/lowest point of the data received.
-    if(currentIndex < 11 && currentIndex > 0){ //only expand the y range up to ten.
-        CPTPlotRange *yOldRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromUnsignedInteger(yLocation) length:CPTDecimalFromUnsignedInteger(currentIndex)];
-        CPTPlotRange *yNewRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromUnsignedInteger(yLocation) length:CPTDecimalFromUnsignedInteger(currentIndex+1)];
-        
-        [CPTAnimation animate:plotSpace
-                     property:@"yRange"
-                fromPlotRange:yOldRange
-                  toPlotRange:yNewRange
-                     duration:CPTFloat(1.0 / kFrameRate)];
-    }
-    
     [CPTAnimation animate:plotSpace
                  property:@"xRange"
             fromPlotRange:oldRange
               toPlotRange:newRange
                  duration:CPTFloat(1.0 / kFrameRate)];
+}
+
+-(void)resizeYAxis:(CGFloat)yMinIn withYMax:(CGFloat)yMaxIn
+{
+    CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)graph.defaultPlotSpace;
+    
+    //The following will scale the y-axis up! The conditional statement should reflect the highest/lowest point of the data received.
+    CPTPlotRange *yOldRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromUnsignedInteger(yMin) length:CPTDecimalFromUnsignedInteger(yMax-yMin)];
+    CPTPlotRange *yNewRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromUnsignedInteger(yMinIn) length:CPTDecimalFromUnsignedInteger(yMaxIn-yMinIn)];
+    
+    [CPTAnimation animate:plotSpace
+                 property:@"yRange"
+            fromPlotRange:yOldRange
+              toPlotRange:yNewRange
+                 duration:CPTFloat(1.0 / kFrameRate)];
+    
+    //Set these for future range changes.
+    yMin = yMinIn;
+    yMax = yMaxIn;
+
 }
 
 
