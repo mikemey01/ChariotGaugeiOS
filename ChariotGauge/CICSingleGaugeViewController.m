@@ -36,14 +36,20 @@
                  action:@selector(maxButtonAction)];
     
     resetButton = [[UIBarButtonItem alloc]
-                 initWithTitle:@"Reset"
-                 style:UIBarButtonItemStyleBordered
-                 target:self
-                 action:@selector(resetButtonAction)];
+                   initWithTitle:@"Reset"
+                   style:UIBarButtonItemStyleBordered
+                   target:self
+                   action:@selector(resetButtonAction)];
+    
+    chartButton = [[UIBarButtonItem alloc]
+                   initWithTitle:@"Chart"
+                   style:UIBarButtonItemStyleBordered
+                   target:self
+                   action:@selector(chartButtonAction)];
 
     
     //set the bar button items in the nav bar.
-    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:maxButton, resetButton, nil];
+    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:maxButton, resetButton, chartButton, nil];
     
     //build selected gauge.
     if(gaugeType==0){
@@ -327,6 +333,15 @@
     calcDataVolts.sensorMaxValue = 0.0f;
     maxButton.tintColor = nil;
     isPaused = NO;
+}
+
+-(void)chartButtonAction
+{
+    //TODO: change the story board to the iPad version in the iPad VCs.
+    UIStoryboard *story =[UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController *newViewController = [[UIViewController alloc]init];
+    newViewController=[story instantiateViewControllerWithIdentifier:@"chartViewController"];
+    [self.navigationController pushViewController:newViewController animated:YES];
 }
 
 -(void) initPrefs

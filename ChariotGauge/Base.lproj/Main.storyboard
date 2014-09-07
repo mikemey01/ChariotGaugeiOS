@@ -357,7 +357,7 @@
         <!--Chart View Controller - Charting-->
         <scene sceneID="bhD-qm-xuH">
             <objects>
-                <viewController id="BD1-HQ-NzR" customClass="CICChartViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="chartViewController" id="BD1-HQ-NzR" customClass="CICChartViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pMu-cP-yiA"/>
                         <viewControllerLayoutGuide type="bottom" id="omP-KY-iIh"/>
