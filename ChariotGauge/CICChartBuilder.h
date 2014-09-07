@@ -28,6 +28,7 @@
 @property (nonatomic, retain) CPTGraphHostingView *hostView;
 
 -(void)newData:(NSTimer *)theTimer;
+-(void)addPlotToGraph:(CPTScatterPlot *) plotIn;
 -(void)initPlot;
 
 @end

@@ -17,6 +17,7 @@
 @interface CICChartViewController : UIViewController <BluetoothDelegate>{
     CICChartBuilder *chartView;
     CICBluetoothHandler *bluetooth;
+    CICPlotBuilder *_localPlotBuilderOne;
 }
 
 @property GaugeType gaugeType;

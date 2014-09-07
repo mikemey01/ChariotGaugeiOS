@@ -39,14 +39,12 @@ static const NSUInteger kMaxDataPoints = 52;
     
     [dataTimer invalidate];
     dataTimer = nil;
-    //plotData  = [[NSMutableArray alloc] initWithCapacity:kMaxDataPoints];
     dataTimer = nil;
     self.hostView = [(CPTGraphHostingView *) [CPTGraphHostingView alloc] initWithFrame:self.thisFrame];
     self.hostView.clipsToBounds = YES;
 	self.hostView.allowPinchScaling = YES;
     self.hostView.userInteractionEnabled = YES;
     
-    //[plotData removeAllObjects];
     currentIndex = 0;
 	[self addSubview:self.hostView];
     [self renderInLayer:hostView animated:YES];
@@ -118,13 +116,7 @@ static const NSUInteger kMaxDataPoints = 52;
     // Rotate the labels by 45 degrees, just to show it can be done.
     x.labelRotation = M_PI_4;
     
-    /*move this to view controller */
-    //Create the plot, add it to the graph.
-    _localPlotBuilder = [CICPlotBuilder alloc];
     
-    CPTScatterPlot *newPlot = [_localPlotBuilder createPlot:@"newPlot" withColor:[CPTColor greenColor]];
-    [self addPlotToGraph:newPlot];
-    /*move this to view controller*/
     
     // Plot space
     CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)graph.defaultPlotSpace;

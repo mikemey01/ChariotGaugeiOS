@@ -43,7 +43,22 @@
 #pragma mark - UIViewController lifecycle methods
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    
+    [self buildChart];
+}
+
+-(void)buildChart
+{
     [chartView initPlot];
+}
+
+-(void)buildPlots
+{
+    //Create the plot, add it to the graph.
+    _localPlotBuilderOne = [CICPlotBuilder alloc];
+    
+    CPTScatterPlot *newPlot = [_localPlotBuilderOne createPlot:@"newPlot" withColor:[CPTColor greenColor]];
+    [chartView addPlotToGraph:newPlot];
 }
 
 
