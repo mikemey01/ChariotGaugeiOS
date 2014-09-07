@@ -53,6 +53,11 @@ static const double kFrameRate = 20.0;  // frames per second
 
 -(void)buildChart
 {
+    //Setup initial y-range.
+    [chartView setYMin:-5.0];
+    [chartView setYMax:1.0];
+    
+    //Build chart
     [chartView initPlot];
 }
 
@@ -68,6 +73,9 @@ static const double kFrameRate = 20.0;  // frames per second
 -(void)addNewDataToPlot:(CGFloat)newData
 {
     CGFloat newDataForPlot = (CGFloat)rand()/(double)RAND_MAX*10;
+    if(_localPlotBuilderOne.currentIndex%10==0){
+        newDataForPlot = -22.0;
+    }
     [_localPlotBuilderOne addNewDataToPlot:newDataForPlot];
     [chartView resizeXAxis:_localPlotBuilderOne.currentIndex];
     [self resizeAxes:newDataForPlot];
@@ -78,8 +86,8 @@ static const double kFrameRate = 20.0;  // frames per second
     if(newData+2 > chartView.yMax){
         [chartView resizeYAxis:chartView.yMin withYMax:newData+2];
     }
-    if(newData < chartView.yMin){
-        [chartView resizeYAxis:newData withYMax:chartView.yMax];
+    if(newData-2 < chartView.yMin){
+        [chartView resizeYAxis:newData-2 withYMax:chartView.yMax];
     }
 }
 
