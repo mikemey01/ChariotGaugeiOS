@@ -14,6 +14,9 @@
 
 -(CPTScatterPlot *)createPlot:(NSString *)plotIdentifierIn withColor:(CPTColor *) colorIn
 {
+    //Setup variables
+    currentIndex = 0;
+    
     // Create the plot
     scatterPlot = [[CPTScatterPlot alloc] init];
     scatterPlot.identifier     = plotIdentifierIn;
@@ -27,6 +30,11 @@
     scatterPlot.dataSource = self;
     
     return scatterPlot;
+}
+
+-(void)addNewDataToPlot
+{
+    
 }
 
 -(NSString *)getPlotIdentifier:(CPTScatterPlot *)plotIn
