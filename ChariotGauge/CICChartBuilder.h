@@ -10,7 +10,7 @@
 #import "CorePlot-CocoaTouch.h"
 #import "CICPlotBuilder.h"
 
-@interface CICChartBuilder : UIView <CPTPlotDataSource>
+@interface CICChartBuilder : UIView
 {
 @private
     NSMutableArray *plotData;

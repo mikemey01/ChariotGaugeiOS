@@ -10,11 +10,9 @@
 #import "CorePlot-CocoaTouch.h"
 #import "CICPlotBuilder.h"
 
-static const double kFrameRate = 5.0;  // frames per second
-static const double kAlpha     = 0.25; // smoothing constant
+static const double kFrameRate = 20.0;  // frames per second
 
 static const NSUInteger kMaxDataPoints = 52;
-static NSString *const kPlotIdentifier = @"Data Source Plot";
 
 @implementation CICChartBuilder
 
@@ -41,14 +39,14 @@ static NSString *const kPlotIdentifier = @"Data Source Plot";
     
     [dataTimer invalidate];
     dataTimer = nil;
-    plotData  = [[NSMutableArray alloc] initWithCapacity:kMaxDataPoints];
+    //plotData  = [[NSMutableArray alloc] initWithCapacity:kMaxDataPoints];
     dataTimer = nil;
     self.hostView = [(CPTGraphHostingView *) [CPTGraphHostingView alloc] initWithFrame:self.thisFrame];
     self.hostView.clipsToBounds = YES;
 	self.hostView.allowPinchScaling = YES;
     self.hostView.userInteractionEnabled = YES;
     
-    [plotData removeAllObjects];
+    //[plotData removeAllObjects];
     currentIndex = 0;
 	[self addSubview:self.hostView];
     [self renderInLayer:hostView animated:YES];
@@ -159,25 +157,14 @@ static NSString *const kPlotIdentifier = @"Data Source Plot";
 
 -(void)newData:(NSTimer *)theTimer
 {
-    //Need to make newPlot global
-    CPTPlot *thePlot   = [graph plotWithIdentifier:[_localPlotBuilder getPlotIdentifier:newPlot]];
-    
-    if ( thePlot ) {
-        if ( plotData.count >= kMaxDataPoints ) {
-            [plotData removeObjectAtIndex:0];
-            [thePlot deleteDataInIndexRange:NSMakeRange(0, 1)];
-        }
-        
-        [self resizeAxes];
-        
-        currentIndex++;
-        [plotData addObject:@(rand()/(double)RAND_MAX*10)];
-        [thePlot insertDataAtIndex:plotData.count - 1 numberOfRecords:1];
-    }
+    [_localPlotBuilder addNewDataToPlot:(CGFloat)rand()/(double)RAND_MAX*10];
+    [self resizeAxes:_localPlotBuilder.currentIndex];
 }
 
--(void)resizeAxes
+-(void)resizeAxes:(NSUInteger)currentIndexIn
 {
+    currentIndex = currentIndexIn;
+    
     CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)graph.defaultPlotSpace;
     NSUInteger location       = (currentIndex >= kMaxDataPoints ? currentIndex - kMaxDataPoints + 2 : 0);
     NSUInteger yLocation      = (0);
@@ -204,34 +191,6 @@ static NSString *const kPlotIdentifier = @"Data Source Plot";
             fromPlotRange:oldRange
               toPlotRange:newRange
                  duration:CPTFloat(1.0 / kFrameRate)];
-}
-
-#pragma mark -
-#pragma mark Plot Data Source Methods
-
--(NSUInteger)numberOfRecordsForPlot:(CPTPlot *)plot
-{
-    return [plotData count];
-}
-
--(id)numberForPlot:(CPTPlot *)plot field:(NSUInteger)fieldEnum recordIndex:(NSUInteger)index
-{
-    NSNumber *num = nil;
-    
-    switch ( fieldEnum ) {
-        case CPTScatterPlotFieldX:
-            num = @(index + currentIndex - plotData.count);
-            break;
-            
-        case CPTScatterPlotFieldY:
-            num = plotData[index];
-            break;
-            
-        default:
-            break;
-    }
-    
-    return num;
 }
 
 -(void)dealloc

@@ -15,12 +15,19 @@
     NSUInteger currentIndex;
     NSString *plotIdentifier;
     CPTScatterPlot *scatterPlot;
+    CGFloat plotYMax;
+    CGFloat plotYMin;
+    
 }
 
 @property (nonatomic, retain) NSMutableArray *plotData;
 @property (nonatomic, retain) NSString *plotIdentifier;
+@property (nonatomic, assign) CGFloat plotYMax;
+@property (nonatomic, assign) CGFloat plotYMin;
+@property (nonatomic, assign) NSUInteger currentIndex;
 
 -(CPTScatterPlot *)createPlot:(NSString *) plotIdentifierIn withColor:(CPTColor *) colorIn;
 -(NSString *)getPlotIdentifier:(CPTScatterPlot *)plotIn;
+-(void)addNewDataToPlot:(CGFloat)newData;
 
 @end
