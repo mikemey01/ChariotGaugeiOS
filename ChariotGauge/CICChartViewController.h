@@ -18,6 +18,7 @@
     CICChartBuilder *chartView;
     CICBluetoothHandler *bluetooth;
     CICPlotBuilder *_localPlotBuilderOne;
+    NSTimer *dataTimer;
 }
 
 @property GaugeType gaugeType;

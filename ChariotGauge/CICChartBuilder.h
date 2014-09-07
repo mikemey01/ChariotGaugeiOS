@@ -27,9 +27,10 @@
 @property (nonatomic, assign) CGRect thisFrame;
 @property (nonatomic, retain) CPTGraphHostingView *hostView;
 
+-(void)initPlot;
 -(void)newData:(NSTimer *)theTimer;
 -(void)addPlotToGraph:(CPTScatterPlot *) plotIn;
--(void)initPlot;
+-(void)resizeAxes:(NSUInteger)currentIndexIn;
 
 @end
 

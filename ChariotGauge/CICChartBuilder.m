@@ -39,7 +39,6 @@ static const NSUInteger kMaxDataPoints = 52;
     
     [dataTimer invalidate];
     dataTimer = nil;
-    dataTimer = nil;
     self.hostView = [(CPTGraphHostingView *) [CPTGraphHostingView alloc] initWithFrame:self.thisFrame];
     self.hostView.clipsToBounds = YES;
 	self.hostView.allowPinchScaling = YES;
@@ -124,19 +123,6 @@ static const NSUInteger kMaxDataPoints = 52;
     plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromUnsignedInteger(0) length:CPTDecimalFromUnsignedInteger(kMaxDataPoints + 10)];
     plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromUnsignedInteger(0) length:CPTDecimalFromUnsignedInteger(1)];
     
-    [dataTimer invalidate];
-    
-    if ( animated ) {
-        dataTimer = [NSTimer timerWithTimeInterval:1.0 / kFrameRate
-                                            target:self
-                                          selector:@selector(newData:)
-                                          userInfo:nil
-                                           repeats:YES];
-        [[NSRunLoop mainRunLoop] addTimer:dataTimer forMode:NSRunLoopCommonModes];
-    }
-    else {
-        dataTimer = nil;
-    }
 }
 
 -(void)addPlotToGraph:(CPTScatterPlot *) plotIn
