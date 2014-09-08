@@ -11,6 +11,7 @@
 #import "CICBluetoothHandler.h"
 #import "CICHomeScreenViewController.h"
 #import "CorePlot-CocoaTouch.h"
+#import "CICCalculateData.h"
 
 @class CICChartBuilder, CICChartViewController;
 
@@ -19,6 +20,9 @@
     CICBluetoothHandler *bluetooth;
     CICPlotBuilder *_localPlotBuilderOne;
     NSTimer *dataTimer;
+    
+    CICCalculateData *calcData;
+    CICCalculateData *calcDataVolts;
     
 }
 

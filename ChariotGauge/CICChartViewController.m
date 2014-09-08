@@ -10,6 +10,7 @@
 #import "CICAppDelegate.h"
 #import "CICChartBuilder.h"
 #import "CorePlot-CocoaTouch.h"
+#import "CICCalculateData.h"
 
 static const double kFrameRate = 20.0;  // frames per second
 
@@ -35,7 +36,19 @@ static const double kFrameRate = 20.0;  // frames per second
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    NSLog(@"gauge type: %u",gaugeType);
+    //set bluetooth delegate to self;
+    [self.bluetooth setBtDelegate:self];
+    
+    //create CalculateData object and initialize it.
+    calcData = [[CICCalculateData alloc] init];
+    [calcData initPrefs];
+    [calcData initStoich];
+    [calcData initSHHCoefficients];
+    
+    calcDataVolts = [[CICCalculateData alloc]init];
+    [calcDataVolts initPrefs];
+    [calcDataVolts initStoich];
+    [calcDataVolts initSHHCoefficients];
 }
 
 - (void)didReceiveMemoryWarning
