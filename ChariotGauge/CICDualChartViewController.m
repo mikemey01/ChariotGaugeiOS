@@ -66,20 +66,30 @@ static const double kFrameRate = 20.0;  // frames per second
 {
     //Create the plot, add it to the graph.
     _localPlotBuilderOne = [CICPlotBuilder alloc];
+    _localPlotBuilderTwo = [CICPlotBuilder alloc];
     
-    CPTScatterPlot *newPlot = [_localPlotBuilderOne createPlot:@"PlotOne" withColor:[CPTColor greenColor]];
-    [chartView addPlotToGraph:newPlot];
+    CPTScatterPlot *newPlotOne = [_localPlotBuilderOne createPlot:@"PlotOne" withColor:[CPTColor greenColor]];
+    CPTScatterPlot *newPlotTwo = [_localPlotBuilderTwo createPlot:@"PlotTwo" withColor:[CPTColor redColor]];
+    [chartView addPlotToGraph:newPlotOne];
+    [chartView addPlotToGraph:newPlotTwo];
 }
 
 -(void)addNewDataToPlot:(CGFloat)newData
 {
+    //Get latest Data
     CGFloat newDataForPlot = (CGFloat)rand()/(double)RAND_MAX*10;
-    if(_localPlotBuilderOne.currentIndex%10==0){
-        newDataForPlot = -22.0;
-    }
+    CGFloat newDataForPlotTwo = (CGFloat)rand()/(double)RAND_MAX*10;
+    
+    //Added latest data to plot
     [_localPlotBuilderOne addNewDataToPlot:newDataForPlot];
+    [_localPlotBuilderTwo addNewDataToPlot:newDataForPlotTwo];
+    
+    //Advance x-axis forward
     [chartView resizeXAxis:_localPlotBuilderOne.currentIndex];
+    
+    //resize y-axis if needed based on all plots data.
     [self resizeAxes:newDataForPlot];
+    [self resizeAxes:newDataForPlotTwo];
 }
 
 -(void)resizeAxes:(CGFloat)newData

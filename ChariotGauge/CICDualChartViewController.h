@@ -18,6 +18,7 @@
     CICChartBuilder *chartView;
     CICBluetoothHandler *bluetooth;
     CICPlotBuilder *_localPlotBuilderOne;
+    CICPlotBuilder *_localPlotBuilderTwo;
     NSTimer *dataTimer;
 }
 
