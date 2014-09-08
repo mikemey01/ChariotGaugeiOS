@@ -57,8 +57,14 @@
                    target:self
                    action:@selector(resetButtonAction)];
     
+    chartButton = [[UIBarButtonItem alloc]
+                   initWithTitle:@"Chart"
+                   style:UIBarButtonItemStyleBordered
+                   target:self
+                   action:@selector(chartButtonAction)];
+    
     //set the bar button items in the nav bar.
-    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:maxButton, resetButton, nil];
+    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:maxButton, resetButton, chartButton, nil];
     
     //Handles forcing landscape orientation NEEDS WORK
     UIViewController *mVC = [[UIViewController alloc] init];
@@ -379,7 +385,7 @@
 {
     //TODO: change the story board to the iPad version in the iPad VCs.
     UIStoryboard *story =[UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    CICDualChartViewController *chartViewController=[story instantiateViewControllerWithIdentifier:@"chartViewController"];
+    CICDualChartViewController *chartViewController=[story instantiateViewControllerWithIdentifier:@"dualChartViewController"];
     chartViewController.gaugeType = self.gaugeType;
     [self.navigationController pushViewController:chartViewController animated:YES];
 }
