@@ -341,7 +341,7 @@
     //TODO: change the story board to the iPad version in the iPad VCs.
     UIStoryboard *story =[UIStoryboard storyboardWithName:@"Main" bundle:nil];
     CICChartViewController *chartViewController=[story instantiateViewControllerWithIdentifier:@"chartViewController"];
-    chartViewController.gaugeType = dual;
+    chartViewController.gaugeType = self.gaugeType;
     [self.navigationController pushViewController:chartViewController animated:YES];
 }
 

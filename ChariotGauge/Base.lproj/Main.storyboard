@@ -207,7 +207,6 @@
                                 </state>
                                 <connections>
                                     <action selector="chartButtonPress:" destination="f5Q-SH-udO" eventType="touchUpInside" id="Hnh-ux-5FY"/>
-                                    <segue destination="BD1-HQ-NzR" kind="push" identifier="chartSegue" id="Heu-uk-LHt"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -354,7 +353,7 @@
             </objects>
             <point key="canvasLocation" x="848" y="227"/>
         </scene>
-        <!--Chart View Controller - Charting-->
+        <!--Chart View Controller-->
         <scene sceneID="bhD-qm-xuH">
             <objects>
                 <viewController storyboardIdentifier="chartViewController" id="BD1-HQ-NzR" customClass="CICChartViewController" sceneMemberID="viewController">
@@ -374,14 +373,38 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Charting" id="eyC-hh-DcS"/>
                     <connections>
                         <outlet property="chartView" destination="dYY-Ud-tQr" id="rO4-vA-auG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yga-go-Q7F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="848" y="697"/>
+            <point key="canvasLocation" x="1510" y="443"/>
+        </scene>
+        <!--Dual Chart View Controller-->
+        <scene sceneID="Yb9-fR-6Y7">
+            <objects>
+                <viewController storyboardIdentifier="dualChartViewController" id="zTz-H5-1ED" customClass="CICDualChartViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9m9-YU-yDR"/>
+                        <viewControllerLayoutGuide type="bottom" id="jME-W9-uYp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="A6B-kR-ycj">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hOv-kd-0cb" customClass="CICChartBuilder">
+                                <rect key="frame" x="0.0" y="65" width="320" height="503"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="857-mu-vMa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1510" y="-311"/>
         </scene>
         <!--Single Gauge View Controller - Single Gauge-->
         <scene sceneID="SWP-ML-A3k">

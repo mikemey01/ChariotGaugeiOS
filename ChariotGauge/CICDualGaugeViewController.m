@@ -11,6 +11,7 @@
 #import "CICAppDelegate.h"
 #import "CICCalculateData.h"
 #import "CICBluetoothHandler.h"
+#import "CICDualChartViewController.h"
 
 @interface CICDualGaugeViewController ()
 
@@ -372,6 +373,15 @@
     calcDataVolts.sensorMaxValue = 0.0f;
     maxButton.tintColor = nil;
     isPaused = NO;
+}
+
+-(void)chartButtonAction
+{
+    //TODO: change the story board to the iPad version in the iPad VCs.
+    UIStoryboard *story =[UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    CICDualChartViewController *chartViewController=[story instantiateViewControllerWithIdentifier:@"chartViewController"];
+    chartViewController.gaugeType = self.gaugeType;
+    [self.navigationController pushViewController:chartViewController animated:YES];
 }
 
 -(void) initPrefs
