@@ -12,6 +12,7 @@
 #import "CICBluetoothHandler.h"
 #import "CICCalculateData.h"
 #import <QuartzCore/QuartzCore.h>
+#import "CICChartViewController.h"
 
 @interface CICSingleGaugeViewController ()
 
@@ -339,9 +340,9 @@
 {
     //TODO: change the story board to the iPad version in the iPad VCs.
     UIStoryboard *story =[UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UIViewController *newViewController = [[UIViewController alloc]init];
-    newViewController=[story instantiateViewControllerWithIdentifier:@"chartViewController"];
-    [self.navigationController pushViewController:newViewController animated:YES];
+    CICChartViewController *chartViewController=[story instantiateViewControllerWithIdentifier:@"chartViewController"];
+    chartViewController.gaugeType = dual;
+    [self.navigationController pushViewController:chartViewController animated:YES];
 }
 
 -(void) initPrefs

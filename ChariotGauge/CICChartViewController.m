@@ -34,6 +34,8 @@ static const double kFrameRate = 20.0;  // frames per second
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    NSLog(@"gauge type: %u",gaugeType);
 }
 
 - (void)didReceiveMemoryWarning
