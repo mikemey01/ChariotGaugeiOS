@@ -50,6 +50,7 @@
 		CE58A012186F8E3F001348DA /* CICDrawLine.m in Sources */ = {isa = PBXBuildFile; fileRef = CE58A011186F8E3F001348DA /* CICDrawLine.m */; };
 		CE857FFD19A44B6F005527ED /* CICChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE857FFC19A44B6F005527ED /* CICChartViewController.m */; };
 		CE85800019A44E1D005527ED /* CICChartBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = CE857FFF19A44E1D005527ED /* CICChartBuilder.m */; };
+		CE976F7219BD439A00CBAACB /* CICQuadChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE976F7119BD439A00CBAACB /* CICQuadChartViewController.m */; };
 		CE9CB7E4189483B600F24822 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CE9CB7E3189483B600F24822 /* Settings.bundle */; };
 		CE9CB8931896147D00F24822 /* IASKAppSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9CB8751896147D00F24822 /* IASKAppSettingsViewController.m */; };
 		CE9CB8941896147D00F24822 /* IASKAppSettingsWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9CB8771896147D00F24822 /* IASKAppSettingsWebViewController.m */; };
@@ -226,6 +227,8 @@
 		CE857FFC19A44B6F005527ED /* CICChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICChartViewController.m; sourceTree = "<group>"; };
 		CE857FFE19A44E1D005527ED /* CICChartBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICChartBuilder.h; sourceTree = "<group>"; };
 		CE857FFF19A44E1D005527ED /* CICChartBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICChartBuilder.m; sourceTree = "<group>"; };
+		CE976F7019BD439A00CBAACB /* CICQuadChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICQuadChartViewController.h; sourceTree = "<group>"; };
+		CE976F7119BD439A00CBAACB /* CICQuadChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICQuadChartViewController.m; sourceTree = "<group>"; };
 		CE9CB7E3189483B600F24822 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		CE9CB8741896147D00F24822 /* IASKAppSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IASKAppSettingsViewController.h; sourceTree = "<group>"; };
 		CE9CB8751896147D00F24822 /* IASKAppSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IASKAppSettingsViewController.m; sourceTree = "<group>"; };
@@ -537,6 +540,8 @@
 				CE857FFF19A44E1D005527ED /* CICChartBuilder.m */,
 				CEC8CEC319BD1C930089D7C4 /* CICDualChartViewController.h */,
 				CEC8CEC419BD1C930089D7C4 /* CICDualChartViewController.m */,
+				CE976F7019BD439A00CBAACB /* CICQuadChartViewController.h */,
+				CE976F7119BD439A00CBAACB /* CICQuadChartViewController.m */,
 			);
 			name = Charting;
 			sourceTree = "<group>";
@@ -757,6 +762,7 @@
 			files = (
 				CE30D3841863FF57005475C1 /* CICSingleGaugeViewController.m in Sources */,
 				CE9CB89D1896147D00F24822 /* IASKPSTitleValueSpecifierViewCell.m in Sources */,
+				CE976F7219BD439A00CBAACB /* CICQuadChartViewController.m in Sources */,
 				CE9CB89B1896147D00F24822 /* IASKPSSliderSpecifierViewCell.m in Sources */,
 				CE9CB8951896147D00F24822 /* IASKSpecifierValuesViewController.m in Sources */,
 				CE9CB89E1896147D00F24822 /* IASKSlider.m in Sources */,

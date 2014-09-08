@@ -7,6 +7,7 @@
 //
 
 #import "CICQuadGaugeViewController.h"
+#import "CICQuadChartViewController.h"
 
 @interface CICQuadGaugeViewController ()
 
@@ -44,8 +45,14 @@
                    target:self
                    action:@selector(resetButtonAction)];
     
+    chartButton = [[UIBarButtonItem alloc]
+                   initWithTitle:@"Chart"
+                   style:UIBarButtonItemStyleBordered
+                   target:self
+                   action:@selector(chartButtonAction)];
+    
     //set the bar button items in the nav bar.
-    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:maxButton, resetButton, nil];
+    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:maxButton, resetButton, chartButton, nil];
     
     [self createBoostGauge:firstGauge :calcDataOne];
     [self createWidebandGauge:secondGauge :calcDataTwo];
@@ -353,6 +360,15 @@
     calcDataVolts.sensorMaxValue = 0.0f;
     maxButton.tintColor = nil;
     isPaused = NO;
+}
+
+-(void)chartButtonAction
+{
+    //TODO: change the story board to the iPad version in the iPad VCs.
+    UIStoryboard *story =[UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    CICQuadChartViewController *chartViewController=[story instantiateViewControllerWithIdentifier:@"quadChartViewController"];
+    chartViewController.gaugeType = self.gaugeType;
+    [self.navigationController pushViewController:chartViewController animated:YES];
 }
 
 -(void) initPrefs

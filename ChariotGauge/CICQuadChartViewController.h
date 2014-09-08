@@ -1,5 +1,5 @@
 //
-//  CICDualChartViewController.h
+//  CICQuadChartViewController.h
 //  ChariotGauge
 //
 //  Created by Mike on 9/7/14.
@@ -12,9 +12,9 @@
 #import "CICHomeScreenViewController.h"
 #import "CorePlot-CocoaTouch.h"
 
-@class CICChartBuilder, CICDualChartViewController;
+@class CICChartBuilder, CICQuadChartViewController;
 
-@interface CICDualChartViewController : UIViewController <BluetoothDelegate>{
+@interface CICQuadChartViewController : UIViewController <BluetoothDelegate>{
     CICChartBuilder *chartView;
     CICBluetoothHandler *bluetooth;
     CICPlotBuilder *_localPlotBuilderOne;

@@ -399,7 +399,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="857-mu-vMa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1510" y="-311"/>
+            <point key="canvasLocation" x="1886" y="227"/>
         </scene>
         <!--Single Gauge View Controller - Single Gauge-->
         <scene sceneID="SWP-ML-A3k">
@@ -460,6 +460,34 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yMV-y6-maU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="972" y="-419"/>
+        </scene>
+        <!--Quad Chart View Controller-->
+        <scene sceneID="lzu-lm-VHz">
+            <objects>
+                <viewController storyboardIdentifier="quadChartViewController" id="82W-OV-ICu" customClass="CICQuadChartViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Hhj-Am-YJm"/>
+                        <viewControllerLayoutGuide type="bottom" id="FUe-pR-P4N"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vEh-xq-8Kp">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lZp-JN-Xvb" customClass="CICChartBuilder">
+                                <rect key="frame" x="0.0" y="65" width="320" height="503"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="chartView" destination="lZp-JN-Xvb" id="6xD-dP-hOu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nso-mm-N8j" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1510" y="-311"/>
         </scene>
         <!--Navigation Controller - Chariot Gauge-->
         <scene sceneID="61J-oY-vUI">
