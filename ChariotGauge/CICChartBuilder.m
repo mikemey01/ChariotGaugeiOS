@@ -30,6 +30,7 @@ static const NSUInteger kMaxDataPoints = 52;
 - (void)drawRect:(CGRect)rect
 {
     self.thisFrame = rect;
+    
 }
 
 -(void)initPlot
