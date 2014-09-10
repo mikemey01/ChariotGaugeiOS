@@ -55,6 +55,6 @@
 -(void)maxButtonAction;
 -(void)resetButtonAction;
 -(void)initPrefs;
-
 -(void) setGaugeValue:(NSArray *)array;
+
 @end

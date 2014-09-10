@@ -16,13 +16,26 @@
 @class CICChartBuilder, CICChartViewController;
 
 @interface CICChartViewController : UIViewController <BluetoothDelegate>{
+    
+    //Chart/Plot Handling
     CICChartBuilder *chartView;
-    CICBluetoothHandler *bluetooth;
     CICPlotBuilder *_localPlotBuilderOne;
+    CICPlotBuilder *_localPlotBuilderVolts;
     NSTimer *dataTimer;
     
+    //Data crunching
     CICCalculateData *calcData;
     CICCalculateData *calcDataVolts;
+    CICBluetoothHandler *bluetooth;
+    
+    //Prefs vars
+    NSString *pressureUnits;
+    NSString *widebandUnits;
+    NSString *widebandFuelType;
+    NSString *temperatureUnits;
+    NSString *oilPressureUnits;
+    BOOL showVolts;
+    BOOL isNightMode;
     
 }
 

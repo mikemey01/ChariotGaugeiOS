@@ -124,6 +124,25 @@ static const double kFrameRate = 20.0;  // frames per second
     
 }
 
+-(void) initPrefs
+{
+    NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
+    
+    pressureUnits = [standardDefaults stringForKey:@"boost_psi_kpa"];
+    oilPressureUnits = [standardDefaults stringForKey:@"oil_psi_bar"];
+    widebandUnits = [standardDefaults stringForKey:@"wideband_afr_lambda"];
+    widebandFuelType = [standardDefaults stringForKey:@"wideband_fuel_type"];
+    temperatureUnits = [standardDefaults stringForKey:@"temperature_celsius_fahrenheit"];
+    showVolts = [standardDefaults boolForKey:@"general_show_volts"];
+    isNightMode = [standardDefaults boolForKey:@"general_night_mode"];
+}
+
+- (void)viewDidUnload
+{
+    [dataTimer invalidate];
+    dataTimer = nil;
+}
+
 -(void)dealloc
 {
     [dataTimer invalidate];
