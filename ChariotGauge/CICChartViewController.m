@@ -31,10 +31,33 @@ static const double kFrameRate = 20.0;  // frames per second
     return self;
 }
 
+
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    //build selected gauge.
+    if(gaugeType==0){
+        [self createBoostChart];
+    }else if(gaugeType==1){
+        [self createBoostChart];
+    }else if(gaugeType==2){
+        [self createWidebandChart];
+    }else if(gaugeType==3){
+        [self createTempChart];
+    }else if(gaugeType==4){
+        [self createOilChart];
+    }else{
+        [self createBoostChart];
+    }
+    
+    [self buildChart];
+    [self buildPlots];
+    [self startTimer];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
     //set bluetooth delegate to self;
     [self.bluetooth setBtDelegate:self];
@@ -51,26 +74,65 @@ static const double kFrameRate = 20.0;  // frames per second
     [calcDataVolts initSHHCoefficients];
 }
 
+#pragma mark Create Chart Section
+-(void)createBoostChart
+{
+    if([pressureUnits isEqualToString:@"BAR"]){
+        [self buildChart:-1 withYMax:3];
+    }else if([pressureUnits isEqualToString:@"PSI"]){
+        [self buildChart:-30 withYMax:25];
+    }else{
+        [self buildChart:0 withYMax:250];
+    }
+}
+
+-(void)createWidebandChart
+{
+    if([widebandUnits isEqualToString:@"Lambda"]){
+        [self buildChart:0 withYMax:2];
+    }else{
+        if([widebandFuelType isEqualToString:@"Gasoline"] || [widebandFuelType isEqualToString:@"Propane"] || [widebandFuelType isEqualToString:@"Diesel"]){
+            [self buildChart:5 withYMax:25];
+        }else if([widebandFuelType isEqualToString:@"Methanol"]){
+            [self buildChart:3 withYMax:8];
+        }else if([widebandFuelType isEqualToString:@"Ethanol"] || [widebandFuelType isEqualToString:@"E85"]){
+            [self buildChart:5 withYMax:12];
+        }else{
+            [self buildChart:5 withYMax:25];
+        }
+    }
+}
+
+-(void)createTempChart
+{
+    if([temperatureUnits isEqualToString:@"Fahrenheit"]){
+        [self buildChart:-20 withYMax:220];
+    }else{
+        [self buildChart:-35 withYMax:105];
+    }
+}
+
+-(void)createOilChart
+{
+    if([oilPressureUnits isEqualToString:@"PSI"]){
+        [self buildChart:0 withYMax:100];
+    }else{
+        [self buildChart:0 withYMax:10];
+    }
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - UIViewController lifecycle methods
--(void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    
-    [self buildChart];
-    [self buildPlots];
-    [self startTimer];
-}
 
--(void)buildChart
+-(void)buildChart:(NSInteger)yMinIn withYMax:(NSInteger)yMaxIn
 {
     //Setup initial y-range.
-    [chartView setYMin:-5.0];
-    [chartView setYMax:1.0];
+    [chartView setYMin:yMinIn];
+    [chartView setYMax:yMaxIn];
     
     //Build chart
     [chartView initPlot];
@@ -79,10 +141,13 @@ static const double kFrameRate = 20.0;  // frames per second
 -(void)buildPlots
 {
     //Create the plot, add it to the graph.
-    _localPlotBuilderOne = [CICPlotBuilder alloc];
+    _localPlotBuilderOne = [[CICPlotBuilder alloc] init];
+    _localPlotBuilderVolts = [[CICPlotBuilder alloc] init];
     
-    CPTScatterPlot *newPlot = [_localPlotBuilderOne createPlot:@"PlotOne" withColor:[CPTColor greenColor]];
-    [chartView addPlotToGraph:newPlot];
+    CPTScatterPlot *plotOne = [_localPlotBuilderOne createPlot:@"PlotOne" withColor:[CPTColor greenColor]];
+    CPTScatterPlot *plotVolts = [_localPlotBuilderVolts createPlot:@"PlotVolts" withColor:[CPTColor redColor]];
+    [chartView addPlotToGraph:plotOne];
+    [chartView addPlotToGraph:plotVolts];
 }
 
 -(void)addNewDataToPlot:(CGFloat)newData
