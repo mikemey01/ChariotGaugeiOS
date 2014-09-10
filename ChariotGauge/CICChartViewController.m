@@ -50,8 +50,12 @@ static const double kFrameRate = 20.0;  // frames per second
         [self createBoostChart];
     }
     
-    [self buildChart];
-    [self buildPlots];
+    if(showVolts){
+        [self buildPlot:@"plotVolts" withPlotBuilder:_localPlotBuilderVolts withColor:[CPTColor redColor]];
+    }
+    
+    //[self buildChart];
+    //[self buildPlots];
     [self startTimer];
 }
 
@@ -77,6 +81,7 @@ static const double kFrameRate = 20.0;  // frames per second
 #pragma mark Create Chart Section
 -(void)createBoostChart
 {
+    //Create the graph
     if([pressureUnits isEqualToString:@"BAR"]){
         [self buildChart:-1 withYMax:3];
     }else if([pressureUnits isEqualToString:@"PSI"]){
@@ -84,6 +89,9 @@ static const double kFrameRate = 20.0;  // frames per second
     }else{
         [self buildChart:0 withYMax:250];
     }
+    
+    //Create the boost plot
+    [self buildPlot:@"plotBoost" withPlotBuilder:_localPlotBuilderOne withColor:[CPTColor greenColor]];
 }
 
 -(void)createWidebandChart
@@ -101,6 +109,9 @@ static const double kFrameRate = 20.0;  // frames per second
             [self buildChart:5 withYMax:25];
         }
     }
+    
+    //Create the wideband plot
+    [self buildPlot:@"plotWideband" withPlotBuilder:_localPlotBuilderOne withColor:[CPTColor whiteColor]];
 }
 
 -(void)createTempChart
@@ -110,6 +121,9 @@ static const double kFrameRate = 20.0;  // frames per second
     }else{
         [self buildChart:-35 withYMax:105];
     }
+    
+    //Create the temp plot
+    [self buildPlot:@"plotTemp" withPlotBuilder:_localPlotBuilderOne withColor:[CPTColor yellowColor]];
 }
 
 -(void)createOilChart
@@ -119,6 +133,9 @@ static const double kFrameRate = 20.0;  // frames per second
     }else{
         [self buildChart:0 withYMax:10];
     }
+    
+    //Create the oil plot
+    [self buildPlot:@"plotOil" withPlotBuilder:_localPlotBuilderOne withColor:[CPTColor blueColor]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -138,16 +155,14 @@ static const double kFrameRate = 20.0;  // frames per second
     [chartView initPlot];
 }
 
--(void)buildPlots
+-(void)buildPlot:(NSString *)plotNameIn withPlotBuilder:(CICPlotBuilder *)plotBuilderIn withColor:(CPTColor *)colorIn
 {
     //Create the plot, add it to the graph.
-    _localPlotBuilderOne = [[CICPlotBuilder alloc] init];
-    _localPlotBuilderVolts = [[CICPlotBuilder alloc] init];
+    plotBuilderIn = [[CICPlotBuilder alloc] init];
     
-    CPTScatterPlot *plotOne = [_localPlotBuilderOne createPlot:@"PlotOne" withColor:[CPTColor greenColor]];
-    CPTScatterPlot *plotVolts = [_localPlotBuilderVolts createPlot:@"PlotVolts" withColor:[CPTColor redColor]];
-    [chartView addPlotToGraph:plotOne];
-    [chartView addPlotToGraph:plotVolts];
+    CPTScatterPlot *newPlot = [plotBuilderIn createPlot:plotNameIn withColor:colorIn];
+    
+    [chartView addPlotToGraph:newPlot];
 }
 
 -(void)addNewDataToPlot:(CGFloat)newData
