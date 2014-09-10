@@ -85,7 +85,7 @@ static const double kFrameRate = 20.0;  // frames per second
 {
     //Create the graph
     if([pressureUnits isEqualToString:@"BAR"]){
-        [self buildChart:-1.0f withYMax:3.0f];
+        [self buildChart:-5.0f withYMax:5.0f];
     }else if([pressureUnits isEqualToString:@"PSI"]){
         [self buildChart:-30.0f withYMax:25.0f];
     }else{
@@ -150,14 +150,17 @@ static const double kFrameRate = 20.0;  // frames per second
 }
 
 
--(void)buildChart:(NSInteger)yMinIn withYMax:(NSInteger)yMaxIn
+-(void)buildChart:(CGFloat)yMinIn withYMax:(CGFloat)yMaxIn
 {
     //Setup initial y-range.
-    [chartView setYMin:-10.0f];
+    [chartView setYMin:-30.0f];
     [chartView setYMax:20.0f];
     
     //Build chart
     [chartView initPlot];
+    
+    //TODO: this is hacky - but forces the x/y axes to work together.
+    [chartView resizeYAxis:chartView.yMin-1 withYMax:chartView.yMax+1];
 }
 
 -(CICPlotBuilder *)buildPlot:(NSString *)plotNameIn withPlotBuilder:(CICPlotBuilder *)plotBuilderIn withColor:(CPTColor *)colorIn
@@ -175,9 +178,9 @@ static const double kFrameRate = 20.0;  // frames per second
 -(void)addNewDataToPlot:(CICPlotBuilder *) plotBuilderIn withData:(CGFloat)newData
 {
     newData = (CGFloat)rand()/(double)RAND_MAX*10;
-    if(plotBuilderIn.currentIndex%10==0){
-        newData = -22.0;
-    }
+//    if(plotBuilderIn.currentIndex%10==0){
+//        newData = -22.0;
+//    }
     [plotBuilderIn addNewDataToPlot:newData];
     [chartView resizeXAxis:_localPlotBuilderOne.currentIndex];
     [self resizeAxes:newData];
