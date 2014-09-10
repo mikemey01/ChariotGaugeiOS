@@ -35,6 +35,8 @@ static const double kFrameRate = 20.0;  // frames per second
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
+    [self initPrefs];
+    
     //build selected gauge.
     if(gaugeType==0){
         [self createBoostChart];
@@ -51,7 +53,7 @@ static const double kFrameRate = 20.0;  // frames per second
     }
     
     if(showVolts){
-        [self buildPlot:@"plotVolts" withPlotBuilder:_localPlotBuilderVolts withColor:[CPTColor redColor]];
+        _localPlotBuilderVolts = [self buildPlot:@"plotVolts" withPlotBuilder:_localPlotBuilderVolts withColor:[CPTColor redColor]];
     }
     
     //[self buildChart];
@@ -83,19 +85,20 @@ static const double kFrameRate = 20.0;  // frames per second
 {
     //Create the graph
     if([pressureUnits isEqualToString:@"BAR"]){
-        [self buildChart:-1 withYMax:3];
+        [self buildChart:-1.0f withYMax:3.0f];
     }else if([pressureUnits isEqualToString:@"PSI"]){
-        [self buildChart:-30 withYMax:25];
+        [self buildChart:-30.0f withYMax:25.0f];
     }else{
-        [self buildChart:0 withYMax:250];
+        [self buildChart:0.0f withYMax:250.0f];
     }
     
     //Create the boost plot
-    [self buildPlot:@"plotBoost" withPlotBuilder:_localPlotBuilderOne withColor:[CPTColor greenColor]];
+    _localPlotBuilderOne = [self buildPlot:@"plotBoost" withPlotBuilder:_localPlotBuilderOne withColor:[CPTColor greenColor]];
 }
 
 -(void)createWidebandChart
 {
+    //Create the graph
     if([widebandUnits isEqualToString:@"Lambda"]){
         [self buildChart:0 withYMax:2];
     }else{
@@ -111,11 +114,12 @@ static const double kFrameRate = 20.0;  // frames per second
     }
     
     //Create the wideband plot
-    [self buildPlot:@"plotWideband" withPlotBuilder:_localPlotBuilderOne withColor:[CPTColor whiteColor]];
+    _localPlotBuilderOne = [self buildPlot:@"plotWideband" withPlotBuilder:_localPlotBuilderOne withColor:[CPTColor whiteColor]];
 }
 
 -(void)createTempChart
 {
+    //Create the graph
     if([temperatureUnits isEqualToString:@"Fahrenheit"]){
         [self buildChart:-20 withYMax:220];
     }else{
@@ -123,11 +127,12 @@ static const double kFrameRate = 20.0;  // frames per second
     }
     
     //Create the temp plot
-    [self buildPlot:@"plotTemp" withPlotBuilder:_localPlotBuilderOne withColor:[CPTColor yellowColor]];
+    _localPlotBuilderOne = [self buildPlot:@"plotTemp" withPlotBuilder:_localPlotBuilderOne withColor:[CPTColor yellowColor]];
 }
 
 -(void)createOilChart
 {
+    //Create the graph
     if([oilPressureUnits isEqualToString:@"PSI"]){
         [self buildChart:0 withYMax:100];
     }else{
@@ -135,7 +140,7 @@ static const double kFrameRate = 20.0;  // frames per second
     }
     
     //Create the oil plot
-    [self buildPlot:@"plotOil" withPlotBuilder:_localPlotBuilderOne withColor:[CPTColor blueColor]];
+    _localPlotBuilderOne = [self buildPlot:@"plotOil" withPlotBuilder:_localPlotBuilderOne withColor:[CPTColor blueColor]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -148,32 +153,34 @@ static const double kFrameRate = 20.0;  // frames per second
 -(void)buildChart:(NSInteger)yMinIn withYMax:(NSInteger)yMaxIn
 {
     //Setup initial y-range.
-    [chartView setYMin:yMinIn];
-    [chartView setYMax:yMaxIn];
+    [chartView setYMin:-10.0f];
+    [chartView setYMax:20.0f];
     
     //Build chart
     [chartView initPlot];
 }
 
--(void)buildPlot:(NSString *)plotNameIn withPlotBuilder:(CICPlotBuilder *)plotBuilderIn withColor:(CPTColor *)colorIn
+-(CICPlotBuilder *)buildPlot:(NSString *)plotNameIn withPlotBuilder:(CICPlotBuilder *)plotBuilderIn withColor:(CPTColor *)colorIn
 {
     //Create the plot, add it to the graph.
-    plotBuilderIn = [[CICPlotBuilder alloc] init];
+    plotBuilderIn = [CICPlotBuilder alloc];
     
     CPTScatterPlot *newPlot = [plotBuilderIn createPlot:plotNameIn withColor:colorIn];
     
     [chartView addPlotToGraph:newPlot];
+    
+    return plotBuilderIn;
 }
 
--(void)addNewDataToPlot:(CGFloat)newData
+-(void)addNewDataToPlot:(CICPlotBuilder *) plotBuilderIn withData:(CGFloat)newData
 {
-    CGFloat newDataForPlot = (CGFloat)rand()/(double)RAND_MAX*10;
-    if(_localPlotBuilderOne.currentIndex%10==0){
-        newDataForPlot = -22.0;
+    newData = (CGFloat)rand()/(double)RAND_MAX*10;
+    if(plotBuilderIn.currentIndex%10==0){
+        newData = -22.0;
     }
-    [_localPlotBuilderOne addNewDataToPlot:newDataForPlot];
+    [plotBuilderIn addNewDataToPlot:newData];
     [chartView resizeXAxis:_localPlotBuilderOne.currentIndex];
-    [self resizeAxes:newDataForPlot];
+    [self resizeAxes:newData];
 }
 
 -(void)resizeAxes:(CGFloat)newData
@@ -193,10 +200,16 @@ static const double kFrameRate = 20.0;  // frames per second
     
     dataTimer = [NSTimer timerWithTimeInterval:1.0 / kFrameRate
                                         target:self
-                                      selector:@selector(addNewDataToPlot:)
+                                      selector:@selector(addTimerData)
                                       userInfo:nil
                                        repeats:YES];
     [[NSRunLoop mainRunLoop] addTimer:dataTimer forMode:NSRunLoopCommonModes];
+}
+
+-(void)addTimerData
+{
+    [self addNewDataToPlot:_localPlotBuilderOne withData:0.0f];
+    [self addNewDataToPlot:_localPlotBuilderVolts withData:0.0f];
 }
 
 -(void)getLatestData:(NSMutableString *)newData
@@ -219,8 +232,8 @@ static const double kFrameRate = 20.0;  // frames per second
 
 - (void)viewDidUnload
 {
-    [dataTimer invalidate];
-    dataTimer = nil;
+    //[dataTimer invalidate];
+    //dataTimer = nil;
 }
 
 -(void)dealloc
