@@ -55,9 +55,7 @@ static const double kFrameRate = 20.0;  // frames per second
     if(showVolts){
         _localPlotBuilderVolts = [self buildPlot:@"plotVolts" withPlotBuilder:_localPlotBuilderVolts withColor:[CPTColor redColor]];
     }
-    
-    //[self buildChart];
-    //[self buildPlots];
+
     [self startTimer];
 }
 
