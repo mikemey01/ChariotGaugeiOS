@@ -31,9 +31,15 @@ static const NSUInteger kMaxDataPoints = 52;
     scatterPlot.cachePrecision = CPTPlotCachePrecisionDouble;
 
     CPTMutableLineStyle *lineStyle = [scatterPlot.dataLineStyle mutableCopy];
-    lineStyle.lineWidth              = 2.0;
+    lineStyle.lineWidth              = 1.0;
     lineStyle.lineColor              = colorIn;
     scatterPlot.dataLineStyle = lineStyle;
+    
+    CPTPlotSymbol *plotSymbol = [CPTPlotSymbol ellipsePlotSymbol];
+    plotSymbol.fill      = [CPTFill fillWithColor:colorIn];
+    plotSymbol.lineStyle = lineStyle;
+    plotSymbol.size      = CGSizeMake(1.0, 1.0);
+    scatterPlot.plotSymbol  = plotSymbol;
 
     scatterPlot.dataSource = self;
     
