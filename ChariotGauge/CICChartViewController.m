@@ -37,6 +37,22 @@ static const double kFrameRate = 20.0;  // frames per second
     
     [self initPrefs];
     
+    //set up bar button items
+    pauseButton = [[UIBarButtonItem alloc]
+                 initWithTitle:@"Pause"
+                 style:UIBarButtonItemStyleBordered
+                 target:self
+                 action:@selector(pauseButtonAction)];
+    
+    playButton = [[UIBarButtonItem alloc]
+                   initWithTitle:@"Play"
+                   style:UIBarButtonItemStyleBordered
+                   target:self
+                   action:@selector(playButtonAction)];
+    
+    //set the bar button items in the nav bar.
+    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:pauseButton, playButton, nil];
+    
     //build selected gauge.
     if(gaugeType==0){
         [self createBoostChart];
@@ -210,8 +226,10 @@ static const double kFrameRate = 20.0;  // frames per second
 
 -(void)addTimerData
 {
-    [self addNewDataToPlot:_localPlotBuilderOne withData:0.0f];
-    [self addNewDataToPlot:_localPlotBuilderVolts withData:0.0f];
+    if(!isPaused){
+        [self addNewDataToPlot:_localPlotBuilderOne withData:0.0f];
+        [self addNewDataToPlot:_localPlotBuilderVolts withData:0.0f];
+    }
 }
 
 -(void)getLatestData:(NSMutableString *)newData
@@ -230,6 +248,22 @@ static const double kFrameRate = 20.0;  // frames per second
     temperatureUnits = [standardDefaults stringForKey:@"temperature_celsius_fahrenheit"];
     showVolts = [standardDefaults boolForKey:@"general_show_volts"];
     isNightMode = [standardDefaults boolForKey:@"general_night_mode"];
+    
+    isPaused = NO;
+}
+
+-(void)pauseButtonAction
+{
+    isPaused = YES;
+    
+    pauseButton.tintColor = [UIColor redColor];
+}
+
+-(void)playButtonAction
+{
+    isPaused = NO;
+    
+    pauseButton.tintColor = nil;
 }
 
 - (void)viewDidUnload

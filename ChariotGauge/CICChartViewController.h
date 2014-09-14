@@ -22,6 +22,11 @@
     CICPlotBuilder *_localPlotBuilderOne;
     CICPlotBuilder *_localPlotBuilderVolts;
     NSTimer *dataTimer;
+    BOOL isPaused;
+    
+    //Bar buttons
+    UIBarButtonItem *pauseButton;
+    UIBarButtonItem *playButton;
     
     //Data crunching
     CICCalculateData *calcData;
