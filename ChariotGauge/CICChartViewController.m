@@ -52,6 +52,8 @@ static const double kFrameRate = 20.0;  // frames per second
         [self createBoostChart];
     }
     
+    NSLog(@"char type: %i", gaugeType);
+    
     if(showVolts){
         _localPlotBuilderVolts = [self buildPlot:@"plotVolts" withPlotBuilder:_localPlotBuilderVolts withColor:[CPTColor redColor]];
     }
@@ -103,7 +105,7 @@ static const double kFrameRate = 20.0;  // frames per second
         if([widebandFuelType isEqualToString:@"Gasoline"] || [widebandFuelType isEqualToString:@"Propane"] || [widebandFuelType isEqualToString:@"Diesel"]){
             [self buildChart:5 withYMax:25];
         }else if([widebandFuelType isEqualToString:@"Methanol"]){
-            [self buildChart:3 withYMax:8];
+            [self buildChart:0 withYMax:10];
         }else if([widebandFuelType isEqualToString:@"Ethanol"] || [widebandFuelType isEqualToString:@"E85"]){
             [self buildChart:5 withYMax:12];
         }else{
@@ -151,8 +153,8 @@ static const double kFrameRate = 20.0;  // frames per second
 -(void)buildChart:(CGFloat)yMinIn withYMax:(CGFloat)yMaxIn
 {
     //Setup initial y-range.
-    [chartView setYMin:-30.0f];
-    [chartView setYMax:20.0f];
+    [chartView setYMin:yMinIn];
+    [chartView setYMax:yMaxIn];
     
     //Build chart
     [chartView initPlot];
