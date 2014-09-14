@@ -108,13 +108,14 @@ static const NSUInteger kMaxDataPoints = 52;
     y.majorGridLineStyle          = majorGridLineStyle;
     y.minorGridLineStyle          = minorGridLineStyle;
     y.minorTicksPerInterval       = 3;
-    y.labelOffset                 = 2.0;
+    y.labelOffset                 = 0.0;
     y.title                       = @"Y Axis";
     y.titleOffset                 = 5.0;
     y.axisConstraints             = [CPTConstraints constraintWithLowerOffset:0.0];
+    y.labelFormatter              = labelFormatter;
     
     // Rotate the labels by 45 degrees, just to show it can be done.
-    x.labelRotation = M_PI_4;
+    x.labelRotation = 0;
     
     
     
