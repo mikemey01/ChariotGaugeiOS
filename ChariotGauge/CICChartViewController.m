@@ -44,6 +44,7 @@ static const double kFrameRate = 20.0;  // frames per second
                  target:self
                  action:@selector(pauseButtonAction)];
     
+    
     playButton = [[UIBarButtonItem alloc]
                    initWithTitle:@"Play"
                    style:UIBarButtonItemStyleBordered
@@ -193,9 +194,6 @@ static const double kFrameRate = 20.0;  // frames per second
 -(void)addNewDataToPlot:(CICPlotBuilder *) plotBuilderIn withData:(CGFloat)newData
 {
     newData = (CGFloat)rand()/(double)RAND_MAX*10;
-//    if(plotBuilderIn.currentIndex%10==0){
-//        newData = -22.0;
-//    }
     [plotBuilderIn addNewDataToPlot:newData];
     [chartView resizeXAxis:_localPlotBuilderOne.currentIndex];
     [self resizeAxes:newData];
@@ -255,21 +253,18 @@ static const double kFrameRate = 20.0;  // frames per second
 -(void)pauseButtonAction
 {
     isPaused = YES;
-    
     pauseButton.tintColor = [UIColor redColor];
 }
 
 -(void)playButtonAction
 {
     isPaused = NO;
-    
     pauseButton.tintColor = nil;
 }
 
 - (void)viewDidUnload
 {
-    //[dataTimer invalidate];
-    //dataTimer = nil;
+    
 }
 
 -(void)dealloc
