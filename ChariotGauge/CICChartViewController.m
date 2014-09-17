@@ -20,7 +20,7 @@ static const double kFrameRate = 20.0;  // frames per second
 
 @implementation CICChartViewController
 
-@synthesize chartView, gaugeType, bluetooth;
+@synthesize chartView, gaugeType, bluetooth, chartLabel1, chartLabelData1, chartVoltLabel, chartVoltLabelData;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -81,6 +81,12 @@ static const double kFrameRate = 20.0;  // frames per second
 {
     [super viewDidLoad];
     
+    //Set background color
+    self.view.backgroundColor = [UIColor colorWithRed:73/255.0 green:73/255.0 blue:73/255.0 alpha:1];
+    
+    //Init the labels
+    [self initLabels];
+    
     //set bluetooth delegate to self;
     [self.bluetooth setBtDelegate:self];
     
@@ -110,6 +116,7 @@ static const double kFrameRate = 20.0;  // frames per second
     
     //Create the boost plot
     _localPlotBuilderOne = [self buildPlot:@"plotBoost" withPlotBuilder:_localPlotBuilderOne withColor:[CPTColor greenColor]];
+    
 }
 
 -(void)createWidebandChart
@@ -250,6 +257,49 @@ static const double kFrameRate = 20.0;  // frames per second
     isPaused = NO;
 }
 
+-(void)initLabels
+{
+    //build selected chart labels.
+    if(gaugeType==0){
+        chartLabel1.textColor = [UIColor greenColor];
+        chartLabel1.font = [UIFont fontWithName:@"Futura" size:15];
+        chartLabel1.text = @"Boost:";
+        chartLabel1.textAlignment = NSTextAlignmentRight;
+        chartLabelData1.text = @"0.00";
+        chartLabelData1.font = [UIFont fontWithName:@"LetsgoDigital-Regular" size:20];
+    }else if(gaugeType==1){
+        chartLabel1.textColor = [UIColor greenColor];
+        chartLabel1.font = [UIFont fontWithName:@"Futura" size:15];
+        chartLabel1.text = @"Boost:";
+        chartLabel1.textAlignment = NSTextAlignmentRight;
+        chartLabelData1.text = @"0.00";
+        chartLabelData1.font = [UIFont fontWithName:@"LetsgoDigital-Regular" size:20];
+    }else if(gaugeType==2){
+        chartLabel1.textColor = [UIColor greenColor];
+        chartLabel1.font = [UIFont fontWithName:@"Futura" size:15];
+        chartLabel1.text = @"Wideband:";
+        chartLabel1.textAlignment = NSTextAlignmentRight;
+        chartLabelData1.text = @"0.00";
+        chartLabelData1.font = [UIFont fontWithName:@"LetsgoDigital-Regular" size:20];
+    }else if(gaugeType==3){
+        chartLabel1.textColor = [UIColor greenColor];
+        chartLabel1.font = [UIFont fontWithName:@"Futura" size:15];
+        chartLabel1.text = @"Temp:";
+        chartLabel1.textAlignment = NSTextAlignmentRight;
+        chartLabelData1.text = @"0.00";
+        chartLabelData1.font = [UIFont fontWithName:@"LetsgoDigital-Regular" size:20];
+    }else if(gaugeType==4){
+        chartLabel1.textColor = [UIColor greenColor];
+        chartLabel1.font = [UIFont fontWithName:@"Futura" size:15];
+        chartLabel1.text = @"Oil:";
+        chartLabel1.textAlignment = NSTextAlignmentRight;
+        chartLabelData1.text = @"0.00";
+        chartLabelData1.font = [UIFont fontWithName:@"LetsgoDigital-Regular" size:20];
+    }else{
+        //do nothing
+    }
+}
+
 -(void)pauseButtonAction
 {
     isPaused = YES;
@@ -264,7 +314,7 @@ static const double kFrameRate = 20.0;  // frames per second
 
 - (void)viewDidUnload
 {
-    
+    dataTimer = nil;
 }
 
 -(void)dealloc
