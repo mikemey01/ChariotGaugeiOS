@@ -200,8 +200,14 @@ static const double kFrameRate = 20.0;  // frames per second
 
 -(void)addNewDataToPlot:(CICPlotBuilder *) plotBuilderIn withData:(CGFloat)newData
 {
+    //add plots to graph
     newData = (CGFloat)rand()/(double)RAND_MAX*10;
     [plotBuilderIn addNewDataToPlot:newData];
+    
+    //Update labels
+    //chartLabelData1.text = [NSString stringWithFormat:@"%.1f", newData];
+    
+    //resize axes if needed
     [chartView resizeXAxis:_localPlotBuilderOne.currentIndex];
     [self resizeAxes:newData];
 }
@@ -265,36 +271,46 @@ static const double kFrameRate = 20.0;  // frames per second
         chartLabel1.font = [UIFont fontWithName:@"Futura" size:15];
         chartLabel1.text = @"Boost:";
         chartLabel1.textAlignment = NSTextAlignmentRight;
-        chartLabelData1.text = @"0.00";
+        chartLabelData1.textColor = [UIColor whiteColor];
         chartLabelData1.font = [UIFont fontWithName:@"LetsgoDigital-Regular" size:20];
+        chartLabelData1.text = @"00.0";
+        chartLabelData1.textAlignment = NSTextAlignmentLeft;
     }else if(gaugeType==1){
         chartLabel1.textColor = [UIColor greenColor];
         chartLabel1.font = [UIFont fontWithName:@"Futura" size:15];
         chartLabel1.text = @"Boost:";
         chartLabel1.textAlignment = NSTextAlignmentRight;
-        chartLabelData1.text = @"0.00";
+        chartLabelData1.textColor = [UIColor whiteColor];
         chartLabelData1.font = [UIFont fontWithName:@"LetsgoDigital-Regular" size:20];
+        chartLabelData1.text = @"00.0";
+        chartLabelData1.textAlignment = NSTextAlignmentLeft;
     }else if(gaugeType==2){
         chartLabel1.textColor = [UIColor greenColor];
-        chartLabel1.font = [UIFont fontWithName:@"Futura" size:15];
+        chartLabel1.font = [UIFont fontWithName:@"Futura" size:12];
         chartLabel1.text = @"Wideband:";
         chartLabel1.textAlignment = NSTextAlignmentRight;
-        chartLabelData1.text = @"0.00";
+        chartLabelData1.textColor = [UIColor whiteColor];
         chartLabelData1.font = [UIFont fontWithName:@"LetsgoDigital-Regular" size:20];
+        chartLabelData1.text = @"00.0";
+        chartLabelData1.textAlignment = NSTextAlignmentLeft;
     }else if(gaugeType==3){
         chartLabel1.textColor = [UIColor greenColor];
         chartLabel1.font = [UIFont fontWithName:@"Futura" size:15];
         chartLabel1.text = @"Temp:";
         chartLabel1.textAlignment = NSTextAlignmentRight;
-        chartLabelData1.text = @"0.00";
+        chartLabelData1.textColor = [UIColor whiteColor];
         chartLabelData1.font = [UIFont fontWithName:@"LetsgoDigital-Regular" size:20];
+        chartLabelData1.text = @"00.0";
+        chartLabelData1.textAlignment = NSTextAlignmentLeft;
     }else if(gaugeType==4){
         chartLabel1.textColor = [UIColor greenColor];
         chartLabel1.font = [UIFont fontWithName:@"Futura" size:15];
         chartLabel1.text = @"Oil:";
         chartLabel1.textAlignment = NSTextAlignmentRight;
-        chartLabelData1.text = @"0.00";
+        chartLabelData1.textColor = [UIColor whiteColor];
         chartLabelData1.font = [UIFont fontWithName:@"LetsgoDigital-Regular" size:20];
+        chartLabelData1.text = @"00.0";
+        chartLabelData1.textAlignment = NSTextAlignmentLeft;
     }else{
         //do nothing
     }
