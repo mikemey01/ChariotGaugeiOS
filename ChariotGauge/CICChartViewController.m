@@ -263,6 +263,7 @@ static const double kFrameRate = 20.0;  // frames per second
     isPaused = NO;
 }
 
+
 -(void)initLabels
 {
     //build selected chart labels.
