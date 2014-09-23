@@ -49,6 +49,8 @@ static const double kFrameRate = 20.0;  // frames per second
     
     [self initPrefs];
     
+    [self setBarButtonStyle:[UIColor whiteColor]];
+    
     //set up bar button items
     pauseButton = [[UIBarButtonItem alloc]
                  initWithTitle:@"Pause"
@@ -64,7 +66,7 @@ static const double kFrameRate = 20.0;  // frames per second
                    action:@selector(playButtonAction)];
     
     //set the bar button items in the nav bar.
-    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:pauseButton, playButton, nil];
+    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:pauseButton, nil];
     
     //build selected gauge.
     if(gaugeType==0){
@@ -329,16 +331,38 @@ static const double kFrameRate = 20.0;  // frames per second
     }
 }
 
+-(void)setBarButtonStyle:(UIColor*) colorIn
+{
+    //set the UIBarButtonItems style
+    NSShadow* shadow = [NSShadow new];
+    shadow.shadowOffset = CGSizeMake(1.0f, 1.2f);
+    shadow.shadowColor = [UIColor blackColor];
+    
+    NSDictionary *normalAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                      [UIFont fontWithName:@"Futura" size:16], NSFontAttributeName,
+                                      colorIn, NSForegroundColorAttributeName,
+                                      shadow, NSShadowAttributeName,
+                                      nil];
+    
+    [[UIBarButtonItem appearance] setTitleTextAttributes:normalAttributes forState:UIControlStateNormal];
+}
+
 -(void)pauseButtonAction
 {
-    isPaused = YES;
-    pauseButton.tintColor = [UIColor redColor];
+    if(isPaused){
+        isPaused = NO;
+        pauseButton.title = @"Pause";
+    }else{
+        isPaused = YES;
+        pauseButton.title = @"Play";
+    }
 }
 
 -(void)playButtonAction
 {
     isPaused = NO;
     pauseButton.tintColor = nil;
+    [self setBarButtonStyle:[UIColor whiteColor]];
 }
 
 - (void)viewDidUnload
