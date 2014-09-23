@@ -77,7 +77,7 @@ static const double kFrameRate = 20.0;  // frames per second
         [self createBoostChart];
     }
     
-    //added voltage plot of wanted
+    //added voltage plot if wanted
     if(showVolts){
         _localPlotBuilderVolts = [self buildPlot:@"plotVolts" withPlotBuilder:_localPlotBuilderVolts withColor:[CPTColor redColor]];
     }
