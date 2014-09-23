@@ -49,6 +49,7 @@ static const double kFrameRate = 20.0;  // frames per second
     
     [self initPrefs];
     
+    //Set bar button styles
     [self setBarButtonStyle:[UIColor whiteColor]];
     
     //set up bar button items
@@ -57,13 +58,6 @@ static const double kFrameRate = 20.0;  // frames per second
                  style:UIBarButtonItemStyleBordered
                  target:self
                  action:@selector(pauseButtonAction)];
-    
-    
-    playButton = [[UIBarButtonItem alloc]
-                   initWithTitle:@"Play"
-                   style:UIBarButtonItemStyleBordered
-                   target:self
-                   action:@selector(playButtonAction)];
     
     //set the bar button items in the nav bar.
     self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:pauseButton, nil];
@@ -83,7 +77,7 @@ static const double kFrameRate = 20.0;  // frames per second
         [self createBoostChart];
     }
     
-    
+    //added voltage plot of wanted
     if(showVolts){
         _localPlotBuilderVolts = [self buildPlot:@"plotVolts" withPlotBuilder:_localPlotBuilderVolts withColor:[CPTColor redColor]];
     }
@@ -123,9 +117,9 @@ static const double kFrameRate = 20.0;  // frames per second
     if([pressureUnits isEqualToString:@"BAR"]){
         [self buildChart:-5.0f withYMax:5.0f];
     }else if([pressureUnits isEqualToString:@"PSI"]){
-        [self buildChart:-30.0f withYMax:25.0f];
+        [self buildChart:0.0f withYMax:10.0f];
     }else{
-        [self buildChart:0.0f withYMax:250.0f];
+        [self buildChart:0.0f withYMax:30.0f];
     }
     
     //Create the boost plot
@@ -140,7 +134,7 @@ static const double kFrameRate = 20.0;  // frames per second
         [self buildChart:0 withYMax:2];
     }else{
         if([widebandFuelType isEqualToString:@"Gasoline"] || [widebandFuelType isEqualToString:@"Propane"] || [widebandFuelType isEqualToString:@"Diesel"]){
-            [self buildChart:5 withYMax:25];
+            [self buildChart:5 withYMax:15];
         }else if([widebandFuelType isEqualToString:@"Methanol"]){
             [self buildChart:0 withYMax:10];
         }else if([widebandFuelType isEqualToString:@"Ethanol"] || [widebandFuelType isEqualToString:@"E85"]){
@@ -158,9 +152,9 @@ static const double kFrameRate = 20.0;  // frames per second
 {
     //Create the graph
     if([temperatureUnits isEqualToString:@"Fahrenheit"]){
-        [self buildChart:-20 withYMax:220];
+        [self buildChart:20 withYMax:60];
     }else{
-        [self buildChart:-35 withYMax:105];
+        [self buildChart:-5 withYMax:30];
     }
     
     //Create the temp plot
@@ -171,7 +165,7 @@ static const double kFrameRate = 20.0;  // frames per second
 {
     //Create the graph
     if([oilPressureUnits isEqualToString:@"PSI"]){
-        [self buildChart:0 withYMax:100];
+        [self buildChart:0 withYMax:30];
     }else{
         [self buildChart:0 withYMax:10];
     }
@@ -356,13 +350,6 @@ static const double kFrameRate = 20.0;  // frames per second
         isPaused = YES;
         pauseButton.title = @"Play";
     }
-}
-
--(void)playButtonAction
-{
-    isPaused = NO;
-    pauseButton.tintColor = nil;
-    [self setBarButtonStyle:[UIColor whiteColor]];
 }
 
 - (void)viewDidUnload
