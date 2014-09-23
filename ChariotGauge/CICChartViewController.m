@@ -31,6 +31,18 @@ static const double kFrameRate = 20.0;  // frames per second
     return self;
 }
 
+//Handles portrait only mode.
+- (BOOL)shouldAutorotate
+{
+    return NO;
+}
+
+- (NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
+}
+//End handling portrait only mode.
+
 
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];

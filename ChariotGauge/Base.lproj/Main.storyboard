@@ -411,6 +411,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="hOv-kd-0cb" secondAttribute="bottom" constant="-2" id="Pku-k2-KFd"/>
                             <constraint firstAttribute="bottom" secondItem="hOv-kd-0cb" secondAttribute="bottom" constant="-2" id="edc-ez-Cus"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
