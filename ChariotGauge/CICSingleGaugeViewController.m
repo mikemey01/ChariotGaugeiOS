@@ -50,7 +50,7 @@
 
     
     //set the bar button items in the nav bar.
-    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:maxButton, resetButton, nil];// chartButton, nil];
+    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:maxButton, resetButton, chartButton, nil];
     
     //build selected gauge.
     if(gaugeType==0){
