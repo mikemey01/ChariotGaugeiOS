@@ -52,10 +52,6 @@
         CICSingleGaugeViewController *gaugeController = (CICSingleGaugeViewController *)segue.destinationViewController;
         gaugeController.gaugeType = wideband;
         gaugeController.bluetooth = self.bluetooth;
-    }else if([segue.identifier isEqualToString:@"chartSegue"]){
-        CICChartViewController *gaugeController = (CICChartViewController *)segue.destinationViewController;
-        gaugeController.gaugeType = chart;
-        gaugeController.bluetooth = self.bluetooth;
     }else if([segue.identifier isEqualToString:@"boostSegue"]){
         CICSingleGaugeViewController *gaugeController = (CICSingleGaugeViewController *)segue.destinationViewController;
         gaugeController.gaugeType = boost;
@@ -91,11 +87,6 @@
     return UIInterfaceOrientationMaskPortrait;
 }
 //End handling portrait only mode.
-
--(IBAction)chartButtonPress:(id)sender
-{
-    gaugeType = chart;
-}
 
 -(IBAction)widebandButtonPress:(id)sender
 {
@@ -186,7 +177,6 @@
 
 -(void)getLatestPeriph:(NSString *)periphName
 {
-    NSLog(@"made it to getLatestPeriph - home");
     if([periphName isEqualToString:@"HMSoft"]){
         periphName = @"Chariot Gauge";
     }
@@ -200,7 +190,6 @@
 -(void)getLatestBluetoothState:(NSString *)latestStatus
 {
     if([latestStatus isEqualToString:@"error"]){
-        NSLog(@"made it to getLatestBluetoothState - home error");
         //go to error alert
         [self.bluetooth stopScan];
         [self stopTimer];
@@ -211,7 +200,6 @@
     }
     
     if([latestStatus isEqualToString:@"bluetoothOff"]){
-        NSLog(@"made it to getLatestBluetoothState - home bt off");
         [self.bluetooth stopScan];
         [self stopTimer];
         [self.bluetooth disconnectBluetooth];
@@ -301,7 +289,7 @@
                     self.periphArray = nil;
                     break;
                 default:
-                    NSLog(@"default triggered");
+                    //NSLog(@"default triggered");
                     [self.bluetooth stopScan];
                     self.periphArray = nil;
                     self.isConnected = NO;

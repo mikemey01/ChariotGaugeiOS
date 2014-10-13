@@ -22,7 +22,7 @@
     
     //Make sure we're not already connected.
     if(self.peripheral.state != CBPeripheralStateConnected){
-        NSLog(@"starting scan/connect.");
+        //NSLog(@"starting scan/connect.");
         [self.stateDelegate getLatestBluetoothState:@"Scanning.."];
         CBCentralManager *centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil options:nil];
         self.centralManager = centralManager;
@@ -39,7 +39,7 @@
 -(void)disconnectBluetooth
 {
     if(self.peripheral.state == CBPeripheralStateConnected){
-        NSLog(@"disconnectBluetooth from BTH.");
+        //NSLog(@"disconnectBluetooth from BTH.");
         [self stopScan];
         if (self.peripheral.services != nil) {
             for (CBService *service in self.peripheral.services) {
@@ -71,7 +71,7 @@
 */
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
 {
-    NSLog(@"didDiscoverPeripheral BTH");
+    //NSLog(@"didDiscoverPeripheral BTH");
     [self addPeriphToArray:peripheral];
     [[self periphDelegate] getLatestPeriph:peripheral.name];
 }
@@ -207,7 +207,7 @@
 {
 	// Determine the state of the peripheral
 	if ([central state] == CBCentralManagerStatePoweredOff) {
-		NSLog(@"CoreBluetooth BLE hardware is powered off");
+		//NSLog(@"CoreBluetooth BLE hardware is powered off");
         if(connectPressed){
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Bluetooth Status" message:@"Bluetooth is turned off, please turn on in Settings" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alert show];
@@ -215,17 +215,17 @@
         }
 	}
 	else if ([central state] == CBCentralManagerStatePoweredOn) {
-		NSLog(@"CoreBluetooth BLE hardware is powered on and ready");
+		//NSLog(@"CoreBluetooth BLE hardware is powered on and ready");
         [self.centralManager scanForPeripheralsWithServices:nil options:nil];
 	}
 	else if ([central state] == CBCentralManagerStateUnauthorized) {
-		NSLog(@"CoreBluetooth BLE state is unauthorized");
+		//NSLog(@"CoreBluetooth BLE state is unauthorized");
 	}
 	else if ([central state] == CBCentralManagerStateUnknown) {
-		NSLog(@"CoreBluetooth BLE state is unknown");
+		//NSLog(@"CoreBluetooth BLE state is unknown");
 	}
 	else if ([central state] == CBCentralManagerStateUnsupported) {
-		NSLog(@"CoreBluetooth BLE hardware is unsupported on this platform");
+		//NSLog(@"CoreBluetooth BLE hardware is unsupported on this platform");
 	}
 }
 

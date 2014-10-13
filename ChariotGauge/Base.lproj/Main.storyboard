@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="8sk-Dn-HgG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="8sk-Dn-HgG">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
-        <!--Home Screen View Controller - Chariot Gauge-->
+        <!--Chariot Gauge-->
         <scene sceneID="uSn-fI-Zw1">
             <objects>
                 <viewController id="f5Q-SH-udO" customClass="CICHomeScreenViewController" sceneMemberID="viewController">
@@ -18,7 +18,6 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uk9-9V-h3o">
                                 <rect key="frame" x="206" y="213" width="48" height="48"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="48" id="ceF-AB-jJI"/>
                                     <constraint firstAttribute="height" constant="48" id="rEN-SY-bf4"/>
@@ -28,12 +27,11 @@
                                 </state>
                                 <connections>
                                     <action selector="boostButtonPress:" destination="f5Q-SH-udO" eventType="touchUpInside" id="aVu-TX-6Jj"/>
-                                    <segue destination="Ut1-rf-dv2" kind="push" id="VxB-Le-n4z"/>
+                                    <segue destination="Ut1-rf-dv2" kind="push" identifier="boostSegue" id="VxB-Le-n4z"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="paE-FK-US7">
                                 <rect key="frame" x="63" y="90" width="48" height="48"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <accessibility key="accessibilityConfiguration" label="">
                                     <accessibilityTraits key="traits" none="YES" button="YES" image="YES" staticText="YES"/>
                                 </accessibility>
@@ -50,7 +48,6 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ds6-L6-M4i">
                                 <rect key="frame" x="206" y="90" width="48" height="48"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="Wqj-BA-oPA"/>
                                     <constraint firstAttribute="width" constant="48" id="XMF-uX-gC4"/>
@@ -65,7 +62,6 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6mG-7d-tmg">
                                 <rect key="frame" x="64" y="213" width="48" height="48"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="48" id="XTS-QW-Ye4"/>
                                     <constraint firstAttribute="height" constant="48" id="ka2-eI-sG1"/>
@@ -80,7 +76,6 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rle-EW-vRG">
                                 <rect key="frame" x="63" y="333" width="48" height="48"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="Mpw-yk-Iiq"/>
                                     <constraint firstAttribute="width" constant="48" id="O5F-qj-qBl"/>
@@ -95,7 +90,6 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ypw-zT-RRd">
                                 <rect key="frame" x="206" y="333" width="48" height="48"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="48" id="9nn-dz-4Jg"/>
                                     <constraint firstAttribute="height" constant="48" id="cLI-t6-8D5"/>
@@ -110,7 +104,6 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3ZI-BM-nfz">
                                 <rect key="frame" x="64" y="452" width="48" height="48"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="48" id="bad-Cs-En7"/>
                                     <constraint firstAttribute="height" constant="48" id="rHX-TO-VIb"/>
@@ -125,7 +118,6 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S1h-EX-L3S">
                                 <rect key="frame" x="206" y="452" width="48" height="48"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="48" id="0sx-7w-QuB"/>
                                     <constraint firstAttribute="height" constant="48" id="LwR-S2-CY1"/>
@@ -140,63 +132,54 @@
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Connect" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6aB-Zo-Am5">
                                 <rect key="frame" x="54" y="146" width="67" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="OriyaSangamMN" family="Oriya Sangam MN" pointSize="16"/>
                                 <color key="textColor" red="0.30261772358468864" green="0.36423753821370386" blue="0.49912958559782605" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lom-cP-URM">
                                 <rect key="frame" x="194" y="146" width="72" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="OriyaSangamMN" family="Oriya Sangam MN" pointSize="16"/>
                                 <color key="textColor" red="0.3026177236" green="0.36423753819999999" blue="0.49912958559999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Wideband O2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S27-hk-JoM">
                                 <rect key="frame" x="36" y="269" width="110" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="OriyaSangamMN" family="Oriya Sangam MN" pointSize="16"/>
                                 <color key="textColor" red="0.3026177236" green="0.36423753819999999" blue="0.49912958559999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Boost/Vac" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XTG-EA-e19">
                                 <rect key="frame" x="188" y="269" width="85" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="OriyaSangamMN" family="Oriya Sangam MN" pointSize="16"/>
                                 <color key="textColor" red="0.3026177236" green="0.36423753819999999" blue="0.49912958559999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Oil Pressure" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0po-W0-UI3">
                                 <rect key="frame" x="39" y="389" width="98" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="OriyaSangamMN" family="Oriya Sangam MN" pointSize="16"/>
                                 <color key="textColor" red="0.3026177236" green="0.36423753819999999" blue="0.49912958559999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Temperature" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7dr-b8-xw4">
                                 <rect key="frame" x="180" y="389" width="101" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="OriyaSangamMN" family="Oriya Sangam MN" pointSize="16"/>
                                 <color key="textColor" red="0.3026177236" green="0.36423753819999999" blue="0.49912958559999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Dual Gauge" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7u0-Ph-RUU" colorLabel="IBBuiltInLabel-Gray">
                                 <rect key="frame" x="38" y="508" width="107" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="OriyaSangamMN" family="Oriya Sangam MN" pointSize="16"/>
                                 <color key="textColor" red="0.3026177236" green="0.36423753819999999" blue="0.49912958559999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Quad Gauge" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dWU-Dr-Jyn">
                                 <rect key="frame" x="180" y="508" width="101" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" name="OriyaSangamMN" family="Oriya Sangam MN" pointSize="16"/>
                                 <color key="textColor" red="0.3026177236" green="0.36423753819999999" blue="0.49912958559999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R13-mh-yx4" customClass="CICDrawLine">
                                 <rect key="frame" x="20" y="186" width="280" height="8"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
@@ -254,7 +237,7 @@
             </objects>
             <point key="canvasLocation" x="-63" y="103"/>
         </scene>
-        <!--Quad Gauge View Controller - Quad Gauge-->
+        <!--Quad Gauge-->
         <scene sceneID="iS9-my-lkq">
             <objects>
                 <viewController id="evd-nH-Cvr" customClass="CICQuadGaugeViewController" sceneMemberID="viewController">
@@ -268,22 +251,18 @@
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="STa-Dk-g8K" customClass="CICGaugeBuilder">
                                 <rect key="frame" x="0.0" y="257" width="160" height="311"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZqI-F7-E9M" customClass="CICGaugeBuilder">
                                 <rect key="frame" x="160" y="257" width="160" height="311"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3v9-59-Hqn" customClass="CICGaugeBuilder">
                                 <rect key="frame" x="0.0" y="67" width="160" height="190"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lz0-QE-Klg" customClass="CICGaugeBuilder">
                                 <rect key="frame" x="160" y="67" width="160" height="190"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
@@ -301,7 +280,7 @@
             </objects>
             <point key="canvasLocation" x="479" y="443"/>
         </scene>
-        <!--Dual Gauge View Controller - Dual Gauge-->
+        <!--Dual Gauge-->
         <scene sceneID="Qx7-LH-1rL">
             <objects>
                 <viewController id="hQh-5e-VRS" customClass="CICDualGaugeViewController" sceneMemberID="viewController">
@@ -315,12 +294,10 @@
                         <subviews>
                             <view clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hOD-Tg-XgS" customClass="CICGaugeBuilder">
                                 <rect key="frame" x="240" y="53" width="240" height="269"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <view autoresizesSubviews="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b1e-vc-YvO" customClass="CICGaugeBuilder">
                                 <rect key="frame" x="0.0" y="53" width="240" height="269"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
@@ -329,7 +306,6 @@
                             <constraint firstAttribute="trailing" secondItem="hOD-Tg-XgS" secondAttribute="trailing" id="DWL-uz-Rhn"/>
                             <constraint firstItem="b1e-vc-YvO" firstAttribute="leading" secondItem="NK2-ax-80d" secondAttribute="leading" id="jpX-Ul-iw9"/>
                         </constraints>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <navigationItem key="navigationItem" title="Dual Gauge" id="kFT-t3-x3l"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -357,19 +333,16 @@
                         <subviews>
                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dYY-Ud-tQr" customClass="CICChartBuilder">
                                 <rect key="frame" x="0.0" y="85" width="320" height="483"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hnj-Tt-XAn">
                                 <rect key="frame" x="7" y="63" width="70" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hwp-bz-jlE">
                                 <rect key="frame" x="85" y="63" width="48" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -405,7 +378,6 @@
                         <subviews>
                             <view clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hOv-kd-0cb" customClass="CICChartBuilder">
                                 <rect key="frame" x="0.0" y="53" width="568" height="269"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
@@ -414,7 +386,6 @@
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="hOv-kd-0cb" secondAttribute="bottom" constant="-2" id="Pku-k2-KFd"/>
                             <constraint firstAttribute="bottom" secondItem="hOv-kd-0cb" secondAttribute="bottom" constant="-2" id="edc-ez-Cus"/>
                         </constraints>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
@@ -425,7 +396,7 @@
             </objects>
             <point key="canvasLocation" x="1886" y="227"/>
         </scene>
-        <!--Single Gauge View Controller - Single Gauge-->
+        <!--Single Gauge-->
         <scene sceneID="SWP-ML-A3k">
             <objects>
                 <viewController id="Ut1-rf-dv2" customClass="CICSingleGaugeViewController" sceneMemberID="viewController">
@@ -439,7 +410,6 @@
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h9E-JY-Ic5" customClass="CICGaugeBuilder">
                                 <rect key="frame" x="0.0" y="65" width="320" height="503"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
@@ -456,7 +426,7 @@
             </objects>
             <point key="canvasLocation" x="479" y="-311"/>
         </scene>
-        <!--App Settings View Controller - Settings-->
+        <!--Settings-->
         <scene sceneID="EiT-YW-2bU">
             <objects>
                 <tableViewController id="YR7-Xx-ToI" customClass="IASKAppSettingsViewController" sceneMemberID="viewController">
@@ -499,7 +469,6 @@
                         <subviews>
                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lZp-JN-Xvb" customClass="CICChartBuilder">
                                 <rect key="frame" x="0.0" y="65" width="320" height="503"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
@@ -516,7 +485,7 @@
             </objects>
             <point key="canvasLocation" x="1510" y="-311"/>
         </scene>
-        <!--Navigation Controller - Chariot Gauge-->
+        <!--Chariot Gauge-->
         <scene sceneID="61J-oY-vUI">
             <objects>
                 <navigationController title="Chariot Gauge" automaticallyAdjustsScrollViewInsets="NO" id="8sk-Dn-HgG" sceneMemberID="viewController">
