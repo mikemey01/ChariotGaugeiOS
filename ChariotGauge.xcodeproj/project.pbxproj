@@ -929,7 +929,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ChariotGauge/ChariotGauge-Prefix.pch";
 				INFOPLIST_FILE = "ChariotGauge/ChariotGauge-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/user/Desktop/xCode/core-plot-github/CorePlot_1.4/Binaries/iOS",
@@ -954,7 +954,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ChariotGauge/ChariotGauge-Prefix.pch";
 				INFOPLIST_FILE = "ChariotGauge/ChariotGauge-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/user/Desktop/xCode/core-plot-github/CorePlot_1.4/Binaries/iOS",

@@ -97,6 +97,7 @@
 
 -(void) getLatestData:(NSMutableString *)newData
 {
+    NSLog(@"made it to getLatestData - single");
     if(!isPaused){
         newArray = [newData componentsSeparatedByString: @","];
         [self setGaugeValue:newArray];
@@ -117,6 +118,7 @@
             self.gaugeView.value = [calcData calcVolts:currentIntergerValue];
         }else if(gaugeType==1){
             self.gaugeView.value = [calcData calcBoost:currentIntergerValue];
+            //NSLog(@"current integer: %li", (long)currentIntergerValue);
         }else if(gaugeType==2){
             self.gaugeView.value = [calcData calcWideBand:currentIntergerValue];
         }else if(gaugeType==3){

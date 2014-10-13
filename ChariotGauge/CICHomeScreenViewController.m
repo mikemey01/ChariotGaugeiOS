@@ -134,6 +134,7 @@
         [self.bluetooth startScan];
         [self stopTimer];
         [self startTimer];
+        NSLog(@"connect button press");
     }
     if(self.isConnected){
         [self stopTimer];
@@ -185,6 +186,7 @@
 
 -(void)getLatestPeriph:(NSString *)periphName
 {
+    NSLog(@"made it to getLatestPeriph - home");
     if([periphName isEqualToString:@"HMSoft"]){
         periphName = @"Chariot Gauge";
     }
@@ -198,6 +200,7 @@
 -(void)getLatestBluetoothState:(NSString *)latestStatus
 {
     if([latestStatus isEqualToString:@"error"]){
+        NSLog(@"made it to getLatestBluetoothState - home error");
         //go to error alert
         [self.bluetooth stopScan];
         [self stopTimer];
@@ -208,6 +211,7 @@
     }
     
     if([latestStatus isEqualToString:@"bluetoothOff"]){
+        NSLog(@"made it to getLatestBluetoothState - home bt off");
         [self.bluetooth stopScan];
         [self stopTimer];
         [self.bluetooth disconnectBluetooth];
