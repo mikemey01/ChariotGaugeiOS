@@ -89,6 +89,12 @@ static const double kFrameRate = 20.0;  // frames per second
 {
     [super viewDidLoad];
     
+    //Set the backbutton title
+    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] init];
+    barButton.title = @"Back";
+    
+    self.navigationController.navigationBar.topItem.backBarButtonItem = barButton;
+    
     //Set background color
     self.view.backgroundColor = [UIColor colorWithRed:73/255.0 green:73/255.0 blue:73/255.0 alpha:1];
     
@@ -333,7 +339,6 @@ static const double kFrameRate = 20.0;  // frames per second
     shadow.shadowColor = [UIColor blackColor];
     
     NSDictionary *normalAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-                                      [UIFont fontWithName:@"Futura" size:16], NSFontAttributeName,
                                       colorIn, NSForegroundColorAttributeName,
                                       shadow, NSShadowAttributeName,
                                       nil];

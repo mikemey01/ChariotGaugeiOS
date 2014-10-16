@@ -29,24 +29,30 @@
     
     [self initPrefs];
     
+    //Set bar button style to white.
+    [self setBarButtonStyle:[UIColor whiteColor]];
+    
     //set up bar button items
     maxButton = [[UIBarButtonItem alloc]
                  initWithTitle:@"Max"
-                 style:UIBarButtonItemStyleBordered
+                 style:UIBarButtonItemStylePlain
                  target:self
                  action:@selector(maxButtonAction)];
+    maxButton.tintColor = [UIColor whiteColor];
     
     resetButton = [[UIBarButtonItem alloc]
                    initWithTitle:@"Reset"
-                   style:UIBarButtonItemStyleBordered
+                   style:UIBarButtonItemStylePlain
                    target:self
                    action:@selector(resetButtonAction)];
+    resetButton.tintColor = [UIColor whiteColor];
     
     chartButton = [[UIBarButtonItem alloc]
                    initWithTitle:@"Chart"
-                   style:UIBarButtonItemStyleBordered
+                   style:UIBarButtonItemStylePlain
                    target:self
                    action:@selector(chartButtonAction)];
+    chartButton.tintColor = [UIColor whiteColor];
 
     
     //set the bar button items in the nav bar.
@@ -318,6 +324,21 @@
     
     [self.view addSubview:voltLabel];
     [self.view addSubview:voltLabelNumbers];
+}
+
+-(void)setBarButtonStyle:(UIColor*) colorIn
+{
+    //set the UIBarButtonItems style
+    NSShadow* shadow = [NSShadow new];
+    shadow.shadowOffset = CGSizeMake(1.0f, 1.2f);
+    shadow.shadowColor = [UIColor blackColor];
+    
+    NSDictionary *normalAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                      colorIn, NSForegroundColorAttributeName,
+                                      shadow, NSShadowAttributeName,
+                                      nil];
+    
+    [[UIBarButtonItem appearance] setTitleTextAttributes:normalAttributes forState:UIControlStateNormal];
 }
 
 -(void)maxButtonAction
