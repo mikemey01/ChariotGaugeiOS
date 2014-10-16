@@ -152,7 +152,7 @@
 -(void)createWidebandGauge
 {
     //Set nav bar title
-    self.navigationItem.title = @"Wideband";
+    self.navigationItem.title = @"";
     
     if([widebandUnits isEqualToString:@"Lambda"]){
         [self.gaugeView initializeGauge];
@@ -207,7 +207,7 @@
 -(void)createBoostGauge
 {
     //Set nav bar title
-    self.navigationItem.title = @"Boost/Vac";
+    self.navigationItem.title = @"";
     
     if([pressureUnits isEqualToString:@"BAR"]){
         [self.gaugeView initializeGauge];
@@ -247,7 +247,7 @@
 -(void)createOilGauge
 {
     //Set nav bar title
-    self.navigationItem.title = @"Oil Pressure";
+    self.navigationItem.title = @"";
     
     if([oilPressureUnits isEqualToString:@"PSI"]){
         [self.gaugeView initializeGauge];
@@ -276,7 +276,7 @@
 -(void)createTempGauge
 {
     //Set nav bar title
-    self.navigationItem.title = @"Temperature";
+    self.navigationItem.title = @"";
     
     if([temperatureUnits isEqualToString:@"Fahrenheit"]){
         [self.gaugeView initializeGauge];
@@ -325,7 +325,7 @@
     if(!isPaused){
         maxButton.tintColor = [UIColor redColor];
     }else{
-        maxButton.tintColor = nil;
+        maxButton.tintColor = [UIColor whiteColor];
     }
     isPaused = !isPaused;
 }
@@ -334,7 +334,7 @@
 {
     calcData.sensorMaxValue = self.gaugeView.minGaugeNumber;
     calcDataVolts.sensorMaxValue = 0.0f;
-    maxButton.tintColor = nil;
+    maxButton.tintColor = [UIColor whiteColor];
     isPaused = NO;
 }
 

@@ -55,7 +55,7 @@ static const double kFrameRate = 20.0;  // frames per second
     //set up bar button items
     pauseButton = [[UIBarButtonItem alloc]
                  initWithTitle:@"Pause"
-                 style:UIBarButtonItemStyleBordered
+                 style:UIBarButtonItemStylePlain
                  target:self
                  action:@selector(pauseButtonAction)];
     
