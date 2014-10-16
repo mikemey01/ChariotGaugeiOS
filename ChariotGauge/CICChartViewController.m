@@ -163,7 +163,7 @@ static const double kFrameRate = 20.0;  // frames per second
     }
     
     //Create the temp plot
-    _localPlotBuilderOne = [self buildPlot:@"plotTemp" withPlotBuilder:_localPlotBuilderOne withColor:[CPTColor yellowColor]];
+    _localPlotBuilderOne = [self buildPlot:@"plotTemp" withPlotBuilder:_localPlotBuilderOne withColor:[CPTColor colorWithComponentRed:113.0f/255.0f green:226.0f/255.0f blue:243.0f/255.0f alpha:1.0f]];
 }
 
 -(void)createOilChart
@@ -176,7 +176,7 @@ static const double kFrameRate = 20.0;  // frames per second
     }
     
     //Create the oil plot
-    _localPlotBuilderOne = [self buildPlot:@"plotOil" withPlotBuilder:_localPlotBuilderOne withColor:[CPTColor blueColor]];
+    _localPlotBuilderOne = [self buildPlot:@"plotOil" withPlotBuilder:_localPlotBuilderOne withColor:[CPTColor yellowColor]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -217,9 +217,6 @@ static const double kFrameRate = 20.0;  // frames per second
     newData = (CGFloat)rand()/(double)RAND_MAX*10;
     [plotBuilderIn addNewDataToPlot:newData];
     
-    //Update labels
-    //chartLabelData1.text = [NSString stringWithFormat:@"%.1f", newData];
-    
     //resize axes if needed
     [chartView resizeXAxis:_localPlotBuilderOne.currentIndex];
     [self resizeAxes:newData];
@@ -252,7 +249,10 @@ static const double kFrameRate = 20.0;  // frames per second
 {
     if(!isPaused){
         [self addNewDataToPlot:_localPlotBuilderOne withData:0.0f];
+        chartLabelData1.text = [NSString stringWithFormat:@"%.1f", 10.0];
+        
         [self addNewDataToPlot:_localPlotBuilderVolts withData:0.0f];
+        chartVoltLabelData.text = [NSString stringWithFormat:@"%.1f", 800.0];
     }
 }
 
@@ -299,8 +299,8 @@ static const double kFrameRate = 20.0;  // frames per second
         chartLabelData1.text = @"00.0";
         chartLabelData1.textAlignment = NSTextAlignmentLeft;
     }else if(gaugeType==2){
-        chartLabel1.textColor = [UIColor greenColor];
-        chartLabel1.font = [UIFont fontWithName:@"Futura" size:12];
+        chartLabel1.textColor = [UIColor whiteColor];
+        chartLabel1.font = [UIFont fontWithName:@"Futura" size:15];
         chartLabel1.text = @"WB:";
         chartLabel1.textAlignment = NSTextAlignmentRight;
         chartLabelData1.textColor = [UIColor whiteColor];
@@ -308,7 +308,7 @@ static const double kFrameRate = 20.0;  // frames per second
         chartLabelData1.text = @"00.0";
         chartLabelData1.textAlignment = NSTextAlignmentLeft;
     }else if(gaugeType==3){
-        chartLabel1.textColor = [UIColor greenColor];
+        chartLabel1.textColor = [UIColor colorWithRed: 113.0/255.0 green: 226.0/255.0 blue:243.0/255.0 alpha: 1.0];
         chartLabel1.font = [UIFont fontWithName:@"Futura" size:15];
         chartLabel1.text = @"Temp:";
         chartLabel1.textAlignment = NSTextAlignmentRight;
@@ -317,7 +317,7 @@ static const double kFrameRate = 20.0;  // frames per second
         chartLabelData1.text = @"00.0";
         chartLabelData1.textAlignment = NSTextAlignmentLeft;
     }else if(gaugeType==4){
-        chartLabel1.textColor = [UIColor greenColor];
+        chartLabel1.textColor = [UIColor yellowColor];
         chartLabel1.font = [UIFont fontWithName:@"Futura" size:15];
         chartLabel1.text = @"Oil:";
         chartLabel1.textAlignment = NSTextAlignmentRight;
