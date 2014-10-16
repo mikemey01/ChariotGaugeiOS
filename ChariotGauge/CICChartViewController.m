@@ -92,7 +92,6 @@ static const double kFrameRate = 20.0;  // frames per second
     //Set the backbutton title
     UIBarButtonItem *barButton = [[UIBarButtonItem alloc] init];
     barButton.title = @"Back";
-    
     self.navigationController.navigationBar.topItem.backBarButtonItem = barButton;
     
     //Set background color
@@ -302,7 +301,7 @@ static const double kFrameRate = 20.0;  // frames per second
     }else if(gaugeType==2){
         chartLabel1.textColor = [UIColor greenColor];
         chartLabel1.font = [UIFont fontWithName:@"Futura" size:12];
-        chartLabel1.text = @"Wideband:";
+        chartLabel1.text = @"WB:";
         chartLabel1.textAlignment = NSTextAlignmentRight;
         chartLabelData1.textColor = [UIColor whiteColor];
         chartLabelData1.font = [UIFont fontWithName:@"LetsgoDigital-Regular" size:20];
@@ -329,6 +328,16 @@ static const double kFrameRate = 20.0;  // frames per second
     }else{
         //do nothing
     }
+    
+    //Setup volt labels
+    chartVoltLabel.textColor = [UIColor redColor];
+    chartVoltLabel.font = [UIFont fontWithName:@"Futura" size:15];
+    chartVoltLabel.text = @"Volts:";
+    chartVoltLabel.textAlignment = NSTextAlignmentRight;
+    chartVoltLabelData.textColor = [UIColor whiteColor];
+    chartVoltLabelData.font = [UIFont fontWithName:@"LetsgoDigital-Regular" size:20];
+    chartVoltLabelData.text = @"00.0";
+    chartVoltLabelData.textAlignment = NSTextAlignmentLeft;
 }
 
 -(void)setBarButtonStyle:(UIColor*) colorIn
