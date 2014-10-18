@@ -8,7 +8,7 @@
 
 #import "CICPlotBuilder.h"
 
-static const NSUInteger kMaxDataPoints = 52;
+static const NSUInteger kMaxDataPoints = 520;
 
 @implementation CICPlotBuilder
 
@@ -38,10 +38,13 @@ static const NSUInteger kMaxDataPoints = 52;
     CPTPlotSymbol *plotSymbol = [CPTPlotSymbol ellipsePlotSymbol];
     plotSymbol.fill      = [CPTFill fillWithColor:colorIn];
     plotSymbol.lineStyle = lineStyle;
-    plotSymbol.size      = CGSizeMake(1.0, 1.0);
+    plotSymbol.size      = CGSizeMake(2.0, 2.0);
     scatterPlot.plotSymbol  = plotSymbol;
 
     scatterPlot.dataSource = self;
+    scatterPlot.delegate = self;
+    
+    scatterPlot.plotSymbolMarginForHitDetection = 5.0f;
     
     return scatterPlot;
 }
@@ -70,6 +73,11 @@ static const NSUInteger kMaxDataPoints = 52;
 -(NSString *)getPlotIdentifier:(CPTScatterPlot *)plotIn
 {
     return (NSString *)scatterPlot.identifier;
+}
+
+-(void)scatterPlot:(CPTScatterPlot *)plot plotSymbolWasSelectedAtRecordIndex:(NSUInteger)index
+{
+    NSLog(@"plotSymbolWasSelectedAtRecordIndex %lu", (unsigned long)index);
 }
 
 

@@ -132,7 +132,14 @@ static const NSUInteger kMaxDataPoints = 52;
 
 -(void)addPlotToGraph:(CPTScatterPlot *) plotIn
 {
+    plotIn.plotSymbolMarginForHitDetection = 50.0f;
     [graph addPlot:plotIn];
+}
+
+-(void)scatterPlot:(CPTScatterPlot *)plot plotSymbolWasSelectedAtRecordIndex:(NSUInteger)index
+{
+    //NSLog(@"plotSymbolWasSelectedAtRecordIndex %lu", (unsigned long)index);
+    NSLog(@"a point was touched");
 }
 
 

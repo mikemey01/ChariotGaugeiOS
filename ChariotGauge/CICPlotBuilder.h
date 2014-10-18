@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 #import "CorePlot-CocoaTouch.h"
 
-@interface CICPlotBuilder : NSObject <CPTPlotDataSource>{
+@interface CICPlotBuilder : NSObject <CPTPlotSpaceDelegate, CPTPlotDataSource, CPTScatterPlotDelegate>{
     NSMutableArray *plotData;
     NSUInteger currentIndex;
     NSString *plotIdentifier;
