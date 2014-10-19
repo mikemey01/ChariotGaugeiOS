@@ -11,8 +11,6 @@
 #import "CICChartBuilder.h"
 #import "CorePlot-CocoaTouch.h"
 #import "CICCalculateData.h"
-#import "CICPlotBuilder.h"
-#import "CICPlotBuilder.h"
 
 static const double kFrameRate = 20.0;  // frames per second
 
@@ -236,14 +234,19 @@ static const double kFrameRate = 20.0;  // frames per second
     }
 }
 
--(void)getTouchedPointValue:(CGFloat)selectedValue
+//Delegate method to receive new touched value from CICPlotBuilder.
+-(void)getTouchedPointValue:(CGFloat)selectedValue withPlotIdentifier:(NSString *)plotIdentifier
 {
-    NSLog(@"point touched: %f", selectedValue);
+    [self setDigitalLabel:selectedValue withPlotIdentifier:plotIdentifier];
 }
 
 -(void)setDigitalLabel:(CGFloat)value withPlotIdentifier:(NSString *)plotIdentifier
 {
-    
+    if([plotIdentifier isEqualToString:@"plotVolts"]){
+        [chartVoltLabelData setText:[NSString stringWithFormat:@"%.1f", value]];
+    }else{
+        [chartLabelData1 setText:[NSString stringWithFormat:@"%.1f", value]];
+    }
 }
 
 -(void)startTimer
