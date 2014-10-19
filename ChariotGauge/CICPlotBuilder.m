@@ -8,7 +8,7 @@
 
 #import "CICPlotBuilder.h"
 
-static const NSUInteger kMaxDataPoints = 520;
+static const NSUInteger kMaxDataPoints = 1000;
 
 @implementation CICPlotBuilder
 
@@ -80,7 +80,7 @@ static const NSUInteger kMaxDataPoints = 520;
     NSLog(@"plotSymbolWasSelectedAtRecordIndex %lu", (unsigned long)index);
     NSNumber *y = [plotData objectAtIndex:index];
     
-    NSLog(@"point y: %f", y.floatValue);
+    NSLog(@"point y: %f on plot: %@", y.floatValue, plot.identifier);
 }
 
 

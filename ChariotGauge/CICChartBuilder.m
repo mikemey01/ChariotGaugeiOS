@@ -12,6 +12,7 @@
 
 static const double kFrameRate = 20.0;  // frames per second
 static const NSUInteger kMaxDataPoints = 52;
+static const NSUInteger kGlobalDataPoints = 1000;
 
 @implementation CICChartBuilder
 
@@ -128,12 +129,21 @@ static const NSUInteger kMaxDataPoints = 52;
     //Setup initial y-Range. yMax - yMin to handle negatives for the length.
     plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromUnsignedInteger(yMin) length:CPTDecimalFromUnsignedInteger(yMax-yMin)];
     
+    //Setup global x-range for scrolling
+    plotSpace.globalXRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromUnsignedInteger(0) length:CPTDecimalFromUnsignedInteger(kGlobalDataPoints)];
+
+}
+
+//Handles scrolling?
+-(CGPoint)plotSpace:(CPTPlotSpace *)space willDisplaceBy:(CGPoint)displacement {
+    return CGPointMake(displacement.x, 0);
 }
 
 -(void)addPlotToGraph:(CPTScatterPlot *) plotIn
 {
     plotIn.plotSymbolMarginForHitDetection = 5.0f;
     [graph addPlot:plotIn];
+    
 }
 
 -(void)scatterPlot:(CPTScatterPlot *)plot plotSymbolWasSelectedAtRecordIndex:(NSUInteger)index
