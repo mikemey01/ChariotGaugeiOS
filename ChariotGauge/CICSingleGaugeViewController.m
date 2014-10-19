@@ -365,6 +365,7 @@
     UIStoryboard *story =[UIStoryboard storyboardWithName:@"Main" bundle:nil];
     CICChartViewController *chartViewController=[story instantiateViewControllerWithIdentifier:@"chartViewController"];
     chartViewController.gaugeType = self.gaugeType;
+    chartViewController.bluetooth = self.bluetooth;
     [self.navigationController pushViewController:chartViewController animated:YES];
 }
 

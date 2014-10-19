@@ -71,7 +71,7 @@ static const NSUInteger kMaxDataPoints = 54000;
 }
 
 
--(NSString *)getPlotIdentifier:(CPTScatterPlot *)plotIn
+-(NSString *)getPlotIdentifierAsString
 {
     return (NSString *)scatterPlot.identifier;
 }

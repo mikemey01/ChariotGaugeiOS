@@ -36,7 +36,7 @@
 @property (nonatomic, retain) id selectedDelegate;
 
 -(CPTScatterPlot *)createPlot:(NSString *) plotIdentifierIn withColor:(CPTColor *) colorIn;
--(NSString *)getPlotIdentifier:(CPTScatterPlot *)plotIn;
+-(NSString *)getPlotIdentifierAsString;
 -(void)addNewDataToPlot:(CGFloat)newData;
 
 @end

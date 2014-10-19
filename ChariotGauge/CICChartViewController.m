@@ -82,7 +82,7 @@ static const double kFrameRate = 20.0;  // frames per second
         _localPlotBuilderVolts = [self buildPlot:@"plotVolts" withPlotBuilder:_localPlotBuilderVolts withColor:[CPTColor redColor]];
     }
 
-    [self startTimer];
+    //[self startTimer];
 }
 
 - (void)viewDidLoad
@@ -117,8 +117,52 @@ static const double kFrameRate = 20.0;  // frames per second
 
 -(void)getLatestData:(NSMutableString *)newData
 {
-    
+    //NSLog(@"made it here...");
+    if(!isPaused){
+        newArray = [newData componentsSeparatedByString: @","];
+        [self setChartValue:newArray];
+        newArray = nil;
+    }
 }
+
+-(void) setChartValue:(NSArray *)array
+{
+    if(array.count > gaugeType){
+        currentStringValue = [array objectAtIndex:gaugeType];
+        currentIntergerValue = [currentStringValue integerValue];
+        
+        if(gaugeType==0){
+            [self addNewDataToPlot:_localPlotBuilderOne withData:[calcData calcVolts:currentIntergerValue]];
+        }else if(gaugeType==1){
+            [self addNewDataToPlot:_localPlotBuilderOne withData:[calcData calcBoost:currentIntergerValue]];
+        }else if(gaugeType==2){
+            [self addNewDataToPlot:_localPlotBuilderOne withData:[calcData calcWideBand:currentIntergerValue]];
+        }else if(gaugeType==3){
+            [self addNewDataToPlot:_localPlotBuilderOne withData:[calcData calcTemp:currentIntergerValue]];
+        }else if(gaugeType==4){
+            [self addNewDataToPlot:_localPlotBuilderOne withData:[calcData calcOil:currentIntergerValue]];
+        }
+        
+        //Set voltage value
+        currentStringValue = [array objectAtIndex:0];
+        currentIntergerValue = [currentStringValue integerValue];
+        
+        [self addNewDataToPlot:_localPlotBuilderVolts withData:[calcDataVolts calcVolts:currentIntergerValue]];
+    }
+}
+
+-(void)addNewDataToPlot:(CICPlotBuilder *) plotBuilderIn withData:(CGFloat)newData
+{
+    //add plots to graph
+    //newData = (CGFloat)rand()/(double)RAND_MAX*10;
+    [plotBuilderIn addNewDataToPlot:newData];
+    [self setDigitalLabel:newData withPlotIdentifier:[plotBuilderIn getPlotIdentifierAsString]];
+    
+    //resize axes if needed
+    [chartView resizeXAxis:_localPlotBuilderOne.currentIndex];
+    [self resizeAxes:newData];
+}
+
 
 -(void)setDigitalLabel:(CGFloat)value withPlotIdentifier:(NSString *)plotIdentifier
 {
@@ -227,17 +271,6 @@ static const double kFrameRate = 20.0;  // frames per second
     return plotBuilderIn;
 }
 
--(void)addNewDataToPlot:(CICPlotBuilder *) plotBuilderIn withData:(CGFloat)newData
-{
-    //add plots to graph
-    newData = (CGFloat)rand()/(double)RAND_MAX*10;
-    [plotBuilderIn addNewDataToPlot:newData];
-    
-    //resize axes if needed
-    [chartView resizeXAxis:_localPlotBuilderOne.currentIndex];
-    [self resizeAxes:newData];
-}
-
 -(void)resizeAxes:(CGFloat)newData
 {
     if(newData+2 > chartView.yMax){
@@ -252,30 +285,6 @@ static const double kFrameRate = 20.0;  // frames per second
 -(void)getTouchedPointValue:(CGFloat)selectedValue withPlotIdentifier:(NSString *)plotIdentifier
 {
     [self setDigitalLabel:selectedValue withPlotIdentifier:plotIdentifier];
-}
-
--(void)startTimer
-{
-    [dataTimer invalidate];
-    dataTimer = nil;
-    
-    dataTimer = [NSTimer timerWithTimeInterval:1.0 / kFrameRate
-                                        target:self
-                                      selector:@selector(addTimerData)
-                                      userInfo:nil
-                                       repeats:YES];
-    [[NSRunLoop mainRunLoop] addTimer:dataTimer forMode:NSRunLoopCommonModes];
-}
-
--(void)addTimerData
-{
-    if(!isPaused){
-        [self addNewDataToPlot:_localPlotBuilderOne withData:0.0f];
-        //chartLabelData1.text = [NSString stringWithFormat:@"%.1f", 10.0];
-        
-        [self addNewDataToPlot:_localPlotBuilderVolts withData:0.0f];
-        //chartVoltLabelData.text = [NSString stringWithFormat:@"%.1f", 800.0];
-    }
 }
 
 

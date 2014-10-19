@@ -22,6 +22,8 @@
     CICChartBuilder *chartView;
     CICPlotBuilder *_localPlotBuilderOne;
     CICPlotBuilder *_localPlotBuilderVolts;
+    NSString *currentStringValue;
+    NSInteger currentIntergerValue;
     NSTimer *dataTimer;
     BOOL isPaused;
     
@@ -39,6 +41,7 @@
     CICCalculateData *calcData;
     CICCalculateData *calcDataVolts;
     CICBluetoothHandler *bluetooth;
+    NSArray *newArray;
     
     //Prefs vars
     NSString *pressureUnits;
@@ -59,6 +62,8 @@
 @property (nonatomic, retain) IBOutlet UILabel *chartVoltLabelData;
 @property (nonatomic, retain) CICBluetoothHandler *bluetooth;
 
+-(void)setChartValue:(NSArray *)array;
+-(void)addNewDataToPlot:(CICPlotBuilder *) plotBuilderIn withData:(CGFloat)newData;
 -(void)setDigitalLabel:(CGFloat)value withPlotIdentifier:(NSString *)plotIdentifier;
 
 @end
