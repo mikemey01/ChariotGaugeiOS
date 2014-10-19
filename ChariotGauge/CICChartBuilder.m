@@ -118,7 +118,7 @@ static const NSUInteger kGlobalDataPoints = 1000;
     // Rotate the labels by 45 degrees, just to show it can be done.
     x.labelRotation = 0;
     
-    
+    [[graph defaultPlotSpace] setAllowsUserInteraction:YES];
     
     // Create Plot space
     CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)graph.defaultPlotSpace;
