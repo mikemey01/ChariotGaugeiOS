@@ -11,6 +11,8 @@
 #import "CICChartBuilder.h"
 #import "CorePlot-CocoaTouch.h"
 #import "CICCalculateData.h"
+#import "CICPlotBuilder.h"
+#import "CICPlotBuilder.h"
 
 static const double kFrameRate = 20.0;  // frames per second
 
@@ -208,6 +210,8 @@ static const double kFrameRate = 20.0;  // frames per second
     
     [chartView addPlotToGraph:newPlot];
     
+    [plotBuilderIn setSelectedDelegate:self];
+    
     return plotBuilderIn;
 }
 
@@ -230,6 +234,16 @@ static const double kFrameRate = 20.0;  // frames per second
     if(newData-2 < chartView.yMin){
         [chartView resizeYAxis:newData-2 withYMax:chartView.yMax];
     }
+}
+
+-(void)getTouchedPointValue:(CGFloat)selectedValue
+{
+    NSLog(@"point touched: %f", selectedValue);
+}
+
+-(void)setDigitalLabel:(CGFloat)value withPlotIdentifier:(NSString *)plotIdentifier
+{
+    
 }
 
 -(void)startTimer

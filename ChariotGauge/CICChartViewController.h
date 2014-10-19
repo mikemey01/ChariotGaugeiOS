@@ -12,10 +12,11 @@
 #import "CICHomeScreenViewController.h"
 #import "CorePlot-CocoaTouch.h"
 #import "CICCalculateData.h"
+#import "CICPlotBuilder.h"
 
 @class CICChartBuilder, CICChartViewController;
 
-@interface CICChartViewController : UIViewController <BluetoothDelegate>{
+@interface CICChartViewController : UIViewController <BluetoothDelegate, CICSelectedPointDelegate>{
     
     //Chart/Plot Handling
     CICChartBuilder *chartView;
@@ -57,6 +58,8 @@
 @property (nonatomic, retain) IBOutlet UILabel *chartVoltLabel;
 @property (nonatomic, retain) IBOutlet UILabel *chartVoltLabelData;
 @property (nonatomic, retain) CICBluetoothHandler *bluetooth;
+
+-(void)setDigitalLabel:(CGFloat)value withPlotIdentifier:(NSString *)plotIdentifier;
 
 @end
 

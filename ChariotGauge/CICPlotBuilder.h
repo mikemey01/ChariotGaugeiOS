@@ -10,6 +10,12 @@
 #import <UIKit/UIKit.h>
 #import "CorePlot-CocoaTouch.h"
 
+@protocol CICSelectedPointDelegate <NSObject>
+@required
+-(void)getTouchedPointValue:(CGFloat)selectedValue;
+
+@end
+
 @interface CICPlotBuilder : NSObject <CPTPlotSpaceDelegate, CPTPlotDataSource, CPTScatterPlotDelegate>{
     NSMutableArray *plotData;
     NSUInteger currentIndex;
@@ -18,6 +24,8 @@
     CGFloat plotYMax;
     CGFloat plotYMin;
     
+    id <CICSelectedPointDelegate> selectedDelegate;
+    
 }
 
 @property (nonatomic, retain) NSMutableArray *plotData;
@@ -25,6 +33,7 @@
 @property (nonatomic, assign) CGFloat plotYMax;
 @property (nonatomic, assign) CGFloat plotYMin;
 @property (nonatomic, assign) NSUInteger currentIndex;
+@property (nonatomic, retain) id selectedDelegate;
 
 -(CPTScatterPlot *)createPlot:(NSString *) plotIdentifierIn withColor:(CPTColor *) colorIn;
 -(NSString *)getPlotIdentifier:(CPTScatterPlot *)plotIn;

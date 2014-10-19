@@ -12,7 +12,7 @@
 
 static const double kFrameRate = 20.0;  // frames per second
 static const NSUInteger kMaxDataPoints = 52;
-static const NSUInteger kGlobalDataPoints = 1000;
+static const NSUInteger kGlobalDataPoints = 54000;
 
 @implementation CICChartBuilder
 
@@ -115,9 +115,10 @@ static const NSUInteger kGlobalDataPoints = 1000;
     y.axisConstraints             = [CPTConstraints constraintWithLowerOffset:0.0];
     y.labelFormatter              = labelFormatter;
     
-    // Rotate the labels by 45 degrees, just to show it can be done.
+    // Rotate the labels by 0 degrees
     x.labelRotation = 0;
     
+    //Allows user interaction/scrolling
     [[graph defaultPlotSpace] setAllowsUserInteraction:YES];
     
     // Create Plot space
@@ -131,12 +132,10 @@ static const NSUInteger kGlobalDataPoints = 1000;
     
     //Setup global x-range for scrolling
     plotSpace.globalXRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromUnsignedInteger(0) length:CPTDecimalFromUnsignedInteger(kGlobalDataPoints)];
+    
+    //Sets the global y-range for only scrolling x-axis. Has to be reset when y-axis is resized.
+    plotSpace.globalYRange = plotSpace.yRange;
 
-}
-
-//Handles scrolling?
--(CGPoint)plotSpace:(CPTPlotSpace *)space willDisplaceBy:(CGPoint)displacement {
-    return CGPointMake(displacement.x, 0);
 }
 
 -(void)addPlotToGraph:(CPTScatterPlot *) plotIn
@@ -144,12 +143,6 @@ static const NSUInteger kGlobalDataPoints = 1000;
     plotIn.plotSymbolMarginForHitDetection = 5.0f;
     [graph addPlot:plotIn];
     
-}
-
--(void)scatterPlot:(CPTScatterPlot *)plot plotSymbolWasSelectedAtRecordIndex:(NSUInteger)index
-{
-    //NSLog(@"plotSymbolWasSelectedAtRecordIndex %lu", (unsigned long)index);
-    NSLog(@"a point was touched");
 }
 
 
@@ -188,6 +181,9 @@ static const NSUInteger kGlobalDataPoints = 1000;
             fromPlotRange:yOldRange
               toPlotRange:yNewRange
                  duration:CPTFloat(1.0 / kFrameRate)];
+    
+    //Reset this for scrolling the x-axis.
+    plotSpace.globalYRange = yNewRange;
     
     //Move the x-axis down to match the ymin value.
     y.orthogonalCoordinateDecimal = CPTDecimalFromCGFloat(yMinIn);

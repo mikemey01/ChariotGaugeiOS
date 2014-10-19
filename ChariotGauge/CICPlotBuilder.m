@@ -8,11 +8,12 @@
 
 #import "CICPlotBuilder.h"
 
-static const NSUInteger kMaxDataPoints = 1000;
+//Saves enough data for 45 minutes. 20 updates/sec = 1200/minute, 1200*45 = 54,000
+static const NSUInteger kMaxDataPoints = 54000;
 
 @implementation CICPlotBuilder
 
-@synthesize plotData, plotIdentifier, plotYMax, plotYMin, currentIndex;
+@synthesize plotData, plotIdentifier, plotYMax, plotYMin, currentIndex, selectedDelegate;
 
 
 -(CPTScatterPlot *)createPlot:(NSString *)plotIdentifierIn withColor:(CPTColor *) colorIn
@@ -75,17 +76,19 @@ static const NSUInteger kMaxDataPoints = 1000;
     return (NSString *)scatterPlot.identifier;
 }
 
+//used to return the value of a point that is touched.
 -(void)scatterPlot:(CPTScatterPlot *)plot plotSymbolWasSelectedAtRecordIndex:(NSUInteger)index
 {
-    NSLog(@"plotSymbolWasSelectedAtRecordIndex %lu", (unsigned long)index);
+    //NSLog(@"plotSymbolWasSelectedAtRecordIndex %lu", (unsigned long)index);
     NSNumber *y = [plotData objectAtIndex:index];
     
-    NSLog(@"point y: %f on plot: %@", y.floatValue, plot.identifier);
+    //NSLog(@"point y: %f on plot: %@", y.floatValue, plot.identifier);
+    
+    [self.selectedDelegate getTouchedPointValue:y.floatValue];
 }
 
 
 #pragma mark Plot Data Source Methods
-
 -(NSUInteger)numberOfRecordsForPlot:(CPTPlot *)plot
 {
     return [plotData count];
