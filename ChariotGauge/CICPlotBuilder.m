@@ -32,20 +32,20 @@ static const NSUInteger kMaxDataPoints = 54000;
     scatterPlot.cachePrecision = CPTPlotCachePrecisionDouble;
 
     CPTMutableLineStyle *lineStyle = [scatterPlot.dataLineStyle mutableCopy];
-    lineStyle.lineWidth              = 1.0;
+    lineStyle.lineWidth              = 1.5;
     lineStyle.lineColor              = colorIn;
     scatterPlot.dataLineStyle = lineStyle;
     
     CPTPlotSymbol *plotSymbol = [CPTPlotSymbol ellipsePlotSymbol];
     plotSymbol.fill      = [CPTFill fillWithColor:colorIn];
     plotSymbol.lineStyle = lineStyle;
-    plotSymbol.size      = CGSizeMake(2.0, 2.0);
+    plotSymbol.size      = CGSizeMake(4.0, 4.0);
     scatterPlot.plotSymbol  = plotSymbol;
 
     scatterPlot.dataSource = self;
     scatterPlot.delegate = self;
     
-    scatterPlot.plotSymbolMarginForHitDetection = 2.0f;
+    scatterPlot.plotSymbolMarginForHitDetection = 10.0f;
     
     return scatterPlot;
 }

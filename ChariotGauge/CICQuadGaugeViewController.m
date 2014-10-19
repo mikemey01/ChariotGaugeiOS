@@ -52,7 +52,7 @@
                    action:@selector(chartButtonAction)];
     
     //set the bar button items in the nav bar.
-    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:maxButton, resetButton, nil ];//chartButton, nil];
+    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:maxButton, resetButton, chartButton, nil];
     
     [self createBoostGauge:firstGauge :calcDataOne];
     [self createWidebandGauge:secondGauge :calcDataTwo];

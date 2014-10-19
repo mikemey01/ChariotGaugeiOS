@@ -115,6 +115,20 @@ static const double kFrameRate = 20.0;  // frames per second
     [calcDataVolts initSHHCoefficients];
 }
 
+-(void)getLatestData:(NSMutableString *)newData
+{
+    
+}
+
+-(void)setDigitalLabel:(CGFloat)value withPlotIdentifier:(NSString *)plotIdentifier
+{
+    if([plotIdentifier isEqualToString:@"plotVolts"]){
+        [chartVoltLabelData setText:[NSString stringWithFormat:@"%.02f", value]];
+    }else{
+        [chartLabelData1 setText:[NSString stringWithFormat:@"%.02f", value]];
+    }
+}
+
 #pragma mark Create Chart Section
 -(void)createBoostChart
 {
@@ -240,15 +254,6 @@ static const double kFrameRate = 20.0;  // frames per second
     [self setDigitalLabel:selectedValue withPlotIdentifier:plotIdentifier];
 }
 
--(void)setDigitalLabel:(CGFloat)value withPlotIdentifier:(NSString *)plotIdentifier
-{
-    if([plotIdentifier isEqualToString:@"plotVolts"]){
-        [chartVoltLabelData setText:[NSString stringWithFormat:@"%.1f", value]];
-    }else{
-        [chartLabelData1 setText:[NSString stringWithFormat:@"%.1f", value]];
-    }
-}
-
 -(void)startTimer
 {
     [dataTimer invalidate];
@@ -266,17 +271,13 @@ static const double kFrameRate = 20.0;  // frames per second
 {
     if(!isPaused){
         [self addNewDataToPlot:_localPlotBuilderOne withData:0.0f];
-        chartLabelData1.text = [NSString stringWithFormat:@"%.1f", 10.0];
+        //chartLabelData1.text = [NSString stringWithFormat:@"%.1f", 10.0];
         
         [self addNewDataToPlot:_localPlotBuilderVolts withData:0.0f];
-        chartVoltLabelData.text = [NSString stringWithFormat:@"%.1f", 800.0];
+        //chartVoltLabelData.text = [NSString stringWithFormat:@"%.1f", 800.0];
     }
 }
 
--(void)getLatestData:(NSMutableString *)newData
-{
-    
-}
 
 -(void) initPrefs
 {
