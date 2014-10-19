@@ -132,7 +132,7 @@ static const NSUInteger kMaxDataPoints = 52;
 
 -(void)addPlotToGraph:(CPTScatterPlot *) plotIn
 {
-    plotIn.plotSymbolMarginForHitDetection = 50.0f;
+    plotIn.plotSymbolMarginForHitDetection = 5.0f;
     [graph addPlot:plotIn];
 }
 

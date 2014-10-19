@@ -44,7 +44,7 @@ static const NSUInteger kMaxDataPoints = 520;
     scatterPlot.dataSource = self;
     scatterPlot.delegate = self;
     
-    scatterPlot.plotSymbolMarginForHitDetection = 5.0f;
+    scatterPlot.plotSymbolMarginForHitDetection = 2.0f;
     
     return scatterPlot;
 }
@@ -78,6 +78,9 @@ static const NSUInteger kMaxDataPoints = 520;
 -(void)scatterPlot:(CPTScatterPlot *)plot plotSymbolWasSelectedAtRecordIndex:(NSUInteger)index
 {
     NSLog(@"plotSymbolWasSelectedAtRecordIndex %lu", (unsigned long)index);
+    NSNumber *y = [plotData objectAtIndex:index];
+    
+    NSLog(@"point y: %f", y.floatValue);
 }
 
 
