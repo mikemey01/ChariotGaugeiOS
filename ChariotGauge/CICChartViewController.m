@@ -150,7 +150,6 @@
 
 -(void)addNewDataToPlot:(CICPlotBuilder *) plotBuilderIn withData:(CGFloat)newData
 {
-    //add plots to graph
     //newData = (CGFloat)rand()/(double)RAND_MAX*10;
     [plotBuilderIn addNewDataToPlot:newData];
     [self setDigitalLabel:newData withPlotIdentifier:[plotBuilderIn getPlotIdentifierAsString]];
@@ -233,13 +232,6 @@
     //Create the oil plot
     _localPlotBuilderOne = [self buildPlot:@"plotOil" withPlotBuilder:_localPlotBuilderOne withColor:[CPTColor yellowColor]];
 }
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 
 -(void)buildChart:(CGFloat)yMinIn withYMax:(CGFloat)yMaxIn
 {
@@ -390,19 +382,10 @@
     }
 }
 
-- (void)viewDidUnload
+- (void)didReceiveMemoryWarning
 {
-
-}
-                                                          
--(void)viewWillDisappear:(BOOL)animated
-{
-    
-}
-                                                          
--(void)dealloc
-{
-
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 
