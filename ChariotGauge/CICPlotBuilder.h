@@ -13,7 +13,6 @@
 @protocol CICSelectedPointDelegate <NSObject>
 @required
 -(void)getTouchedPointValue:(CGFloat)selectedValue withPlotIdentifier:(NSString *)plotIdentifier;
-
 @end
 
 @interface CICPlotBuilder : NSObject <CPTPlotSpaceDelegate, CPTPlotDataSource, CPTScatterPlotDelegate>{

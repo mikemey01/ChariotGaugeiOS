@@ -24,7 +24,6 @@
     CICPlotBuilder *_localPlotBuilderVolts;
     NSString *currentStringValue;
     NSInteger currentIntergerValue;
-    NSTimer *dataTimer;
     BOOL isPaused;
     
     //Bar buttons
@@ -51,7 +50,6 @@
     NSString *oilPressureUnits;
     BOOL showVolts;
     BOOL isNightMode;
-    
 }
 
 @property GaugeType gaugeType;

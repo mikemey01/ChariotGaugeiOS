@@ -11,8 +11,7 @@
 #import "CICChartBuilder.h"
 #import "CorePlot-CocoaTouch.h"
 #import "CICCalculateData.h"
-
-static const double kFrameRate = 20.0;  // frames per second
+#import "CICSingleGaugeViewController.h"
 
 @interface CICChartViewController ()
 
@@ -81,8 +80,6 @@ static const double kFrameRate = 20.0;  // frames per second
     if(showVolts){
         _localPlotBuilderVolts = [self buildPlot:@"plotVolts" withPlotBuilder:_localPlotBuilderVolts withColor:[CPTColor redColor]];
     }
-
-    //[self startTimer];
 }
 
 - (void)viewDidLoad
@@ -395,12 +392,17 @@ static const double kFrameRate = 20.0;  // frames per second
 
 - (void)viewDidUnload
 {
-    dataTimer = nil;
-}
 
+}
+                                                          
+-(void)viewWillDisappear:(BOOL)animated
+{
+    
+}
+                                                          
 -(void)dealloc
 {
-    [dataTimer invalidate];
+
 }
 
 

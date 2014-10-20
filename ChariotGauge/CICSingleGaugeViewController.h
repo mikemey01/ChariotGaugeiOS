@@ -11,6 +11,7 @@
 #import "CICHomeScreenViewController.h"
 #import "CICBluetoothHandler.h"
 #import "CICCalculateData.h"
+#import "CICChartViewController.h"
 
 @class CICGaugeBuilder, CICSingleGaugeViewController;
 
