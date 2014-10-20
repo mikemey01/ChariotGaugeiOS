@@ -34,6 +34,10 @@
     NSUInteger failedConnectCount;
     NSTimer *connectTimer;
     
+    //Handles trying other peripheral indeces
+    NSUInteger triedIndex;
+    NSUInteger indexAttempts;
+    
     id <BluetoothDelegate> btDelegate;
     id <PeriphDelegate> periphDelegate;
     id <StateChangeDelegate> stateDelegate;

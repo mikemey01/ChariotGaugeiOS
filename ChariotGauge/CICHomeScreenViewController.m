@@ -125,7 +125,6 @@
         [self.bluetooth startScan];
         [self stopTimer];
         [self startTimer];
-        NSLog(@"connect button press");
     }
     if(self.isConnected){
         [self stopTimer];

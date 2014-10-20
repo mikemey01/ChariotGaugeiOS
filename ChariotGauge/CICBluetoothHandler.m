@@ -14,6 +14,10 @@
 
 -(void)startScan
 {
+    //Setup retry peripheral variables
+    triedIndex = 0;
+    indexAttempts = 0;
+    
     //Set flag that the connect button has been pressed.
     self.connectPressed = YES;
     stringConcat = [NSMutableString stringWithString:@""];
@@ -73,7 +77,6 @@
 {
     //NSLog(@"didDiscoverPeripheral BTH");
     [self addPeriphToArray:peripheral];
-    [[self periphDelegate] getLatestPeriph:peripheral.name];
 }
 
 -(void)addPeriphToArray:(CBPeripheral *)periph
@@ -85,14 +88,18 @@
             }
         }
         [self.periphArray addObject:periph];
+        [[self periphDelegate] getLatestPeriph:periph.name];
     }else{
         [self.periphArray addObject:periph];
+        [[self periphDelegate] getLatestPeriph:periph.name];
     }
 }
 
 -(void)connectSelectedPeripheral:(NSUInteger)index
 {
     if(self.periphArray.count >= index){
+        triedIndex = index;
+        indexAttempts = 1;
         [self.centralManager stopScan];
         [self.stateDelegate getLatestBluetoothState:@"Connecting.."];
         self.peripheral = [self.periphArray objectAtIndex:index];
@@ -126,17 +133,26 @@
 {
     [self.connectTimer invalidate];
     self.connectTimer = nil;
+    triedIndex = 0;
+    indexAttempts = 0;
 }
 
 -(void)peripheralFailedToConnect
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Chariot Gauge"
-                                                    message:@"Failed to Connect, please try again. If the problem persists you may need to restart the device."
-                                                   delegate:self
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
-    [alert show];
-    [self.stateDelegate getLatestBluetoothState:@"Connect"];
+    //TODO: this needs more testing. try another index if the first doesn't work.
+    if(indexAttempts == 1 && self.periphArray.count > 1){
+        if(triedIndex == 1){triedIndex = 0;}
+        if(triedIndex == 0){triedIndex = 1;}
+        [self connectSelectedPeripheral:triedIndex];
+    }else{
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Chariot Gauge"
+                                                        message:@"Failed to Connect, please try again. If the problem persists you may need to restart the device."
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+        [self.stateDelegate getLatestBluetoothState:@"Connect"];
+    }
 }
 
 // CBPeripheralDelegate - Invoked when you discover the peripheral's available services.
