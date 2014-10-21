@@ -89,8 +89,6 @@ static const NSUInteger kMaxDataPoints = 54000;
     
     //Push the value to the viewcontroller.
     [self.selectedDelegate getTouchedPointValue:y.floatValue withPlotIdentifier:(NSString *)plot.identifier];
-    
-    NSLog(@"point: %f", y.floatValue);
 }
 
 

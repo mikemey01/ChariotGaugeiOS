@@ -145,17 +145,6 @@ static const NSUInteger kGlobalDataPoints = 54000;
     
 }
 
-//used to return the value of a point that is touched.
--(void)scatterPlot:(CPTScatterPlot *)plot plotSymbolWasSelectedAtRecordIndex:(NSUInteger)index
-{
-    NSNumber *y = [plotData objectAtIndex:index];
-    
-    //Push the value to the viewcontroller.
-    //[self.selectedDelegate getTouchedPointValue:y.floatValue withPlotIdentifier:(NSString *)plot.identifier];
-    
-    NSLog(@"point: %f", y.floatValue);
-}
-
 -(void)resetYAxis
 {
     CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)graph.defaultPlotSpace;
