@@ -11,7 +11,7 @@
 #import "CICPlotBuilder.h"
 
 static const double kFrameRate = 20.0;  // frames per second
-static const NSUInteger kMaxDataPoints = 52;
+static const NSUInteger kMaxDataPoints = 30;
 static const NSUInteger kGlobalDataPoints = 54000;
 
 @implementation CICChartBuilder
@@ -143,6 +143,23 @@ static const NSUInteger kGlobalDataPoints = 54000;
     plotIn.plotSymbolMarginForHitDetection = 5.0f;
     [graph addPlot:plotIn];
     
+}
+
+//used to return the value of a point that is touched.
+-(void)scatterPlot:(CPTScatterPlot *)plot plotSymbolWasSelectedAtRecordIndex:(NSUInteger)index
+{
+    NSNumber *y = [plotData objectAtIndex:index];
+    
+    //Push the value to the viewcontroller.
+    //[self.selectedDelegate getTouchedPointValue:y.floatValue withPlotIdentifier:(NSString *)plot.identifier];
+    
+    NSLog(@"point: %f", y.floatValue);
+}
+
+-(void)resetYAxis
+{
+    CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)graph.defaultPlotSpace;
+    plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromUnsignedInteger(yMin) length:CPTDecimalFromUnsignedInteger(yMax-yMin)];
 }
 
 

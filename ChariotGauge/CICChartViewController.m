@@ -253,6 +253,8 @@
     
     CPTScatterPlot *newPlot = [plotBuilderIn createPlot:plotNameIn withColor:colorIn];
     
+    newPlot.plotSymbolMarginForHitDetection = 10.0f;
+    
     [chartView addPlotToGraph:newPlot];
     
     [plotBuilderIn setSelectedDelegate:self];
@@ -374,6 +376,8 @@
 -(void)pauseButtonAction
 {
     if(isPaused){
+        [chartView resetYAxis];
+        //NSLog(@"hit detection: %f", )
         isPaused = NO;
         pauseButton.title = @"Pause";
     }else{

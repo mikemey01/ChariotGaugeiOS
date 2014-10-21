@@ -32,20 +32,26 @@ static const NSUInteger kMaxDataPoints = 54000;
     scatterPlot.cachePrecision = CPTPlotCachePrecisionDouble;
 
     CPTMutableLineStyle *lineStyle = [scatterPlot.dataLineStyle mutableCopy];
-    lineStyle.lineWidth              = 1.5;
+    lineStyle.lineWidth              = 1.0;
     lineStyle.lineColor              = colorIn;
     scatterPlot.dataLineStyle = lineStyle;
+    
+    CPTMutableLineStyle *symbolLineStyle = [scatterPlot.dataLineStyle mutableCopy];
+    symbolLineStyle.lineWidth = 0.25;
+    symbolLineStyle.lineColor = colorIn;
+    
     
     CPTPlotSymbol *plotSymbol = [CPTPlotSymbol ellipsePlotSymbol];
     plotSymbol.fill      = [CPTFill fillWithColor:colorIn];
     plotSymbol.lineStyle = lineStyle;
-    plotSymbol.size      = CGSizeMake(4.0, 4.0);
+    plotSymbol.size      = CGSizeMake(3.5, 3.5);
     scatterPlot.plotSymbol  = plotSymbol;
 
+    //This is only side-to-side, should really be top and bottom too.
+    scatterPlot.plotSymbolMarginForHitDetection = 5.0;
+    
     scatterPlot.dataSource = self;
     scatterPlot.delegate = self;
-    
-    scatterPlot.plotSymbolMarginForHitDetection = 10.0f;
     
     return scatterPlot;
 }
@@ -79,12 +85,12 @@ static const NSUInteger kMaxDataPoints = 54000;
 //used to return the value of a point that is touched.
 -(void)scatterPlot:(CPTScatterPlot *)plot plotSymbolWasSelectedAtRecordIndex:(NSUInteger)index
 {
-    //NSLog(@"plotSymbolWasSelectedAtRecordIndex %lu", (unsigned long)index);
     NSNumber *y = [plotData objectAtIndex:index];
     
-    //NSLog(@"point y: %f on plot: %@", y.floatValue, plot.identifier);
-    
+    //Push the value to the viewcontroller.
     [self.selectedDelegate getTouchedPointValue:y.floatValue withPlotIdentifier:(NSString *)plot.identifier];
+    
+    NSLog(@"point: %f", y.floatValue);
 }
 
 

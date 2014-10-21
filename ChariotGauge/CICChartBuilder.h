@@ -34,6 +34,7 @@
 -(void)addPlotToGraph:(CPTScatterPlot *) plotIn;
 -(void)resizeXAxis:(NSUInteger)currentIndexIn;
 -(void)resizeYAxis:(CGFloat)yMinIn withYMax:(CGFloat)yMaxIn;
+-(void)resetYAxis;
 
 @end
 
