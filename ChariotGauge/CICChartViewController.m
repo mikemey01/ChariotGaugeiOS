@@ -253,7 +253,7 @@
     
     CPTScatterPlot *newPlot = [plotBuilderIn createPlot:plotNameIn withColor:colorIn];
     
-    newPlot.plotSymbolMarginForHitDetection = 10.0f;
+    newPlot.plotSymbolMarginForHitDetection = 5.0f;
     
     [chartView addPlotToGraph:newPlot];
     

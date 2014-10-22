@@ -44,7 +44,7 @@ static const NSUInteger kMaxDataPoints = 54000;
     CPTPlotSymbol *plotSymbol = [CPTPlotSymbol ellipsePlotSymbol];
     plotSymbol.fill      = [CPTFill fillWithColor:colorIn];
     plotSymbol.lineStyle = lineStyle;
-    plotSymbol.size      = CGSizeMake(3.5, 3.5);
+    plotSymbol.size      = CGSizeMake(3.0, 3.0);
     scatterPlot.plotSymbol  = plotSymbol;
 
     //This is only side-to-side, should really be top and bottom too.
