@@ -62,6 +62,12 @@
 
 @property GaugeType gaugeType;
 @property (nonatomic, retain) IBOutlet CICChartBuilder *chartView;
+@property (nonatomic, retain) IBOutlet UILabel *chartLabel1;
+@property (nonatomic, retain) IBOutlet UILabel *chartLabelData1;
+@property (nonatomic, retain) IBOutlet UILabel *chartLabel2;
+@property (nonatomic, retain) IBOutlet UILabel *chartLabelData2;
+@property (nonatomic, retain) IBOutlet UILabel *chartVoltLabel;
+@property (nonatomic, retain) IBOutlet UILabel *chartVoltLabelData;
 @property (nonatomic, retain) CICBluetoothHandler *bluetooth;
 
 -(void)setChartValue:(NSArray *)array;

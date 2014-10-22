@@ -65,31 +65,31 @@
     //build selected gauge.
     if([gaugeOneType isEqualToString:@"Boost"]){
         _localPlotBuilderOne = [self createBoostChart:_localPlotBuilderOne];
-        //[self initLabels:chartLabel1 withDataLabel:chartLabelData1 forGaugeType:1];
+        [self initLabels:chartLabel1 withDataLabel:chartLabelData1 forGaugeType:1];
     }else if([gaugeOneType isEqualToString:@"Wideband"]){
-        [self createWidebandChart:_localPlotBuilderOne];
-        //[self initLabels:chartLabel1 withDataLabel:chartLabelData1 forGaugeType:2];
+        _localPlotBuilderOne = [self createWidebandChart:_localPlotBuilderOne];
+        [self initLabels:chartLabel1 withDataLabel:chartLabelData1 forGaugeType:2];
     }else if([gaugeOneType isEqualToString:@"Temperature"]){
-        [self createTempChart:_localPlotBuilderOne];
-        //[self initLabels:chartLabel1 withDataLabel:chartLabelData1 forGaugeType:3];
+        _localPlotBuilderOne = [self createTempChart:_localPlotBuilderOne];
+        [self initLabels:chartLabel1 withDataLabel:chartLabelData1 forGaugeType:3];
     }else if([gaugeOneType isEqualToString:@"Oil"]){
-        [self createOilChart:_localPlotBuilderOne];
-        //[self initLabels:chartLabel1 withDataLabel:chartLabelData1 forGaugeType:4];
+        _localPlotBuilderOne = [self createOilChart:_localPlotBuilderOne];
+        [self initLabels:chartLabel1 withDataLabel:chartLabelData1 forGaugeType:4];
     }
     
-    //    if([gaugeTwoType isEqualToString:@"Boost"]){
-    //        [self createBoostChart:_localPlotBuilderTwo];
-    //        [self initLabels:chartLabel2 withDataLabel:chartLabelData2 forGaugeType:1];
-    //    }else if([gaugeTwoType isEqualToString:@"Wideband"]){
-    //        [self createWidebandChart:_localPlotBuilderTwo];
-    //        [self initLabels:chartLabel2 withDataLabel:chartLabelData2 forGaugeType:2];
-    //    }else if([gaugeTwoType isEqualToString:@"Temperature"]){
-    //        [self createTempChart:_localPlotBuilderTwo];
-    //        [self initLabels:chartLabel2 withDataLabel:chartLabelData2 forGaugeType:3];
-    //    }else if([gaugeTwoType isEqualToString:@"Oil"]){
-    //        [self createOilChart:_localPlotBuilderTwo];
-    //        [self initLabels:chartLabel2 withDataLabel:chartLabelData2 forGaugeType:4];
-    //    }
+    if([gaugeTwoType isEqualToString:@"Boost"]){
+        _localPlotBuilderTwo = [self createBoostChart:_localPlotBuilderTwo];
+        [self initLabels:chartLabel2 withDataLabel:chartLabelData2 forGaugeType:1];
+    }else if([gaugeTwoType isEqualToString:@"Wideband"]){
+        _localPlotBuilderTwo = [self createWidebandChart:_localPlotBuilderTwo];
+        [self initLabels:chartLabel2 withDataLabel:chartLabelData2 forGaugeType:2];
+    }else if([gaugeTwoType isEqualToString:@"Temperature"]){
+        _localPlotBuilderTwo = [self createTempChart:_localPlotBuilderTwo];
+        [self initLabels:chartLabel2 withDataLabel:chartLabelData2 forGaugeType:3];
+    }else if([gaugeTwoType isEqualToString:@"Oil"]){
+        _localPlotBuilderTwo = [self createOilChart:_localPlotBuilderTwo];
+        [self initLabels:chartLabel2 withDataLabel:chartLabelData2 forGaugeType:4];
+    }
     
     //added voltage plot if wanted
     if(showVolts){
@@ -121,10 +121,10 @@
     [calcData initStoich];
     [calcData initSHHCoefficients];
     
-    //    calcDataTwo = [[CICCalculateData alloc] init];
-    //    [calcDataTwo initPrefs];
-    //    [calcDataTwo initStoich];
-    //    [calcDataTwo initSHHCoefficients];
+    calcDataTwo = [[CICCalculateData alloc] init];
+    [calcDataTwo initPrefs];
+    [calcDataTwo initStoich];
+    [calcDataTwo initSHHCoefficients];
     
     calcDataVolts = [[CICCalculateData alloc]init];
     [calcDataVolts initPrefs];
@@ -165,23 +165,23 @@
             [self addNewDataToPlot:_localPlotBuilderOne withData:[calcData calcOil:currentIntergerValue]];
         }
         
-        //        if([gaugeTwoType isEqualToString:@"Boost"]){
-        //            currentStringValue = [array objectAtIndex:1];
-        //            currentIntergerValue = [currentStringValue integerValue];
-        //            [self addNewDataToPlot:_localPlotBuilderTwo withData:[calcDataTwo calcBoost:currentIntergerValue]];
-        //        }else if([gaugeTwoType isEqualToString:@"Wideband"]){
-        //            currentStringValue = [array objectAtIndex:2];
-        //            currentIntergerValue = [currentStringValue integerValue];
-        //            [self addNewDataToPlot:_localPlotBuilderTwo withData:[calcDataTwo calcWideBand:currentIntergerValue]];
-        //        }else if([gaugeTwoType isEqualToString:@"Temperature"]){
-        //            currentStringValue = [array objectAtIndex:3];
-        //            currentIntergerValue = [currentStringValue integerValue];
-        //            [self addNewDataToPlot:_localPlotBuilderTwo withData:[calcDataTwo calcTemp:currentIntergerValue]];
-        //        }else if([gaugeTwoType isEqualToString:@"Oil"]){
-        //            currentStringValue = [array objectAtIndex:4];
-        //            currentIntergerValue = [currentStringValue integerValue];
-        //            [self addNewDataToPlot:_localPlotBuilderTwo withData:[calcDataTwo calcOil:currentIntergerValue]];
-        //        }
+        if([gaugeTwoType isEqualToString:@"Boost"]){
+            currentStringValue = [array objectAtIndex:1];
+            currentIntergerValue = [currentStringValue integerValue];
+            [self addNewDataToPlot:_localPlotBuilderTwo withData:[calcDataTwo calcBoost:currentIntergerValue]];
+        }else if([gaugeTwoType isEqualToString:@"Wideband"]){
+            currentStringValue = [array objectAtIndex:2];
+            currentIntergerValue = [currentStringValue integerValue];
+            [self addNewDataToPlot:_localPlotBuilderTwo withData:[calcDataTwo calcWideBand:currentIntergerValue]];
+        }else if([gaugeTwoType isEqualToString:@"Temperature"]){
+            currentStringValue = [array objectAtIndex:3];
+            currentIntergerValue = [currentStringValue integerValue];
+            [self addNewDataToPlot:_localPlotBuilderTwo withData:[calcDataTwo calcTemp:currentIntergerValue]];
+        }else if([gaugeTwoType isEqualToString:@"Oil"]){
+            currentStringValue = [array objectAtIndex:4];
+            currentIntergerValue = [currentStringValue integerValue];
+            [self addNewDataToPlot:_localPlotBuilderTwo withData:[calcDataTwo calcOil:currentIntergerValue]];
+        }
         
         
         //Set voltage value
@@ -251,7 +251,7 @@
      return [self buildPlot:@"plotWideband" withPlotBuilder:plotBuilder withColor:[CPTColor whiteColor]];
 }
 
--(void)createTempChart:(CICPlotBuilder *)plotBuilder
+-(CICPlotBuilder *)createTempChart:(CICPlotBuilder *)plotBuilder
 {
     //Create the graph
     if([temperatureUnits isEqualToString:@"Fahrenheit"]){
@@ -261,10 +261,10 @@
     }
     
     //Create the temp plot
-    plotBuilder = [self buildPlot:@"plotTemp" withPlotBuilder:plotBuilder withColor:[CPTColor colorWithComponentRed:113.0f/255.0f green:226.0f/255.0f blue:243.0f/255.0f alpha:1.0f]];
+    return [self buildPlot:@"plotTemp" withPlotBuilder:plotBuilder withColor:[CPTColor colorWithComponentRed:113.0f/255.0f green:226.0f/255.0f blue:243.0f/255.0f alpha:1.0f]];
 }
 
--(void)createOilChart:(CICPlotBuilder *)plotBuilder
+-(CICPlotBuilder *)createOilChart:(CICPlotBuilder *)plotBuilder
 {
     //Create the graph
     if([oilPressureUnits isEqualToString:@"PSI"]){
@@ -274,7 +274,7 @@
     }
     
     //Create the oil plot
-    plotBuilder = [self buildPlot:@"plotOil" withPlotBuilder:plotBuilder withColor:[CPTColor yellowColor]];
+    return [self buildPlot:@"plotOil" withPlotBuilder:plotBuilder withColor:[CPTColor yellowColor]];
 }
 
 -(void)buildChart:(CGFloat)yMinIn withYMax:(CGFloat)yMaxIn
