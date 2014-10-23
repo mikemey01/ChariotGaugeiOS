@@ -343,7 +343,6 @@
 
 -(void)initLabels:(UILabel *)chartLabel withDataLabel:(UILabel *)chartLabelData forGaugeType:(GaugeType)gaugeTypeIn
 {
-    NSLog(@"gauge type in: %i", gaugeTypeIn);
     //build selected chart labels.
     if(gaugeTypeIn==0){
         chartLabel.textColor = [UIColor greenColor];
@@ -355,7 +354,6 @@
         chartLabelData.text = @"00.0";
         chartLabelData.textAlignment = NSTextAlignmentLeft;
     }else if(gaugeTypeIn==1){
-        NSLog(@"made it here..");
         chartLabel.textColor = [UIColor greenColor];
         chartLabel.font = [UIFont fontWithName:@"Futura" size:15];
         chartLabel.text = @"Boost:";
@@ -394,9 +392,6 @@
     }else{
         //do nothing
     }
-    
-    chartLabel1 = chartLabel;
-    chartLabelData1 = chartLabelData;
     
     //Setup volt labels
     chartVoltLabel.textColor = [UIColor redColor];

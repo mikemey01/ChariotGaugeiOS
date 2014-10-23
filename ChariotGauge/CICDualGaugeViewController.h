@@ -47,6 +47,8 @@
     UILabel *voltLabel;
     UILabel *voltLabelNumbers;
     CICCalculateData *calcDataVolts;
+    
+    BOOL canRotateToAllOrientations;
 }
 
 @property (nonatomic, retain) CICBluetoothHandler *bluetooth;
