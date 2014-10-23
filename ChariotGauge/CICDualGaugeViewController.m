@@ -37,10 +37,21 @@
     return UIInterfaceOrientationMaskLandscapeRight;
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return UIInterfaceOrientationIsLandscape(interfaceOrientation);
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    //Handles forcing landscape orientation NEEDS WORK
+    self.modalPresentationStyle = UIModalPresentationCustom;
+    UIViewController *mVC = [[UIViewController alloc] init];
+    [self presentModalViewController:mVC animated:NO];
+    if (![mVC isBeingDismissed]){
+        [self dismissModalViewControllerAnimated:NO];
+    }
     
     [self initPrefs];
     
@@ -65,13 +76,14 @@
     
     //set the bar button items in the nav bar.
     self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:maxButton, resetButton, chartButton, nil];
-    
-    //Handles forcing landscape orientation NEEDS WORK
-    UIViewController *mVC = [[UIViewController alloc] init];
-    [self presentModalViewController:mVC animated:NO];
-    if (![mVC isBeingDismissed]){
-        [self dismissModalViewControllerAnimated:YES];
-    }
+
+    //THIS IS CLOSE..
+//    [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationLandscapeRight animated:NO];
+//    [[self.navigationController view] setBounds:CGRectMake(0, 0, self.view.bounds.size.height, self.view.bounds.size.width)];
+//    [[self.navigationController view] setCenter:CGPointMake(self.view.bounds.size.width/2, self.view.bounds.size.height/2)];
+//    [[self.navigationController view] setTransform:CGAffineTransformMakeRotation(M_PI / 2)];
+//    [[self view] setNeedsLayout];
+//    [[self view] setNeedsDisplay];
     
     //NSLog(@"gaugeOne: %@, gaugeTwo: %@", gaugeOneType, gaugeTwoType);
     
@@ -123,6 +135,15 @@
     [calcDataVolts initStoich];
     [calcDataVolts initSHHCoefficients];
 }
+
+//- (void)forceLandscapeForView:(UIView *)theView {
+//    [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationLandscapeRight animated:YES];
+//    [[self view] setBounds:CGRectMake(0, 0, 480, 320)];
+//    [[self view] setCenter:CGPointMake(160, 240)];
+//    [[self view] setTransform:CGAffineTransformMakeRotation(M_PI / 2)];
+//    [theView setNeedsLayout];
+//    [theView setNeedsDisplay];
+//}
 
 
 -(void) getLatestData:(NSMutableString *)newData
@@ -351,6 +372,7 @@
     voltLabel = [[UILabel alloc] initWithFrame:CGRectIntegral(CGRectMake(0.0f, sizeOfScreen.height-44.0f, sizeOfScreen.width, 20.0f))];
     voltLabel.textAlignment = NSTextAlignmentCenter;
     [voltLabel setFont:digitalFont];
+    voltLabel.textColor = [UIColor blackColor];
     [voltLabel setText:@"Volts"];
     
     voltLabelNumbers = [[UILabel alloc] initWithFrame:CGRectIntegral(CGRectMake(0.0f, sizeOfScreen.height-22.0f, sizeOfScreen.width, 20.0f))];
@@ -358,8 +380,8 @@
     [voltLabelNumbers setFont:digitalFont];
     [voltLabelNumbers setText:@"0.0"];
     
-    [self.view addSubview:voltLabel];
-    [self.view addSubview:voltLabelNumbers];
+    [[self view] addSubview:voltLabel];
+    [[self view] addSubview:voltLabelNumbers];
 }
 
 -(void)maxButtonAction

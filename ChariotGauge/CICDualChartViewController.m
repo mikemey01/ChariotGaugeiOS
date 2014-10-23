@@ -27,7 +27,7 @@
 
 @implementation CICDualChartViewController
 
-@synthesize chartView, gaugeType, bluetooth;
+@synthesize chartView, gaugeType, bluetooth, chartLabel1, chartLabelData1, chartLabel2, chartLabelData2, chartVoltLabel, chartVoltLabelData;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
