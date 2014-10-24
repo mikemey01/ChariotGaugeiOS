@@ -20,6 +20,9 @@
     //Chart/Plot Handling
     CICChartBuilder *chartView;
     CICPlotBuilder *_localPlotBuilderOne;
+    CICPlotBuilder *_localPlotBuilderTwo;
+    CICPlotBuilder *_localPlotBuilderThree;
+    CICPlotBuilder *_localPlotBuilderFour;
     CICPlotBuilder *_localPlotBuilderVolts;
     NSString *currentStringValue;
     NSInteger currentIntergerValue;

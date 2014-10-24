@@ -13,8 +13,6 @@
 #import "CICCalculateData.h"
 #import "CICQuadGaugeViewController.h"
 
-static const double kFrameRate = 20.0;  // frames per second
-
 @interface CICQuadChartViewController ()
 
 @end
@@ -22,6 +20,7 @@ static const double kFrameRate = 20.0;  // frames per second
 @implementation CICQuadChartViewController
 
 @synthesize chartView, gaugeType, bluetooth, chartLabel1, chartLabelData1, chartVoltLabel, chartVoltLabelData;
+@synthesize chartLabel2, chartLabelData2, chartLabel3, chartLabelData3, chartLabel4, chartLabelData4;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -64,20 +63,17 @@ static const double kFrameRate = 20.0;  // frames per second
     //set the bar button items in the nav bar.
     self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:pauseButton, nil];
     
-    //build selected gauge.
-    if(gaugeType==0){
-        [self createBoostChart];
-    }else if(gaugeType==1){
-        [self createBoostChart];
-    }else if(gaugeType==2){
-        [self createWidebandChart];
-    }else if(gaugeType==3){
-        [self createTempChart];
-    }else if(gaugeType==4){
-        [self createOilChart];
-    }else{
-        [self createBoostChart];
-    }
+    //Create all charts/labels
+    [self createBoostChart];
+    [self createWidebandChart];
+    [self createTempChart];
+    [self createOilChart];
+    [self createBoostChart];
+    
+    [self initLabels:chartLabel1 withDataLabel:chartLabelData1 forGaugeType:1];
+    [self initLabels:chartLabel2 withDataLabel:chartLabelData2 forGaugeType:2];
+    [self initLabels:chartLabel3 withDataLabel:chartLabelData3 forGaugeType:3];
+    [self initLabels:chartLabel4 withDataLabel:chartLabelData4 forGaugeType:4];
     
     //added voltage plot if wanted
     if(showVolts){
@@ -97,9 +93,6 @@ static const double kFrameRate = 20.0;  // frames per second
     //Set background color
     self.view.backgroundColor = [UIColor colorWithRed:73/255.0 green:73/255.0 blue:73/255.0 alpha:1];
     
-    //Init the labels
-    [self initLabels];
-    
     //set bluetooth delegate to self;
     [self.bluetooth setBtDelegate:self];
     
@@ -108,6 +101,21 @@ static const double kFrameRate = 20.0;  // frames per second
     [calcData initPrefs];
     [calcData initStoich];
     [calcData initSHHCoefficients];
+    
+    calcDataTwo = [[CICCalculateData alloc] init];
+    [calcDataTwo initPrefs];
+    [calcDataTwo initStoich];
+    [calcDataTwo initSHHCoefficients];
+    
+    calcDataThree = [[CICCalculateData alloc] init];
+    [calcDataThree initPrefs];
+    [calcDataThree initStoich];
+    [calcDataThree initSHHCoefficients];
+    
+    calcDataFour = [[CICCalculateData alloc] init];
+    [calcDataFour initPrefs];
+    [calcDataFour initStoich];
+    [calcDataFour initSHHCoefficients];
     
     calcDataVolts = [[CICCalculateData alloc]init];
     [calcDataVolts initPrefs];
@@ -127,26 +135,26 @@ static const double kFrameRate = 20.0;  // frames per second
 
 -(void) setChartValue:(NSArray *)array
 {
-    if(array.count > gaugeType){
-        currentStringValue = [array objectAtIndex:gaugeType];
+    if(array.count >= 5){
+        
+        currentStringValue = [array objectAtIndex:1];
         currentIntergerValue = [currentStringValue integerValue];
+        [self addNewDataToPlot:_localPlotBuilderOne withData:[calcData calcBoost:currentIntergerValue]];
         
-        if(gaugeType==0){
-            [self addNewDataToPlot:_localPlotBuilderOne withData:[calcData calcVolts:currentIntergerValue]];
-        }else if(gaugeType==1){
-            [self addNewDataToPlot:_localPlotBuilderOne withData:[calcData calcBoost:currentIntergerValue]];
-        }else if(gaugeType==2){
-            [self addNewDataToPlot:_localPlotBuilderOne withData:[calcData calcWideBand:currentIntergerValue]];
-        }else if(gaugeType==3){
-            [self addNewDataToPlot:_localPlotBuilderOne withData:[calcData calcTemp:currentIntergerValue]];
-        }else if(gaugeType==4){
-            [self addNewDataToPlot:_localPlotBuilderOne withData:[calcData calcOil:currentIntergerValue]];
-        }
+        currentStringValue = [array objectAtIndex:2];
+        currentIntergerValue = [currentStringValue integerValue];
+        [self addNewDataToPlot:_localPlotBuilderTwo withData:[calcDataTwo calcWideBand:currentIntergerValue]];
         
-        //Set voltage value
+        currentStringValue = [array objectAtIndex:3];
+        currentIntergerValue = [currentStringValue integerValue];
+        [self addNewDataToPlot:_localPlotBuilderThree withData:[calcDataThree calcTemp:currentIntergerValue]];
+        
+        currentStringValue = [array objectAtIndex:4];
+        currentIntergerValue = [currentStringValue integerValue];
+        [self addNewDataToPlot:_localPlotBuilderFour withData:[calcDataFour calcOil:currentIntergerValue]];
+        
         currentStringValue = [array objectAtIndex:0];
         currentIntergerValue = [currentStringValue integerValue];
-        
         [self addNewDataToPlot:_localPlotBuilderVolts withData:[calcDataVolts calcVolts:currentIntergerValue]];
     }
 }
@@ -158,7 +166,7 @@ static const double kFrameRate = 20.0;  // frames per second
     [self setDigitalLabel:newData withPlotIdentifier:[plotBuilderIn getPlotIdentifierAsString]];
     
     //resize axes if needed
-    [chartView resizeXAxis:_localPlotBuilderOne.currentIndex];
+    [chartView resizeXAxis:plotBuilderIn.currentIndex];
     [self resizeAxes:newData];
 }
 
@@ -298,54 +306,54 @@ static const double kFrameRate = 20.0;  // frames per second
 }
 
 
--(void)initLabels
+-(void)initLabels:(UILabel *)chartLabel withDataLabel:(UILabel *)chartLabelData forGaugeType:(GaugeType)gaugeTypeIn
 {
     //build selected chart labels.
-    if(gaugeType==0){
-        chartLabel1.textColor = [UIColor greenColor];
-        chartLabel1.font = [UIFont fontWithName:@"Futura" size:15];
-        chartLabel1.text = @"Boost:";
-        chartLabel1.textAlignment = NSTextAlignmentRight;
-        chartLabelData1.textColor = [UIColor whiteColor];
-        chartLabelData1.font = [UIFont fontWithName:@"LetsgoDigital-Regular" size:20];
-        chartLabelData1.text = @"00.0";
-        chartLabelData1.textAlignment = NSTextAlignmentLeft;
-    }else if(gaugeType==1){
-        chartLabel1.textColor = [UIColor greenColor];
-        chartLabel1.font = [UIFont fontWithName:@"Futura" size:15];
-        chartLabel1.text = @"Boost:";
-        chartLabel1.textAlignment = NSTextAlignmentRight;
-        chartLabelData1.textColor = [UIColor whiteColor];
-        chartLabelData1.font = [UIFont fontWithName:@"LetsgoDigital-Regular" size:20];
-        chartLabelData1.text = @"00.0";
-        chartLabelData1.textAlignment = NSTextAlignmentLeft;
-    }else if(gaugeType==2){
-        chartLabel1.textColor = [UIColor whiteColor];
-        chartLabel1.font = [UIFont fontWithName:@"Futura" size:15];
-        chartLabel1.text = @"WB:";
-        chartLabel1.textAlignment = NSTextAlignmentRight;
-        chartLabelData1.textColor = [UIColor whiteColor];
-        chartLabelData1.font = [UIFont fontWithName:@"LetsgoDigital-Regular" size:20];
-        chartLabelData1.text = @"00.0";
-        chartLabelData1.textAlignment = NSTextAlignmentLeft;
-    }else if(gaugeType==3){
-        chartLabel1.textColor = [UIColor colorWithRed: 113.0/255.0 green: 226.0/255.0 blue:243.0/255.0 alpha: 1.0];
-        chartLabel1.font = [UIFont fontWithName:@"Futura" size:15];
-        chartLabel1.text = @"Temp:";
-        chartLabel1.textAlignment = NSTextAlignmentRight;
-        chartLabelData1.textColor = [UIColor whiteColor];
-        chartLabelData1.font = [UIFont fontWithName:@"LetsgoDigital-Regular" size:20];
-        chartLabelData1.text = @"00.0";
-        chartLabelData1.textAlignment = NSTextAlignmentLeft;
-    }else if(gaugeType==4){
-        chartLabel1.textColor = [UIColor yellowColor];
-        chartLabel1.font = [UIFont fontWithName:@"Futura" size:15];
-        chartLabel1.text = @"Oil:";
-        chartLabel1.textAlignment = NSTextAlignmentRight;
-        chartLabelData1.textColor = [UIColor whiteColor];
-        chartLabelData1.font = [UIFont fontWithName:@"LetsgoDigital-Regular" size:20];
-        chartLabelData1.text = @"00.0";
-        chartLabelData1.textAlignment = NSTextAlignmentLeft;
+    if(gaugeTypeIn==0){
+        chartLabel.textColor = [UIColor greenColor];
+        chartLabel.font = [UIFont fontWithName:@"Futura" size:15];
+        chartLabel.text = @"Boost:";
+        chartLabel.textAlignment = NSTextAlignmentRight;
+        chartLabelData.textColor = [UIColor whiteColor];
+        chartLabelData.font = [UIFont fontWithName:@"LetsgoDigital-Regular" size:20];
+        chartLabelData.text = @"00.0";
+        chartLabelData.textAlignment = NSTextAlignmentLeft;
+    }else if(gaugeTypeIn==1){
+        chartLabel.textColor = [UIColor greenColor];
+        chartLabel.font = [UIFont fontWithName:@"Futura" size:15];
+        chartLabel.text = @"Boost:";
+        chartLabel.textAlignment = NSTextAlignmentRight;
+        chartLabelData.textColor = [UIColor whiteColor];
+        chartLabelData.font = [UIFont fontWithName:@"LetsgoDigital-Regular" size:20];
+        chartLabelData.text = @"00.0";
+        chartLabelData.textAlignment = NSTextAlignmentLeft;
+    }else if(gaugeTypeIn==2){
+        chartLabel.textColor = [UIColor whiteColor];
+        chartLabel.font = [UIFont fontWithName:@"Futura" size:15];
+        chartLabel.text = @"WB:";
+        chartLabel.textAlignment = NSTextAlignmentRight;
+        chartLabelData.textColor = [UIColor whiteColor];
+        chartLabelData.font = [UIFont fontWithName:@"LetsgoDigital-Regular" size:20];
+        chartLabelData.text = @"00.0";
+        chartLabelData.textAlignment = NSTextAlignmentLeft;
+    }else if(gaugeTypeIn==3){
+        chartLabel.textColor = [UIColor colorWithRed: 113.0/255.0 green: 226.0/255.0 blue:243.0/255.0 alpha: 1.0];
+        chartLabel.font = [UIFont fontWithName:@"Futura" size:15];
+        chartLabel.text = @"Temp:";
+        chartLabel.textAlignment = NSTextAlignmentRight;
+        chartLabelData.textColor = [UIColor whiteColor];
+        chartLabelData.font = [UIFont fontWithName:@"LetsgoDigital-Regular" size:20];
+        chartLabelData.text = @"00.0";
+        chartLabelData.textAlignment = NSTextAlignmentLeft;
+    }else if(gaugeTypeIn==4){
+        chartLabel.textColor = [UIColor yellowColor];
+        chartLabel.font = [UIFont fontWithName:@"Futura" size:15];
+        chartLabel.text = @"Oil:";
+        chartLabel.textAlignment = NSTextAlignmentRight;
+        chartLabelData.textColor = [UIColor whiteColor];
+        chartLabelData.font = [UIFont fontWithName:@"LetsgoDigital-Regular" size:20];
+        chartLabelData.text = @"00.0";
+        chartLabelData.textAlignment = NSTextAlignmentLeft;
     }else{
         //do nothing
     }

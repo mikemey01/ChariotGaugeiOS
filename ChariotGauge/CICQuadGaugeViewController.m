@@ -99,6 +99,12 @@
     
 }
 
+//Necessary for when the chart unwinds back here.
+-(void)viewDidAppear:(BOOL)animated
+{
+    [self.bluetooth setBtDelegate:self];
+}
+
 -(void) getLatestData:(NSMutableString *)newData
 {
     if(!isPaused){

@@ -136,6 +136,12 @@
     [calcDataVolts initSHHCoefficients];
 }
 
+//Necessary for when the chart unwinds back here.
+-(void)viewDidAppear:(BOOL)animated
+{
+    [self.bluetooth setBtDelegate:self];
+}
+
 //- (void)forceLandscapeForView:(UIView *)theView {
 //    [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationLandscapeRight animated:YES];
 //    [[self view] setBounds:CGRectMake(0, 0, 480, 320)];
@@ -202,7 +208,6 @@
         //Set voltage value
         currentStringValue = [array objectAtIndex:0];
         currentIntergerValue = [currentStringValue integerValue];
-        
         [voltLabelNumbers setText:[NSString stringWithFormat:@"%.1f", [calcDataVolts calcVolts:currentIntergerValue]]];
     }
 }
