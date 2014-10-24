@@ -64,11 +64,10 @@
     self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:pauseButton, nil];
     
     //Create all charts/labels
-    [self createBoostChart];
-    [self createWidebandChart];
-    [self createTempChart];
-    [self createOilChart];
-    [self createBoostChart];
+    _localPlotBuilderOne = [self createBoostChart];
+    _localPlotBuilderTwo = [self createWidebandChart];
+    _localPlotBuilderThree = [self createTempChart];
+    _localPlotBuilderFour = [self createOilChart];
     
     [self initLabels:chartLabel1 withDataLabel:chartLabelData1 forGaugeType:1];
     [self initLabels:chartLabel2 withDataLabel:chartLabelData2 forGaugeType:2];
@@ -135,7 +134,7 @@
 
 -(void) setChartValue:(NSArray *)array
 {
-    if(array.count >= 5){
+    if(array.count >= 4){
         
         currentStringValue = [array objectAtIndex:1];
         currentIntergerValue = [currentStringValue integerValue];
@@ -166,7 +165,7 @@
     [self setDigitalLabel:newData withPlotIdentifier:[plotBuilderIn getPlotIdentifierAsString]];
     
     //resize axes if needed
-    [chartView resizeXAxis:plotBuilderIn.currentIndex];
+    [chartView resizeXAxis:_localPlotBuilderOne.currentIndex];
     [self resizeAxes:newData];
 }
 
@@ -188,7 +187,7 @@
 }
 
 #pragma mark Create Chart Section
--(void)createBoostChart
+-(CICPlotBuilder *)createBoostChart
 {
     //Create the graph
     if([pressureUnits isEqualToString:@"BAR"]){
@@ -200,11 +199,11 @@
     }
     
     //Create the boost plot
-    _localPlotBuilderOne = [self buildPlot:@"plotBoost" withPlotBuilder:_localPlotBuilderOne withColor:[CPTColor greenColor]];
+    return [self buildPlot:@"plotBoost" withPlotBuilder:_localPlotBuilderOne withColor:[CPTColor greenColor]];
     
 }
 
--(void)createWidebandChart
+-(CICPlotBuilder *)createWidebandChart
 {
     //Create the graph
     if([widebandUnits isEqualToString:@"Lambda"]){
@@ -222,10 +221,10 @@
     }
     
     //Create the wideband plot
-    _localPlotBuilderOne = [self buildPlot:@"plotWideband" withPlotBuilder:_localPlotBuilderOne withColor:[CPTColor whiteColor]];
+    return [self buildPlot:@"plotWideband" withPlotBuilder:_localPlotBuilderTwo withColor:[CPTColor whiteColor]];
 }
 
--(void)createTempChart
+-(CICPlotBuilder *)createTempChart
 {
     //Create the graph
     if([temperatureUnits isEqualToString:@"Fahrenheit"]){
@@ -235,10 +234,10 @@
     }
     
     //Create the temp plot
-    _localPlotBuilderOne = [self buildPlot:@"plotTemp" withPlotBuilder:_localPlotBuilderOne withColor:[CPTColor colorWithComponentRed:113.0f/255.0f green:226.0f/255.0f blue:243.0f/255.0f alpha:1.0f]];
+    return [self buildPlot:@"plotTemp" withPlotBuilder:_localPlotBuilderThree withColor:[CPTColor colorWithComponentRed:113.0f/255.0f green:226.0f/255.0f blue:243.0f/255.0f alpha:1.0f]];
 }
 
--(void)createOilChart
+-(CICPlotBuilder *)createOilChart
 {
     //Create the graph
     if([oilPressureUnits isEqualToString:@"PSI"]){
@@ -248,7 +247,7 @@
     }
     
     //Create the oil plot
-    _localPlotBuilderOne = [self buildPlot:@"plotOil" withPlotBuilder:_localPlotBuilderOne withColor:[CPTColor yellowColor]];
+    return [self buildPlot:@"plotOil" withPlotBuilder:_localPlotBuilderFour withColor:[CPTColor yellowColor]];
 }
 
 -(void)buildChart:(CGFloat)yMinIn withYMax:(CGFloat)yMaxIn
