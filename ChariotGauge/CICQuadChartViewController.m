@@ -173,10 +173,17 @@
 
 -(void)setDigitalLabel:(CGFloat)value withPlotIdentifier:(NSString *)plotIdentifier
 {
+    //TODO: I hate this but I can't think of a better way to do it right now.
     if([plotIdentifier isEqualToString:@"plotVolts"]){
         [chartVoltLabelData setText:[NSString stringWithFormat:@"%.02f", value]];
-    }else{
+    }else if([plotIdentifier isEqualToString:@"plotBoost"]){
         [chartLabelData1 setText:[NSString stringWithFormat:@"%.02f", value]];
+    }else if([plotIdentifier isEqualToString:@"plotWideband"]){
+        [chartLabelData2 setText:[NSString stringWithFormat:@"%.02f", value]];
+    }else if([plotIdentifier isEqualToString:@"plotTemp"]){
+        [chartLabelData3 setText:[NSString stringWithFormat:@"%.02f", value]];
+    }else if([plotIdentifier isEqualToString:@"plotOil"]){
+        [chartLabelData4 setText:[NSString stringWithFormat:@"%.02f", value]];
     }
 }
 
