@@ -532,6 +532,7 @@
 		CE4004F419A2ECE900E5A96C /* Charting */ = {
 			isa = PBXGroup;
 			children = (
+				CE9F3A1D19FB2EEE0099CF85 /* iPad-Charting */,
 				CE857FFB19A44B6F005527ED /* CICChartViewController.h */,
 				CE857FFC19A44B6F005527ED /* CICChartViewController.m */,
 				CEC8CEC019BBC48D0089D7C4 /* CICPlotBuilder.h */,
@@ -604,6 +605,13 @@
 				CE9CB8921896147D00F24822 /* IASKTextField.m */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		CE9F3A1D19FB2EEE0099CF85 /* iPad-Charting */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "iPad-Charting";
 			sourceTree = "<group>";
 		};
 		CEA4F64118BD9829001593F8 /* App_Icons */ = {
