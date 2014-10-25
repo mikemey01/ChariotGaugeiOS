@@ -378,7 +378,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yga-go-Q7F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1510" y="443"/>
+            <point key="canvasLocation" x="1450" y="-311"/>
         </scene>
         <!--Dual Chart View Controller-->
         <scene sceneID="Yb9-fR-6Y7">
@@ -619,7 +619,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nso-mm-N8j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1510" y="-311"/>
+            <point key="canvasLocation" x="1450" y="443"/>
         </scene>
         <!--Chariot Gauge-->
         <scene sceneID="61J-oY-vUI">

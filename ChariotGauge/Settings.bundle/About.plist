@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PreferenceSpecifiers</key>
+	<array>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>Chariot Gauge v1.1
+Created By Mike Meyer
+www.chariotgauge.com
+
+Libraries In Use
+Core-Plot: https://github.com/core-plot/core-plot
+InAppSettingsKit: http://www.inappsettingskit.com/</string>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -7,6 +7,7 @@
 //
 
 #import "CICQuadGaugeiPadViewController.h"
+#import "CICQuadChartiPadViewController.h"
 
 @interface CICQuadGaugeiPadViewController ()
 
@@ -44,8 +45,15 @@
                    target:self
                    action:@selector(resetButtonAction)];
     
+    chartButton = [[UIBarButtonItem alloc]
+                   initWithTitle:@"Chart"
+                   style:UIBarButtonItemStylePlain
+                   target:self
+                   action:@selector(chartButtonAction)];
+    chartButton.tintColor = [UIColor whiteColor];
+    
     //set the bar button items in the nav bar.
-    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:maxButton, resetButton, nil];
+    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:maxButton, resetButton, chartButton, nil];
     
     [self createBoostGauge:firstGauge :calcDataOne];
     [self createWidebandGauge:secondGauge :calcDataTwo];
@@ -90,6 +98,12 @@
     [calcDataVolts initStoich];
     [calcDataVolts initSHHCoefficients];
     
+}
+
+//Necessary for when the chart unwinds back here.
+-(void)viewDidAppear:(BOOL)animated
+{
+    [self.bluetooth setBtDelegate:self];
 }
 
 -(void) getLatestData:(NSMutableString *)newData
@@ -338,7 +352,7 @@
     if(!isPaused){
         maxButton.tintColor = [UIColor redColor];
     }else{
-        maxButton.tintColor = nil;
+        maxButton.tintColor = [UIColor whiteColor];
     }
     isPaused = !isPaused;
 }
@@ -350,8 +364,18 @@
     calcDataThree.sensorMaxValue = self.thirdGauge.minGaugeNumber;
     calcDataFour.sensorMaxValue = self.fourthGauge.minGaugeNumber;
     calcDataVolts.sensorMaxValue = 0.0f;
-    maxButton.tintColor = nil;
+    maxButton.tintColor = [UIColor whiteColor];
     isPaused = NO;
+}
+
+-(void)chartButtonAction
+{
+    //TODO: change the story board to the iPad version in the iPad VCs.
+    UIStoryboard *story =[UIStoryboard storyboardWithName:@"Main_iPad" bundle:nil];
+    CICQuadChartiPadViewController *chartViewController=[story instantiateViewControllerWithIdentifier:@"quadChartiPadViewController"];
+    chartViewController.gaugeType = self.gaugeType;
+    chartViewController.bluetooth = self.bluetooth;
+    [self.navigationController pushViewController:chartViewController animated:YES];
 }
 
 -(void) initPrefs
