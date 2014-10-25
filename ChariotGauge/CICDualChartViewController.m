@@ -206,11 +206,40 @@
 
 -(void)setDigitalLabel:(CGFloat)value withPlotIdentifier:(NSString *)plotIdentifier
 {
+    //TODO: I hate this but I can't think of a better way to do it right now.
     if([plotIdentifier isEqualToString:@"plotVolts"]){
         [chartVoltLabelData setText:[NSString stringWithFormat:@"%.02f", value]];
-    }else{
-        [chartLabelData1 setText:[NSString stringWithFormat:@"%.02f", value]];
+    }else if([plotIdentifier isEqualToString:@"plotBoost"]){
+        if([chartLabel1.text isEqualToString:@"Boost:"]){
+            [chartLabelData1 setText:[NSString stringWithFormat:@"%.02f", value]];
+        }else{
+            [chartLabelData2 setText:[NSString stringWithFormat:@"%.02f", value]];
+        }
+    }else if([plotIdentifier isEqualToString:@"plotWideband"]){
+        if([chartLabel1.text isEqualToString:@"WB:"]){
+            [chartLabelData1 setText:[NSString stringWithFormat:@"%.02f", value]];
+        }else{
+            [chartLabelData2 setText:[NSString stringWithFormat:@"%.02f", value]];
+        }
+    }else if([plotIdentifier isEqualToString:@"plotTemp"]){
+        if([chartLabel1.text isEqualToString:@"Temp:"]){
+            [chartLabelData1 setText:[NSString stringWithFormat:@"%.02f", value]];
+        }else{
+            [chartLabelData2 setText:[NSString stringWithFormat:@"%.02f", value]];
+        }
+    }else if([plotIdentifier isEqualToString:@"plotOil"]){
+        if([chartLabel1.text isEqualToString:@"Oil:"]){
+            [chartLabelData1 setText:[NSString stringWithFormat:@"%.02f", value]];
+        }else{
+            [chartLabelData2 setText:[NSString stringWithFormat:@"%.02f", value]];
+        }
     }
+}
+
+//Delegate method to receive new touched value from CICPlotBuilder.
+-(void)getTouchedPointValue:(CGFloat)selectedValue withPlotIdentifier:(NSString *)plotIdentifier
+{
+    [self setDigitalLabel:selectedValue withPlotIdentifier:plotIdentifier];
 }
 
 #pragma mark Create Chart Section
@@ -314,12 +343,6 @@
     if(newData-2 < chartView.yMin){
         [chartView resizeYAxis:newData-2 withYMax:chartView.yMax];
     }
-}
-
-//Delegate method to receive new touched value from CICPlotBuilder.
--(void)getTouchedPointValue:(CGFloat)selectedValue withPlotIdentifier:(NSString *)plotIdentifier
-{
-    [self setDigitalLabel:selectedValue withPlotIdentifier:plotIdentifier];
 }
 
 

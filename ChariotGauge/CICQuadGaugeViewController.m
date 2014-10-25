@@ -29,6 +29,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    //Set bar button style to white.
+    [self setBarButtonStyle:[UIColor whiteColor]];
 	
     [self initPrefs];
     
@@ -53,6 +56,9 @@
     
     //set the bar button items in the nav bar.
     self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:maxButton, resetButton, chartButton, nil];
+    
+    //Empty the title - titles moved to gauge
+    self.navigationItem.title = @"";
     
     [self createBoostGauge:firstGauge :calcDataOne];
     [self createWidebandGauge:secondGauge :calcDataTwo];
@@ -97,6 +103,12 @@
     [calcDataVolts initStoich];
     [calcDataVolts initSHHCoefficients];
     
+}
+
+//Necessary for when the chart unwinds back here.
+-(void)viewDidAppear:(BOOL)animated
+{
+    [self.bluetooth setBtDelegate:self];
 }
 
 -(void) getLatestData:(NSMutableString *)newData
@@ -341,6 +353,21 @@
     [self.view addSubview:voltLabelNumbers];
 }
 
+-(void)setBarButtonStyle:(UIColor*) colorIn
+{
+    //set the UIBarButtonItems style
+    NSShadow* shadow = [NSShadow new];
+    shadow.shadowOffset = CGSizeMake(1.0f, 1.2f);
+    shadow.shadowColor = [UIColor blackColor];
+    
+    NSDictionary *normalAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                      colorIn, NSForegroundColorAttributeName,
+                                      shadow, NSShadowAttributeName,
+                                      nil];
+    
+    [[UIBarButtonItem appearance] setTitleTextAttributes:normalAttributes forState:UIControlStateNormal];
+}
+
 -(void)maxButtonAction
 {
     if(!isPaused){
@@ -358,7 +385,7 @@
     calcDataThree.sensorMaxValue = self.thirdGauge.minGaugeNumber;
     calcDataFour.sensorMaxValue = self.fourthGauge.minGaugeNumber;
     calcDataVolts.sensorMaxValue = 0.0f;
-    maxButton.tintColor = nil;
+    maxButton.tintColor = [UIColor whiteColor];
     isPaused = NO;
 }
 
@@ -368,6 +395,7 @@
     UIStoryboard *story =[UIStoryboard storyboardWithName:@"Main" bundle:nil];
     CICQuadChartViewController *chartViewController=[story instantiateViewControllerWithIdentifier:@"quadChartViewController"];
     chartViewController.gaugeType = self.gaugeType;
+    chartViewController.bluetooth = self.bluetooth;
     [self.navigationController pushViewController:chartViewController animated:YES];
 }
 

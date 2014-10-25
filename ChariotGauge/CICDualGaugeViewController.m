@@ -45,6 +45,9 @@
 {
     [super viewDidLoad];
     
+    //Set bar button style to white.
+    [self setBarButtonStyle:[UIColor whiteColor]];
+    
     //Handles forcing landscape orientation NEEDS WORK
     self.modalPresentationStyle = UIModalPresentationCustom;
     UIViewController *mVC = [[UIViewController alloc] init];
@@ -76,6 +79,9 @@
     
     //set the bar button items in the nav bar.
     self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:maxButton, resetButton, chartButton, nil];
+    
+    //Empty the title - titles moved to gauge
+    self.navigationItem.title = @"";
 
     //THIS IS CLOSE..
 //    [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationLandscapeRight animated:NO];
@@ -134,6 +140,12 @@
     [calcDataVolts initPrefs];
     [calcDataVolts initStoich];
     [calcDataVolts initSHHCoefficients];
+}
+
+//Necessary for when the chart unwinds back here.
+-(void)viewDidAppear:(BOOL)animated
+{
+    [self.bluetooth setBtDelegate:self];
 }
 
 //- (void)forceLandscapeForView:(UIView *)theView {
@@ -202,7 +214,6 @@
         //Set voltage value
         currentStringValue = [array objectAtIndex:0];
         currentIntergerValue = [currentStringValue integerValue];
-        
         [voltLabelNumbers setText:[NSString stringWithFormat:@"%.1f", [calcDataVolts calcVolts:currentIntergerValue]]];
     }
 }
@@ -384,6 +395,21 @@
     [[self view] addSubview:voltLabelNumbers];
 }
 
+-(void)setBarButtonStyle:(UIColor*) colorIn
+{
+    //set the UIBarButtonItems style
+    NSShadow* shadow = [NSShadow new];
+    shadow.shadowOffset = CGSizeMake(1.0f, 1.2f);
+    shadow.shadowColor = [UIColor blackColor];
+    
+    NSDictionary *normalAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                      colorIn, NSForegroundColorAttributeName,
+                                      shadow, NSShadowAttributeName,
+                                      nil];
+    
+    [[UIBarButtonItem appearance] setTitleTextAttributes:normalAttributes forState:UIControlStateNormal];
+}
+
 -(void)maxButtonAction
 {
     if(!isPaused){
@@ -399,7 +425,7 @@
     calcDataOne.sensorMaxValue = self.firstGauge.minGaugeNumber;
     calcDataTwo.sensorMaxValue = self.secondGauge.minGaugeNumber;
     calcDataVolts.sensorMaxValue = 0.0f;
-    maxButton.tintColor = nil;
+    maxButton.tintColor = [UIColor whiteColor];
     isPaused = NO;
 }
 
