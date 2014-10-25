@@ -40,8 +40,15 @@
                    target:self
                    action:@selector(resetButtonAction)];
     
+    chartButton = [[UIBarButtonItem alloc]
+                   initWithTitle:@"Chart"
+                   style:UIBarButtonItemStylePlain
+                   target:self
+                   action:@selector(chartButtonAction)];
+    chartButton.tintColor = [UIColor whiteColor];
+    
     //set the bar button items in the nav bar.
-    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:maxButton, resetButton, nil];
+    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:maxButton, resetButton, chartButton, nil];
     
     //build selected gauge.
     if(gaugeType==0){
@@ -352,6 +359,16 @@
     calcDataVolts.sensorMaxValue = 0.0f;
     maxButton.tintColor = nil;
     isPaused = NO;
+}
+
+-(void)chartButtonAction
+{
+    //TODO: change the story board to the iPad version in the iPad VCs.
+    UIStoryboard *story =[UIStoryboard storyboardWithName:@"Main-iPad" bundle:nil];
+    CICChartiPadViewController *chartViewController=[story instantiateViewControllerWithIdentifier:@"chartViewController"];
+    chartViewController.gaugeType = self.gaugeType;
+    chartViewController.bluetooth = self.bluetooth;
+    [self.navigationController pushViewController:chartViewController animated:YES];
 }
 
 -(void) initPrefs
