@@ -67,6 +67,8 @@
 		CE9CB89F1896147D00F24822 /* IASKSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9CB8901896147D00F24822 /* IASKSwitch.m */; };
 		CE9CB8A01896147D00F24822 /* IASKTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9CB8921896147D00F24822 /* IASKTextField.m */; };
 		CE9F3A2019FBF5AB0099CF85 /* CICChartiPadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9F3A1F19FBF5AB0099CF85 /* CICChartiPadViewController.m */; };
+		CE9F3A2319FC54990099CF85 /* CICDualChartiPadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9F3A2219FC54990099CF85 /* CICDualChartiPadViewController.m */; };
+		CE9F3A2619FC54AD0099CF85 /* CICQuadChartiPadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9F3A2519FC54AD0099CF85 /* CICQuadChartiPadViewController.m */; };
 		CEA4F64918BD9922001593F8 /* app_icon_29.png in Resources */ = {isa = PBXBuildFile; fileRef = CEA4F64218BD9922001593F8 /* app_icon_29.png */; };
 		CEA4F64A18BD9922001593F8 /* app_icon_40.png in Resources */ = {isa = PBXBuildFile; fileRef = CEA4F64318BD9922001593F8 /* app_icon_40.png */; };
 		CEA4F64B18BD9922001593F8 /* app_icon_58.png in Resources */ = {isa = PBXBuildFile; fileRef = CEA4F64418BD9922001593F8 /* app_icon_58.png */; };
@@ -262,6 +264,10 @@
 		CE9CB8921896147D00F24822 /* IASKTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IASKTextField.m; sourceTree = "<group>"; };
 		CE9F3A1E19FBF5AB0099CF85 /* CICChartiPadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICChartiPadViewController.h; sourceTree = "<group>"; };
 		CE9F3A1F19FBF5AB0099CF85 /* CICChartiPadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICChartiPadViewController.m; sourceTree = "<group>"; };
+		CE9F3A2119FC54990099CF85 /* CICDualChartiPadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICDualChartiPadViewController.h; sourceTree = "<group>"; };
+		CE9F3A2219FC54990099CF85 /* CICDualChartiPadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICDualChartiPadViewController.m; sourceTree = "<group>"; };
+		CE9F3A2419FC54AD0099CF85 /* CICQuadChartiPadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICQuadChartiPadViewController.h; sourceTree = "<group>"; };
+		CE9F3A2519FC54AD0099CF85 /* CICQuadChartiPadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICQuadChartiPadViewController.m; sourceTree = "<group>"; };
 		CEA4F64218BD9922001593F8 /* app_icon_29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon_29.png; sourceTree = "<group>"; };
 		CEA4F64318BD9922001593F8 /* app_icon_40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon_40.png; sourceTree = "<group>"; };
 		CEA4F64418BD9922001593F8 /* app_icon_58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon_58.png; sourceTree = "<group>"; };
@@ -615,6 +621,10 @@
 			children = (
 				CE9F3A1E19FBF5AB0099CF85 /* CICChartiPadViewController.h */,
 				CE9F3A1F19FBF5AB0099CF85 /* CICChartiPadViewController.m */,
+				CE9F3A2119FC54990099CF85 /* CICDualChartiPadViewController.h */,
+				CE9F3A2219FC54990099CF85 /* CICDualChartiPadViewController.m */,
+				CE9F3A2419FC54AD0099CF85 /* CICQuadChartiPadViewController.h */,
+				CE9F3A2519FC54AD0099CF85 /* CICQuadChartiPadViewController.m */,
 			);
 			name = "iPad-Charting";
 			sourceTree = "<group>";
@@ -801,10 +811,12 @@
 				CE9CB89A1896147D00F24822 /* IASKSpecifier.m in Sources */,
 				CE857FFD19A44B6F005527ED /* CICChartViewController.m in Sources */,
 				CE2E85171847B01000C51A49 /* main.m in Sources */,
+				CE9F3A2619FC54AD0099CF85 /* CICQuadChartiPadViewController.m in Sources */,
 				CE9CB8941896147D00F24822 /* IASKAppSettingsWebViewController.m in Sources */,
 				CE9CB8A01896147D00F24822 /* IASKTextField.m in Sources */,
 				CEB7805218C02BD500473D9F /* CICSingleGaugeiPadViewController.m in Sources */,
 				CE05FFB01849433700764A43 /* CICGaugeBuilder.m in Sources */,
+				CE9F3A2319FC54990099CF85 /* CICDualChartiPadViewController.m in Sources */,
 				CE9CB8931896147D00F24822 /* IASKAppSettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

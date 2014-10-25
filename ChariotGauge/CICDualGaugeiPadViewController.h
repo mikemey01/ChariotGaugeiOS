@@ -29,6 +29,7 @@
     //Bar button stuff
     UIBarButtonItem *maxButton;
     UIBarButtonItem *resetButton;
+    UIBarButtonItem *chartButton;
     BOOL isPaused;
     
     //Prefs vars

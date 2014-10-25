@@ -11,6 +11,7 @@
 #import "CICAppDelegate.h"
 #import "CICCalculateData.h"
 #import "CICBluetoothHandler.h"
+#import "CICDualChartiPadViewController.h"
 
 @interface CICDualGaugeiPadViewController ()
 
@@ -49,15 +50,24 @@
                  style:UIBarButtonItemStyleBordered
                  target:self
                  action:@selector(maxButtonAction)];
+    maxButton.tintColor = [UIColor whiteColor];
     
     resetButton = [[UIBarButtonItem alloc]
                    initWithTitle:@"Reset"
                    style:UIBarButtonItemStyleBordered
                    target:self
                    action:@selector(resetButtonAction)];
+    resetButton.tintColor = [UIColor whiteColor];
+    
+    chartButton = [[UIBarButtonItem alloc]
+                   initWithTitle:@"Chart"
+                   style:UIBarButtonItemStylePlain
+                   target:self
+                   action:@selector(chartButtonAction)];
+    chartButton.tintColor = [UIColor whiteColor];
     
     //set the bar button items in the nav bar.
-    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:maxButton, resetButton, nil];
+    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:maxButton, resetButton, chartButton, nil];
     
     //Handles forcing landscape orientation NEEDS WORK
     UIViewController *mVC = [[UIViewController alloc] init];
@@ -115,6 +125,12 @@
     [calcDataVolts initPrefs];
     [calcDataVolts initStoich];
     [calcDataVolts initSHHCoefficients];
+}
+
+//Necessary for when the chart unwinds back here.
+-(void)viewDidAppear:(BOOL)animated
+{
+    [self.bluetooth setBtDelegate:self];
 }
 
 
@@ -378,7 +394,7 @@
     if(!isPaused){
         maxButton.tintColor = [UIColor redColor];
     }else{
-        maxButton.tintColor = nil;
+        maxButton.tintColor = [UIColor whiteColor];
     }
     isPaused = !isPaused;
 }
@@ -388,8 +404,18 @@
     calcDataOne.sensorMaxValue = self.firstGauge.minGaugeNumber;
     calcDataTwo.sensorMaxValue = self.secondGauge.minGaugeNumber;
     calcDataVolts.sensorMaxValue = 0.0f;
-    maxButton.tintColor = nil;
+    maxButton.tintColor = [UIColor whiteColor];
     isPaused = NO;
+}
+
+-(void)chartButtonAction
+{
+    //TODO: change the story board to the iPad version in the iPad VCs.
+    UIStoryboard *story =[UIStoryboard storyboardWithName:@"Main_iPad" bundle:nil];
+    CICDualChartiPadViewController *chartViewController=[story instantiateViewControllerWithIdentifier:@"dualChartiPadViewController"];
+    chartViewController.gaugeType = self.gaugeType;
+    chartViewController.bluetooth = self.bluetooth;
+    [self.navigationController pushViewController:chartViewController animated:YES];
 }
 
 -(void) initPrefs

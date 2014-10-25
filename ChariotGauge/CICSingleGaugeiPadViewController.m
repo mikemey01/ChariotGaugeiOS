@@ -11,6 +11,7 @@
 #import "CICAppDelegate.h"
 #import "CICBluetoothHandler.h"
 #import "CICCalculateData.h"
+#import "CICChartiPadViewController.h"
 
 @interface CICSingleGaugeiPadViewController ()
 
@@ -33,12 +34,14 @@
                  style:UIBarButtonItemStyleBordered
                  target:self
                  action:@selector(maxButtonAction)];
+    maxButton.tintColor = [UIColor whiteColor];
     
     resetButton = [[UIBarButtonItem alloc]
                    initWithTitle:@"Reset"
                    style:UIBarButtonItemStyleBordered
                    target:self
                    action:@selector(resetButtonAction)];
+    resetButton.tintColor = [UIColor whiteColor];
     
     chartButton = [[UIBarButtonItem alloc]
                    initWithTitle:@"Chart"
@@ -89,8 +92,12 @@
     [calcDataVolts initPrefs];
     [calcDataVolts initStoich];
     [calcDataVolts initSHHCoefficients];
-    
-    
+}
+
+//Necessary for when the chart unwinds back here.
+-(void)viewDidAppear:(BOOL)animated
+{
+    [self.bluetooth setBtDelegate:self];
 }
 
 -(void) getLatestData:(NSMutableString *)newData
@@ -357,15 +364,15 @@
 {
     calcData.sensorMaxValue = self.gaugeView.minGaugeNumber;
     calcDataVolts.sensorMaxValue = 0.0f;
-    maxButton.tintColor = nil;
+    maxButton.tintColor = [UIColor whiteColor];
     isPaused = NO;
 }
 
 -(void)chartButtonAction
 {
     //TODO: change the story board to the iPad version in the iPad VCs.
-    UIStoryboard *story =[UIStoryboard storyboardWithName:@"Main-iPad" bundle:nil];
-    CICChartiPadViewController *chartViewController=[story instantiateViewControllerWithIdentifier:@"chartViewController"];
+    UIStoryboard *story =[UIStoryboard storyboardWithName:@"Main_iPad" bundle:nil];
+    CICChartiPadViewController *chartViewController=[story instantiateViewControllerWithIdentifier:@"chartiPadViewController"];
     chartViewController.gaugeType = self.gaugeType;
     chartViewController.bluetooth = self.bluetooth;
     [self.navigationController pushViewController:chartViewController animated:YES];
