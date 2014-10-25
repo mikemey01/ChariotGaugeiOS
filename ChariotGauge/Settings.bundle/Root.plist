@@ -58,6 +58,14 @@
 			<key>File</key>
 			<string>TwoGauge</string>
 		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+			<key>Title</key>
+			<string>About</string>
+			<key>File</key>
+			<string>About</string>
+		</dict>
 	</array>
 	<key>StringsTable</key>
 	<string>Root</string>
