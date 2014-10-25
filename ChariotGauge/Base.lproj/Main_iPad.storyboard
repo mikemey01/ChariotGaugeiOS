@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Chariot Gauge-->
@@ -389,9 +388,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="jME-W9-uYp" firstAttribute="top" secondItem="hOv-kd-0cb" secondAttribute="bottom" constant="2" id="7VX-RY-af2"/>
                             <constraint firstItem="zdp-2t-DY0" firstAttribute="top" secondItem="9m9-YU-yDR" secondAttribute="bottom" constant="2" id="F4j-o2-ra9"/>
+                            <constraint firstItem="jME-W9-uYp" firstAttribute="top" secondItem="hOv-kd-0cb" secondAttribute="bottom" id="Ncn-x3-Rlb"/>
                             <constraint firstItem="71u-TK-kwa" firstAttribute="top" secondItem="9m9-YU-yDR" secondAttribute="bottom" constant="2" id="Nyq-Ts-PNS"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="hOv-kd-0cb" secondAttribute="bottom" constant="1" id="VXj-QL-3ad"/>
                             <constraint firstItem="3ZT-9P-Hlr" firstAttribute="top" secondItem="9m9-YU-yDR" secondAttribute="bottom" constant="2" id="ZrL-Cd-ubG"/>
                             <constraint firstItem="hOv-kd-0cb" firstAttribute="top" secondItem="71u-TK-kwa" secondAttribute="bottom" constant="2" id="ehv-DM-U0m"/>
                             <constraint firstItem="QQs-wn-QwR" firstAttribute="top" secondItem="9m9-YU-yDR" secondAttribute="bottom" constant="2" id="fX8-Au-Vhk"/>
