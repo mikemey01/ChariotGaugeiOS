@@ -56,6 +56,7 @@
     NSString *gaugeTwoType;
     BOOL showVolts;
     BOOL isNightMode;
+
 }
 
 //Don't forget to assign the IBOutlets you dummy.

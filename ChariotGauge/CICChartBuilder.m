@@ -11,7 +11,7 @@
 #import "CICPlotBuilder.h"
 
 static const double kFrameRate = 20.0;  // frames per second
-static const NSUInteger kMaxDataPoints = 30;
+static const NSUInteger kMaxDataPoints = 40;
 static const NSUInteger kGlobalDataPoints = 54000;
 
 @implementation CICChartBuilder

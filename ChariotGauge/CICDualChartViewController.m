@@ -21,6 +21,8 @@
 #import "CICCalculateData.h"
 #import "CICDualGaugeViewController.h"
 
+static const double kFrameRate = 20.0;  // frames per second
+
 @interface CICDualChartViewController ()
 
 @end
@@ -95,6 +97,7 @@
     if(showVolts){
         _localPlotBuilderVolts = [self buildPlot:@"plotVolts" withPlotBuilder:_localPlotBuilderVolts withColor:[CPTColor redColor]];
     }
+    
 }
 
 - (void)viewDidLoad
@@ -194,7 +197,6 @@
 
 -(void)addNewDataToPlot:(CICPlotBuilder *) plotBuilderIn withData:(CGFloat)newData
 {
-    //newData = (CGFloat)rand()/(double)RAND_MAX*10;
     [plotBuilderIn addNewDataToPlot:newData];
     [self setDigitalLabel:newData withPlotIdentifier:[plotBuilderIn getPlotIdentifierAsString]];
     
@@ -459,7 +461,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 
 @end

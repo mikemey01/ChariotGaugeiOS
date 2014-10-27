@@ -13,6 +13,7 @@
 #import "CICCalculateData.h"
 #import "CICDualGaugeiPadViewController.h"
 
+
 @interface CICDualChartiPadViewController ()
 
 @end
@@ -87,6 +88,7 @@
     if(showVolts){
         _localPlotBuilderVolts = [self buildPlot:@"plotVolts" withPlotBuilder:_localPlotBuilderVolts withColor:[CPTColor redColor]];
     }
+    
 }
 
 - (void)viewDidLoad
@@ -451,7 +453,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 
 @end
