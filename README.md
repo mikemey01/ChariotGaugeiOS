@@ -8,4 +8,10 @@ Chariot Gauge brings engine tuning analysis to automotive enthusiasts while elim
 
 Chariot Gauge is widely configurable for different IAT/CLT sensors, Wideband, and Oil Pressure sensors. The MAP (MPX4250AP) is soldered directly to the PCB board, future updates will allow for different sensors to be soldered in. Chariot Gauge is OBD agnostic and will work in virtually any automotive application and is ideal for Pre OBD-II vehicles.
 
+# Chariot Gauge DIY
+There are three parts to the Chariot Gauge project, this is the PCB repo:
+* [Chariot Gauge Controller Firmware](https://github.com/mikemey01/ChariotGauge-Firmware)
+* [Chariot Gauge Controller](https://github.com/mikemey01/ChariotGauge-PCB)
+* [Chariot Gauge Android App](https://github.com/mikemey01/ChariotGaugeAndroid), or [Chariot Gauge iOS App](https://github.com/mikemey01/ChariotGaugeiOS)
+
 Visit [www.chariotgauge.com](https://www.chariotgauge.com) for all the details.
